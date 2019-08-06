@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Trái cây ngoại nhập</string>
+    <string name="open">Đóng</string>
+    <string name="close">Mở</string>
+    <string name="facebook_app_id">600861953711360</string>
+    <string name="fb_login_protocol_scheme">fb600861953711360</string>
+
+</resources>

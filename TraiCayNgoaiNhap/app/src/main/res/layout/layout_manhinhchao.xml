@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/backgroundplashscreen"
+    tools:context=".View.ManHinhChao.ManHinhChaoActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingTop="20dp"
+        android:background="#80b0f2a4">//màu nền trong suốt phủ bên trên
+
+        <ImageView
+            style="@style/ImageManHinhChao"
+            android:src="@drawable/iconbag"/>
+        <TextView
+            style="@style/TextManHinhChao"
+            android:text="Đa dạng chủng loại"/>
+        <TextView
+            style="@style/TextManHinhChao"
+            android:text="Phong phú màu sắc"/>
+        <ImageView
+            style="@style/ImageManHinhChao"
+            android:src="@drawable/iconmoney"/>
+        <TextView
+            style="@style/TextManHinhChao"
+            android:text="Giao hàng tận nơi"/>
+        <TextView
+            style="@style/TextManHinhChao"
+            android:text="Thanh toán dễ dàng"/>
+        <ImageView
+            style="@style/ImageManHinhChao"
+            android:src="@drawable/iconsercurity"/>
+        <TextView
+            style="@style/TextManHinhChao"
+            android:text="Bảo mật"/>
+        <TextView
+            style="@style/TextManHinhChao"
+            android:text="An toàn"/>
+    </LinearLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center|bottom"
+        android:text="Trái Cây Ngoại Nhập"
+        android:textSize="20dp"
+        android:textColor="#ff0000"/>
+</FrameLayout>

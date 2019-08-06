@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/itSearch"
+        android:title="Search"
+        android:icon="@mipmap/ic_search_white_24dp"
+        app:showAsAction="always"
+        android:visible="false"
+        />
+
+    <item
+        android:id="@+id/itGioHang"
+        android:title="Giỏ hàng"
+        android:icon="@mipmap/ic_shopping_cart_white_24dp"
+        app:showAsAction="always"
+        android:actionLayout="@layout/custom_item_giohang"
+        />
+    <item android:icon="@mipmap/ic_more_vert_white_24dp"
+        android:title="more"
+        app:showAsAction="always">
+
+        <menu>
+            <item
+                android:id="@+id/itDangNhap"
+                android:title="Đăng nhập"
+                android:icon="@mipmap/ic_sentiment_satisfied_black_24dp"
+                />
+
+            <item
+                android:id="@+id/itEmailPhanHoi"
+                android:title="Gửi Email cho Admin"
+                android:icon="@mipmap/ic_help_outline_black_24dp"
+                />
+
+            <item
+                android:id="@+id/itThongBao"
+                android:title="Thông báo"
+                android:icon="@mipmap/ic_notifications_none_black_24dp"
+                />
+
+            <item
+                android:id="@+id/itMongMuon"
+                android:title="Danh sách mong muốn"
+                android:icon="@mipmap/ic_favorite_border_black_24dp"
+                />
+
+
+
+            <item
+                android:id="@+id/itDonHangCuaToi"
+                android:title="Đơn hàng của tôi"
+                android:icon="@mipmap/ic_content_paste_black_24dp"
+                />
+
+            <item
+                android:id="@+id/itCaiDat"
+                android:title="Cài đặt"
+                android:icon="@mipmap/ic_settings_black_24dp"
+                />
+
+            <item
+                android:id="@+id/itChinhSach"
+                android:title="Chính sách"
+                android:icon="@mipmap/ic_event_note_black_24dp"
+                />
+
+            <item
+                android:id="@+id/itTroGiup"
+                android:title="Trợ giúp"
+                android:icon="@mipmap/ic_help_outline_black_24dp"
+                />
+
+            <item
+                android:id="@+id/itDangXuat"
+                android:title="Đăng xuất"
+                android:icon="@mipmap/ic_logout"
+                android:visible="false"
+                />
+
+        </menu>
+
+    </item>
+</menu>
