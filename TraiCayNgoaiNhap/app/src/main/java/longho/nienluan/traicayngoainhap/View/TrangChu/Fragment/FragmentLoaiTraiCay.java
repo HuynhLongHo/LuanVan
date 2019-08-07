@@ -31,7 +31,6 @@ public class FragmentLoaiTraiCay extends Fragment implements ViewLoaiTraiCay{
         recyclerView = view.findViewById(R.id.recycler_view_loaitraicay);
         dSloaitraicays = new ArrayList<>();
         PresenterLogicLoaiTraiCay presenterLogicLoaiTraiCay = new PresenterLogicLoaiTraiCay(this);
-        dSloaitraicays= new ArrayList<>();
         presenterLogicLoaiTraiCay.LayDanhSachLoaiTraiCay();
         return view ;
     }
