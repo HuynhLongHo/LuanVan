@@ -16,6 +16,9 @@
 		case 'LayDanhSachLoaiTraiCay':
 			$ham();
 			break;
+		case 'LayDanhSachQuocGia':
+			$ham();
+			break;
 	}
 
 
@@ -93,11 +96,32 @@
 			while($dong = mysqli_fetch_array($ketqua)){
 		 		// echo $dong["TenLTC"]."<br>";
 		 		// in ra mảng theo cấu trúc bảng
-		 		array_push($chuoijson, array('MaLTC' => $dong["MaLTC"],'TenLTC' => $dong["TenLTC"],'HinhLTC' => "http://".$_SERVER['SERVER_NAME']."/NienLuan_LongHo"."/Image/"."/LoaiTraiCay/".$dong["HinhLTC"] ));//in theo nhu cầu
+		 		array_push($chuoijson, array('MaLTC' => $dong["MaLTC"],'TenLTC' => $dong["TenLTC"],'HinhLTC' => "http://".$_SERVER['SERVER_NAME']."/NienLuan_LongHo"."/Image"."/LoaiTraiCay/".$dong["HinhLTC"] ));//in theo nhu cầu
 		 		// $chuoijson[]=$dong;//in ra toàn bộ bảng nhưng không đúng định dạng
 		 	}
 		 	echo "{";
 		 	echo "\"loaitraicay\":";
+		 	echo json_encode($chuoijson,JSON_UNESCAPED_UNICODE);
+		 	echo "";
+		 	echo "}";
+	 	}
+	}
+
+	function LayDanhSachQuocGia()
+	{
+		include_once("config.php");
+		$truyvan = "SELECT * FROM quocgia";
+		$ketqua = mysqli_query($conn, $truyvan);
+		$chuoijson = array();
+		if($ketqua){
+			while($dong = mysqli_fetch_array($ketqua)){
+		 		// echo $dong["TenLTC"]."<br>";
+		 		// in ra mảng theo cấu trúc bảng
+		 		array_push($chuoijson, array('MaQG' => $dong["MaQG"],'TenQG' => $dong["TenQG"],'QuocKiQG' => "http://".$_SERVER['SERVER_NAME']."/NienLuan_LongHo"."/Image"."/QuocGia/".$dong["QuocKiQG"] ));//in theo nhu cầu
+		 		// $chuoijson[]=$dong;//in ra toàn bộ bảng nhưng không đúng định dạng
+		 	}
+		 	echo "{";
+		 	echo "\"quocgia\":";
 		 	echo json_encode($chuoijson,JSON_UNESCAPED_UNICODE);
 		 	echo "";
 		 	echo "}";
