@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.squareup.picasso.Callback;
@@ -29,10 +30,12 @@ public class AdapterLoaiTraiCay extends RecyclerView.Adapter<AdapterLoaiTraiCay.
     public class RecyclerViewHolder extends RecyclerView.ViewHolder {
         TextView txtTenLTC;
         ImageView imgHinhLTC;
+        ProgressBar pgbLTC;
         public RecyclerViewHolder(View itemView) {
             super(itemView);
             txtTenLTC = itemView.findViewById(R.id.txtTieuDeLoaiTraiCay);
             imgHinhLTC = itemView.findViewById(R.id.imHinhLoaiTraiCay);
+            pgbLTC = itemView.findViewById(R.id.pgbLoaiTraiCay);
 
         }
     }
@@ -51,6 +54,7 @@ public class AdapterLoaiTraiCay extends RecyclerView.Adapter<AdapterLoaiTraiCay.
         Picasso.with(context).load(dSloaitraicay.getHinhLTC()).resize(120,120).into(holder.imgHinhLTC, new Callback() {
             @Override
             public void onSuccess() {
+                holder.pgbLTC.setVisibility(View.GONE);
             }
             @Override
             public void onError() {
