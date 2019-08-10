@@ -61,4 +61,52 @@ public class ModelKhuyenMai {
 
         return quocGiaList;
     }
+
+    public List<KhuyenMai> LayDanhSachSapKhuyenMai() {
+        List<KhuyenMai> quocGiaList = new ArrayList<>();
+
+        List<HashMap<String,String>> attrs = new ArrayList<>();
+        String dataJSON = "";
+
+        String duongdan = TrangChuActivity.SERVER_NAME;
+
+        HashMap<String,String> hsHam = new HashMap<>();
+        hsHam.put("ham","LayDanhSachSapKhuyenMai");
+
+        attrs.add(hsHam);
+
+        DownloadJSON downloadJSON = new DownloadJSON(duongdan,attrs);
+        //end phương thức post
+        downloadJSON.execute();
+
+        try {
+            dataJSON = downloadJSON.get();
+
+            JSONObject jsonObject = new JSONObject(dataJSON);
+            JSONArray jsonArrayQuocGia = jsonObject.getJSONArray("khuyenmai");
+            int dem = jsonArrayQuocGia.length();
+
+            for (int i = 0; i<dem; i++){
+                KhuyenMai khuyenMai = new KhuyenMai();
+                JSONObject object = jsonArrayQuocGia.getJSONObject(i);
+
+                khuyenMai.setMaKM(object.getInt("MaKM"));
+                khuyenMai.setTenKM(object.getString("TenKM"));
+                khuyenMai.setNgayBatDau(object.getString("NgayBatDau"));
+                khuyenMai.setNgayKetThuc(object.getString("NgayKetThuc"));
+                khuyenMai.setHinhKM(object.getString("HinhKM"));
+
+                quocGiaList.add(khuyenMai);
+            }
+
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        return quocGiaList;
+    }
 }

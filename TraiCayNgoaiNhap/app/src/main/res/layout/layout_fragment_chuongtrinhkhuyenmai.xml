@@ -8,14 +8,29 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Khuyến mãi"
+        android:text="Đang khuyến mãi"
         android:layout_margin="5dp"
         android:textSize="3mm"
         android:textColor="@color/tranparentBlack"
         />
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/recycler_view_khuyenmai"
+        android:id="@+id/recycler_view_dangkhuyenmai"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+    </android.support.v7.widget.RecyclerView>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sắp khuyến mãi"
+        android:layout_margin="5dp"
+        android:textSize="3mm"
+        android:textColor="@color/tranparentBlack"
+        />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler_view_sapkhuyenmai"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
     </android.support.v7.widget.RecyclerView>

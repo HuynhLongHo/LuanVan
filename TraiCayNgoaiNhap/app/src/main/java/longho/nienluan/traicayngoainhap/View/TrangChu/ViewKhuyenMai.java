@@ -5,5 +5,6 @@ import java.util.List;
 import longho.nienluan.traicayngoainhap.Model.ObjectClass.KhuyenMai;
 
 public interface ViewKhuyenMai {
-    void HienThiDanhSachKhuyenMai(List<KhuyenMai> khuyenMaiList);
+    void HienThiDanhSachDangKhuyenMai(List<KhuyenMai> khuyenMaiList);
+    void HienThiDanhSachSapKhuyenMai(List<KhuyenMai> khuyenMaiList);
 }

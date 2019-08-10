@@ -16,10 +16,18 @@ public class PresenterLogicKhuyenMai implements IPresenterKhuyenmai {
         modelKhuyenMai = new ModelKhuyenMai();
     }
     @Override
-    public void LayDanhSachKhuyenMai() {
+    public void LayDanhSachDangKhuyenMai() {
         List<KhuyenMai> khuyenMaiList = modelKhuyenMai.LayDanhSachDangKhuyenMai();
         if(khuyenMaiList.size()>0){
-            viewKhuyenMai.HienThiDanhSachKhuyenMai(khuyenMaiList);
+            viewKhuyenMai.HienThiDanhSachDangKhuyenMai(khuyenMaiList);
+        }
+    }
+
+    @Override
+    public void LayDanhSachSapKhuyenMai() {
+        List<KhuyenMai> khuyenMaiList = modelKhuyenMai.LayDanhSachSapKhuyenMai();
+        if(khuyenMaiList.size()>0){
+            viewKhuyenMai.HienThiDanhSachSapKhuyenMai(khuyenMaiList);
         }
     }
 }
