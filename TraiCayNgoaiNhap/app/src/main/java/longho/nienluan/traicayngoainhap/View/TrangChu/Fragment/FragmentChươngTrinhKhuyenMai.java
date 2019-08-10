@@ -20,20 +20,23 @@ import longho.nienluan.traicayngoainhap.R;
 import longho.nienluan.traicayngoainhap.View.TrangChu.ViewKhuyenMai;
 
 public class FragmentChươngTrinhKhuyenMai extends Fragment implements ViewKhuyenMai {
-    RecyclerView rcvDangKhuyenMai,rcvSapKhuyenMai;
+    RecyclerView rcvDangKhuyenMai,rcvSapKhuyenMai,rcvTop10KhuyenMai;
     AdapterKhuyenMai adapterKhuyenMai;
-    List<KhuyenMai> dangKhuyenMais, sapKhuyenMais;
+    List<KhuyenMai> dangKhuyenMais, sapKhuyenMais,top10KhuyenMais;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.layout_fragment_chuongtrinhkhuyenmai, container, false);
         rcvDangKhuyenMai = view.findViewById(R.id.recycler_view_dangkhuyenmai);
         rcvSapKhuyenMai = view.findViewById(R.id.recycler_view_sapkhuyenmai);
+        rcvTop10KhuyenMai = view.findViewById(R.id.recycler_view_top10khuyenmai);
         dangKhuyenMais = new ArrayList<>();
         sapKhuyenMais = new ArrayList<>();
+        top10KhuyenMais = new ArrayList<>();
         PresenterLogicKhuyenMai presenterLogicKhuyenMai = new PresenterLogicKhuyenMai(this);
         presenterLogicKhuyenMai.LayDanhSachDangKhuyenMai();
         presenterLogicKhuyenMai.LayDanhSachSapKhuyenMai();
+        presenterLogicKhuyenMai.LayDanhSachTop10KhuyenMai();
         return view ;
     }
 
@@ -54,6 +57,16 @@ public class FragmentChươngTrinhKhuyenMai extends Fragment implements ViewKhuy
         RecyclerView.LayoutManager layoutManager = new GridLayoutManager(getActivity(),1,GridLayoutManager.HORIZONTAL,false);
         rcvSapKhuyenMai.setLayoutManager(layoutManager);
         rcvSapKhuyenMai.setAdapter(recyclerViewAdapter);
+        recyclerViewAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void HienThiDanhSachTop10KhuyenMai(List<KhuyenMai> khuyenMaiList) {
+        top10KhuyenMais = khuyenMaiList;
+        AdapterKhuyenMai recyclerViewAdapter = new AdapterKhuyenMai(getContext(),top10KhuyenMais);
+        RecyclerView.LayoutManager layoutManager = new GridLayoutManager(getActivity(),1,GridLayoutManager.HORIZONTAL,false);
+        rcvTop10KhuyenMai.setLayoutManager(layoutManager);
+        rcvTop10KhuyenMai.setAdapter(recyclerViewAdapter);
         recyclerViewAdapter.notifyDataSetChanged();
     }
 }

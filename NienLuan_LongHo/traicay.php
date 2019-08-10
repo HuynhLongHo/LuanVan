@@ -19,6 +19,15 @@
 		case 'LayDanhSachQuocGia':
 			$ham();
 			break;
+		case 'LayDanhSachDangKhuyenMai':
+			$ham();
+			break;
+		case 'LayDanhSachSapKhuyenMai':
+			$ham();
+			break;
+		case 'LayDanhSachTop10KhuyenMai':
+			$ham();
+			break;
 	}
 
 
@@ -122,6 +131,69 @@
 		 	}
 		 	echo "{";
 		 	echo "\"quocgia\":";
+		 	echo json_encode($chuoijson,JSON_UNESCAPED_UNICODE);
+		 	echo "";
+		 	echo "}";
+	 	}
+	}
+
+	function LayDanhSachDangKhuyenMai()
+	{
+		include_once("config.php");
+		$truyvan = "SELECT * FROM khuyenmai where (NgayBatDau <= Now()) and (NgayKetThuc >= Now())";
+		$ketqua = mysqli_query($conn, $truyvan);
+		$chuoijson = array();
+		if($ketqua){
+			while($dong = mysqli_fetch_array($ketqua)){
+		 		// echo $dong["TenLTC"]."<br>";
+		 		// in ra mảng theo cấu trúc bảng
+		 		array_push($chuoijson, array('MaKM' => $dong["MaKM"],'TenKM' => $dong["TenKM"],'NgayBatDau' => $dong["NgayBatDau"],'NgayKetThuc' => $dong["NgayKetThuc"],'HinhKM' => "http://".$_SERVER['SERVER_NAME']."/NienLuan_LongHo"."/Image"."/KhuyenMai/".$dong["HinhKM"] ));//in theo nhu cầu
+		 		// $chuoijson[]=$dong;//in ra toàn bộ bảng nhưng không đúng định dạng
+		 	}
+		 	echo "{";
+		 	echo "\"khuyenmai\":";
+		 	echo json_encode($chuoijson,JSON_UNESCAPED_UNICODE);
+		 	echo "";
+		 	echo "}";
+	 	}
+	}
+
+	function LayDanhSachSapKhuyenMai()
+	{
+		include_once("config.php");
+		$truyvan = "SELECT * FROM khuyenmai where NgayBatDau > Now()";
+		$ketqua = mysqli_query($conn, $truyvan);
+		$chuoijson = array();
+		if($ketqua){
+			while($dong = mysqli_fetch_array($ketqua)){
+		 		// echo $dong["TenLTC"]."<br>";
+		 		// in ra mảng theo cấu trúc bảng
+		 		array_push($chuoijson, array('MaKM' => $dong["MaKM"],'TenKM' => $dong["TenKM"],'NgayBatDau' => $dong["NgayBatDau"],'NgayKetThuc' => $dong["NgayKetThuc"],'HinhKM' => "http://".$_SERVER['SERVER_NAME']."/NienLuan_LongHo"."/Image"."/KhuyenMai/".$dong["HinhKM"] ));//in theo nhu cầu
+		 		// $chuoijson[]=$dong;//in ra toàn bộ bảng nhưng không đúng định dạng
+		 	}
+		 	echo "{";
+		 	echo "\"khuyenmai\":";
+		 	echo json_encode($chuoijson,JSON_UNESCAPED_UNICODE);
+		 	echo "";
+		 	echo "}";
+	 	}
+	}
+
+	function LayDanhSachTop10KhuyenMai()
+	{
+		include_once("config.php");
+		$truyvan = "SELECT * FROM khuyenmai ORDER BY NgayBatDau DESC LIMIT 10";
+		$ketqua = mysqli_query($conn, $truyvan);
+		$chuoijson = array();
+		if($ketqua){
+			while($dong = mysqli_fetch_array($ketqua)){
+		 		// echo $dong["TenLTC"]."<br>";
+		 		// in ra mảng theo cấu trúc bảng
+		 		array_push($chuoijson, array('MaKM' => $dong["MaKM"],'TenKM' => $dong["TenKM"],'NgayBatDau' => $dong["NgayBatDau"],'NgayKetThuc' => $dong["NgayKetThuc"],'HinhKM' => "http://".$_SERVER['SERVER_NAME']."/NienLuan_LongHo"."/Image"."/KhuyenMai/".$dong["HinhKM"] ));//in theo nhu cầu
+		 		// $chuoijson[]=$dong;//in ra toàn bộ bảng nhưng không đúng định dạng
+		 	}
+		 	echo "{";
+		 	echo "\"khuyenmai\":";
 		 	echo json_encode($chuoijson,JSON_UNESCAPED_UNICODE);
 		 	echo "";
 		 	echo "}";

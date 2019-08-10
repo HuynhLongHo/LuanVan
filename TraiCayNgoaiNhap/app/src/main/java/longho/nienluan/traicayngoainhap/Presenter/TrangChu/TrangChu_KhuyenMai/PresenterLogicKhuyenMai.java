@@ -30,4 +30,12 @@ public class PresenterLogicKhuyenMai implements IPresenterKhuyenmai {
             viewKhuyenMai.HienThiDanhSachSapKhuyenMai(khuyenMaiList);
         }
     }
+
+    @Override
+    public void LayDanhSachTop10KhuyenMai() {
+        List<KhuyenMai> khuyenMaiList = modelKhuyenMai.LayDanhSachTop10KhuyenMai();
+        if(khuyenMaiList.size()>0){
+            viewKhuyenMai.HienThiDanhSachTop10KhuyenMai(khuyenMaiList);
+        }
+    }
 }
