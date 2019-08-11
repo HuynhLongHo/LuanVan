@@ -1,12 +1,28 @@
 package longho.nienluan.traicayngoainhap.Model.ObjectClass;
 
 public class traicay {
-    int MaTraiCay, MaVung, MaLTC, MaNCC, GiaBan, SoLuongTon;
+
+    int MaTraiCay, MaVung, MaLTC, MaNCC, GiaBan, SoLuongTon,LuotMua;
     String TenTraiCay;
-    String URLHinh;
+    String HinhTraiCay;
     String MieuTaTC;
     String ThanhPhanDinhDuong;
     String MoiTruongTrong;
+
+    public int getLuotMua() {
+        return LuotMua;
+    }
+
+    public void setLuotMua(int luotMua) {
+        LuotMua = luotMua;
+    }
+
+    public String getHinhTraiCay() {
+        return HinhTraiCay;
+    }
+    public void setHinhTraiCay(String hinhTraiCay) {
+        HinhTraiCay = hinhTraiCay;
+    }
     public int getMaTraiCay() {
         return MaTraiCay;
     }
@@ -63,14 +79,6 @@ public class traicay {
         TenTraiCay = tenTraiCay;
     }
 
-    public String getURLHinh() {
-        return URLHinh;
-    }
-
-    public void setURLHinh(String URLHinh) {
-        this.URLHinh = URLHinh;
-    }
-
     public String getMieuTaTC() {
         return MieuTaTC;
     }
@@ -86,7 +94,6 @@ public class traicay {
     public void setThanhPhanDinhDuong(String thanhPhanDinhDuong) {
         ThanhPhanDinhDuong = thanhPhanDinhDuong;
     }
-
     public String getMoiTruongTrong() {
         return MoiTruongTrong;
     }

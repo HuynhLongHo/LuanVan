@@ -53,7 +53,7 @@ public class AdapterKhuyenMai extends RecyclerView.Adapter<AdapterKhuyenMai.Recy
         KhuyenMai khuyenMai = khuyenMaiList.get(position);
         holder.txtTenKhuyenMai.setText(khuyenMai.getTenKM());
         holder.txtThoiGianKM.setText("Từ " + khuyenMai.getNgayBatDau() + " đến " + khuyenMai.getNgayKetThuc());
-        Picasso.with(context).load(khuyenMai.getHinhKM()).resize(400,200).into(holder.imgHinhKM, new Callback() {
+        Picasso.with(context).load(khuyenMai.getHinhKM()).resize(350,250).into(holder.imgHinhKM, new Callback() {
             @Override
             public void onSuccess() {
                 holder.pgbKhuyenMai.setVisibility(View.GONE);

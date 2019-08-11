@@ -6,27 +6,39 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.squareup.picasso.Callback;
+import com.squareup.picasso.Picasso;
+
+import java.text.DecimalFormat;
 import java.util.List;
 
+import longho.nienluan.traicayngoainhap.Model.ObjectClass.traicay;
 import longho.nienluan.traicayngoainhap.R;
 
 public class AdapterNoiBat extends RecyclerView.Adapter<AdapterNoiBat.ViewHolder> {
 
     Context context;
-    List<String> stringList;
+    List<traicay> traicayList;
 
-    public AdapterNoiBat(Context context,List<String> stringList){
+    public AdapterNoiBat(Context context,List<traicay> traicays){
         this.context = context;
-        this.stringList = stringList;
+        this.traicayList = traicays;
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        TextView textView;
+        TextView txtTenTraiCay,txtGiaBan;
+        ImageView imgHinhTraiCay;
+        ProgressBar progressBar;
         public ViewHolder(View itemView) {
             super(itemView);
-            textView = (TextView) itemView.findViewById(R.id.txtTieuDeNoiBat);
+            txtTenTraiCay = itemView.findViewById(R.id.txTenTraiCay);
+            imgHinhTraiCay = itemView.findViewById(R.id.imHinhTraiCay);
+            txtGiaBan = itemView.findViewById(R.id.txtGiaTraiCay);
+            progressBar = itemView.findViewById(R.id.pgbTraiCay);
         }
     }
 
@@ -34,20 +46,33 @@ public class AdapterNoiBat extends RecyclerView.Adapter<AdapterNoiBat.ViewHolder
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View view = layoutInflater.inflate(R.layout.custom_recycleview_noibat,parent,false);
-
+        View view = layoutInflater.inflate(R.layout.custom_item_noibat,parent,false);
         ViewHolder viewHolder = new ViewHolder(view);
         return viewHolder;
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.textView.setText(stringList.get(position));
+    public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
+        traicay traicay = traicayList.get(position);
+        holder.txtTenTraiCay.setText(traicay.getTenTraiCay());
+        DecimalFormat formatter = new DecimalFormat("###,###");//định dạng tiền tệ
+        String giaban = formatter.format(traicay.getGiaBan()) + " VNĐ";
+        holder.txtGiaBan.setText(String.valueOf(giaban));
+        Picasso.with(context).load(traicay.getHinhTraiCay()).resize(300,200).into(holder.imgHinhTraiCay, new Callback() {
+            @Override
+            public void onSuccess() {
+                holder.progressBar.setVisibility(View.GONE);
+            }
+            @Override
+            public void onError() {
+
+            }
+        });
     }
 
     @Override
     public int getItemCount() {
-        return stringList.size();
+        return traicayList.size();
     }
 
 
