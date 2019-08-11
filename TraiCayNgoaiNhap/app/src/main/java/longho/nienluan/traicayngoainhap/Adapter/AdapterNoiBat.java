@@ -30,7 +30,7 @@ public class AdapterNoiBat extends RecyclerView.Adapter<AdapterNoiBat.ViewHolder
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        TextView txtTenTraiCay,txtGiaBan;
+        TextView txtTenTraiCay,txtGiaBan,txtLuotMua;
         ImageView imgHinhTraiCay;
         ProgressBar progressBar;
         public ViewHolder(View itemView) {
@@ -38,6 +38,7 @@ public class AdapterNoiBat extends RecyclerView.Adapter<AdapterNoiBat.ViewHolder
             txtTenTraiCay = itemView.findViewById(R.id.txTenTraiCay);
             imgHinhTraiCay = itemView.findViewById(R.id.imHinhTraiCay);
             txtGiaBan = itemView.findViewById(R.id.txtGiaTraiCay);
+            txtLuotMua = itemView.findViewById(R.id.txtLuotMua);
             progressBar = itemView.findViewById(R.id.pgbTraiCay);
         }
     }
@@ -56,8 +57,9 @@ public class AdapterNoiBat extends RecyclerView.Adapter<AdapterNoiBat.ViewHolder
         traicay traicay = traicayList.get(position);
         holder.txtTenTraiCay.setText(traicay.getTenTraiCay());
         DecimalFormat formatter = new DecimalFormat("###,###");//định dạng tiền tệ
-        String giaban = formatter.format(traicay.getGiaBan()) + " VNĐ";
+        String giaban = "Giá: " + formatter.format(traicay.getGiaBan()) + " VNĐ";
         holder.txtGiaBan.setText(String.valueOf(giaban));
+        holder.txtLuotMua.setText("Lượt mua: " + String.valueOf(traicay.getLuotMua()));
         Picasso.with(context).load(traicay.getHinhTraiCay()).resize(300,200).into(holder.imgHinhTraiCay, new Callback() {
             @Override
             public void onSuccess() {

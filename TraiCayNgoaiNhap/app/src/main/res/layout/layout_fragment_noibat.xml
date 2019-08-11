@@ -4,19 +4,57 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Top lượt mua"
-        android:layout_margin="5dp"
-        android:textSize="3mm"
-        android:textColor="@color/tranparentBlack"
-        />
-
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recyleNoiBat"
+    <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-    </android.support.v7.widget.RecyclerView>
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Hôm nay mua gì?"
+                android:layout_margin="5dp"
+                android:textSize="3mm"
+                android:textColor="@color/tranparentBlack"
+                />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rcvTraiCayNgauNhien"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+            </android.support.v7.widget.RecyclerView>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Top lượt mua"
+                android:layout_margin="5dp"
+                android:textSize="3mm"
+                android:textColor="@color/tranparentBlack"
+                />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rcvTopLuotMua"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+            </android.support.v7.widget.RecyclerView>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Trái cây giá rẻ"
+                android:layout_margin="5dp"
+                android:textSize="3mm"
+                android:textColor="@color/tranparentBlack"
+                />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rcvTraiCayGiaRe"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+            </android.support.v7.widget.RecyclerView>
+        </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
+
+
 </LinearLayout>

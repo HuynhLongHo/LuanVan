@@ -5,5 +5,7 @@ import java.util.List;
 import longho.nienluan.traicayngoainhap.Model.ObjectClass.traicay;
 
 public interface ViewNoiBat {
-    void HienThiDanhSachTopTraiCay(List<traicay> traicayList);
+    void HienThiDanhSachTopTraiCayTheoLuotMua(List<traicay> traicayList);
+    void HienThiDanhSachTraiCayGiaRe(List<traicay> traicayList);
+    void HienThiDanhSachTraiCayNgauNhien(List<traicay> traicayList);
 }
