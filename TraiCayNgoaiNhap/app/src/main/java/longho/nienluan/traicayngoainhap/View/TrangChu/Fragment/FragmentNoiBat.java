@@ -43,7 +43,7 @@ public class FragmentNoiBat extends Fragment implements ViewNoiBat {
     @Override
     public void HienThiDanhSachTopTraiCayTheoLuotMua(List<traicay> traicayList) {
         topLuotMuas = traicayList;
-        adapterTopLuotMua = new AdapterNoiBat(getContext(),topLuotMuas);
+        adapterTopLuotMua = new AdapterNoiBat(getContext(),R.layout.custom_item_traicay,topLuotMuas);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity(),LinearLayoutManager.HORIZONTAL,false);
         rcvTopLuotMua.setLayoutManager(layoutManager);
         rcvTopLuotMua.setAdapter(adapterTopLuotMua);
@@ -53,7 +53,7 @@ public class FragmentNoiBat extends Fragment implements ViewNoiBat {
     @Override
     public void HienThiDanhSachTraiCayGiaRe(List<traicay> traicayList) {
         traicaygiares = traicayList;
-        adapterTraiCayGiaRe = new AdapterNoiBat(getContext(),traicaygiares);
+        adapterTraiCayGiaRe = new AdapterNoiBat(getContext(),R.layout.custom_item_traicay,traicaygiares);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity(),LinearLayoutManager.HORIZONTAL,false);
         rcvTraiCayGiaRe.setLayoutManager(layoutManager);
         rcvTraiCayGiaRe.setAdapter(adapterTraiCayGiaRe);
@@ -63,7 +63,7 @@ public class FragmentNoiBat extends Fragment implements ViewNoiBat {
     @Override
     public void HienThiDanhSachTraiCayNgauNhien(List<traicay> traicayList) {
         traiCayNgauNhiens = traicayList;
-        adapterTraiCayNgauNhien = new AdapterNoiBat(getContext(),traiCayNgauNhiens);
+        adapterTraiCayNgauNhien = new AdapterNoiBat(getContext(),R.layout.custom_item_traicay,traiCayNgauNhiens);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity(),LinearLayoutManager.HORIZONTAL,false);
         rcvTraiCayNgauNhien.setLayoutManager(layoutManager);
         rcvTraiCayNgauNhien.setAdapter(adapterTraiCayNgauNhien);

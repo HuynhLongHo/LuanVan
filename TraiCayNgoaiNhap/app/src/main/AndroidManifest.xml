@@ -48,7 +48,11 @@
             android:name=".View.DangNhap_DangKy.DangNhapActivity"
             android:label="Đăng nhập/Đăng ký"
             android:screenOrientation="portrait" />
-        <activity android:name=".View.GuiEmail.EmailActivity"></activity>
+        <activity android:name=".View.GuiEmail.EmailActivity"/>
+        <activity
+            android:name=".View.HienThiTraiCayTheoDanhMuc.HienThiTraiCayTheoDanhMucActivity"
+            android:label="Trái Cây"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

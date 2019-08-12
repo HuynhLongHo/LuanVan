@@ -23,10 +23,12 @@ public class AdapterNoiBat extends RecyclerView.Adapter<AdapterNoiBat.ViewHolder
 
     Context context;
     List<traicay> traicayList;
+    int layout;
 
-    public AdapterNoiBat(Context context,List<traicay> traicays){
+    public AdapterNoiBat(Context context,int layout,List<traicay> traicays){
         this.context = context;
         this.traicayList = traicays;
+        this.layout = layout;
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
@@ -47,7 +49,7 @@ public class AdapterNoiBat extends RecyclerView.Adapter<AdapterNoiBat.ViewHolder
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View view = layoutInflater.inflate(R.layout.custom_item_noibat,parent,false);
+        View view = layoutInflater.inflate(layout,parent,false);
         ViewHolder viewHolder = new ViewHolder(view);
         return viewHolder;
     }
@@ -60,7 +62,7 @@ public class AdapterNoiBat extends RecyclerView.Adapter<AdapterNoiBat.ViewHolder
         String giaban = "Giá: " + formatter.format(traicay.getGiaBan()) + " VNĐ";
         holder.txtGiaBan.setText(String.valueOf(giaban));
         holder.txtLuotMua.setText("Lượt mua: " + String.valueOf(traicay.getLuotMua()));
-        Picasso.with(context).load(traicay.getHinhTraiCay()).resize(300,200).into(holder.imgHinhTraiCay, new Callback() {
+        Picasso.with(context).load(traicay.getHinhTraiCay()).resize(250,175).into(holder.imgHinhTraiCay, new Callback() {
             @Override
             public void onSuccess() {
                 holder.progressBar.setVisibility(View.GONE);

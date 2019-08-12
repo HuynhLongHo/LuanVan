@@ -1,12 +1,15 @@
 package longho.nienluan.traicayngoainhap.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -17,6 +20,7 @@ import java.util.List;
 
 import longho.nienluan.traicayngoainhap.Model.ObjectClass.DSloaitraicay;
 import longho.nienluan.traicayngoainhap.R;
+import longho.nienluan.traicayngoainhap.View.HienThiTraiCayTheoDanhMuc.HienThiTraiCayTheoDanhMucActivity;
 
 public class AdapterLoaiTraiCay extends RecyclerView.Adapter<AdapterLoaiTraiCay.RecyclerViewHolder> {
     Context context;
@@ -31,11 +35,13 @@ public class AdapterLoaiTraiCay extends RecyclerView.Adapter<AdapterLoaiTraiCay.
         TextView txtTenLTC;
         ImageView imgHinhLTC;
         ProgressBar pgbLTC;
+        LinearLayout lnLoaiTraiCay;
         public RecyclerViewHolder(View itemView) {
             super(itemView);
             txtTenLTC = itemView.findViewById(R.id.txtTieuDeLoaiTraiCay);
             imgHinhLTC = itemView.findViewById(R.id.imHinhLoaiTraiCay);
             pgbLTC = itemView.findViewById(R.id.pgbLoaiTraiCay);
+            lnLoaiTraiCay = itemView.findViewById(R.id.lnLoaiTraiCay);
 
         }
     }
@@ -49,7 +55,7 @@ public class AdapterLoaiTraiCay extends RecyclerView.Adapter<AdapterLoaiTraiCay.
 
     @Override
     public void onBindViewHolder(@NonNull final RecyclerViewHolder holder, int position) {
-        DSloaitraicay dSloaitraicay = dSloaitraicayList.get(position);
+        final DSloaitraicay dSloaitraicay = dSloaitraicayList.get(position);
         holder.txtTenLTC.setText(dSloaitraicay.getTenLTC());
         Picasso.with(context).load(dSloaitraicay.getHinhLTC()).resize(120,120).into(holder.imgHinhLTC, new Callback() {
             @Override
@@ -59,6 +65,16 @@ public class AdapterLoaiTraiCay extends RecyclerView.Adapter<AdapterLoaiTraiCay.
             @Override
             public void onError() {
 
+            }
+        });
+
+        holder.lnLoaiTraiCay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent iHienThiTraiCayTheoDanhMuc = new Intent(context,HienThiTraiCayTheoDanhMucActivity.class);
+                iHienThiTraiCayTheoDanhMuc.putExtra("MaLTC", dSloaitraicay.getMaLTC());
+                iHienThiTraiCayTheoDanhMuc.putExtra("TenLTC", dSloaitraicay.getTenLTC());
+                context.startActivity(iHienThiTraiCayTheoDanhMuc);
             }
         });
     }
