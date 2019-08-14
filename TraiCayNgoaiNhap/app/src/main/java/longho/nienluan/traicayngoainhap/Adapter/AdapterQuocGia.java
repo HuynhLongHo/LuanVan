@@ -1,12 +1,14 @@
 package longho.nienluan.traicayngoainhap.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -17,6 +19,7 @@ import java.util.List;
 
 import longho.nienluan.traicayngoainhap.Model.ObjectClass.QuocGia;
 import longho.nienluan.traicayngoainhap.R;
+import longho.nienluan.traicayngoainhap.View.HienThiTraiCayTheoDanhMuc.HienThiTraiCayTheoQuocGiaActivity;
 
 public class AdapterQuocGia extends RecyclerView.Adapter<AdapterQuocGia.RecyclerViewHolder> {
 
@@ -32,12 +35,13 @@ public class AdapterQuocGia extends RecyclerView.Adapter<AdapterQuocGia.Recycler
         TextView txtTenQuocGia;
         ImageView imgQuocKiQG;
         ProgressBar pgbQuocGia;
+        LinearLayout lnQuocGia;
         public RecyclerViewHolder(View itemView) {
             super(itemView);
             txtTenQuocGia = itemView.findViewById(R.id.txtTenQuocGia);
             imgQuocKiQG = itemView.findViewById(R.id.imgQuocKiQG);
             pgbQuocGia = itemView.findViewById(R.id.pgbQuocGia);
-
+            lnQuocGia = itemView.findViewById(R.id.lnQuocGia);
         }
     }
 
@@ -50,7 +54,7 @@ public class AdapterQuocGia extends RecyclerView.Adapter<AdapterQuocGia.Recycler
 
     @Override
     public void onBindViewHolder(@NonNull final RecyclerViewHolder holder, int position) {
-        QuocGia quocGia = quocGiaList.get(position);
+        final QuocGia quocGia = quocGiaList.get(position);
         holder.txtTenQuocGia.setText(quocGia.getTenQG());
         Picasso.with(context).load(quocGia.getQuocKiQG()).resize(200,120).into(holder.imgQuocKiQG, new Callback() {
             @Override
@@ -60,6 +64,15 @@ public class AdapterQuocGia extends RecyclerView.Adapter<AdapterQuocGia.Recycler
             @Override
             public void onError() {
 
+            }
+        });
+        holder.lnQuocGia.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent iHienThiTraiCayTheoQuocGia = new Intent(context,HienThiTraiCayTheoQuocGiaActivity.class);
+                iHienThiTraiCayTheoQuocGia.putExtra("MaQG", quocGia.getMaQG());
+                iHienThiTraiCayTheoQuocGia.putExtra("TenQG", quocGia.getTenQG());
+                context.startActivity(iHienThiTraiCayTheoQuocGia);
             }
         });
     }

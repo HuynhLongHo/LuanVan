@@ -9,7 +9,6 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toolbar;
 
 import java.util.List;
 
@@ -27,19 +26,23 @@ public class HienThiTraiCayTheoDanhMucActivity extends AppCompatActivity impleme
     int MaLTC;
     RecyclerView.LayoutManager layoutManager;
     AdapterNoiBat adapterNoiBat;
+    android.support.v7.widget.Toolbar toolbar;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.layout_hienthitraicaytheodanhmuc);
+        setContentView(R.layout.layout_hienthitraicaytheoma);
         Intent intent = getIntent();
         MaLTC = intent.getIntExtra("MaLTC",0);
         String TenLTC = intent.getStringExtra("TenLTC");
 
         rcvTraiCayTheoLoai = findViewById(R.id.rcvHienThiTraiCayTheoDanhMuc);
         btnThayDoiTrangThaiHienThi = findViewById(R.id.btnThayDoiTrangThaiRecycler);
+        toolbar = findViewById(R.id.toolbar);
         presenterLogicHienThiTraiCayTheoDanhMuc = new PresenterLogicHienThiTraiCayTheoDanhMuc(this);
         presenterLogicHienThiTraiCayTheoDanhMuc.LayDanhSachTraiCayTheoMaLoai(MaLTC);
 
+        toolbar.setTitle(TenLTC);
+        setSupportActionBar(toolbar);
         btnThayDoiTrangThaiHienThi.setOnClickListener(this);
     }
 
