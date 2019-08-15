@@ -19,20 +19,20 @@ import java.util.List;
 import longho.nienluan.traicayngoainhap.Model.ObjectClass.traicay;
 import longho.nienluan.traicayngoainhap.R;
 
-public class AdapterNoiBat extends RecyclerView.Adapter<AdapterNoiBat.ViewHolder> {
+public class AdapterTraiCayKhuyenMai extends RecyclerView.Adapter<AdapterTraiCayKhuyenMai.ViewHolder>  {
 
     Context context;
     List<traicay> traicayList;
     int layout;
 
-    public AdapterNoiBat(Context context,int layout,List<traicay> traicays){
+    public AdapterTraiCayKhuyenMai(Context context,int layout,List<traicay> traicays){
         this.context = context;
         this.traicayList = traicays;
         this.layout = layout;
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        TextView txtTenTraiCay,txtGiaBan,txtLuotMua;
+        TextView txtTenTraiCay,txtGiaBan,txtLuotMua,txtGiaKM;
         ImageView imgHinhTraiCay;
         ProgressBar progressBar;
         public ViewHolder(View itemView) {
@@ -41,6 +41,7 @@ public class AdapterNoiBat extends RecyclerView.Adapter<AdapterNoiBat.ViewHolder
             imgHinhTraiCay = itemView.findViewById(R.id.imHinhTraiCay);
             txtGiaBan = itemView.findViewById(R.id.txtGiaTraiCay);
             txtLuotMua = itemView.findViewById(R.id.txtLuotMua);
+            txtGiaKM = itemView.findViewById(R.id.txtGiaKhuyenMai);
             progressBar = itemView.findViewById(R.id.pgbTraiCay);
         }
     }
@@ -50,7 +51,7 @@ public class AdapterNoiBat extends RecyclerView.Adapter<AdapterNoiBat.ViewHolder
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View view = layoutInflater.inflate(layout,parent,false);
-        ViewHolder viewHolder = new ViewHolder(view);
+        AdapterTraiCayKhuyenMai.ViewHolder viewHolder = new AdapterTraiCayKhuyenMai.ViewHolder(view);
         return viewHolder;
     }
 
@@ -60,7 +61,9 @@ public class AdapterNoiBat extends RecyclerView.Adapter<AdapterNoiBat.ViewHolder
         holder.txtTenTraiCay.setText(traicay.getTenTraiCay());
         DecimalFormat formatter = new DecimalFormat("###,###");//định dạng tiền tệ
         String giaban = "Giá: " + formatter.format(traicay.getGiaBan()) + " VNĐ";
+        String giakm = "Giá KM: " + formatter.format(traicay.getGiaKM()) + " VNĐ";
         holder.txtGiaBan.setText(String.valueOf(giaban));
+        holder.txtGiaKM.setText(String.valueOf(giakm));
         holder.txtLuotMua.setText("Lượt mua: " + String.valueOf(traicay.getLuotMua()));
         Picasso.with(context).load(traicay.getHinhTraiCay()).resize(250,175).into(holder.imgHinhTraiCay, new Callback() {
             @Override
@@ -78,6 +81,5 @@ public class AdapterNoiBat extends RecyclerView.Adapter<AdapterNoiBat.ViewHolder
     public int getItemCount() {
         return traicayList.size();
     }
-
 
 }

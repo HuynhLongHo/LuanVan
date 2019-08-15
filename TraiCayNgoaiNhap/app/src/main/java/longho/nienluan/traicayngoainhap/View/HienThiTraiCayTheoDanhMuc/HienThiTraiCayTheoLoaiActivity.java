@@ -12,7 +12,7 @@ import android.widget.Button;
 
 import java.util.List;
 
-import longho.nienluan.traicayngoainhap.Adapter.AdapterNoiBat;
+import longho.nienluan.traicayngoainhap.Adapter.AdapterTraiCay;
 import longho.nienluan.traicayngoainhap.Model.ObjectClass.traicay;
 import longho.nienluan.traicayngoainhap.Presenter.HienThiTraiCayTheoDanhMuc.PresenterLogicHienThiTraiCayTheoLoai;
 import longho.nienluan.traicayngoainhap.R;
@@ -25,7 +25,7 @@ public class HienThiTraiCayTheoLoaiActivity extends AppCompatActivity implements
     boolean danggrid = true;
     int MaLTC;
     RecyclerView.LayoutManager layoutManager;
-    AdapterNoiBat adapterNoiBat;
+    AdapterTraiCay adapterTraiCay;
     android.support.v7.widget.Toolbar toolbar;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -48,20 +48,20 @@ public class HienThiTraiCayTheoLoaiActivity extends AppCompatActivity implements
 
     @Override
     public void HienThiDanhSachTraiCayTheoLoai(List<traicay> traicayList) {
-        adapterNoiBat = new AdapterNoiBat(HienThiTraiCayTheoLoaiActivity.this,R.layout.custom_item_traicay,traicayList);
+        adapterTraiCay = new AdapterTraiCay(HienThiTraiCayTheoLoaiActivity.this,R.layout.custom_item_traicay,traicayList);
         if(danggrid){
             layoutManager = new GridLayoutManager(HienThiTraiCayTheoLoaiActivity.this,2);
-            adapterNoiBat =  new AdapterNoiBat(HienThiTraiCayTheoLoaiActivity.this,R.layout.custom_item_traicay,traicayList);
+            adapterTraiCay =  new AdapterTraiCay(HienThiTraiCayTheoLoaiActivity.this,R.layout.custom_item_traicay,traicayList);
 
         }else{
             layoutManager = new LinearLayoutManager(HienThiTraiCayTheoLoaiActivity.this);
-            adapterNoiBat = new AdapterNoiBat(HienThiTraiCayTheoLoaiActivity.this,R.layout.custom_item_traicay_list,traicayList);
+            adapterTraiCay = new AdapterTraiCay(HienThiTraiCayTheoLoaiActivity.this,R.layout.custom_item_traicay_list,traicayList);
 
         }
 
         rcvTraiCayTheoLoai.setLayoutManager(layoutManager);
-        rcvTraiCayTheoLoai.setAdapter(adapterNoiBat);
-        adapterNoiBat.notifyDataSetChanged();
+        rcvTraiCayTheoLoai.setAdapter(adapterTraiCay);
+        adapterTraiCay.notifyDataSetChanged();
     }
 
     @Override

@@ -55,6 +55,9 @@
         <activity
             android:name=".View.HienThiTraiCayTheoDanhMuc.HienThiTraiCayTheoQuocGiaActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".View.HienThiTraiCayTheoDanhMuc.HienThiTraiCayKhuyenMaiActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

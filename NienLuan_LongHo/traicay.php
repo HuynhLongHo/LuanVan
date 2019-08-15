@@ -28,6 +28,24 @@
 		case 'LayDanhSachTop10KhuyenMai':
 			$ham();
 			break;
+		case 'LayDanhSachTopTraiCayTheoLuotMua':
+			$ham();
+			break;
+		case 'LayDanhSachTraiCayGiaRe':
+			$ham();
+			break;
+		case 'LayDanhSachTraiCayNgauNhien':
+			$ham();
+			break;
+		case 'LayDanhSachTraiCayTheoMaLoai':
+			$ham();
+			break;
+		case 'LayDanhSachTraiCayTheoQuocGia':
+			$ham();
+			break;
+		case 'LayDanhSachTraiCayKhuyenMai':
+			$ham();
+			break;
 	}
 
 
@@ -140,7 +158,8 @@
 	function LayDanhSachDangKhuyenMai()
 	{
 		include_once("config.php");
-		$truyvan = "SELECT * FROM khuyenmai where (NgayBatDau <= Now()) and (NgayKetThuc >= Now())";
+		// $truyvan = "SELECT * FROM khuyenmai where (NgayBatDau <= Date(Now())) and (NgayKetThuc >= Date(Now()))";
+		$truyvan = "SELECT * FROM khuyenmai where Date(Now()) between NgayBatDau and NgayKetThuc";
 		$ketqua = mysqli_query($conn, $truyvan);
 		$chuoijson = array();
 		if($ketqua){
@@ -161,7 +180,7 @@
 	function LayDanhSachSapKhuyenMai()
 	{
 		include_once("config.php");
-		$truyvan = "SELECT * FROM khuyenmai where NgayBatDau > Now()";
+		$truyvan = "SELECT * FROM khuyenmai where NgayBatDau > Date(Now())";
 		$ketqua = mysqli_query($conn, $truyvan);
 		$chuoijson = array();
 		if($ketqua){
@@ -194,6 +213,137 @@
 		 	}
 		 	echo "{";
 		 	echo "\"khuyenmai\":";
+		 	echo json_encode($chuoijson,JSON_UNESCAPED_UNICODE);
+		 	echo "";
+		 	echo "}";
+	 	}
+	}
+
+	function LayDanhSachTopTraiCayTheoLuotMua()
+	{
+		include_once("config.php");
+		$truyvan = "SELECT * FROM traicay ORDER BY LuotMua DESC";
+		$ketqua = mysqli_query($conn, $truyvan);
+		$chuoijson = array();
+		if($ketqua){
+			while($dong = mysqli_fetch_array($ketqua)){
+		 		// echo $dong["TenLTC"]."<br>";
+		 		// in ra mảng theo cấu trúc bảng
+		 		array_push($chuoijson, array('MaTraiCay' => $dong["MaTraiCay"],'TenTraiCay' => $dong["TenTraiCay"],'GiaBan' => $dong["GiaBan"],'LuotMua' => $dong["LuotMua"],'HinhTraiCay' => "http://".$_SERVER['SERVER_NAME']."/NienLuan_LongHo"."/Image"."/TraiCay/".$dong["HinhTraiCay"] ));//in theo nhu cầu
+		 		// $chuoijson[]=$dong;//in ra toàn bộ bảng nhưng không đúng định dạng
+		 	}
+		 	echo "{";
+		 	echo "\"traicay\":";
+		 	echo json_encode($chuoijson,JSON_UNESCAPED_UNICODE);
+		 	echo "";
+		 	echo "}";
+	 	}
+	}
+
+	function LayDanhSachTraiCayGiaRe()
+	{
+		include_once("config.php");
+		$truyvan = "SELECT * FROM traicay ORDER BY GiaBan ASC";
+		$ketqua = mysqli_query($conn, $truyvan);
+		$chuoijson = array();
+		if($ketqua){
+			while($dong = mysqli_fetch_array($ketqua)){
+		 		// echo $dong["TenLTC"]."<br>";
+		 		// in ra mảng theo cấu trúc bảng
+		 		array_push($chuoijson, array('MaTraiCay' => $dong["MaTraiCay"],'TenTraiCay' => $dong["TenTraiCay"],'GiaBan' => $dong["GiaBan"],'LuotMua' => $dong["LuotMua"],'HinhTraiCay' => "http://".$_SERVER['SERVER_NAME']."/NienLuan_LongHo"."/Image"."/TraiCay/".$dong["HinhTraiCay"] ));//in theo nhu cầu
+		 		// $chuoijson[]=$dong;//in ra toàn bộ bảng nhưng không đúng định dạng
+		 	}
+		 	echo "{";
+		 	echo "\"traicay\":";
+		 	echo json_encode($chuoijson,JSON_UNESCAPED_UNICODE);
+		 	echo "";
+		 	echo "}";
+	 	}
+	}
+
+	function LayDanhSachTraiCayNgauNhien()
+	{
+		include_once("config.php");
+		$truyvan = "SELECT * FROM traicay ORDER BY RAND()";
+		$ketqua = mysqli_query($conn, $truyvan);
+		$chuoijson = array();
+		if($ketqua){
+			while($dong = mysqli_fetch_array($ketqua)){
+		 		// echo $dong["TenLTC"]."<br>";
+		 		// in ra mảng theo cấu trúc bảng
+		 		array_push($chuoijson, array('MaTraiCay' => $dong["MaTraiCay"],'TenTraiCay' => $dong["TenTraiCay"],'GiaBan' => $dong["GiaBan"],'LuotMua' => $dong["LuotMua"],'HinhTraiCay' => "http://".$_SERVER['SERVER_NAME']."/NienLuan_LongHo"."/Image"."/TraiCay/".$dong["HinhTraiCay"] ));//in theo nhu cầu
+		 		// $chuoijson[]=$dong;//in ra toàn bộ bảng nhưng không đúng định dạng
+		 	}
+		 	echo "{";
+		 	echo "\"traicay\":";
+		 	echo json_encode($chuoijson,JSON_UNESCAPED_UNICODE);
+		 	echo "";
+		 	echo "}";
+	 	}
+	}
+
+	function LayDanhSachTraiCayTheoMaLoai()
+	{
+		//cách test http://localhost/NienLuan_LongHo/traicay.php?ham=LayDanhSachTraiCayTheoMaLoai&maLTC=1
+		include_once("config.php");
+		$MaLTC = $_POST["maLTC"];
+		$truyvan = "SELECT * FROM traicay WHERE MaLTC =".$MaLTC;
+		$ketqua = mysqli_query($conn, $truyvan);
+		$chuoijson = array();
+		if($ketqua){
+			while($dong = mysqli_fetch_array($ketqua)){
+		 		// echo $dong["TenLTC"]."<br>";
+		 		// in ra mảng theo cấu trúc bảng
+		 		array_push($chuoijson, array('MaTraiCay' => $dong["MaTraiCay"],'TenTraiCay' => $dong["TenTraiCay"],'GiaBan' => $dong["GiaBan"],'LuotMua' => $dong["LuotMua"],'HinhTraiCay' => "http://".$_SERVER['SERVER_NAME']."/NienLuan_LongHo"."/Image"."/TraiCay/".$dong["HinhTraiCay"] ));//in theo nhu cầu
+		 		// $chuoijson[]=$dong;//in ra toàn bộ bảng nhưng không đúng định dạng
+		 	}
+		 	echo "{";
+		 	echo "\"traicay\":";
+		 	echo json_encode($chuoijson,JSON_UNESCAPED_UNICODE);
+		 	echo "";
+		 	echo "}";
+	 	}
+	}
+
+	function LayDanhSachTraiCayTheoQuocGia()
+	{
+		//cách test http://localhost/NienLuan_LongHo/traicay.php?ham=LayDanhSachTraiCayTheoMaLoai&maLTC=1
+		include_once("config.php");
+		$MaQG = $_POST["maqg"];
+		$truyvan = "SELECT * FROM traicay WHERE MaQG =".$MaQG;
+		$ketqua = mysqli_query($conn, $truyvan);
+		$chuoijson = array();
+		if($ketqua){
+			while($dong = mysqli_fetch_array($ketqua)){
+		 		// echo $dong["TenLTC"]."<br>";
+		 		// in ra mảng theo cấu trúc bảng
+		 		array_push($chuoijson, array('MaTraiCay' => $dong["MaTraiCay"],'TenTraiCay' => $dong["TenTraiCay"],'GiaBan' => $dong["GiaBan"],'LuotMua' => $dong["LuotMua"],'HinhTraiCay' => "http://".$_SERVER['SERVER_NAME']."/NienLuan_LongHo"."/Image"."/TraiCay/".$dong["HinhTraiCay"] ));//in theo nhu cầu
+		 		// $chuoijson[]=$dong;//in ra toàn bộ bảng nhưng không đúng định dạng
+		 	}
+		 	echo "{";
+		 	echo "\"traicay\":";
+		 	echo json_encode($chuoijson,JSON_UNESCAPED_UNICODE);
+		 	echo "";
+		 	echo "}";
+	 	}
+	}
+	function LayDanhSachTraiCayKhuyenMai()
+	{
+		//cách test http://localhost/NienLuan_LongHo/traicay.php?ham=LayDanhSachTraiCayTheoMaLoai&maLTC=1
+		include_once("config.php");
+		$MaKM = $_POST["makm"];
+		$truyvan = "SELECT * FROM chitietkhuyenmai ctkm join traicay tc on ctkm.MaTraiCay = tc.MaTraiCay  WHERE MaKM =".$MaKM;
+		$ketqua = mysqli_query($conn, $truyvan);
+		$chuoijson = array();
+		if($ketqua){
+			while($dong = mysqli_fetch_array($ketqua)){
+		 		// echo $dong["TenLTC"]."<br>";
+		 		// in ra mảng theo cấu trúc bảng
+		 		array_push($chuoijson, array('MaTraiCay' => $dong["MaTraiCay"],'TenTraiCay' => $dong["TenTraiCay"],'GiaBan' => $dong["GiaBan"],'GiaKM' => $dong["GiaKM"],'LuotMua' => $dong["LuotMua"],'HinhTraiCay' => "http://".$_SERVER['SERVER_NAME']."/NienLuan_LongHo"."/Image"."/TraiCay/".$dong["HinhTraiCay"] ));//in theo nhu cầu
+		 		// $chuoijson[]=$dong;//in ra toàn bộ bảng nhưng không đúng định dạng
+		 	}
+		 	echo "{";
+		 	echo "\"traicay\":";
 		 	echo json_encode($chuoijson,JSON_UNESCAPED_UNICODE);
 		 	echo "";
 		 	echo "}";

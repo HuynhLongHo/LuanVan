@@ -10,11 +10,10 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
 
 import java.util.List;
 
-import longho.nienluan.traicayngoainhap.Adapter.AdapterNoiBat;
+import longho.nienluan.traicayngoainhap.Adapter.AdapterTraiCay;
 import longho.nienluan.traicayngoainhap.Model.ObjectClass.traicay;
 import longho.nienluan.traicayngoainhap.Presenter.HienThiTraiCayTheoDanhMuc.PresenterLogicHienThiTraiCayTheoQuocGia;
 import longho.nienluan.traicayngoainhap.R;
@@ -27,7 +26,7 @@ public class HienThiTraiCayTheoQuocGiaActivity extends AppCompatActivity impleme
     boolean danggrid = true;
     RecyclerView.LayoutManager layoutManager;
     Button btnThayDoiTrangThaiHienThi;
-    AdapterNoiBat adapterNoiBat;
+    AdapterTraiCay adapterTraiCay;
     PresenterLogicHienThiTraiCayTheoQuocGia presenterLogicHienThiTraiCayTheoQuocGia;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -50,20 +49,20 @@ public class HienThiTraiCayTheoQuocGiaActivity extends AppCompatActivity impleme
 
     @Override
     public void HienThiDanhSachTraiCayTheoQuocGia(List<traicay> traicayList) {
-        adapterNoiBat = new AdapterNoiBat(HienThiTraiCayTheoQuocGiaActivity.this,R.layout.custom_item_traicay,traicayList);
+        adapterTraiCay = new AdapterTraiCay(HienThiTraiCayTheoQuocGiaActivity.this,R.layout.custom_item_traicay,traicayList);
         if(danggrid){
             layoutManager = new GridLayoutManager(HienThiTraiCayTheoQuocGiaActivity.this,2);
-            adapterNoiBat =  new AdapterNoiBat(HienThiTraiCayTheoQuocGiaActivity.this,R.layout.custom_item_traicay,traicayList);
+            adapterTraiCay =  new AdapterTraiCay(HienThiTraiCayTheoQuocGiaActivity.this,R.layout.custom_item_traicay,traicayList);
 
         }else{
             layoutManager = new LinearLayoutManager(HienThiTraiCayTheoQuocGiaActivity.this);
-            adapterNoiBat = new AdapterNoiBat(HienThiTraiCayTheoQuocGiaActivity.this,R.layout.custom_item_traicay_list,traicayList);
+            adapterTraiCay = new AdapterTraiCay(HienThiTraiCayTheoQuocGiaActivity.this,R.layout.custom_item_traicay_list,traicayList);
 
         }
 
         rcvTraiCayTheoQuocGia.setLayoutManager(layoutManager);
-        rcvTraiCayTheoQuocGia.setAdapter(adapterNoiBat);
-        adapterNoiBat.notifyDataSetChanged();
+        rcvTraiCayTheoQuocGia.setAdapter(adapterTraiCay);
+        adapterTraiCay.notifyDataSetChanged();
     }
 
     @Override
