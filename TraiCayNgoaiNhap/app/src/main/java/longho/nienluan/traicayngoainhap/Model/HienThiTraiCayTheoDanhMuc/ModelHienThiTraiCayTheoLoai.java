@@ -13,7 +13,7 @@ import longho.nienluan.traicayngoainhap.DownloadInternet.DownloadJSON;
 import longho.nienluan.traicayngoainhap.Model.ObjectClass.traicay;
 import longho.nienluan.traicayngoainhap.View.TrangChu.TrangChuActivity;
 
-public class ModelHienThiTraiCayTheoDanhMuc {
+public class ModelHienThiTraiCayTheoLoai {
     public List<traicay> LayDanhSachTraiCayTheoMaLoai(int MaLTC){
         List<traicay> traicayList = new ArrayList<>();
 

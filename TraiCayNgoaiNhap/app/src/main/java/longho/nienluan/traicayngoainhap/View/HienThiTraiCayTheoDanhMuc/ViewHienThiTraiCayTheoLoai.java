@@ -4,7 +4,7 @@ import java.util.List;
 
 import longho.nienluan.traicayngoainhap.Model.ObjectClass.traicay;
 
-public interface ViewHienThiTraiCayTheoDanhMuc {
-    void HienThiDanhSachTraiCayTheoMaLoai(List<traicay> traicayList);
+public interface ViewHienThiTraiCayTheoLoai {
+    void HienThiDanhSachTraiCayTheoLoai(List<traicay> traicayList);
     void LoiHienThiDanhSachTraiCay();
 }

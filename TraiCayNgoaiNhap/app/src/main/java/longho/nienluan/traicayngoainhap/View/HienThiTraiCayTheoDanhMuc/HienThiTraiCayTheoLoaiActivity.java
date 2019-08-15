@@ -14,14 +14,14 @@ import java.util.List;
 
 import longho.nienluan.traicayngoainhap.Adapter.AdapterNoiBat;
 import longho.nienluan.traicayngoainhap.Model.ObjectClass.traicay;
-import longho.nienluan.traicayngoainhap.Presenter.HienThiTraiCayTheoDanhMuc.PresenterLogicHienThiTraiCayTheoDanhMuc;
+import longho.nienluan.traicayngoainhap.Presenter.HienThiTraiCayTheoDanhMuc.PresenterLogicHienThiTraiCayTheoLoai;
 import longho.nienluan.traicayngoainhap.R;
 
-public class HienThiTraiCayTheoDanhMucActivity extends AppCompatActivity implements ViewHienThiTraiCayTheoDanhMuc, View.OnClickListener {
+public class HienThiTraiCayTheoLoaiActivity extends AppCompatActivity implements ViewHienThiTraiCayTheoLoai, View.OnClickListener {
 
     RecyclerView rcvTraiCayTheoLoai;
     Button btnThayDoiTrangThaiHienThi;
-    PresenterLogicHienThiTraiCayTheoDanhMuc presenterLogicHienThiTraiCayTheoDanhMuc;
+    PresenterLogicHienThiTraiCayTheoLoai presenterLogicHienThiTraiCayTheoDanhMuc;
     boolean danggrid = true;
     int MaLTC;
     RecyclerView.LayoutManager layoutManager;
@@ -38,7 +38,7 @@ public class HienThiTraiCayTheoDanhMucActivity extends AppCompatActivity impleme
         rcvTraiCayTheoLoai = findViewById(R.id.rcvHienThiTraiCayTheoDanhMuc);
         btnThayDoiTrangThaiHienThi = findViewById(R.id.btnThayDoiTrangThaiRecycler);
         toolbar = findViewById(R.id.toolbar);
-        presenterLogicHienThiTraiCayTheoDanhMuc = new PresenterLogicHienThiTraiCayTheoDanhMuc(this);
+        presenterLogicHienThiTraiCayTheoDanhMuc = new PresenterLogicHienThiTraiCayTheoLoai(this);
         presenterLogicHienThiTraiCayTheoDanhMuc.LayDanhSachTraiCayTheoMaLoai(MaLTC);
 
         toolbar.setTitle(TenLTC);
@@ -47,15 +47,15 @@ public class HienThiTraiCayTheoDanhMucActivity extends AppCompatActivity impleme
     }
 
     @Override
-    public void HienThiDanhSachTraiCayTheoMaLoai(List<traicay> traicayList) {
-        adapterNoiBat = new AdapterNoiBat(HienThiTraiCayTheoDanhMucActivity.this,R.layout.custom_item_traicay,traicayList);
+    public void HienThiDanhSachTraiCayTheoLoai(List<traicay> traicayList) {
+        adapterNoiBat = new AdapterNoiBat(HienThiTraiCayTheoLoaiActivity.this,R.layout.custom_item_traicay,traicayList);
         if(danggrid){
-            layoutManager = new GridLayoutManager(HienThiTraiCayTheoDanhMucActivity.this,2);
-            adapterNoiBat =  new AdapterNoiBat(HienThiTraiCayTheoDanhMucActivity.this,R.layout.custom_item_traicay,traicayList);
+            layoutManager = new GridLayoutManager(HienThiTraiCayTheoLoaiActivity.this,2);
+            adapterNoiBat =  new AdapterNoiBat(HienThiTraiCayTheoLoaiActivity.this,R.layout.custom_item_traicay,traicayList);
 
         }else{
-            layoutManager = new LinearLayoutManager(HienThiTraiCayTheoDanhMucActivity.this);
-            adapterNoiBat = new AdapterNoiBat(HienThiTraiCayTheoDanhMucActivity.this,R.layout.custom_item_traicay_list,traicayList);
+            layoutManager = new LinearLayoutManager(HienThiTraiCayTheoLoaiActivity.this);
+            adapterNoiBat = new AdapterNoiBat(HienThiTraiCayTheoLoaiActivity.this,R.layout.custom_item_traicay_list,traicayList);
 
         }
 

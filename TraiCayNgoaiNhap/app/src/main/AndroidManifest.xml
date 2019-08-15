@@ -50,7 +50,7 @@
             android:screenOrientation="portrait" />
         <activity android:name=".View.GuiEmail.EmailActivity"/>
         <activity
-            android:name=".View.HienThiTraiCayTheoDanhMuc.HienThiTraiCayTheoDanhMucActivity"
+            android:name=".View.HienThiTraiCayTheoDanhMuc.HienThiTraiCayTheoLoaiActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".View.HienThiTraiCayTheoDanhMuc.HienThiTraiCayTheoQuocGiaActivity"
