@@ -8,6 +8,8 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 
 import java.util.List;
@@ -30,6 +32,10 @@ public class HienThiTraiCayTheoLoaiActivity extends AppCompatActivity implements
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //ẩn statusbar
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
         setContentView(R.layout.layout_hienthitraicaytheoma);
         Intent intent = getIntent();
         MaLTC = intent.getIntExtra("MaLTC",0);
