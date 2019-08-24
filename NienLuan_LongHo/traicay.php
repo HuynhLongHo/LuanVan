@@ -46,6 +46,9 @@
 		case 'LayDanhSachTraiCayKhuyenMai':
 			$ham();
 			break;
+		case 'LayChiTietTraiCayTheoMa':
+			$ham();
+			break;
 	}
 
 
@@ -340,6 +343,29 @@
 		 		// echo $dong["TenLTC"]."<br>";
 		 		// in ra mảng theo cấu trúc bảng
 		 		array_push($chuoijson, array('MaTraiCay' => $dong["MaTraiCay"],'TenTraiCay' => $dong["TenTraiCay"],'GiaBan' => $dong["GiaBan"],'GiaKM' => $dong["GiaKM"],'LuotMua' => $dong["LuotMua"],'HinhTraiCay' => "http://".$_SERVER['SERVER_NAME']."/NienLuan_LongHo"."/Image"."/TraiCay/".$dong["HinhTraiCay"] ));//in theo nhu cầu
+		 		// $chuoijson[]=$dong;//in ra toàn bộ bảng nhưng không đúng định dạng
+		 	}
+		 	echo "{";
+		 	echo "\"traicay\":";
+		 	echo json_encode($chuoijson,JSON_UNESCAPED_UNICODE);
+		 	echo "";
+		 	echo "}";
+	 	}
+	}
+
+	function LayChiTietTraiCayTheoMa()
+	{
+		//cách test http://localhost/NienLuan_LongHo/traicay.php?ham=LayDanhSachTraiCayTheoMaLoai&maLTC=1
+		include_once("config.php");
+		$MaTraiCay = $_POST["matraicay"];
+		$truyvan = "SELECT * FROM traicay tc,nhacungcap ncc WHERE MaTraiCay =".$MaTraiCay." AND tc.MaNCC = ncc.MaNCC" ;
+		$ketqua = mysqli_query($conn, $truyvan);
+		$chuoijson = array();
+		if($ketqua){
+			while($dong = mysqli_fetch_array($ketqua)){
+		 		// echo $dong["TenLTC"]."<br>";
+		 		// in ra mảng theo cấu trúc bảng
+		 		array_push($chuoijson, array('MaTraiCay' => $dong["MaTraiCay"],'MaLTC' => $dong["MaLTC"],'MaNCC' => $dong["MaNCC"],'MaQG' => $dong["MaQG"],'TenTraiCay' => $dong["TenTraiCay"],'GiaBan' => $dong["GiaBan"],'HinhTraiCay' => "http://".$_SERVER['SERVER_NAME']."/NienLuan_LongHo"."/Image"."/TraiCay/".$dong["HinhTraiCay"],'HinhChiTiet' => $dong["HinhChiTiet"],'MieuTaTC' => $dong["MieuTaTC"],'LuotMua' => $dong["LuotMua"],'ThanhPhanDinhDuong' => $dong["ThanhPhanDinhDuong"],'MoiTruongTrong' => $dong["MoiTruongTrong"],'SoLuongTon' => $dong["SoLuongTon"],'TenNCC' => $dong["TenNCC"],'DiaChiNCC' => $dong["DiaChiNCC"] ));//in theo nhu cầu
 		 		// $chuoijson[]=$dong;//in ra toàn bộ bảng nhưng không đúng định dạng
 		 	}
 		 	echo "{";

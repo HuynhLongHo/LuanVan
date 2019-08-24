@@ -1,5 +1,6 @@
 package longho.nienluan.traicayngoainhap.View.ChiTietTraiCay;
 
+import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -10,8 +11,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.Html;
 import android.view.Menu;
+import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -32,8 +35,10 @@ public class ChiTietTraiCayActivity extends AppCompatActivity implements ViewChi
     List<Fragment> fragmentList;
     TextView txtDots[];
     LinearLayout layoutDots;
-    TextView txtTenTraiCay, txtGiaBan, txtTenNCC, txtDiaChiNCC;
+    TextView txtTenTraiCay, txtGiaBan, txtTenNCC, txtDiaChiNCC,txtThongTin;
     Toolbar toolbar;
+    ImageView imXemThemThongTin;
+    boolean blXemThemThongTin = false;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -49,6 +54,8 @@ public class ChiTietTraiCayActivity extends AppCompatActivity implements ViewChi
         txtGiaBan = findViewById(R.id.txtGiaBan);
         txtTenNCC = findViewById(R.id.txtTenNCC);
         txtDiaChiNCC = findViewById(R.id.txtDiaChiNCC);
+        txtThongTin = findViewById(R.id.txtThongTinChiTiet);
+        imXemThemThongTin = findViewById(R.id.imXemThemChiTiet);
         toolbar = findViewById(R.id.toolbar);
 
         setSupportActionBar(toolbar);
@@ -74,6 +81,30 @@ public class ChiTietTraiCayActivity extends AppCompatActivity implements ViewChi
         txtGiaBan.setText(giaban);
         txtTenNCC.setText(traicay.getTenNCC());
         txtDiaChiNCC.setText(traicay.getDiaChiNCC());
+        final String thongtin = "Miêu tả: " + traicay.getMieuTaTC() + "\nThành phần dinh dưỡng: " + traicay.getThanhPhanDinhDuong() + "\nMôi trường trồng: " + traicay.getMoiTruongTrong();
+        txtThongTin.setText(thongtin.substring(0,50));
+
+        if(thongtin.length()<100){
+            imXemThemThongTin.setVisibility(View.GONE);
+        }
+        {
+            imXemThemThongTin.setVisibility(View.VISIBLE);
+            imXemThemThongTin.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    blXemThemThongTin = !blXemThemThongTin;
+                    if(blXemThemThongTin){
+                        txtThongTin.setText(thongtin);
+                        imXemThemThongTin.setImageDrawable(getHinhChiTiet(R.drawable.ic_keyboard_arrow_up_black_24dp));
+                    }
+                    else {
+                        txtThongTin.setText(thongtin.substring(0,50));
+                        imXemThemThongTin.setImageDrawable(getHinhChiTiet(R.drawable.ic_keyboard_arrow_down_black_24dp));
+                    }
+                }
+            });
+
+        }
     }
 
     @Override
@@ -121,6 +152,17 @@ public class ChiTietTraiCayActivity extends AppCompatActivity implements ViewChi
         }
 
         return color;
+    }
+
+    private Drawable getHinhChiTiet(int idDrawable){
+        Drawable drawable;
+        if(Build.VERSION.SDK_INT > 21){
+            drawable = ContextCompat.getDrawable(this,idDrawable);
+        }else{
+            drawable = getResources().getDrawable(idDrawable);
+        }
+
+        return drawable;
     }
 
     @Override
