@@ -9,6 +9,23 @@ public class traicay {
     String ThanhPhanDinhDuong;
     String MoiTruongTrong;
     String HinhChiTiet;
+    String TenNCC, DiaChiNCC;
+
+    public String getTenNCC() {
+        return TenNCC;
+    }
+
+    public void setTenNCC(String tenNCC) {
+        TenNCC = tenNCC;
+    }
+
+    public String getDiaChiNCC() {
+        return DiaChiNCC;
+    }
+
+    public void setDiaChiNCC(String diaChiNCC) {
+        DiaChiNCC = diaChiNCC;
+    }
 
     public String getHinhChiTiet() {
         return HinhChiTiet;

@@ -57,6 +57,8 @@ public class ModelChiTietTraiCay {
                 traicay.setThanhPhanDinhDuong(object.getString("ThanhPhanDinhDuong"));
                 traicay.setMoiTruongTrong(object.getString("MoiTruongTrong"));
                 traicay.setSoLuongTon(object.getInt("SoLuongTon"));
+                traicay.setTenNCC(object.getString("TenNCC"));
+                traicay.setDiaChiNCC(object.getString("DiaChiNCC"));
             }
 
         } catch (InterruptedException e) {

@@ -7,12 +7,15 @@ import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.text.Html;
+import android.view.Menu;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,6 +32,8 @@ public class ChiTietTraiCayActivity extends AppCompatActivity implements ViewChi
     List<Fragment> fragmentList;
     TextView txtDots[];
     LinearLayout layoutDots;
+    TextView txtTenTraiCay, txtGiaBan, txtTenNCC, txtDiaChiNCC;
+    Toolbar toolbar;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -40,16 +45,35 @@ public class ChiTietTraiCayActivity extends AppCompatActivity implements ViewChi
         setContentView(R.layout.layout_chitiettraicay);
         viewPager = findViewById(R.id.viewpagerSlider);
         layoutDots = findViewById(R.id.layoutDots);
+        txtTenTraiCay = findViewById(R.id.txtTenTraiCay);
+        txtGiaBan = findViewById(R.id.txtGiaBan);
+        txtTenNCC = findViewById(R.id.txtTenNCC);
+        txtDiaChiNCC = findViewById(R.id.txtDiaChiNCC);
+        toolbar = findViewById(R.id.toolbar);
+
+        setSupportActionBar(toolbar);
 
         int matraicay = getIntent().getIntExtra("matraicay", 0);
+
         presenterLogicChiTietTraiCay = new PresenterLogicChiTietTraiCay(this);
         presenterLogicChiTietTraiCay.LayChiTietTraiCay(matraicay);
 
     }
 
     @Override
-    public void HienThiChiTietTraiCay(traicay traicay) {
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menutrangchu,menu);
+        return true;
+    }
 
+    @Override
+    public void HienThiChiTietTraiCay(traicay traicay) {
+        txtTenTraiCay.setText(traicay.getTenTraiCay());
+        DecimalFormat formatter = new DecimalFormat("###,###");//định dạng tiền tệ
+        String giaban = "Giá: " + formatter.format(traicay.getGiaBan()) + " VNĐ";
+        txtGiaBan.setText(giaban);
+        txtTenNCC.setText(traicay.getTenNCC());
+        txtDiaChiNCC.setText(traicay.getDiaChiNCC());
     }
 
     @Override

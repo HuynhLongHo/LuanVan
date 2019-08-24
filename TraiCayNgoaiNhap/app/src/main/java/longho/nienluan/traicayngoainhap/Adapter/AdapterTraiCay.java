@@ -61,7 +61,7 @@ public class AdapterTraiCay extends RecyclerView.Adapter<AdapterTraiCay.ViewHold
 
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
-        traicay traicay = traicayList.get(position);
+        final traicay traicay = traicayList.get(position);
         holder.txtTenTraiCay.setText(traicay.getTenTraiCay());
         DecimalFormat formatter = new DecimalFormat("###,###");//định dạng tiền tệ
         String giaban = "Giá: " + formatter.format(traicay.getGiaBan()) + " VNĐ";

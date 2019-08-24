@@ -32,7 +32,7 @@
                 >
 
                 <TextView
-                    android:id="@+id/txtTenSanPham"
+                    android:id="@+id/txtTenTraiCay"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Flash plus"
@@ -47,7 +47,7 @@
                     >
 
                     <TextView
-                        android:id="@+id/txtGiaTien"
+                        android:id="@+id/txtGiaBan"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="1000000 VND"
@@ -198,11 +198,27 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Bán và đóng gói bởi"
+                    android:text="Được cung cấp bởi"
                     />
 
                 <TextView
-                    android:id="@+id/txtTenCHDongGoi"
+                    android:id="@+id/txtTenNCC"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Lazada"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/colorFacebook"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Địa chỉ: "
+                    />
+
+                <TextView
+                    android:id="@+id/txtDiaChiNCC"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Lazada"

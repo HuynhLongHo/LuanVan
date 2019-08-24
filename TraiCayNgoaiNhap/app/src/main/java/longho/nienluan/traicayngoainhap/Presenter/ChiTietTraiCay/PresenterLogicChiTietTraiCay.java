@@ -21,6 +21,7 @@ public class PresenterLogicChiTietTraiCay implements IPresenterChiTietTraiCay {
         if(traicay.getMaTraiCay()>=0){
             String[] linkhinhanh = traicay.getHinhChiTiet().split(",");
             viewChiTietTraiCay.HienSliderTraiCay(linkhinhanh);
+            viewChiTietTraiCay.HienThiChiTietTraiCay(traicay);
         }
     }
 }
