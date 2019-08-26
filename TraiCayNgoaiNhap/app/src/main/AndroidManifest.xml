@@ -3,7 +3,6 @@
     package="longho.nienluan.traicayngoainhap">
 
     <uses-permission android:name="android.permission.INTERNET" />
-
     <application
         android:allowBackup="true"
         android:icon="@mipmap/logo1"
@@ -61,6 +60,8 @@
         <activity
             android:name=".View.ChiTietTraiCay.ChiTietTraiCayActivity"
             android:screenOrientation="portrait" />
+        <activity android:name=".View.DanhGia.ThemDanhGiaActivity"
+            android:theme="@style/Base.Theme.AppCompat.Dialog"/>
     </application>
 
 </manifest>

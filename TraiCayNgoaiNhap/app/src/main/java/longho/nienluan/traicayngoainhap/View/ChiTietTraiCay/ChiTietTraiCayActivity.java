@@ -1,5 +1,6 @@
 package longho.nienluan.traicayngoainhap.View.ChiTietTraiCay;
 
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
@@ -26,19 +27,22 @@ import longho.nienluan.traicayngoainhap.Adapter.AdapterViewPagerSlider;
 import longho.nienluan.traicayngoainhap.Model.ObjectClass.traicay;
 import longho.nienluan.traicayngoainhap.Presenter.ChiTietTraiCay.PresenterLogicChiTietTraiCay;
 import longho.nienluan.traicayngoainhap.R;
+import longho.nienluan.traicayngoainhap.View.DanhGia.ThemDanhGiaActivity;
 import longho.nienluan.traicayngoainhap.View.TrangChu.TrangChuActivity;
 
-public class ChiTietTraiCayActivity extends AppCompatActivity implements ViewChiTietTraiCay,ViewPager.OnPageChangeListener {
+public class ChiTietTraiCayActivity extends AppCompatActivity implements ViewChiTietTraiCay,ViewPager.OnPageChangeListener,View.OnClickListener {
 
     ViewPager viewPager;
     PresenterLogicChiTietTraiCay presenterLogicChiTietTraiCay;
     List<Fragment> fragmentList;
     TextView txtDots[];
     LinearLayout layoutDots;
-    TextView txtTenTraiCay, txtGiaBan, txtTenNCC, txtDiaChiNCC,txtThongTin;
+    TextView txtTenTraiCay, txtGiaBan, txtTenNCC, txtDiaChiNCC,txtThongTin,txtVietDanhGia;
     Toolbar toolbar;
     ImageView imXemThemThongTin;
     boolean blXemThemThongTin = false;
+    int matraicay;
+    String tentraicay;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -57,13 +61,15 @@ public class ChiTietTraiCayActivity extends AppCompatActivity implements ViewChi
         txtThongTin = findViewById(R.id.txtThongTinChiTiet);
         imXemThemThongTin = findViewById(R.id.imXemThemChiTiet);
         toolbar = findViewById(R.id.toolbar);
+        txtVietDanhGia = findViewById(R.id.txtVietDanhGia);
 
         setSupportActionBar(toolbar);
 
-        int matraicay = getIntent().getIntExtra("matraicay", 0);
+        matraicay = getIntent().getIntExtra("matraicay", 0);
 
         presenterLogicChiTietTraiCay = new PresenterLogicChiTietTraiCay(this);
         presenterLogicChiTietTraiCay.LayChiTietTraiCay(matraicay);
+        txtVietDanhGia.setOnClickListener(this);
 
     }
 
@@ -75,6 +81,8 @@ public class ChiTietTraiCayActivity extends AppCompatActivity implements ViewChi
 
     @Override
     public void HienThiChiTietTraiCay(traicay traicay) {
+
+        tentraicay = traicay.getTenTraiCay();
         txtTenTraiCay.setText(traicay.getTenTraiCay());
         DecimalFormat formatter = new DecimalFormat("###,###");//định dạng tiền tệ
         String giaban = "Giá: " + formatter.format(traicay.getGiaBan()) + " VNĐ";
@@ -178,5 +186,18 @@ public class ChiTietTraiCayActivity extends AppCompatActivity implements ViewChi
     @Override
     public void onPageScrollStateChanged(int state) {
 
+    }
+
+    @Override
+    public void onClick(View v) {
+        int id = v.getId();
+        switch (id) {
+            case R.id.txtVietDanhGia:
+                Intent iThemDanhGia = new Intent(this, ThemDanhGiaActivity.class);
+                iThemDanhGia.putExtra("matraicay", matraicay);
+                iThemDanhGia.putExtra("tentraicay", tentraicay);
+                startActivity(iThemDanhGia);
+                break;
+        }
     }
 }
