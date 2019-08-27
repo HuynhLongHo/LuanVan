@@ -51,4 +51,14 @@ public class PresenterLogicChiTietTraiCay implements IPresenterChiTietTraiCay {
             viewChiTietTraiCay.ThemGiohangThatBai();
         }
     }
+
+
+    public int DemSanPhamCoTrongGioHang(Context context){
+        modelGioHang.MoKetNoiSQL(context);
+        List<traicay> traicayList = modelGioHang.LayDanhSachSanPhamTrongGioHang();
+
+        int dem = traicayList.size();
+
+        return dem;
+    }
 }

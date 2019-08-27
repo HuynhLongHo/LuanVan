@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -16,6 +17,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.text.Html;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -47,7 +49,7 @@ public class ChiTietTraiCayActivity extends AppCompatActivity implements ViewChi
     List<Fragment> fragmentList;
     TextView txtDots[];
     LinearLayout layoutDots;
-    TextView txtTenTraiCay, txtGiaBan, txtTenNCC, txtDiaChiNCC,txtThongTin,txtVietDanhGia, txtXemTatCaNhanXet;
+    TextView txtTenTraiCay, txtGiaBan, txtTenNCC, txtDiaChiNCC,txtThongTin,txtVietDanhGia, txtXemTatCaNhanXet, txtGioHang;
     Toolbar toolbar;
     ImageView imXemThemThongTin, imThemGioHang;
     boolean blXemThemThongTin = false;
@@ -94,6 +96,21 @@ public class ChiTietTraiCayActivity extends AppCompatActivity implements ViewChi
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menutrangchu,menu);
+
+        MenuItem iGioHang = menu.findItem(R.id.itGioHang);
+        View giaoDienCustomGioHang = MenuItemCompat.getActionView(iGioHang);
+        txtGioHang = giaoDienCustomGioHang.findViewById(R.id.txtSoLuongSanPhamGioHang);
+
+        txtGioHang.setText(String.valueOf(presenterLogicChiTietTraiCay.DemSanPhamCoTrongGioHang(this)));
+
+//        giaoDienCustomGioHang.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent iGioHang = new Intent(ChiTietSanPhamActivity.this, GioHangActivity.class);
+//                startActivity(iGioHang);
+//            }
+//        });
+
         return true;
     }
 
@@ -166,6 +183,7 @@ public class ChiTietTraiCayActivity extends AppCompatActivity implements ViewChi
     @Override
     public void ThemGioHangThanhCong() {
         Toast.makeText(this, "Giỏ hàng đã được thêm", Toast.LENGTH_SHORT).show();
+        txtGioHang.setText(String.valueOf(presenterLogicChiTietTraiCay.DemSanPhamCoTrongGioHang(this)));
     }
 
     @Override
