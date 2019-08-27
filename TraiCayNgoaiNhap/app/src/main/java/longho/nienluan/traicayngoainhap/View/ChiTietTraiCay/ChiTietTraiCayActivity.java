@@ -1,6 +1,8 @@
 package longho.nienluan.traicayngoainhap.View.ChiTietTraiCay;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
@@ -20,13 +22,16 @@ import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import java.io.ByteArrayOutputStream;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
 import longho.nienluan.traicayngoainhap.Adapter.AdapterDanhGia;
 import longho.nienluan.traicayngoainhap.Adapter.AdapterViewPagerSlider;
+import longho.nienluan.traicayngoainhap.Model.GioHang.ModelGioHang;
 import longho.nienluan.traicayngoainhap.Model.ObjectClass.DanhGia;
 import longho.nienluan.traicayngoainhap.Model.ObjectClass.traicay;
 import longho.nienluan.traicayngoainhap.Presenter.ChiTietTraiCay.PresenterLogicChiTietTraiCay;
@@ -44,11 +49,12 @@ public class ChiTietTraiCayActivity extends AppCompatActivity implements ViewChi
     LinearLayout layoutDots;
     TextView txtTenTraiCay, txtGiaBan, txtTenNCC, txtDiaChiNCC,txtThongTin,txtVietDanhGia, txtXemTatCaNhanXet;
     Toolbar toolbar;
-    ImageView imXemThemThongTin;
+    ImageView imXemThemThongTin, imThemGioHang;
     boolean blXemThemThongTin = false;
     int matraicay;
     String tentraicay;
     RecyclerView recyclerDanhGiaChiTiet;
+    traicay traiCayGioHang;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -70,6 +76,7 @@ public class ChiTietTraiCayActivity extends AppCompatActivity implements ViewChi
         txtVietDanhGia = findViewById(R.id.txtVietDanhGia);
         recyclerDanhGiaChiTiet = findViewById(R.id.recyclerDanhGiaChiTiet);
         txtXemTatCaNhanXet = findViewById(R.id.txtXemTatCaNhanXet);
+        imThemGioHang = findViewById(R.id.imThemGioHang);
 
         setSupportActionBar(toolbar);
 
@@ -80,6 +87,7 @@ public class ChiTietTraiCayActivity extends AppCompatActivity implements ViewChi
         presenterLogicChiTietTraiCay.LayDanhSachDanhGiaTheoMa(matraicay,0);
         txtVietDanhGia.setOnClickListener(this);
         txtXemTatCaNhanXet.setOnClickListener(this);
+        imThemGioHang.setOnClickListener(this);
 
     }
 
@@ -92,6 +100,8 @@ public class ChiTietTraiCayActivity extends AppCompatActivity implements ViewChi
     @Override
     public void HienThiChiTietTraiCay(traicay traicay) {
 
+        traiCayGioHang = traicay;
+        String
         tentraicay = traicay.getTenTraiCay();
         txtTenTraiCay.setText(traicay.getTenTraiCay());
         DecimalFormat formatter = new DecimalFormat("###,###");//định dạng tiền tệ
@@ -151,6 +161,16 @@ public class ChiTietTraiCayActivity extends AppCompatActivity implements ViewChi
         recyclerDanhGiaChiTiet.setLayoutManager(layoutManager);
         recyclerDanhGiaChiTiet.setAdapter(adapterDanhGia);
         adapterDanhGia.notifyDataSetChanged();
+    }
+
+    @Override
+    public void ThemGioHangThanhCong() {
+        Toast.makeText(this, "Giỏ hàng đã được thêm", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void ThemGiohangThatBai() {
+        Toast.makeText(this, "Sản phẩm đã có trong giỏ hàng", Toast.LENGTH_SHORT).show();
     }
 
     private void ThemDotSlider(int vitrihientai){
@@ -222,6 +242,21 @@ public class ChiTietTraiCayActivity extends AppCompatActivity implements ViewChi
                 iXemTatCaNhanXet.putExtra("matraicay", matraicay);
                 iXemTatCaNhanXet.putExtra("tentraicay", tentraicay);
                 startActivity(iXemTatCaNhanXet);
+                break;
+            case R.id.imThemGioHang:
+                Fragment fragment = fragmentList.get(0);
+                View view = fragment.getView();
+                ImageView imageView = view.findViewById(R.id.imHinhSlider);
+                Bitmap bitmap = ((BitmapDrawable)imageView.getDrawable()).getBitmap();
+
+                ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+                bitmap.compress(Bitmap.CompressFormat.PNG,100,byteArrayOutputStream);
+                byte[] hinhsanphamgiohang = byteArrayOutputStream.toByteArray();
+
+                traiCayGioHang.setHinhGioHang(hinhsanphamgiohang);
+//                traiCayGioHang.setSOLUONG(1);
+
+                presenterLogicChiTietTraiCay.ThemGioHang(traiCayGioHang,this);
                 break;
         }
     }

@@ -13,10 +13,11 @@
     <item
         android:id="@+id/itGioHang"
         android:title="Giỏ hàng"
-        android:icon="@mipmap/ic_shopping_cart_white_24dp"
+        android:icon="@drawable/ic_shopping_cart_white_24dp"
         app:showAsAction="always"
-        android:actionLayout="@layout/custom_item_giohang"
+        app:actionLayout="@layout/custom_item_giohang"
         />
+
     <item android:icon="@mipmap/ic_more_vert_white_24dp"
         android:title="more"
         app:showAsAction="always">

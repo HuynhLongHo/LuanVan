@@ -10,6 +10,15 @@ public class traicay {
     String MoiTruongTrong;
     String HinhChiTiet;
     String TenNCC, DiaChiNCC;
+    byte[] HinhGioHang;
+
+    public byte[] getHinhGioHang() {
+        return HinhGioHang;
+    }
+
+    public void setHinhGioHang(byte[] hinhGioHang) {
+        HinhGioHang = hinhGioHang;
+    }
 
     public String getTenNCC() {
         return TenNCC;
