@@ -62,6 +62,9 @@
             android:screenOrientation="portrait" />
         <activity android:name=".View.DanhGia.ThemDanhGiaActivity"
             android:theme="@style/Base.Theme.AppCompat.Dialog"/>
+        <activity
+            android:name=".View.DanhGia.DanhSachDanhGiaActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

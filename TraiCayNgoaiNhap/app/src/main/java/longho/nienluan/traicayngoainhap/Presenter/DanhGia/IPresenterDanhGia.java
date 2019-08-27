@@ -4,4 +4,5 @@ import longho.nienluan.traicayngoainhap.Model.ObjectClass.DanhGia;
 
 public interface IPresenterDanhGia {
     void ThemDanhGia(DanhGia danhGia);
+    void LayDanhSachDanhGiaTheoMa(int matraicay, int limit);
 }

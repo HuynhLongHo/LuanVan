@@ -2,7 +2,7 @@ package longho.nienluan.traicayngoainhap.Model.ObjectClass;
 
 public class DanhGia {
 
-    String MaDG,TenThietBi,TieuDe,NgayDanhGia,NoiDung;
+    String MaDG,TenThietBi,TieuDe, NgayDG, NoiDungDG;
     int MaTraiCay,SoSaoDG;
 
     public String getMaDG() {
@@ -29,20 +29,20 @@ public class DanhGia {
         TieuDe = tieuDe;
     }
 
-    public String getNgayDanhGia() {
-        return NgayDanhGia;
+    public String getNgayDG() {
+        return NgayDG;
     }
 
-    public void setNgayDanhGia(String ngayDanhGia) {
-        NgayDanhGia = ngayDanhGia;
+    public void setNgayDG(String ngayDG) {
+        NgayDG = ngayDG;
     }
 
-    public String getNoiDung() {
-        return NoiDung;
+    public String getNoiDungDG() {
+        return NoiDungDG;
     }
 
-    public void setNoiDung(String noiDung) {
-        NoiDung = noiDung;
+    public void setNoiDungDG(String noiDungDG) {
+        NoiDungDG = noiDungDG;
     }
 
     public int getMaTraiCay() {

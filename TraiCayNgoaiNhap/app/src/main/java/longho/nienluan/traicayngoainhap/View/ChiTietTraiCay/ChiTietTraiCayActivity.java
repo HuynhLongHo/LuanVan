@@ -9,6 +9,8 @@ import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.text.Html;
 import android.view.Menu;
@@ -23,10 +25,13 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
+import longho.nienluan.traicayngoainhap.Adapter.AdapterDanhGia;
 import longho.nienluan.traicayngoainhap.Adapter.AdapterViewPagerSlider;
+import longho.nienluan.traicayngoainhap.Model.ObjectClass.DanhGia;
 import longho.nienluan.traicayngoainhap.Model.ObjectClass.traicay;
 import longho.nienluan.traicayngoainhap.Presenter.ChiTietTraiCay.PresenterLogicChiTietTraiCay;
 import longho.nienluan.traicayngoainhap.R;
+import longho.nienluan.traicayngoainhap.View.DanhGia.DanhSachDanhGiaActivity;
 import longho.nienluan.traicayngoainhap.View.DanhGia.ThemDanhGiaActivity;
 import longho.nienluan.traicayngoainhap.View.TrangChu.TrangChuActivity;
 
@@ -37,12 +42,13 @@ public class ChiTietTraiCayActivity extends AppCompatActivity implements ViewChi
     List<Fragment> fragmentList;
     TextView txtDots[];
     LinearLayout layoutDots;
-    TextView txtTenTraiCay, txtGiaBan, txtTenNCC, txtDiaChiNCC,txtThongTin,txtVietDanhGia;
+    TextView txtTenTraiCay, txtGiaBan, txtTenNCC, txtDiaChiNCC,txtThongTin,txtVietDanhGia, txtXemTatCaNhanXet;
     Toolbar toolbar;
     ImageView imXemThemThongTin;
     boolean blXemThemThongTin = false;
     int matraicay;
     String tentraicay;
+    RecyclerView recyclerDanhGiaChiTiet;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -62,6 +68,8 @@ public class ChiTietTraiCayActivity extends AppCompatActivity implements ViewChi
         imXemThemThongTin = findViewById(R.id.imXemThemChiTiet);
         toolbar = findViewById(R.id.toolbar);
         txtVietDanhGia = findViewById(R.id.txtVietDanhGia);
+        recyclerDanhGiaChiTiet = findViewById(R.id.recyclerDanhGiaChiTiet);
+        txtXemTatCaNhanXet = findViewById(R.id.txtXemTatCaNhanXet);
 
         setSupportActionBar(toolbar);
 
@@ -69,7 +77,9 @@ public class ChiTietTraiCayActivity extends AppCompatActivity implements ViewChi
 
         presenterLogicChiTietTraiCay = new PresenterLogicChiTietTraiCay(this);
         presenterLogicChiTietTraiCay.LayChiTietTraiCay(matraicay);
+        presenterLogicChiTietTraiCay.LayDanhSachDanhGiaTheoMa(matraicay,0);
         txtVietDanhGia.setOnClickListener(this);
+        txtXemTatCaNhanXet.setOnClickListener(this);
 
     }
 
@@ -132,6 +142,15 @@ public class ChiTietTraiCayActivity extends AppCompatActivity implements ViewChi
         adapterViewPagerSlider.notifyDataSetChanged();
         ThemDotSlider(0);
         viewPager.addOnPageChangeListener(this);
+    }
+
+    @Override
+    public void HienThiDanhGia(List<DanhGia> danhGiaList) {
+        AdapterDanhGia adapterDanhGia = new AdapterDanhGia(this,danhGiaList,3);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
+        recyclerDanhGiaChiTiet.setLayoutManager(layoutManager);
+        recyclerDanhGiaChiTiet.setAdapter(adapterDanhGia);
+        adapterDanhGia.notifyDataSetChanged();
     }
 
     private void ThemDotSlider(int vitrihientai){
@@ -197,6 +216,12 @@ public class ChiTietTraiCayActivity extends AppCompatActivity implements ViewChi
                 iThemDanhGia.putExtra("matraicay", matraicay);
                 iThemDanhGia.putExtra("tentraicay", tentraicay);
                 startActivity(iThemDanhGia);
+                break;
+            case R.id.txtXemTatCaNhanXet:
+                Intent iXemTatCaNhanXet = new Intent(this, DanhSachDanhGiaActivity.class);
+                iXemTatCaNhanXet.putExtra("matraicay", matraicay);
+                iXemTatCaNhanXet.putExtra("tentraicay", tentraicay);
+                startActivity(iXemTatCaNhanXet);
                 break;
         }
     }

@@ -1,5 +1,7 @@
 package longho.nienluan.traicayngoainhap.Presenter.DanhGia;
 
+import java.util.List;
+
 import longho.nienluan.traicayngoainhap.Model.DanhGia.ModelDanhGia;
 import longho.nienluan.traicayngoainhap.Model.ObjectClass.DanhGia;
 import longho.nienluan.traicayngoainhap.View.DanhGia.ViewDanhGia;
@@ -21,6 +23,14 @@ public class PresenterLogicDanhGia implements IPresenterDanhGia {
             viewDanhGia.DanhGiaThanhCong();
         }else{
             viewDanhGia.DanhGiaThatBai();
+        }
+    }
+
+    @Override
+    public void LayDanhSachDanhGiaTheoMa(int matraicay, int limit) {
+        List<DanhGia> danhGiaList = modelDanhGia.LayDanhSachDanhGiaCuaTraiCay(matraicay, limit);
+        if(danhGiaList.size()>0){
+            viewDanhGia.HienThiDanhSachDanhGiaTheoMa(danhGiaList);
         }
     }
 }

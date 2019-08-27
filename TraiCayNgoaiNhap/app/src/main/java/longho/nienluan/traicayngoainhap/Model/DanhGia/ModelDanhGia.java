@@ -2,6 +2,7 @@ package longho.nienluan.traicayngoainhap.Model.DanhGia;
 
 import android.util.Log;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -15,6 +16,65 @@ import longho.nienluan.traicayngoainhap.Model.ObjectClass.DanhGia;
 import longho.nienluan.traicayngoainhap.View.TrangChu.TrangChuActivity;
 
 public class ModelDanhGia {
+    public List<DanhGia> LayDanhSachDanhGiaCuaTraiCay(int matraicay, int limit){
+        List<DanhGia> danhGias = new ArrayList<>();
+
+        List<HashMap<String,String>> attrs = new ArrayList<>();
+        String dataJSON = "";
+
+        String duongdan = TrangChuActivity.SERVER_NAME;
+
+        HashMap<String,String> hsHam = new HashMap<>();
+        hsHam.put("ham","LayDanhSachDanhGiaTheoMaTraiCay");
+
+        HashMap<String,String> hsMaLoai = new HashMap<>();
+        hsMaLoai.put("masp",String.valueOf(matraicay));
+
+        HashMap<String,String> hsLimit = new HashMap<>();
+        hsLimit.put("limit",String.valueOf(limit));
+
+        attrs.add(hsHam);
+        attrs.add(hsMaLoai);
+        attrs.add(hsLimit);
+
+        DownloadJSON downloadJSON = new DownloadJSON(duongdan,attrs);
+        //end phương thức post
+        downloadJSON.execute();
+
+        try {
+            dataJSON = downloadJSON.get();
+
+            JSONObject jsonObject = new JSONObject(dataJSON);
+            JSONArray jsonArrayDanhSachSanPham = jsonObject.getJSONArray("DanhSachDanhGia");
+            int dem = jsonArrayDanhSachSanPham.length();
+
+            for (int i = 0; i<dem; i++){
+                DanhGia danhGia = new DanhGia();
+                JSONObject object = jsonArrayDanhSachSanPham.getJSONObject(i);
+
+                danhGia.setTenThietBi(object.getString("TenThietBi"));
+                danhGia.setNoiDungDG(object.getString("NoiDungDG"));
+                danhGia.setSoSaoDG(object.getInt("SoSaoDG"));
+                danhGia.setMaTraiCay(object.getInt("MaTraiCay"));
+                danhGia.setMaDG(object.getString("MaDG"));
+                danhGia.setNgayDG(object.getString("NgayDG"));
+                danhGia.setTieuDe(object.getString("TieuDe"));
+
+                danhGias.add(danhGia);
+
+
+            }
+
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        return danhGias;
+    }
     public boolean ThemDanhGia(DanhGia danhGia){
         String duongdan = TrangChuActivity.SERVER_NAME;
         boolean kiemtra = false;
@@ -33,7 +93,7 @@ public class ModelDanhGia {
         hsTieuDe.put("tieude",danhGia.getTieuDe());
 
         HashMap<String,String> hsNoiDung = new HashMap<>();
-        hsNoiDung.put("noidung",danhGia.getNoiDung());
+        hsNoiDung.put("noidung",danhGia.getNoiDungDG());
 
         HashMap<String,String> hsSoSao = new HashMap<>();
         hsSoSao.put("sosao", String.valueOf(danhGia.getSoSaoDG()));

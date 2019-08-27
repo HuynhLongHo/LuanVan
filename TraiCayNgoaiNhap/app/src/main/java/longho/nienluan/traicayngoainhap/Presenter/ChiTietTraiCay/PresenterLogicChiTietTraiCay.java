@@ -1,6 +1,9 @@
 package longho.nienluan.traicayngoainhap.Presenter.ChiTietTraiCay;
 
+import java.util.List;
+
 import longho.nienluan.traicayngoainhap.Model.ChiTietTraiCay.ModelChiTietTraiCay;
+import longho.nienluan.traicayngoainhap.Model.ObjectClass.DanhGia;
 import longho.nienluan.traicayngoainhap.Model.ObjectClass.traicay;
 import longho.nienluan.traicayngoainhap.View.ChiTietTraiCay.ViewChiTietTraiCay;
 
@@ -22,6 +25,14 @@ public class PresenterLogicChiTietTraiCay implements IPresenterChiTietTraiCay {
             String[] linkhinhanh = traicay.getHinhChiTiet().split(",");
             viewChiTietTraiCay.HienSliderTraiCay(linkhinhanh);
             viewChiTietTraiCay.HienThiChiTietTraiCay(traicay);
+        }
+    }
+
+    @Override
+    public void LayDanhSachDanhGiaTheoMa(int matraicay, int limit) {
+        List<DanhGia> danhGias = modelChiTietTraiCay.LayDanhSachDanhGiaCuaTraiCay(matraicay,limit);
+        if(danhGias.size()>0){
+            viewChiTietTraiCay.HienThiDanhGia(danhGias);
         }
     }
 }

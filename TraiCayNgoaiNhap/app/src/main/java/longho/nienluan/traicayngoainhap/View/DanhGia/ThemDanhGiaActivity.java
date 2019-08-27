@@ -7,14 +7,14 @@ import android.provider.Settings;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
-import android.telephony.TelephonyManager;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RatingBar;
 import android.widget.Toast;
-import android.provider.Settings;
 import android.provider.Settings.System;
+
+import java.util.List;
 
 import longho.nienluan.traicayngoainhap.Model.ObjectClass.DanhGia;
 import longho.nienluan.traicayngoainhap.Presenter.DanhGia.PresenterLogicDanhGia;
@@ -68,6 +68,11 @@ public class ThemDanhGiaActivity extends AppCompatActivity implements ViewDanhGi
 
     }
 
+    @Override
+    public void HienThiDanhSachDanhGiaTheoMa(List<DanhGia> danhGiaList) {
+
+    }
+
     @SuppressLint("MissingPermission")
     @Override
     public void onClick(View v) {
@@ -97,7 +102,7 @@ public class ThemDanhGiaActivity extends AppCompatActivity implements ViewDanhGi
             danhGia.setMaTraiCay(matraicay);
             danhGia.setMaDG(madg);
             danhGia.setTieuDe(tieude);
-            danhGia.setNoiDung(noidung);
+            danhGia.setNoiDungDG(noidung);
             danhGia.setSoSaoDG(sosao);
             danhGia.setTenThietBi(tenthietbi);
 
