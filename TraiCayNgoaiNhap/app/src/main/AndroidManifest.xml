@@ -68,6 +68,9 @@
         <activity
             android:name=".View.GioHang.GioHangActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".View.ThanhToan.ThanhToanActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>
