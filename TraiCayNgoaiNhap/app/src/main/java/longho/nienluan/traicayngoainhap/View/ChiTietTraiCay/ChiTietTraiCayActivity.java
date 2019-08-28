@@ -273,7 +273,7 @@ public class ChiTietTraiCayActivity extends AppCompatActivity implements ViewChi
                 byte[] hinhsanphamgiohang = byteArrayOutputStream.toByteArray();
 
                 traiCayGioHang.setHinhGioHang(hinhsanphamgiohang);
-//                traiCayGioHang.setSOLUONG(1);
+                traiCayGioHang.setSoLuong(1);
 
                 presenterLogicChiTietTraiCay.ThemGioHang(traiCayGioHang,this);
                 break;

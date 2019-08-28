@@ -2,7 +2,7 @@ package longho.nienluan.traicayngoainhap.Model.ObjectClass;
 
 public class traicay {
 
-    int MaTraiCay, MaVung, MaLTC, MaNCC, GiaBan, SoLuongTon,LuotMua,GiaKM, MaQG;
+    int MaTraiCay, MaVung, MaLTC, MaNCC, GiaBan, SoLuongTon,LuotMua,GiaKM, MaQG, SoLuong;
     String TenTraiCay;
     String HinhTraiCay;
     String MieuTaTC;
@@ -11,6 +11,14 @@ public class traicay {
     String HinhChiTiet;
     String TenNCC, DiaChiNCC;
     byte[] HinhGioHang;
+
+    public int getSoLuong() {
+        return SoLuong;
+    }
+
+    public void setSoLuong(int soLuong) {
+        SoLuong = soLuong;
+    }
 
     public byte[] getHinhGioHang() {
         return HinhGioHang;

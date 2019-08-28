@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
@@ -40,13 +41,13 @@ public class AdapterGioHang extends RecyclerView.Adapter<AdapterGioHang.ViewHold
         public ViewHolderGioHang(View itemView) {
             super(itemView);
 
-            txtTenTieuDeGioHang = (TextView) itemView.findViewById(R.id.txtTieuDeGioHang);
-            txtGiaTienGioHang = (TextView) itemView.findViewById(R.id.txtGiaGioHang);
-            txtSoLuongSanPham = (TextView) itemView.findViewById(R.id.txtSoLuongSanPham);
-            imHinhGioHang = (ImageView) itemView.findViewById(R.id.imHinhGioHang);
-            imXoaSanPhamGioHang = (ImageView) itemView.findViewById(R.id.imXoaSanPhamGioHang);
-            imGiamSoLuongSPGioHang = (ImageButton) itemView.findViewById(R.id.imGiamSoLuongSPTrongGioHang);
-            imTangSoLuongSPGioHang = (ImageButton) itemView.findViewById(R.id.imTangSoLuongSPTrongGioHang);
+            txtTenTieuDeGioHang = itemView.findViewById(R.id.txtTieuDeGioHang);
+            txtGiaTienGioHang = itemView.findViewById(R.id.txtGiaGioHang);
+            txtSoLuongSanPham = itemView.findViewById(R.id.txtSoLuongSanPham);
+            imHinhGioHang = itemView.findViewById(R.id.imHinhGioHang);
+            imXoaSanPhamGioHang = itemView.findViewById(R.id.imXoaSanPhamGioHang);
+            imGiamSoLuongSPGioHang = itemView.findViewById(R.id.imGiamSoLuongSPTrongGioHang);
+            imTangSoLuongSPGioHang = itemView.findViewById(R.id.imTangSoLuongSPTrongGioHang);
         }
     }
 
@@ -88,37 +89,37 @@ public class AdapterGioHang extends RecyclerView.Adapter<AdapterGioHang.ViewHold
             }
         });
 
-//        holder.txtSoLuongSanPham.setText(String.valueOf(traicay.getSOLUONG()));
-//
-//        holder.imTangSoLuongSPGioHang.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                int soluong = Integer.parseInt(holder.txtSoLuongSanPham.getText().toString());
-//                int soluongtonkho = sanPham.getSOLUONGTONKHO();
-//
-//                if(soluong < soluongtonkho){
-//                    soluong++;
-//                }else{
-//                    Toast.makeText(context,"Số lượng sản phẩm bạn mua quá số lượng có trong kho của cửa hàng !",Toast.LENGTH_SHORT).show();
-//                }
-//
-//                modelGioHang.CapNhatSoLuongSanPhamGioHang(sanPham.getMASP(),soluong);
-//                holder.txtSoLuongSanPham.setText(String.valueOf(soluong));
-//            }
-//        });
-//
-//        holder.imGiamSoLuongSPGioHang.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                int soluong = Integer.parseInt(holder.txtSoLuongSanPham.getText().toString());
-//
-//                if(soluong > 1){
-//                    soluong--;
-//                }
-//                modelGioHang.CapNhatSoLuongSanPhamGioHang(sanPham.getMASP(),soluong);
-//                holder.txtSoLuongSanPham.setText(String.valueOf(soluong));
-//            }
-//        });
+        holder.txtSoLuongSanPham.setText(String.valueOf(traicay.getSoLuong()));
+
+        holder.imTangSoLuongSPGioHang.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int soluong = Integer.parseInt(holder.txtSoLuongSanPham.getText().toString());
+                int soluongtonkho = traicay.getSoLuongTon();
+
+                if(soluong < soluongtonkho){
+                    soluong++;
+                }else{
+                    Toast.makeText(context,"Số lượng sản phẩm bạn mua quá số lượng có trong kho của cửa hàng !",Toast.LENGTH_SHORT).show();
+                }
+
+                modelGioHang.CapNhatSoLuongSanPhamGioHang(traicay.getMaTraiCay(),soluong);
+                holder.txtSoLuongSanPham.setText(String.valueOf(soluong));
+            }
+        });
+
+        holder.imGiamSoLuongSPGioHang.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int soluong = Integer.parseInt(holder.txtSoLuongSanPham.getText().toString());
+
+                if(soluong > 1){
+                    soluong--;
+                }
+                modelGioHang.CapNhatSoLuongSanPhamGioHang(traicay.getMaTraiCay(),soluong);
+                holder.txtSoLuongSanPham.setText(String.valueOf(soluong));
+            }
+        });
 
     }
 

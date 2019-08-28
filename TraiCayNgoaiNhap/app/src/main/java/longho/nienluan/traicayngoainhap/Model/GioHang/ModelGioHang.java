@@ -48,8 +48,8 @@ public class ModelGioHang {
         contentValues.put(DataSanPham.TB_GIOHANG_TENSP,traicay.getTenTraiCay());
         contentValues.put(DataSanPham.TB_GIOHANG_GIATIEN,traicay.getGiaBan());
         contentValues.put(DataSanPham.TB_GIOHANG_HINHANH,traicay.getHinhGioHang());
-//        contentValues.put(DataSanPham.TB_GIOHANG_SOLUONG,traicay.getSOLUONG());
-//        contentValues.put(DataSanPham.TB_GIOHANG_SOLUONGTONKHO,traicay.getSoLuongTon());
+        contentValues.put(DataSanPham.TB_GIOHANG_SOLUONG,traicay.getSoLuong());
+        contentValues.put(DataSanPham.TB_GIOHANG_SOLUONGTONKHO,traicay.getSoLuongTon());
 
         long id = database.insert(DataSanPham.TB_GIOHANG,null,contentValues);
         if(id > 0){
@@ -72,8 +72,8 @@ public class ModelGioHang {
             String tensp = cursor.getString(cursor.getColumnIndex(DataSanPham.TB_GIOHANG_TENSP));
             int giatien = cursor.getInt(cursor.getColumnIndex(DataSanPham.TB_GIOHANG_GIATIEN));
             byte[] hinhanh = cursor.getBlob(cursor.getColumnIndex(DataSanPham.TB_GIOHANG_HINHANH));
-//            int soluong = cursor.getInt(cursor.getColumnIndex(DataSanPham.TB_GIOHANG_SOLUONG));
-//            int soluongtonkho = cursor.getInt(cursor.getColumnIndex(DataSanPham.TB_GIOHANG_SOLUONGTONKHO));
+            int soluong = cursor.getInt(cursor.getColumnIndex(DataSanPham.TB_GIOHANG_SOLUONG));
+            int soluongtonkho = cursor.getInt(cursor.getColumnIndex(DataSanPham.TB_GIOHANG_SOLUONGTONKHO));
 
 
             traicay traicay = new traicay();
@@ -81,8 +81,8 @@ public class ModelGioHang {
             traicay.setTenTraiCay(tensp);
             traicay.setGiaBan(giatien);
             traicay.setHinhGioHang(hinhanh);
-//            traicay.setSOLUONG(soluong);
-//            traicay.setSOLUONGTONKHO(soluongtonkho);
+            traicay.setSoLuong(soluong);
+            traicay.setSoLuongTon(soluongtonkho);
 
             traicayList.add(traicay);
             cursor.moveToNext();
