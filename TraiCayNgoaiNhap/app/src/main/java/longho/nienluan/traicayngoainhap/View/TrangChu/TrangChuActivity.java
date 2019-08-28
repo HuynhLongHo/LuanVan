@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.TabLayout;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v4.view.ViewCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
@@ -14,10 +15,12 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ExpandableListView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.facebook.AccessToken;
 import com.facebook.GraphRequest;
@@ -31,6 +34,8 @@ import java.util.List;
 
 import longho.nienluan.traicayngoainhap.Adapter.ExpandAdapter;
 import longho.nienluan.traicayngoainhap.Adapter.ViewPaperAdapter;
+import longho.nienluan.traicayngoainhap.Presenter.ChiTietTraiCay.PresenterLogicChiTietTraiCay;
+import longho.nienluan.traicayngoainhap.View.GioHang.GioHangActivity;
 import longho.nienluan.traicayngoainhap.View.GuiEmail.EmailActivity;
 import longho.nienluan.traicayngoainhap.Model.DangNhap_DangKy.ModelDangNhap;
 import longho.nienluan.traicayngoainhap.Model.ObjectClass.LoaiTraiCay;
@@ -64,6 +69,9 @@ public class TrangChuActivity extends AppCompatActivity implements ViewXuLyMenu,
     CollapsingToolbarLayout collapsingToolbarLayout;
     AppBarLayout appBarLayout;
     ModelDangNhap modelDangNhap;
+    TextView txtGioHang;
+    PresenterLogicChiTietTraiCay presenterLogicChiTietTraiCay;
+    boolean onPause = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -106,6 +114,20 @@ public class TrangChuActivity extends AppCompatActivity implements ViewXuLyMenu,
         //khởi tạo OptionMenu
         getMenuInflater().inflate(R.menu.menutrangchu,menu);
         this.menu=menu;
+
+        MenuItem iGioHang = this.menu.findItem(R.id.itGioHang);
+        View giaoDienCustomGioHang = MenuItemCompat.getActionView(iGioHang);
+        txtGioHang = giaoDienCustomGioHang.findViewById(R.id.txtSoLuongSanPhamGioHang);
+        presenterLogicChiTietTraiCay = new PresenterLogicChiTietTraiCay();
+        txtGioHang.setText(String.valueOf(presenterLogicChiTietTraiCay.DemSanPhamCoTrongGioHang(this)));
+        giaoDienCustomGioHang.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent iGioHang = new Intent(TrangChuActivity.this, GioHangActivity.class);
+                startActivity(iGioHang);
+            }
+        });
+
         itemDangNhap = menu.findItem(R.id.itDangNhap);
         accessToken = logicXuLyMenu.LayTokenNguoiDungFB();
         if(accessToken != null){
@@ -207,5 +229,21 @@ public class TrangChuActivity extends AppCompatActivity implements ViewXuLyMenu,
             }
 
         }
+    }
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        if(onPause){
+            PresenterLogicChiTietTraiCay presenterLogicChiTietTraiCay = new PresenterLogicChiTietTraiCay();
+            txtGioHang.setText(String.valueOf(presenterLogicChiTietTraiCay.DemSanPhamCoTrongGioHang(this)));
+        }
+
+    }
+    @Override
+    protected void onPause() {
+        super.onPause();
+
+        onPause = true;
     }
 }

@@ -65,6 +65,9 @@
         <activity
             android:name=".View.DanhGia.DanhSachDanhGiaActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".View.GioHang.GioHangActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

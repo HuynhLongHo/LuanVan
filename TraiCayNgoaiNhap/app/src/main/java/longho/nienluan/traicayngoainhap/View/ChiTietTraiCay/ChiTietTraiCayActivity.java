@@ -40,6 +40,7 @@ import longho.nienluan.traicayngoainhap.Presenter.ChiTietTraiCay.PresenterLogicC
 import longho.nienluan.traicayngoainhap.R;
 import longho.nienluan.traicayngoainhap.View.DanhGia.DanhSachDanhGiaActivity;
 import longho.nienluan.traicayngoainhap.View.DanhGia.ThemDanhGiaActivity;
+import longho.nienluan.traicayngoainhap.View.GioHang.GioHangActivity;
 import longho.nienluan.traicayngoainhap.View.TrangChu.TrangChuActivity;
 
 public class ChiTietTraiCayActivity extends AppCompatActivity implements ViewChiTietTraiCay,ViewPager.OnPageChangeListener,View.OnClickListener {
@@ -103,13 +104,13 @@ public class ChiTietTraiCayActivity extends AppCompatActivity implements ViewChi
 
         txtGioHang.setText(String.valueOf(presenterLogicChiTietTraiCay.DemSanPhamCoTrongGioHang(this)));
 
-//        giaoDienCustomGioHang.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent iGioHang = new Intent(ChiTietSanPhamActivity.this, GioHangActivity.class);
-//                startActivity(iGioHang);
-//            }
-//        });
+        giaoDienCustomGioHang.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent iGioHang = new Intent(ChiTietTraiCayActivity.this, GioHangActivity.class);
+                startActivity(iGioHang);
+            }
+        });
 
         return true;
     }
@@ -187,7 +188,7 @@ public class ChiTietTraiCayActivity extends AppCompatActivity implements ViewChi
     }
 
     @Override
-    public void ThemGiohangThatBai() {
+    public void ThemGioHangThatBai() {
         Toast.makeText(this, "Sản phẩm đã có trong giỏ hàng", Toast.LENGTH_SHORT).show();
     }
 

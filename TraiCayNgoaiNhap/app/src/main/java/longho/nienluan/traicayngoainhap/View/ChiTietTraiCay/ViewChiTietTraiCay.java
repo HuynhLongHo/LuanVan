@@ -10,5 +10,5 @@ public interface ViewChiTietTraiCay {
     void HienSliderTraiCay(String[] linkhinhtraicay);
     void HienThiDanhGia(List<DanhGia> danhGiaList);
     void ThemGioHangThanhCong();
-    void ThemGiohangThatBai();
+    void ThemGioHangThatBai();
 }

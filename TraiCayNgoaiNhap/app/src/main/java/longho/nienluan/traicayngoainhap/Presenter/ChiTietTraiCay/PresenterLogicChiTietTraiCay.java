@@ -15,6 +15,9 @@ public class PresenterLogicChiTietTraiCay implements IPresenterChiTietTraiCay {
     ViewChiTietTraiCay viewChiTietTraiCay;
     ModelChiTietTraiCay modelChiTietTraiCay;
     ModelGioHang modelGioHang;
+    public PresenterLogicChiTietTraiCay(){
+        modelGioHang = new ModelGioHang();
+    }
 
     public PresenterLogicChiTietTraiCay(ViewChiTietTraiCay viewChiTietTraiCay){
         this.viewChiTietTraiCay=viewChiTietTraiCay;
@@ -48,7 +51,7 @@ public class PresenterLogicChiTietTraiCay implements IPresenterChiTietTraiCay {
         if (kiemtra){
             viewChiTietTraiCay.ThemGioHangThanhCong();
         }else{
-            viewChiTietTraiCay.ThemGiohangThatBai();
+            viewChiTietTraiCay.ThemGioHangThatBai();
         }
     }
 
