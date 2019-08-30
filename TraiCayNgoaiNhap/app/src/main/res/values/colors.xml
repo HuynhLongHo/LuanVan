@@ -11,6 +11,7 @@
     <color name="colorFacebook">#4a6ea9</color>
     <color name="colorGoogle">#da4835</color>
     <color name="tranparentBlack">#B2000000</color>
+    <color name="colorBlack">#000</color>
     <color name="colorGreen">#da4835</color>
     <color name="colorSliderInActive">#bfef9e</color>
 </resources>

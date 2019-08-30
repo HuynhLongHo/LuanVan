@@ -48,11 +48,16 @@ public class TrangChuActivity extends AppCompatActivity implements ViewXuLyMenu,
     public static final String SERVER_NAME = "http://10.2.56.155:80/NienLuan_LongHo/traicay.php";//B21_P4
     public static final String SERVER = "http://10.2.56.155:80/NienLuan_LongHo/Image/TraiCay";//B21_P4
 
+//    public static final String SERVER_NAME = "http://10.13.144.144:80/NienLuan_LongHo/traicay.php";//B21_P4
+//    public static final String SERVER = "http://10.13.144.144:80/NienLuan_LongHo/Image/TraiCay";//B21_P4
+
 //    public static final String SERVER_NAME = "http://192.168.1.66:80/NienLuan_LongHo/traicay.php";//Cafe
 //    public static final String SERVER = "http://192.168.1.66:80/NienLuan_LongHo/Image/TraiCay";//Cafe
 
 
 //    public static final String SERVER_NAME = "http://192.168.43.93:80/NienLuan_LongHo/traicay.php";
+//    public static final String SERVER = "http://192.168.43.93:80/NienLuan_LongHo/Image/TraiCay";
+
 //    public static final String SERVER_NAME = "http://10.10.35.87:80/NienLuan_LongHo/traicay.php";
 
     Toolbar toolbar;

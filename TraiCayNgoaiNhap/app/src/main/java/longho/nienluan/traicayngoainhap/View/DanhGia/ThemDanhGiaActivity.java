@@ -64,7 +64,7 @@ public class ThemDanhGiaActivity extends AppCompatActivity implements ViewDanhGi
 
     @Override
     public void DanhGiaThatBai() {
-        Toast.makeText(this, tentraicay + " \nchỉ được đánh giá 1 lần trên thiết bị", Toast.LENGTH_LONG).show();
+        Toast.makeText(this,"Hôm nay đã đánh giá " + tentraicay + " !", Toast.LENGTH_LONG).show();
 
     }
 

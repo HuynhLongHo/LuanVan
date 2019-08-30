@@ -55,6 +55,9 @@
 		case 'LayDanhSachDanhGiaTheoMaTraiCay':
 			$ham();
 			break;
+		case 'ThemDonDatHang':
+			$ham();
+			break;
 	}
 
 
@@ -434,4 +437,50 @@
 			echo "}";
 
 		}
+
+	function ThemDonDatHang(){
+		include_once("config.php");
+
+		if(isset($_POST["danhsachsanpham"]) || isset($_POST["tennguoinhan"]) || isset($_POST["sodt"]) || isset($_POST["diachi"]) || isset($_POST["chuyenkhoan"]) ){
+			$danhsachsanpham = $_POST["danhsachsanpham"];
+			$tennguoinhan = $_POST["tennguoinhan"];
+			$sodt = $_POST["sodt"];
+			$diachi = $_POST["diachi"];
+			$chuyenkhoan = $_POST["chuyenkhoan"];
+		}
+
+		$ngayhientai = date("Y/m/d");
+		$ngaygiao = date_create($ngayhientai);
+		$ngaygiao = date_modify($ngaygiao,"+3 days");
+		$ngaygiao = date_format($ngaygiao,"Y/m/d") ;
+		$trangthai = "chờ kiểm duyệt";
+
+		$truyvan = "INSERT INTO dondathang (NgayDat,NgayGiao,TrangThaiGiao,TenNguoiDatHang,SoDienThoaiDatHang,DiaChiDatHang,ChuyenKhoan) VALUES ('".$ngayhientai."', '".$ngaygiao."', '".$trangthai."', '".$tennguoinhan."', '".$sodt."', '".$diachi."', '".$chuyenkhoan."')";
+		$ketqua = mysqli_query($conn,$truyvan);
+
+		if($ketqua){
+			$mahd = mysqli_insert_id($conn);
+			$chuoijsonandroid = json_decode($danhsachsanpham);
+			$arrayDanhSachSanPham = $chuoijsonandroid->DANHSACHSANPHAM;
+			$dem = count($arrayDanhSachSanPham);
+
+			for($i=0; $i<$dem; $i++){
+				$jsonObect = $arrayDanhSachSanPham[$i];
+
+				$masp = $jsonObect->MaTraiCay;
+				$soluong = $jsonObect->SoLuongDat;
+
+				$truyvan = "INSERT INTO chitietddh (MaDDH,MaTraiCay,SoLuongDat) VALUES ('".$mahd."', '".$masp."', '".$soluong."')";
+				$ketqua1 = mysqli_query($conn,$truyvan);
+
+
+			}
+
+			echo "{ketqua:true}" ;
+
+		}else{
+			echo "{ketqua:false}";
+		}
+
+	}
 ?>
