@@ -18,16 +18,11 @@
             android:id="@+id/lnQuocGia"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:background="@color/colorSliderInActive">
             <TextView
                 android:id="@+id/txtTenQuocGia"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Oppo"
-                android:layout_gravity="center"
-                android:layout_marginTop="5dp"
-                android:textAlignment="center"
-                android:background="@color/bgToolbar"
+                style="@style/TenDoiTuong"
                 />
             <ImageView
                 android:id="@+id/imgQuocKiQG"
@@ -35,6 +30,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:scaleType="centerInside"
+                android:layout_marginTop="2dp"
                 android:src="@drawable/backgroundplashscreen"
                 />
         </LinearLayout>

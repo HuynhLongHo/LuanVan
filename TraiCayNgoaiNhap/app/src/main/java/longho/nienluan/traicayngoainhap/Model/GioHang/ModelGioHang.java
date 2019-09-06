@@ -52,7 +52,7 @@ public class ModelGioHang {
         contentValues.put(DataSanPham.TB_GIOHANG_SOLUONGTONKHO,traicay.getSoLuongTon());
 
         long id = database.insert(DataSanPham.TB_GIOHANG,null,contentValues);
-        if(id > 0){
+        if(id >= 0){
             return true;
         }else{
             return false;

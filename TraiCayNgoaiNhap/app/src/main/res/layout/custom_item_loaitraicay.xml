@@ -19,16 +19,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical">
+
             <TextView
                 android:id="@+id/txtTieuDeLoaiTraiCay"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Oppo"
-                android:layout_gravity="center"
-                android:layout_marginTop="5dp"
-                android:textAlignment="center"
-                android:background="@color/bgToolbar"
+                style="@style/TenDoiTuong"
                 />
+
             <ImageView
                 android:id="@+id/imHinhLoaiTraiCay"
                 android:layout_width="90dp"

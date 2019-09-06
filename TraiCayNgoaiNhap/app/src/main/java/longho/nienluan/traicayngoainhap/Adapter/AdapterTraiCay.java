@@ -64,7 +64,7 @@ public class AdapterTraiCay extends RecyclerView.Adapter<AdapterTraiCay.ViewHold
         final traicay traicay = traicayList.get(position);
         holder.txtTenTraiCay.setText(traicay.getTenTraiCay());
         DecimalFormat formatter = new DecimalFormat("###,###");//định dạng tiền tệ
-        String giaban = "Giá: " + formatter.format(traicay.getGiaBan()) + " VNĐ";
+        String giaban = formatter.format(traicay.getGiaBan()) + " VNĐ";
         holder.txtGiaBan.setText(String.valueOf(giaban));
         holder.txtLuotMua.setText("Lượt mua: " + String.valueOf(traicay.getLuotMua()));
         Picasso.with(context).load(traicay.getHinhTraiCay()).resize(250,175).into(holder.imgHinhTraiCay, new Callback() {

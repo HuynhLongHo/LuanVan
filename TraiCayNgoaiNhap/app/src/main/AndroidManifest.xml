@@ -59,7 +59,7 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".View.ChiTietTraiCay.ChiTietTraiCayActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"/>
         <activity android:name=".View.DanhGia.ThemDanhGiaActivity"
             android:theme="@style/Base.Theme.AppCompat.Dialog"/>
         <activity
