@@ -27,6 +27,14 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.facebook.AccessToken;
+import com.facebook.GraphRequest;
+import com.facebook.GraphResponse;
+import com.facebook.login.LoginManager;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.ByteArrayOutputStream;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -34,15 +42,20 @@ import java.util.List;
 
 import longho.nienluan.traicayngoainhap.Adapter.AdapterDanhGia;
 import longho.nienluan.traicayngoainhap.Adapter.AdapterViewPagerSlider;
+import longho.nienluan.traicayngoainhap.Model.DangNhap_DangKy.ModelDangNhap;
 import longho.nienluan.traicayngoainhap.Model.ObjectClass.DanhGia;
 import longho.nienluan.traicayngoainhap.Model.ObjectClass.traicay;
 import longho.nienluan.traicayngoainhap.Presenter.ChiTietTraiCay.PresenterLogicChiTietTraiCay;
+import longho.nienluan.traicayngoainhap.Presenter.TrangChu.XuLyMenu.PresenterLogicXuLyMenu;
 import longho.nienluan.traicayngoainhap.R;
+import longho.nienluan.traicayngoainhap.View.DangNhap_DangKy.DangNhapActivity;
 import longho.nienluan.traicayngoainhap.View.DanhGia.DanhSachDanhGiaActivity;
 import longho.nienluan.traicayngoainhap.View.DanhGia.ThemDanhGiaActivity;
 import longho.nienluan.traicayngoainhap.View.GioHang.GioHangActivity;
 import longho.nienluan.traicayngoainhap.View.DatHang.DatHangActivity;
+import longho.nienluan.traicayngoainhap.View.GuiEmail.EmailActivity;
 import longho.nienluan.traicayngoainhap.View.TrangChu.TrangChuActivity;
+import longho.nienluan.traicayngoainhap.View.TrangChu.ViewXuLyMenu;
 
 public class ChiTietTraiCayActivity extends AppCompatActivity implements ViewChiTietTraiCay,ViewPager.OnPageChangeListener,View.OnClickListener {
 
@@ -56,10 +69,16 @@ public class ChiTietTraiCayActivity extends AppCompatActivity implements ViewChi
     ImageView imXemThemThongTin, imThemGioHang;
     boolean blXemThemThongTin = false;
     int matraicay;
-    String tentraicay;
+    String tentraicay,tennguoidung;
     RecyclerView recyclerDanhGiaChiTiet;
     traicay traiCayGioHang;
     Button btnMuaNgay;
+    MenuItem itemDangNhap;
+    AccessToken accessToken;
+    PresenterLogicXuLyMenu logicXuLyMenu;
+    ModelDangNhap modelDangNhap;
+    Menu menu;
+    ViewXuLyMenu viewXuLyMenu;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -96,12 +115,16 @@ public class ChiTietTraiCayActivity extends AppCompatActivity implements ViewChi
         txtXemTatCaNhanXet.setOnClickListener(this);
         imThemGioHang.setOnClickListener(this);
         btnMuaNgay.setOnClickListener(this);
+        modelDangNhap = new ModelDangNhap();
+        logicXuLyMenu = new PresenterLogicXuLyMenu(viewXuLyMenu);
 
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
+        //khởi tạo OptionMenu
         getMenuInflater().inflate(R.menu.menutrangchu,menu);
+        this.menu=menu;
 
         MenuItem iGioHang = menu.findItem(R.id.itGioHang);
         View giaoDienCustomGioHang = MenuItemCompat.getActionView(iGioHang);
@@ -116,6 +139,73 @@ public class ChiTietTraiCayActivity extends AppCompatActivity implements ViewChi
                 startActivity(iGioHang);
             }
         });
+
+        itemDangNhap = menu.findItem(R.id.itDangNhap);
+        accessToken = logicXuLyMenu.LayTokenNguoiDungFB();
+        if(accessToken != null){
+            GraphRequest graphRequest = GraphRequest.newMeRequest(accessToken, new GraphRequest.GraphJSONObjectCallback() {
+                @Override
+                public void onCompleted(JSONObject object, GraphResponse response) {
+                    try {
+                        tennguoidung = object.getString("name");
+
+                        itemDangNhap.setTitle(tennguoidung);
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+            });
+
+            Bundle parameter = new Bundle();
+            parameter.putString("fields","name");
+
+            graphRequest.setParameters(parameter);
+            graphRequest.executeAsync();
+
+        }
+
+        String TenNguoiDung = modelDangNhap.LayCachedDangNhap(this);
+        if(!TenNguoiDung.equals("")){
+            itemDangNhap.setTitle(TenNguoiDung);
+        }
+
+        if(accessToken!=null||!TenNguoiDung.equals("")){
+            MenuItem menuITDangXuat = menu.findItem(R.id.itDangXuat);
+            menuITDangXuat.setVisible(true);
+        }
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        int id = item.getItemId();
+        switch (id){
+            case R.id.itDangNhap:
+                if(accessToken==null&&modelDangNhap.LayCachedDangNhap(this).equals("")){
+                    Intent intentDangNhap = new Intent(this, DangNhapActivity.class);
+                    startActivity(intentDangNhap);
+                };
+                break;
+            case R.id.itDangXuat:
+                if(accessToken!=null){
+                    LoginManager.getInstance().logOut();
+                    this.menu.clear();
+                    this.onCreateOptionsMenu(this.menu);
+                }
+                if(!modelDangNhap.LayCachedDangNhap(this).equals("")) {
+                    modelDangNhap.CapNhatCachedDangNhap(this, "","");
+                    this.menu.clear();
+                    this.onCreateOptionsMenu(this.menu);
+                }
+                break;
+            case R.id.itEmailPhanHoi:
+                Intent intent = new Intent(this, EmailActivity.class);
+                startActivity(intent);
+                break;
+
+        }
 
         return true;
     }
@@ -195,6 +285,8 @@ public class ChiTietTraiCayActivity extends AppCompatActivity implements ViewChi
     public void ThemGioHangThatBai() {
         Toast.makeText(this, "Sản phẩm đã có trong giỏ hàng", Toast.LENGTH_SHORT).show();
     }
+
+
 
     private void ThemDotSlider(int vitrihientai){
         txtDots = new TextView[fragmentList.size()];
