@@ -34,7 +34,6 @@ import java.util.List;
 
 import longho.nienluan.traicayngoainhap.Adapter.AdapterDanhGia;
 import longho.nienluan.traicayngoainhap.Adapter.AdapterViewPagerSlider;
-import longho.nienluan.traicayngoainhap.Model.GioHang.ModelGioHang;
 import longho.nienluan.traicayngoainhap.Model.ObjectClass.DanhGia;
 import longho.nienluan.traicayngoainhap.Model.ObjectClass.traicay;
 import longho.nienluan.traicayngoainhap.Presenter.ChiTietTraiCay.PresenterLogicChiTietTraiCay;
@@ -42,7 +41,7 @@ import longho.nienluan.traicayngoainhap.R;
 import longho.nienluan.traicayngoainhap.View.DanhGia.DanhSachDanhGiaActivity;
 import longho.nienluan.traicayngoainhap.View.DanhGia.ThemDanhGiaActivity;
 import longho.nienluan.traicayngoainhap.View.GioHang.GioHangActivity;
-import longho.nienluan.traicayngoainhap.View.ThanhToan.ThanhToanActivity;
+import longho.nienluan.traicayngoainhap.View.DatHang.DatHangActivity;
 import longho.nienluan.traicayngoainhap.View.TrangChu.TrangChuActivity;
 
 public class ChiTietTraiCayActivity extends AppCompatActivity implements ViewChiTietTraiCay,ViewPager.OnPageChangeListener,View.OnClickListener {
@@ -297,7 +296,7 @@ public class ChiTietTraiCayActivity extends AppCompatActivity implements ViewChi
 
                 presenterLogicChiTietTraiCay.ThemGioHang(traiCayGioHang,this);
 
-                Intent iThanhToan = new Intent(ChiTietTraiCayActivity.this, ThanhToanActivity.class);
+                Intent iThanhToan = new Intent(ChiTietTraiCayActivity.this, DatHangActivity.class);
                 startActivity(iThanhToan);
                 break;
         }

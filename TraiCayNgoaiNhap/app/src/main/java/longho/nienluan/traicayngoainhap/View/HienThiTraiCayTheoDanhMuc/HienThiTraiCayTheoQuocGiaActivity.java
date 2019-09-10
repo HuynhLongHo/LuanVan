@@ -15,7 +15,7 @@ import android.widget.Button;
 
 import java.util.List;
 
-import longho.nienluan.traicayngoainhap.Adapter.AdapterTraiCay;
+import longho.nienluan.traicayngoainhap.Adapter.AdapterNoiBat;
 import longho.nienluan.traicayngoainhap.Model.ObjectClass.traicay;
 import longho.nienluan.traicayngoainhap.Presenter.HienThiTraiCayTheoDanhMuc.PresenterLogicHienThiTraiCayTheoQuocGia;
 import longho.nienluan.traicayngoainhap.R;
@@ -28,7 +28,7 @@ public class HienThiTraiCayTheoQuocGiaActivity extends AppCompatActivity impleme
     boolean danggrid = true;
     RecyclerView.LayoutManager layoutManager;
     Button btnThayDoiTrangThaiHienThi;
-    AdapterTraiCay adapterTraiCay;
+    AdapterNoiBat adapterTraiCay;
     PresenterLogicHienThiTraiCayTheoQuocGia presenterLogicHienThiTraiCayTheoQuocGia;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -55,14 +55,14 @@ public class HienThiTraiCayTheoQuocGiaActivity extends AppCompatActivity impleme
 
     @Override
     public void HienThiDanhSachTraiCayTheoQuocGia(List<traicay> traicayList) {
-        adapterTraiCay = new AdapterTraiCay(HienThiTraiCayTheoQuocGiaActivity.this,R.layout.custom_item_traicay,traicayList);
+        adapterTraiCay = new AdapterNoiBat(HienThiTraiCayTheoQuocGiaActivity.this,R.layout.custom_item_traicay,traicayList);
         if(danggrid){
             layoutManager = new GridLayoutManager(HienThiTraiCayTheoQuocGiaActivity.this,2);
-            adapterTraiCay =  new AdapterTraiCay(HienThiTraiCayTheoQuocGiaActivity.this,R.layout.custom_item_traicay,traicayList);
+            adapterTraiCay =  new AdapterNoiBat(HienThiTraiCayTheoQuocGiaActivity.this,R.layout.custom_item_traicay,traicayList);
 
         }else{
             layoutManager = new LinearLayoutManager(HienThiTraiCayTheoQuocGiaActivity.this);
-            adapterTraiCay = new AdapterTraiCay(HienThiTraiCayTheoQuocGiaActivity.this,R.layout.custom_item_traicay_list,traicayList);
+            adapterTraiCay = new AdapterNoiBat(HienThiTraiCayTheoQuocGiaActivity.this,R.layout.custom_item_traicay_list,traicayList);
 
         }
 

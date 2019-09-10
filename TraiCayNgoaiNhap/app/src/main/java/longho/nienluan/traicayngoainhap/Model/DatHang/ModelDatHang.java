@@ -1,4 +1,4 @@
-package longho.nienluan.traicayngoainhap.Model.ThanhToan;
+package longho.nienluan.traicayngoainhap.Model.DatHang;
 
 import android.util.Log;
 
@@ -15,7 +15,7 @@ import longho.nienluan.traicayngoainhap.Model.ObjectClass.ChiTietDDH;
 import longho.nienluan.traicayngoainhap.Model.ObjectClass.DonDatHang;
 import longho.nienluan.traicayngoainhap.View.TrangChu.TrangChuActivity;
 
-public class ModelThanhToan {
+public class ModelDatHang {
     public boolean ThemDonDatHang(DonDatHang donDatHang){
         String duongdan = TrangChuActivity.SERVER_NAME;
         boolean kiemtra = false;

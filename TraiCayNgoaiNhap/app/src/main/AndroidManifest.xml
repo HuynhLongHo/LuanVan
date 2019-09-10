@@ -59,7 +59,8 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".View.ChiTietTraiCay.ChiTietTraiCayActivity"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait"
+            android:label="Chi tiết trái cây"/>
         <activity android:name=".View.DanhGia.ThemDanhGiaActivity"
             android:theme="@style/Base.Theme.AppCompat.Dialog"/>
         <activity
@@ -67,9 +68,10 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".View.GioHang.GioHangActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:label="Giỏ hàng"/>
         <activity
-            android:name=".View.ThanhToan.ThanhToanActivity"
+            android:name=".View.DatHang.DatHangActivity"
             android:screenOrientation="portrait" />
     </application>
 

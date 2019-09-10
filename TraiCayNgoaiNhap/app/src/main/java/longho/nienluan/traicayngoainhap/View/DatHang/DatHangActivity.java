@@ -1,4 +1,4 @@
-package longho.nienluan.traicayngoainhap.View.ThanhToan;
+package longho.nienluan.traicayngoainhap.View.DatHang;
 
 import android.content.Intent;
 import android.os.Build;
@@ -23,18 +23,18 @@ import java.util.List;
 import longho.nienluan.traicayngoainhap.Model.ObjectClass.ChiTietDDH;
 import longho.nienluan.traicayngoainhap.Model.ObjectClass.DonDatHang;
 import longho.nienluan.traicayngoainhap.Model.ObjectClass.traicay;
-import longho.nienluan.traicayngoainhap.Presenter.ThanhToan.PresenterLogicThanhToan;
+import longho.nienluan.traicayngoainhap.Presenter.DatHang.PresenterLogicDatHang;
 import longho.nienluan.traicayngoainhap.R;
 import longho.nienluan.traicayngoainhap.View.TrangChu.TrangChuActivity;
 
-public class ThanhToanActivity extends AppCompatActivity implements View.OnClickListener,ViewThanhToan {
+public class DatHangActivity extends AppCompatActivity implements View.OnClickListener,ViewDatHang {
     Toolbar toolbar;
     EditText edTenNguoiNhan, edDiaChi, edSoDT;
     ImageButton imNhanTienKhiGiaoHang, imChuyenKhoan;
     TextView txtNhanTienKhiGiaoHang, txtChuyenKhoan;
     Button btnThanhToan;
     CheckBox cbThoaThuan;
-    PresenterLogicThanhToan presenterLogicThanhToan;
+    PresenterLogicDatHang presenterLogicThanhToan;
     List<ChiTietDDH> chiTietDDHList = new ArrayList<>();
 
     int chonHinhThuc = 0;
@@ -47,7 +47,7 @@ public class ThanhToanActivity extends AppCompatActivity implements View.OnClick
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
-        setContentView(R.layout.layout_thanhtoan);
+        setContentView(R.layout.layout_dathang);
 
         toolbar = findViewById(R.id.toolbar);
         edTenNguoiNhan = findViewById(R.id.edTenNguoiNhan);
@@ -55,12 +55,12 @@ public class ThanhToanActivity extends AppCompatActivity implements View.OnClick
         edSoDT = findViewById(R.id.edSoDT);
         imNhanTienKhiGiaoHang = findViewById(R.id.imNhanTienKhiGiaoHang);
         imChuyenKhoan = findViewById(R.id.imChuyenKhoan);
-        btnThanhToan = findViewById(R.id.btnThanhToan);
+        btnThanhToan = findViewById(R.id.btnDatHang);
 //        cbThoaThuan = (CheckBox) findViewById(R.id.cbThoaThuan);
         txtNhanTienKhiGiaoHang = findViewById(R.id.txtNhanTienKhiGiaoHang);
         txtChuyenKhoan = findViewById(R.id.txtChuyenKhoan);
 //
-        presenterLogicThanhToan = new PresenterLogicThanhToan(this,this);
+        presenterLogicThanhToan = new PresenterLogicDatHang(this,this);
         presenterLogicThanhToan.LayDanhSachSanPhamTrongGioHang();
 
         setSupportActionBar(toolbar);
@@ -75,7 +75,7 @@ public class ThanhToanActivity extends AppCompatActivity implements View.OnClick
         int id = v.getId();
 
         switch (id) {
-            case R.id.btnThanhToan:
+            case R.id.btnDatHang:
                 String tennguoinhan = edTenNguoiNhan.getText().toString();
                 String sodt = edSoDT.getText().toString();
                 String diachi = edDiaChi.getText().toString();
@@ -110,7 +110,7 @@ public class ThanhToanActivity extends AppCompatActivity implements View.OnClick
     @Override
     public void DatHangThanhCong() {
         Toast.makeText(this, "Thành công!", Toast.LENGTH_SHORT).show();
-        Intent iTrangChu = new Intent(ThanhToanActivity.this, TrangChuActivity.class);
+        Intent iTrangChu = new Intent(DatHangActivity.this, TrangChuActivity.class);
         startActivity(iTrangChu);
     }
 
