@@ -42,10 +42,17 @@ public class ModelDangNhap {
 
         return TenNguoiDung;
     }
-    public void CapNhatCachedDangNhap(Context context,String TenNguoiDung){
+    public String LayMaNguoiDung(Context context){
+        SharedPreferences cachedDangNhap = context.getSharedPreferences("dangnhap",Context.MODE_PRIVATE);
+        String MaNguoiDung = cachedDangNhap.getString("MaNguoiDung","");
+
+        return MaNguoiDung;
+    }
+    public void CapNhatCachedDangNhap(Context context,String TenNguoiDung, String MaNguoiDung){
         SharedPreferences cachedDangNhap = context.getSharedPreferences("dangnhap",Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = cachedDangNhap.edit();
         editor.putString("TenNguoiDung",TenNguoiDung);
+        editor.putString("MaNguoiDung",MaNguoiDung);
 
         editor.commit();
     }
@@ -77,8 +84,9 @@ public class ModelDangNhap {
             if(jsonKetQua.equals("true")){
                 kiemtra = true;
                 String tennv = jsonObject.getString("TenNguoiDung");
+                String maND = jsonObject.getString("MaNguoiDung");
 
-                CapNhatCachedDangNhap(context,tennv);
+                CapNhatCachedDangNhap(context,tennv,maND);
 
             }else{
                 kiemtra = false;

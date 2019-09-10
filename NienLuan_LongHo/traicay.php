@@ -58,6 +58,9 @@
 		case 'ThemDonDatHang':
 			$ham();
 			break;
+		case 'LayDanhSachKhuyenMai':
+			$ham();
+			break;
 	}
 
 
@@ -74,8 +77,9 @@
 			$TenNguoiDung="";
 			while ($dong = mysqli_fetch_array($ketqua)) {
 				$TenNguoiDung = $dong["TenNguoiDung"];
+				$MaNguoiDung = $dong["MaNguoiDung"];
 			}
-			echo "{\"ketqua\":\"true\",\"TenNguoiDung\":\"".$TenNguoiDung."\"}";
+			echo "{\"ketqua\":\"true\",\"TenNguoiDung\":\"".$TenNguoiDung."\",\"MaNguoiDung\":\"".$MaNguoiDung."\"}";
 		}
 		else {
 			echo "{\"ketqua\":\"false\"}";
@@ -128,7 +132,7 @@
 	function LayDanhSachLoaiTraiCay()
 	{
 		include_once("config.php");
-		$truyvan = "SELECT * FROM loaitraicay";
+		$truyvan = "SELECT * FROM loaitraicay ORDER BY TenLTC ASC";
 		$ketqua = mysqli_query($conn, $truyvan);
 		$chuoijson = array();
 		if($ketqua){
@@ -483,4 +487,40 @@
 		}
 
 	}
+	function LayDanhSachKhuyenMai(){
+			include_once("config.php");
+			$chuoijson = array();
+
+			$ngayhientai = date("Y/m/d");
+			// $truyvan = "SELECT * FROM khuyenmai km, loaisanpham lsp WHERE DATEDIFF(km.NGAYKETTHUC,'".$ngayhientai."') >=0 AND km.MALOAISP = lsp.MALOAISP LIMIT 0 , 20";
+			$truyvan = "SELECT * FROM khuyenmai where Date(Now()) between NgayBatDau and NgayKetThuc";
+			$ketqua = mysqli_query($conn,$truyvan);
+
+			echo "{";
+			echo "\"DANHSACHKHUYENMAI\":";
+
+			if($ketqua){
+				while ($dong = mysqli_fetch_array($ketqua)) {
+
+					$truyvanchitietkhuyemai = "SELECT * FROM chitietkhuyenmai ctkm, traicay tc WHERE ctkm.MaKM = '".$dong["MaKM"]."' AND ctkm.MaTraiCay = tc.MaTraiCay";
+
+					$ketquakhuyenmai = mysqli_query($conn,$truyvanchitietkhuyemai);
+
+					$chuoijsondanhsachsanpham = array();
+
+					if($ketquakhuyenmai){
+						while ( $dongkhuyenmai = mysqli_fetch_array($ketquakhuyenmai) ) {
+							$chuoijsondanhsachsanpham[] = $dongkhuyenmai;
+						}
+					}
+
+					array_push($chuoijson, array("MaKM"=>$dong["MaKM"],"TenKM"=>$dong["TenKM"],"NgayBatDau"=>$dong["NgayBatDau"],"NgayKetThuc"=>$dong["NgayKetThuc"],"HinhKM"=>$dong["HinhKM"],"DANHSACHSANPHAM"=>$chuoijsondanhsachsanpham));
+
+				}
+			}
+
+			echo json_encode($chuoijson,JSON_UNESCAPED_UNICODE);
+
+			echo "}";
+		}
 ?>

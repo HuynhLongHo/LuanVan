@@ -21,6 +21,7 @@ import android.view.WindowManager;
 import android.widget.ExpandableListView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.facebook.AccessToken;
 import com.facebook.GraphRequest;
@@ -159,6 +160,7 @@ public class TrangChuActivity extends AppCompatActivity implements ViewXuLyMenu,
         }
 
         String TenNguoiDung = modelDangNhap.LayCachedDangNhap(this);
+        Toast.makeText(this, "MaNguoiDung: "+modelDangNhap.LayMaNguoiDung(this), Toast.LENGTH_SHORT).show();
         if(!TenNguoiDung.equals("")){
             itemDangNhap.setTitle(TenNguoiDung);
         }
@@ -191,7 +193,7 @@ public class TrangChuActivity extends AppCompatActivity implements ViewXuLyMenu,
                     this.onCreateOptionsMenu(this.menu);
                 }
                 if(!modelDangNhap.LayCachedDangNhap(this).equals("")) {
-                    modelDangNhap.CapNhatCachedDangNhap(this, "");
+                    modelDangNhap.CapNhatCachedDangNhap(this, "","");
                     this.menu.clear();
                     this.onCreateOptionsMenu(this.menu);
                 }

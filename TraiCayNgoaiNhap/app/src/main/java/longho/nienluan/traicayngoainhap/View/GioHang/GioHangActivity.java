@@ -9,20 +9,24 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import java.util.List;
 
 import longho.nienluan.traicayngoainhap.Adapter.AdapterGioHang;
+import longho.nienluan.traicayngoainhap.Model.DangNhap_DangKy.ModelDangNhap;
 import longho.nienluan.traicayngoainhap.Model.ObjectClass.traicay;
 import longho.nienluan.traicayngoainhap.Presenter.GioHang.PresenterLogicGioHang;
 import longho.nienluan.traicayngoainhap.R;
-import longho.nienluan.traicayngoainhap.View.ThanhToan.ThanhToanActivity;
+import longho.nienluan.traicayngoainhap.View.DangNhap_DangKy.DangNhapActivity;
+import longho.nienluan.traicayngoainhap.View.DatHang.DatHangActivity;
 
 public class GioHangActivity extends AppCompatActivity implements ViewGioHang, View.OnClickListener {
     RecyclerView recyclerView;
     PresenterLogicGioHang presenterLogicGioHang;
     Toolbar toolbar;
     Button btnMuaNgay;
+    ModelDangNhap modelDangNhap;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -39,6 +43,7 @@ public class GioHangActivity extends AppCompatActivity implements ViewGioHang, V
         presenterLogicGioHang.LayDanhSachSanPhamTrongGioHang(this);
 
         btnMuaNgay.setOnClickListener(this);
+        modelDangNhap = new ModelDangNhap();
     }
 
     @Override
@@ -49,13 +54,22 @@ public class GioHangActivity extends AppCompatActivity implements ViewGioHang, V
         recyclerView.setAdapter(adapterGioHang);
     }
 
+
     @Override
     public void onClick(View v) {
         int id = v.getId();
         switch (id){
             case R.id.btnMuaNgay:
-                Intent iThanhToan = new Intent(GioHangActivity.this, ThanhToanActivity.class);
-                startActivity(iThanhToan);
+                if(modelDangNhap.LayMaNguoiDung(this)!=""){
+                    Intent iThanhToan = new Intent(GioHangActivity.this, DatHangActivity.class);
+                    startActivity(iThanhToan);
+                }
+                else{
+                    Toast.makeText(this, "Cần đăng nhập trước khi mua", Toast.LENGTH_SHORT).show();
+                    Intent iDangNhap = new Intent(GioHangActivity.this,DangNhapActivity.class);
+                    startActivity(iDangNhap);
+                }
+
                 break;
         }
     }
