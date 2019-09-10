@@ -45,6 +45,9 @@ public class ModelDatHang {
         HashMap<String,String> hsDanhSachSanPham = new HashMap<>();
         hsDanhSachSanPham.put("danhsachsanpham",chuoijson);
 
+        HashMap<String,String> hsMaNguoiDung = new HashMap<>();
+        hsMaNguoiDung.put("manguoidung", String.valueOf(donDatHang.getMaNguoiDung()));
+
         HashMap<String,String> hsTenNguoiNhan = new HashMap<>();
         hsTenNguoiNhan.put("tennguoinhan",donDatHang.getTenNguoiDatHang());
 
@@ -60,6 +63,7 @@ public class ModelDatHang {
         attrs.add(hsHam);
         attrs.add(hsDanhSachSanPham);
         attrs.add(hsTenNguoiNhan);
+        attrs.add(hsMaNguoiDung);
         attrs.add(hsSoDT);
         attrs.add(hsDiaChi);
         attrs.add(hsChuyenKhoan);

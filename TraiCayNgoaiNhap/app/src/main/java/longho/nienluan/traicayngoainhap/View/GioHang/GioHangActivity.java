@@ -60,9 +60,11 @@ public class GioHangActivity extends AppCompatActivity implements ViewGioHang, V
         int id = v.getId();
         switch (id){
             case R.id.btnMuaNgay:
-                if(modelDangNhap.LayMaNguoiDung(this)!=""){
-                    Intent iThanhToan = new Intent(GioHangActivity.this, DatHangActivity.class);
-                    startActivity(iThanhToan);
+                String MaNguoiDung = modelDangNhap.LayMaNguoiDung(this);
+                if(MaNguoiDung!=""){
+                    Intent iDatHang = new Intent(GioHangActivity.this, DatHangActivity.class);
+                    iDatHang.putExtra("MaNguoiDung",MaNguoiDung);
+                    startActivity(iDatHang);
                 }
                 else{
                     Toast.makeText(this, "Cần đăng nhập trước khi mua", Toast.LENGTH_SHORT).show();

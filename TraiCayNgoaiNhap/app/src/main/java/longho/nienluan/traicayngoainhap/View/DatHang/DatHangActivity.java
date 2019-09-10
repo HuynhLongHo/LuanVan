@@ -36,6 +36,7 @@ public class DatHangActivity extends AppCompatActivity implements View.OnClickLi
     CheckBox cbThoaThuan;
     PresenterLogicDatHang presenterLogicThanhToan;
     List<ChiTietDDH> chiTietDDHList = new ArrayList<>();
+    int MaNguoiDung;
 
     int chonHinhThuc = 0;
 
@@ -49,6 +50,7 @@ public class DatHangActivity extends AppCompatActivity implements View.OnClickLi
 
         setContentView(R.layout.layout_dathang);
 
+        MaNguoiDung = Integer.parseInt(getIntent().getStringExtra("MaNguoiDung"));
         toolbar = findViewById(R.id.toolbar);
         edTenNguoiNhan = findViewById(R.id.edTenNguoiNhan);
         edDiaChi = findViewById(R.id.edDiaChi);
@@ -82,6 +84,7 @@ public class DatHangActivity extends AppCompatActivity implements View.OnClickLi
 
                 if (tennguoinhan.trim().length() > 0 && sodt.trim().length() > 0 && diachi.trim().length() > 0) {
                     DonDatHang donDatHang = new DonDatHang();
+                    donDatHang.setMaNguoiDung(MaNguoiDung);
                     donDatHang.setTenNguoiDatHang(tennguoinhan);
                     donDatHang.setSoDienThoaiDatHang(sodt);
                     donDatHang.setDiaChiDatHang(diachi);

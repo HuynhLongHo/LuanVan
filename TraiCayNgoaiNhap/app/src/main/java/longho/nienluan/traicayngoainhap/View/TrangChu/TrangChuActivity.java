@@ -160,7 +160,6 @@ public class TrangChuActivity extends AppCompatActivity implements ViewXuLyMenu,
         }
 
         String TenNguoiDung = modelDangNhap.LayCachedDangNhap(this);
-        Toast.makeText(this, "MaNguoiDung: "+modelDangNhap.LayMaNguoiDung(this), Toast.LENGTH_SHORT).show();
         if(!TenNguoiDung.equals("")){
             itemDangNhap.setTitle(TenNguoiDung);
         }

@@ -445,8 +445,9 @@
 	function ThemDonDatHang(){
 		include_once("config.php");
 
-		if(isset($_POST["danhsachsanpham"]) || isset($_POST["tennguoinhan"]) || isset($_POST["sodt"]) || isset($_POST["diachi"]) || isset($_POST["chuyenkhoan"]) ){
+		if(isset($_POST["danhsachsanpham"]) || isset($_POST["manguoidung"]) || isset($_POST["tennguoinhan"]) || isset($_POST["sodt"]) || isset($_POST["diachi"]) || isset($_POST["chuyenkhoan"]) ){
 			$danhsachsanpham = $_POST["danhsachsanpham"];
+			$manguoidung = $_POST["manguoidung"];
 			$tennguoinhan = $_POST["tennguoinhan"];
 			$sodt = $_POST["sodt"];
 			$diachi = $_POST["diachi"];
@@ -459,7 +460,7 @@
 		$ngaygiao = date_format($ngaygiao,"Y/m/d") ;
 		$trangthai = "chờ kiểm duyệt";
 
-		$truyvan = "INSERT INTO dondathang (NgayDat,NgayGiao,TrangThaiGiao,TenNguoiDatHang,SoDienThoaiDatHang,DiaChiDatHang,ChuyenKhoan) VALUES ('".$ngayhientai."', '".$ngaygiao."', '".$trangthai."', '".$tennguoinhan."', '".$sodt."', '".$diachi."', '".$chuyenkhoan."')";
+		$truyvan = "INSERT INTO dondathang (MaNguoiDung,NgayDat,NgayGiao,TrangThaiGiao,TenNguoiDatHang,SoDienThoaiDatHang,DiaChiDatHang,ChuyenKhoan) VALUES ('".$manguoidung."', '".$ngayhientai."', '".$ngaygiao."', '".$trangthai."', '".$tennguoinhan."', '".$sodt."', '".$diachi."', '".$chuyenkhoan."')";
 		$ketqua = mysqli_query($conn,$truyvan);
 
 		if($ketqua){
