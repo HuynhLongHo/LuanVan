@@ -65,6 +65,7 @@
             android:theme="@style/Base.Theme.AppCompat.Dialog"/>
         <activity
             android:name=".View.DanhGia.DanhSachDanhGiaActivity"
+            android:label="Đánh giá"
             android:screenOrientation="portrait" />
         <activity
             android:name=".View.GioHang.GioHangActivity"
@@ -72,6 +73,7 @@
             android:label="Giỏ hàng"/>
         <activity
             android:name=".View.DatHang.DatHangActivity"
+            android:label="Đặt hàng"
             android:screenOrientation="portrait" />
     </application>
 
