@@ -3,6 +3,15 @@ package longho.nienluan.traicayngoainhap.Model.ObjectClass;
 public class ChiTietDDH {
 
     int MaTraiCay, MaDDH, SoLuongDat;
+    traicay traicay;
+
+    public longho.nienluan.traicayngoainhap.Model.ObjectClass.traicay getTraicay() {
+        return traicay;
+    }
+
+    public void setTraicay(longho.nienluan.traicayngoainhap.Model.ObjectClass.traicay traicay) {
+        this.traicay = traicay;
+    }
 
     public int getMaTraiCay() {
         return MaTraiCay;

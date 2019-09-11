@@ -51,6 +51,7 @@ import longho.nienluan.traicayngoainhap.R;
 import longho.nienluan.traicayngoainhap.View.DangNhap_DangKy.DangNhapActivity;
 import longho.nienluan.traicayngoainhap.View.DanhGia.DanhSachDanhGiaActivity;
 import longho.nienluan.traicayngoainhap.View.DanhGia.ThemDanhGiaActivity;
+import longho.nienluan.traicayngoainhap.View.DonDatHang.DonDatHangActivity;
 import longho.nienluan.traicayngoainhap.View.GioHang.GioHangActivity;
 import longho.nienluan.traicayngoainhap.View.DatHang.DatHangActivity;
 import longho.nienluan.traicayngoainhap.View.GuiEmail.EmailActivity;
@@ -204,7 +205,17 @@ public class ChiTietTraiCayActivity extends AppCompatActivity implements ViewChi
                 Intent intent = new Intent(this, EmailActivity.class);
                 startActivity(intent);
                 break;
-
+            case R.id.itDonHangCuaToi:
+                if(modelDangNhap.LayMaNguoiDung(this)==""){
+                    Toast.makeText(this, "Đăng nhập để quản lý đơn hàng", Toast.LENGTH_SHORT).show();
+                    Intent intentDangNhap = new Intent(this, DangNhapActivity.class);
+                    startActivity(intentDangNhap);
+                }
+                else {
+                    Intent iDonHang = new Intent(this, DonDatHangActivity.class);
+                    startActivity(iDonHang);
+                }
+                break;
         }
 
         return true;

@@ -36,6 +36,7 @@ import java.util.List;
 import longho.nienluan.traicayngoainhap.Adapter.ExpandAdapter;
 import longho.nienluan.traicayngoainhap.Adapter.ViewPaperAdapter;
 import longho.nienluan.traicayngoainhap.Presenter.ChiTietTraiCay.PresenterLogicChiTietTraiCay;
+import longho.nienluan.traicayngoainhap.View.DonDatHang.DonDatHangActivity;
 import longho.nienluan.traicayngoainhap.View.GioHang.GioHangActivity;
 import longho.nienluan.traicayngoainhap.View.GuiEmail.EmailActivity;
 import longho.nienluan.traicayngoainhap.Model.DangNhap_DangKy.ModelDangNhap;
@@ -47,7 +48,7 @@ import longho.nienluan.traicayngoainhap.View.DangNhap_DangKy.DangNhapActivity;
 public class TrangChuActivity extends AppCompatActivity implements ViewXuLyMenu,AppBarLayout.OnOffsetChangedListener {
 
     public static final String SERVER_NAME = "http://10.2.56.155:80/NienLuan_LongHo/traicay.php";//B21_P4
-    public static final String SERVER = "http://10.2.56.155:80/NienLuan_LongHo/Image/TraiCay";//B21_P4
+    public static final String SERVER = "http://10.2.56.155:80/NienLuan_LongHo/Image/TraiCay/";//B21_P4
 
 //    public static final String SERVER_NAME = "http://10.13.144.144:80/NienLuan_LongHo/traicay.php";//B21_P4
 //    public static final String SERVER = "http://10.13.144.144:80/NienLuan_LongHo/Image/TraiCay";//B21_P4
@@ -200,6 +201,17 @@ public class TrangChuActivity extends AppCompatActivity implements ViewXuLyMenu,
             case R.id.itEmailPhanHoi:
                     Intent intent = new Intent(this, EmailActivity.class);
                     startActivity(intent);
+                break;
+            case R.id.itDonHangCuaToi:
+                if(modelDangNhap.LayMaNguoiDung(this)==""){
+                    Toast.makeText(this, "Đăng nhập để quản lý đơn hàng", Toast.LENGTH_SHORT).show();
+                    Intent intentDangNhap = new Intent(this, DangNhapActivity.class);
+                    startActivity(intentDangNhap);
+                }
+                else {
+                    Intent iDonHang = new Intent(this, DonDatHangActivity.class);
+                    startActivity(iDonHang);
+                }
                 break;
 
         }
