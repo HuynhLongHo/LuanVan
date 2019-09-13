@@ -104,8 +104,8 @@ public class ChiTietTraiCayActivity extends AppCompatActivity implements ViewChi
         imThemGioHang = findViewById(R.id.imThemGioHang);
         btnMuaNgay = findViewById(R.id.btnMuaNgay);
 
-        setSupportActionBar(toolbar);
         toolbar.setTitle("Chi tiết cản phẩm");
+        setSupportActionBar(toolbar);
 
         matraicay = getIntent().getIntExtra("matraicay", 0);
 

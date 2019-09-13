@@ -5,6 +5,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.widget.ProgressBar;
 
 import java.util.List;
@@ -21,6 +22,7 @@ public class DanhSachDanhGiaActivity extends AppCompatActivity implements ViewDa
     String tentraicay;
     PresenterLogicDanhGia presenterLogicDanhGia;
     List<DanhGia> tatcaDanhGia;
+    Toolbar toolbar;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,6 +33,8 @@ public class DanhSachDanhGiaActivity extends AppCompatActivity implements ViewDa
 
         recyclerDanhSachDanhGia = findViewById(R.id.recyclerDanhSachDanhGia);
         progressBar = findViewById(R.id.progress_bar);
+        toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
         presenterLogicDanhGia = new PresenterLogicDanhGia(this);
         presenterLogicDanhGia.LayDanhSachDanhGiaTheoMa(matraicay,0);
