@@ -44,6 +44,7 @@ import longho.nienluan.traicayngoainhap.Model.ObjectClass.LoaiTraiCay;
 import longho.nienluan.traicayngoainhap.Presenter.TrangChu.XuLyMenu.PresenterLogicXuLyMenu;
 import longho.nienluan.traicayngoainhap.R;
 import longho.nienluan.traicayngoainhap.View.DangNhap_DangKy.DangNhapActivity;
+import longho.nienluan.traicayngoainhap.View.ThongTinNguoiDung.ThongTinNguoiDungActivity;
 
 public class TrangChuActivity extends AppCompatActivity implements ViewXuLyMenu,AppBarLayout.OnOffsetChangedListener {
 
@@ -184,7 +185,11 @@ public class TrangChuActivity extends AppCompatActivity implements ViewXuLyMenu,
                 if(accessToken==null&&modelDangNhap.LayCachedDangNhap(this).equals("")){
                     Intent intentDangNhap = new Intent(this, DangNhapActivity.class);
                     startActivity(intentDangNhap);
-                };
+                }
+                if(modelDangNhap.LayMaNguoiDung(this)!=""){
+                    Intent iThongTinNguoiDung = new Intent(this,ThongTinNguoiDungActivity.class);
+                    startActivity(iThongTinNguoiDung);
+                }
                 break;
             case R.id.itDangXuat:
                 if(accessToken!=null){

@@ -79,6 +79,10 @@
             android:name=".View.DonDatHang.DonDatHangActivity"
             android:label="Đơn đặt hàng"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".View.ThongTinNguoiDung.ThongTinNguoiDungActivity"
+            android:label="Đơn đặt hàng"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>
