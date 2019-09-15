@@ -260,6 +260,9 @@ public class TrangChuActivity extends AppCompatActivity implements ViewXuLyMenu,
         if(onPause){
             PresenterLogicChiTietTraiCay presenterLogicChiTietTraiCay = new PresenterLogicChiTietTraiCay();
             txtGioHang.setText(String.valueOf(presenterLogicChiTietTraiCay.DemSanPhamCoTrongGioHang(this)));
+
+            menu.clear();
+            onCreateOptionsMenu(menu);
         }
 
     }

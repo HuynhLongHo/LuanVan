@@ -24,6 +24,7 @@
                 android:layout_marginRight="10dp"
                 android:layout_weight="1"/>
             <Button
+                android:id="@+id/btnCapNhat"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Cập nhật"
@@ -39,13 +40,13 @@
             android:id="@+id/input_edHoTen"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp">
+            android:layout_margin="10dp"
+            android:hint="Họ tên đầy đủ">
 
             <EditText
                 android:id="@+id/edHoTen"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Họ tên đầy đủ"
                 android:textColor="@color/colorGray" />
 
         </android.support.design.widget.TextInputLayout>
@@ -54,12 +55,12 @@
             android:id="@+id/input_edEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp">
+            android:layout_margin="10dp"
+            android:hint="Địa chỉ email">
             <EditText
                 android:id="@+id/edEmail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Địa chỉ email"
                 android:textColor="@color/colorGray"/>
         </android.support.design.widget.TextInputLayout>
 
@@ -67,13 +68,13 @@
             android:id="@+id/input_edDiaChi"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp">
+            android:layout_margin="10dp"
+            android:hint="Địa chỉ">
 
             <EditText
                 android:id="@+id/edDiaChi"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Địa chỉ"
                 android:textColor="@color/colorGray"/>
 
         </android.support.design.widget.TextInputLayout>
@@ -112,26 +113,27 @@
             android:id="@+id/input_edSoDienThoai"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp">
+            android:layout_margin="10dp"
+            android:hint="Số điện thoại">
 
             <EditText
                 android:id="@+id/edSoDienThoai"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Số điện thoại"
-                android:textColor="@color/colorGray"/>
+                android:textColor="@color/colorGray"
+                android:inputType="number"/>
         </android.support.design.widget.TextInputLayout>
         <android.support.design.widget.TextInputLayout
             android:id="@+id/input_edMatKhau"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp">
+            android:layout_margin="10dp"
+            android:hint="Mật khẩu">
 
             <longho.nienluan.traicayngoainhap.CustomView.PasswordEditText
                 android:id="@+id/edMatKhau"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Mật khẩu"
                 app:useStrike="true"
                 app:useValidate="true"
                 android:textColor="@color/colorGray"/>
@@ -141,13 +143,13 @@
             android:id="@+id/input_edCauHoi"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp">
+            android:layout_margin="10dp"
+            android:hint="Câu hỏi">
 
             <EditText
                 android:id="@+id/edCauHoi"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Câu hỏi"
                 android:textColor="@color/colorGray"/>
         </android.support.design.widget.TextInputLayout>
 
@@ -155,25 +157,43 @@
             android:id="@+id/input_edCauTraLoi"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp">
+            android:layout_margin="10dp"
+            android:hint="Câu trả lời">
 
             <EditText
                 android:id="@+id/edCauTraLoi"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Câu trả lời"
                 android:textColor="@color/colorGray"/>
         </android.support.design.widget.TextInputLayout>
 
-
-        <Button
-            android:id="@+id/btnLuu"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Lưu"
-            android:padding="10dp"
-            android:background="@color/bgLogo"
-            android:visibility="gone"/>
+            android:orientation="horizontal">
+            <Button
+                android:id="@+id/btnKhongLuu"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Không lưu"
+                android:background="@color/bgLogo"
+                android:visibility="gone"
+                android:layout_weight="1"
+                android:layout_margin="10dp"/>
+
+            <Button
+                android:id="@+id/btnLuu"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Lưu"
+                android:background="@color/bgLogo"
+                android:visibility="gone"
+                android:layout_weight="1"
+                android:layout_margin="10dp"/>
+        </LinearLayout>
+
+
+
 
     </LinearLayout>
 </android.support.v4.widget.NestedScrollView>

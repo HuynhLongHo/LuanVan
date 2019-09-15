@@ -64,4 +64,62 @@ public class ModelThongTinNguoiDung {
 
         return nguoidung;
     }
+    public Boolean ThayDoiThongTinNguoiDung(nguoidung nguoiDung){
+        String duongdan = TrangChuActivity.SERVER_NAME;
+        List<HashMap<String, String>> atts = new ArrayList<>();
+
+        boolean kiemtra = false;
+
+        HashMap<String, String> hmHam = new HashMap<>();
+        hmHam.put("ham","ThayDoiThongTinNguoiDung");
+        HashMap<String, String> hmMaNguoiDung = new HashMap<>();
+        hmMaNguoiDung.put("MaNguoiDung", String.valueOf(nguoiDung.getMaNguoiDung()));
+        HashMap<String, String> hmTenNguoiDung = new HashMap<>();
+        hmTenNguoiDung.put("TenNguoiDung",nguoiDung.getTenNguoiDung());
+        HashMap<String, String> hmDiaChiND = new HashMap<>();
+        hmDiaChiND.put("DiaChiND",nguoiDung.getDiaChiND());
+        HashMap<String, String> hmSoDienThoaiND = new HashMap<>();
+        hmSoDienThoaiND.put("SoDienThoaiND",nguoiDung.getSoDienThoaiND());
+        HashMap<String, String> hmEmailND = new HashMap<>();
+        hmEmailND.put("EmailND",nguoiDung.getEmailND());
+        HashMap<String, String> hmGioiTinh = new HashMap<>();
+        hmGioiTinh.put("GioiTinh",String.valueOf(nguoiDung.getGioiTinh()));
+        HashMap<String, String> hmMatKhau = new HashMap<>();
+        hmMatKhau.put("MatKhau",nguoiDung.getMatKhau());
+        HashMap<String, String> hmCauHoi = new HashMap<>();
+        hmCauHoi.put("CauHoi",nguoiDung.getCauHoi());
+        HashMap<String, String> hmCauTraLoi = new HashMap<>();
+        hmCauTraLoi.put("CauTraLoi",nguoiDung.getCauTraLoi());
+
+        atts.add(hmHam);
+        atts.add(hmMaNguoiDung);
+        atts.add(hmTenNguoiDung);
+        atts.add(hmDiaChiND);
+        atts.add(hmSoDienThoaiND);
+        atts.add(hmEmailND);
+        atts.add(hmGioiTinh);
+        atts.add(hmMatKhau);
+        atts.add(hmCauHoi);
+        atts.add(hmCauTraLoi);
+
+        DownloadJSON downloadJSON = new DownloadJSON(duongdan,atts);
+        downloadJSON.execute();
+
+        try {
+            String dulieuJson = downloadJSON.get();
+            JSONObject jsonObject = new JSONObject(dulieuJson);
+            String ketqua = jsonObject.getString("ketqua");
+            if(ketqua.equals("true")){
+                kiemtra = true;
+            }else
+                kiemtra = false;
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return kiemtra;
+    }
 }

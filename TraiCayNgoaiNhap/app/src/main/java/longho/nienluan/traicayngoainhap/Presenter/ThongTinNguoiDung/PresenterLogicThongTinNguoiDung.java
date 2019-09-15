@@ -19,4 +19,13 @@ public class PresenterLogicThongTinNguoiDung implements IPresenterThongTinNguoiD
         nguoidung nguoidung = modelThongTinNguoiDung.LayThongTinNguoiDung(manguoidung);
         viewThongTinNguoiDung.HienThiThongTinNguoiDung(nguoidung);
     }
+
+    @Override
+    public void ThayDoiThongTinNguoiDung(nguoidung nguoidung) {
+        if(modelThongTinNguoiDung.ThayDoiThongTinNguoiDung(nguoidung)){
+            viewThongTinNguoiDung.CapNhatThanhCong();
+        }else {
+            viewThongTinNguoiDung.CapNhatThatBai();
+        }
+    }
 }
