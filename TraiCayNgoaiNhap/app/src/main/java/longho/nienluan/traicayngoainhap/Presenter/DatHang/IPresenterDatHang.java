@@ -5,4 +5,5 @@ import longho.nienluan.traicayngoainhap.Model.ObjectClass.DonDatHang;
 public interface IPresenterDatHang {
     void ThemDDH(DonDatHang donDatHang);
     void LayDanhSachSanPhamTrongGioHang();
+    void LayThongTinNguoiDung(int manguoidung);
 }

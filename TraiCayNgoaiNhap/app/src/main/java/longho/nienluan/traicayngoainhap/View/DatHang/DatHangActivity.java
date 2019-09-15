@@ -22,6 +22,7 @@ import java.util.List;
 
 import longho.nienluan.traicayngoainhap.Model.ObjectClass.ChiTietDDH;
 import longho.nienluan.traicayngoainhap.Model.ObjectClass.DonDatHang;
+import longho.nienluan.traicayngoainhap.Model.ObjectClass.nguoidung;
 import longho.nienluan.traicayngoainhap.Model.ObjectClass.traicay;
 import longho.nienluan.traicayngoainhap.Presenter.DatHang.PresenterLogicDatHang;
 import longho.nienluan.traicayngoainhap.R;
@@ -58,12 +59,12 @@ public class DatHangActivity extends AppCompatActivity implements View.OnClickLi
         imNhanTienKhiGiaoHang = findViewById(R.id.imNhanTienKhiGiaoHang);
         imChuyenKhoan = findViewById(R.id.imChuyenKhoan);
         btnThanhToan = findViewById(R.id.btnDatHang);
-//        cbThoaThuan = (CheckBox) findViewById(R.id.cbThoaThuan);
         txtNhanTienKhiGiaoHang = findViewById(R.id.txtNhanTienKhiGiaoHang);
         txtChuyenKhoan = findViewById(R.id.txtChuyenKhoan);
 //
         presenterLogicThanhToan = new PresenterLogicDatHang(this,this);
         presenterLogicThanhToan.LayDanhSachSanPhamTrongGioHang();
+        presenterLogicThanhToan.LayThongTinNguoiDung(MaNguoiDung);
 
         setSupportActionBar(toolbar);
 
@@ -131,6 +132,13 @@ public class DatHangActivity extends AppCompatActivity implements View.OnClickLi
 
             chiTietDDHList.add(chiTietDDH);
         }
+    }
+
+    @Override
+    public void HienThiThongTinNguoiDung(nguoidung nguoidung) {
+        edTenNguoiNhan.setText(nguoidung.getTenNguoiDung());
+        edDiaChi.setText(nguoidung.getDiaChiND());
+        edSoDT.setText(nguoidung.getSoDienThoaiND());
     }
 
     private void ChonHinhThucGiaoHang(TextView txtDuocChon, TextView txtHuyChon){

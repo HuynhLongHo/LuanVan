@@ -6,6 +6,7 @@ import java.util.List;
 
 import longho.nienluan.traicayngoainhap.Model.GioHang.ModelGioHang;
 import longho.nienluan.traicayngoainhap.Model.ObjectClass.DonDatHang;
+import longho.nienluan.traicayngoainhap.Model.ObjectClass.nguoidung;
 import longho.nienluan.traicayngoainhap.Model.ObjectClass.traicay;
 import longho.nienluan.traicayngoainhap.Model.DatHang.ModelDatHang;
 import longho.nienluan.traicayngoainhap.View.DatHang.ViewDatHang;
@@ -43,5 +44,11 @@ public class PresenterLogicDatHang implements IPresenterDatHang {
     public void LayDanhSachSanPhamTrongGioHang() {
         traicayList = modelGioHang.LayDanhSachSanPhamTrongGioHang();
         viewDatHang.LayDanhSachSanPhamTrongGioHang(traicayList);
+    }
+
+    @Override
+    public void LayThongTinNguoiDung(int manguoidung) {
+        nguoidung nguoidung = modelDatHang.LayThongTinNguoiDung(manguoidung);
+        viewDatHang.HienThiThongTinNguoiDung(nguoidung);
     }
 }
