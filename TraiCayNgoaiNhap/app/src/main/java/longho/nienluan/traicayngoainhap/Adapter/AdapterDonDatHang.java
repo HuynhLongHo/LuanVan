@@ -9,8 +9,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import java.text.DecimalFormat;
+import java.util.ArrayList;
 import java.util.List;
 
+import longho.nienluan.traicayngoainhap.Model.ObjectClass.ChiTietDDH;
 import longho.nienluan.traicayngoainhap.Model.ObjectClass.DonDatHang;
 import longho.nienluan.traicayngoainhap.R;
 
@@ -26,7 +29,7 @@ public class AdapterDonDatHang extends RecyclerView.Adapter<AdapterDonDatHang.Vi
 
     public class ViewHolderDonDatHang extends RecyclerView.ViewHolder {
 
-        TextView txtMaDDH, txtNgayDat, txtNgayGiao, txtTrangThaiGiaoHang;
+        TextView txtMaDDH, txtNgayDat, txtNgayGiao, txtTrangThaiGiaoHang, txtTongTien;
         RecyclerView rcvDanhSachTraiCayHD;
 
         public ViewHolderDonDatHang(View itemView) {
@@ -35,6 +38,7 @@ public class AdapterDonDatHang extends RecyclerView.Adapter<AdapterDonDatHang.Vi
             txtMaDDH = itemView.findViewById(R.id.txtMaDDH);
             txtNgayDat = itemView.findViewById(R.id.txtNgayDat);
             txtNgayGiao = itemView.findViewById(R.id.txtNgayGiao);
+            txtTongTien = itemView.findViewById(R.id.txtTongTien);
             txtTrangThaiGiaoHang = itemView.findViewById(R.id.txtTrangThaiGiaoHang);
             rcvDanhSachTraiCayHD = itemView.findViewById(R.id.rcvDanhSachTraiCayHD);
 
@@ -56,6 +60,18 @@ public class AdapterDonDatHang extends RecyclerView.Adapter<AdapterDonDatHang.Vi
     public void onBindViewHolder(@NonNull ViewHolderDonDatHang holder, int position) {
 
         DonDatHang donDatHang = donDatHangList.get(position);
+
+        List<ChiTietDDH> chiTietDDHList = new ArrayList<>();
+        chiTietDDHList = donDatHang.getChiTietDDHList();
+        int tongHoaDon = 0;
+        int sosp = chiTietDDHList.size();
+        for (int i = 0; i<sosp; i++){
+            tongHoaDon += chiTietDDHList.get(i).getTraicay().getGiaBan()*chiTietDDHList.get(i).getSoLuongDat();
+        }
+        DecimalFormat formatter = new DecimalFormat("###,###");//định dạng tiền tệ
+        String sotien = formatter.format(tongHoaDon) + " VNĐ";
+
+        holder.txtTongTien.setText("Tổng Tiền: " + sotien);
         holder.txtMaDDH.setText("Mã đơn hàng: " + String.valueOf(donDatHang.getMaDDH()));
         holder.txtNgayDat.setText("Ngày đặt: " + donDatHang.getNgayDat());
         holder.txtNgayGiao.setText("Dự kiến ngày giao: " + donDatHang.getNgayGiao());

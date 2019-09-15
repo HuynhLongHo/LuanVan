@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
+import java.text.DecimalFormat;
 import java.util.List;
 
 import longho.nienluan.traicayngoainhap.Model.ObjectClass.ChiTietDDH;
@@ -55,11 +56,13 @@ public class AdapterDonDatHangSanPham extends RecyclerView.Adapter<AdapterDonDat
     public void onBindViewHolder(@NonNull ViewHolderDonDatHangSanPham holder, int position) {
         ChiTietDDH chiTietDDH = chiTietDDHList.get(position);
         traicay traicay = chiTietDDH.getTraicay();
+        DecimalFormat formatter = new DecimalFormat("###,###");//định dạng tiền tệ
+        String sotien = formatter.format(traicay.getGiaBan()) + " VNĐ";
 
         holder.txtTenTraicay.setText(String.valueOf(traicay.getTenTraiCay()));
         holder.txtSoLuong.setText("Số lượng: " + String.valueOf(chiTietDDH.getSoLuongDat()));
-        holder.txtGiaBan.setText("Đơn giá: " + String.valueOf(traicay.getGiaBan()));
-        Picasso.with(context).load(traicay.getHinhTraiCay()).resize(100,100).into(holder.imTraiCay);
+        holder.txtGiaBan.setText(sotien);
+        Picasso.with(context).load(traicay.getHinhTraiCay()).resize(120,120).into(holder.imTraiCay);
     }
 
     @Override
