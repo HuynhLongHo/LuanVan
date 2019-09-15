@@ -10,6 +10,12 @@
 		case 'DangKy':
 			$ham();
 			break;
+		case 'LayThongTinNguoiDung':
+			$ham();
+			break;
+		case 'ThayDoiThongTinNguoiDung':
+			$ham();
+			break;
 		case 'KiemTraDangNhap':
 			$ham();
 			break;
@@ -104,6 +110,56 @@
 		}
 		else echo "{\"ketqua\":\"false\"}";
 		mysql_close($conn);
+	}
+	function LayThongTinNguoiDung()
+	{
+		include_once("config.php");
+		$MaNguoiDung = $_POST["MaNguoiDung"];
+		$truyvan = "SELECT * FROM nguoidung WHERE MaNguoiDung = '".$MaNguoiDung."'";
+		$ketqua = mysqli_query($conn, $truyvan);
+		$chuoijson = array();
+		if($ketqua){
+			while($dong = mysqli_fetch_array($ketqua)){
+		 		// echo $dong["TenLTC"]."<br>";
+		 		// in ra mảng theo cấu trúc bảng
+		 		// array_push($chuoijson, array('MaLTC' => $dong["MaLTC"],'TenLTC' => $dong["TenLTC"],'HinhLTC' => "http://".$_SERVER['SERVER_NAME']."/NienLuan_LongHo"."/Image"."/LoaiTraiCay/".$dong["HinhLTC"] ));//in theo nhu cầu
+		 		$chuoijson[]=$dong;//in ra toàn bộ bảng nhưng không đúng định dạng
+		 	}
+		 	echo "{";
+		 	echo "\"nguoidung\":";
+		 	echo json_encode($chuoijson,JSON_UNESCAPED_UNICODE);
+		 	echo "";
+		 	echo "}";
+	 	}
+	}
+
+	function ThayDoiThongTinNguoiDung(){
+    	include_once("config.php");
+    	$MaNguoiDung = $_POST["MaNguoiDung"];
+		$TenNguoiDung = $_POST["TenNguoiDung"];
+		$DiaChiND = $_POST["DiaChiND"];
+		$SoDienThoaiND = $_POST["SoDienThoaiND"];
+		$EmailND = $_POST["EmailND"];
+		$GioiTinh = $_POST["GioiTinh"];
+		$MatKhau = $_POST["MatKhau"];
+		$CauHoi = $_POST["CauHoi"];
+		$CauTraLoi = $_POST["CauTraLoi"];
+
+		// $MaNguoiDung = $_GET["MaNguoiDung"];
+		// $TenNguoiDung = $_GET["TenNguoiDung"];
+		// $DiaChiND = $_GET["DiaChiND"];
+		// $SoDienThoaiND = $_GET["SoDienThoaiND"];
+		// $EmailND = $_GET["EmailND"];
+		// $GioiTinh = $_GET["GioiTinh"];
+		// $MatKhau = $_GET["MatKhau"];
+		// $CauHoi = $_GET["CauHoi"];
+		// $CauTraLoi = $_GET["CauTraLoi"];
+
+		$truyvan = "UPDATE nguoidung SET TenNguoiDung = '".$TenNguoiDung."', DiaChiND = '".$DiaChiND."', SoDienThoaiND = '".$SoDienThoaiND."', EmailND = '".$EmailND."', GioiTinh = '".$GioiTinh."', MatKhau = '".$MatKhau."', CauHoi = '".$CauHoi."', CauTraLoi = '".$CauTraLoi."' WHERE MaNguoiDung = '".$MaNguoiDung."'";
+		if(mysqli_query($conn,$truyvan)){
+			echo "{\"ketqua\":\"true\"}";
+		}
+		else echo "{\"ketqua\":\"false\"}";
 	}
 	function LayDanhSachMenu()
 	{
