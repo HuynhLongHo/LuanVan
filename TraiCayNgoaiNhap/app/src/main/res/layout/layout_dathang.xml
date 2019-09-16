@@ -40,37 +40,32 @@
 
         <EditText
             android:id="@+id/edTenNguoiNhan"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            style="@style/DinhDangNhapText"
             android:hint="Tên người nhận "
-            android:layout_marginTop="10dp"
-            android:background="@drawable/border_thanhtoan"
-            android:textSize="10sp"
-            android:textColor="@color/colorGray"
             />
-
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Địa chỉ nhận hàng: "
+            android:textColor="@color/colorFacebook"
+            android:layout_marginTop="5dp"
+            />
         <EditText
             android:id="@+id/edDiaChi"
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
+            style="@style/DinhDangNhapText"
             android:hint="Địa chỉ giao hàng "
-            android:gravity="top"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/border_thanhtoan"
-            android:textSize="10sp"
-            android:textColor="@color/colorGray"
             />
-
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Số điện thoại: "
+            android:textColor="@color/colorFacebook"
+            android:layout_marginTop="5dp"
+            />
         <EditText
             android:id="@+id/edSoDT"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            style="@style/DinhDangNhapText"
             android:hint="Số điện thoại "
-            android:layout_marginTop="10dp"
-            android:background="@drawable/border_thanhtoan"
-            android:textSize="10sp"
-            android:inputType="number"
-            android:textColor="@color/colorGray"
             />
 
         <TextView

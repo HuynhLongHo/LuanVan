@@ -45,9 +45,7 @@
 
             <EditText
                 android:id="@+id/edHoTen"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColor="@color/colorGray" />
+                style="@style/DinhDangNhapText"/>
 
         </android.support.design.widget.TextInputLayout>
 
@@ -59,9 +57,7 @@
             android:hint="Địa chỉ email">
             <EditText
                 android:id="@+id/edEmail"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColor="@color/colorGray"/>
+                style="@style/DinhDangNhapText"/>
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
@@ -73,9 +69,7 @@
 
             <EditText
                 android:id="@+id/edDiaChi"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColor="@color/colorGray"/>
+                style="@style/DinhDangNhapText"/>
 
         </android.support.design.widget.TextInputLayout>
 
@@ -118,9 +112,7 @@
 
             <EditText
                 android:id="@+id/edSoDienThoai"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColor="@color/colorGray"
+                style="@style/DinhDangNhapText"
                 android:inputType="number"/>
         </android.support.design.widget.TextInputLayout>
         <android.support.design.widget.TextInputLayout
@@ -132,11 +124,9 @@
 
             <longho.nienluan.traicayngoainhap.CustomView.PasswordEditText
                 android:id="@+id/edMatKhau"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                style="@style/DinhDangNhapText"
                 app:useStrike="true"
-                app:useValidate="true"
-                android:textColor="@color/colorGray"/>
+                app:useValidate="true"/>
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
@@ -148,9 +138,7 @@
 
             <EditText
                 android:id="@+id/edCauHoi"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColor="@color/colorGray"/>
+                style="@style/DinhDangNhapText"/>
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
@@ -162,9 +150,7 @@
 
             <EditText
                 android:id="@+id/edCauTraLoi"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColor="@color/colorGray"/>
+                style="@style/DinhDangNhapText"/>
         </android.support.design.widget.TextInputLayout>
 
         <LinearLayout

@@ -8,27 +8,26 @@
     android:paddingBottom="10dp">
     <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp">
         <longho.nienluan.traicayngoainhap.CustomView.ClearEditText
             android:id="@+id/edt_emaildangnhap"
             android:hint="Email đăng nhập"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            style="@style/DinhDangNhapText"
             android:layout_margin="10dp"
-            android:paddingTop="20dp"
             />
 
     </android.support.design.widget.TextInputLayout>
 
     <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp">
         <longho.nienluan.traicayngoainhap.CustomView.PasswordEditText
             android:id="@+id/edt_matkhaudangnhap"
             android:hint="Mật khẩu"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
+            style="@style/DinhDangNhapText"
             app:useStrike="true"
             />
     </android.support.design.widget.TextInputLayout>
