@@ -92,8 +92,12 @@
             android:label="Đổi mật khẩu"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".View.GoiYLayMatKhau.GoiYLayMatKhauActivity"
+            android:name=".View.ThongTinNguoiDung.GoiYLayMatKhauActivity"
             android:label="Gợi ý lấy lại mật khẩu"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".View.DoiMatKhau.QuenMatKhauActivity"
+            android:label="Quên mật khẩu"
             android:screenOrientation="portrait" />
     </application>
 

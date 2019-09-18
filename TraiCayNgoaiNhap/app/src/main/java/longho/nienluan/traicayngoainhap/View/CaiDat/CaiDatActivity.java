@@ -12,7 +12,7 @@ import android.widget.TextView;
 
 import longho.nienluan.traicayngoainhap.R;
 import longho.nienluan.traicayngoainhap.View.DoiMatKhau.DoiMatKhauActivity;
-import longho.nienluan.traicayngoainhap.View.GoiYLayMatKhau.GoiYLayMatKhauActivity;
+import longho.nienluan.traicayngoainhap.View.ThongTinNguoiDung.GoiYLayMatKhauActivity;
 
 public class CaiDatActivity extends AppCompatActivity implements View.OnClickListener {
 
