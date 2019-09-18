@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/bgToolbar"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/TieuDeRecycler"
+        android:text="Thông tin tài khoản đã xác nhận\nHãy tạo mật khẩu mới"/>
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/input_edMatKhauMoi"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:hint="Mật khẩu mới">
+
+        <EditText
+            android:id="@+id/edMatKhauMoi"
+            style="@style/DinhDangNhapText"
+            android:inputType="textPassword"/>
+
+    </android.support.design.widget.TextInputLayout>
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/input_edXacNhanMatKhau"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:hint="Xác nhận mật khẩu mới">
+
+        <EditText
+            android:id="@+id/edXacNhanMatKhau"
+            style="@style/DinhDangNhapText"
+            android:inputType="textPassword"/>
+
+    </android.support.design.widget.TextInputLayout>
+
+    <Button
+        android:id="@+id/btnXacNhan"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Xác nhận"
+        android:textColor="@color/colorGoogle"
+        android:layout_margin="10dp"/>
+
+</LinearLayout>

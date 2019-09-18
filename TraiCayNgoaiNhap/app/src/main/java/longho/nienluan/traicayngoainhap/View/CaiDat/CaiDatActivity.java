@@ -46,9 +46,11 @@ public class CaiDatActivity extends AppCompatActivity implements View.OnClickLis
             case R.id.txtDoiMatKhau:
                 Intent iDoiMatKhau = new Intent(this,DoiMatKhauActivity.class);
                 startActivity(iDoiMatKhau);
+                break;
             case R.id.txtGoiYLayMatKhau:
                 Intent iGoiY = new Intent(this,GoiYLayMatKhauActivity.class);
                 startActivity(iGoiY);
+                break;
         }
     }
 }

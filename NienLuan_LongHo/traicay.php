@@ -16,6 +16,9 @@
 		case 'ThayDoiThongTinNguoiDung':
 			$ham();
 			break;
+		case 'DoiMatKhauNguoiDung':
+			$ham();
+			break;
 		case 'KiemTraDangNhap':
 			$ham();
 			break;
@@ -114,8 +117,14 @@
 	function LayThongTinNguoiDung()
 	{
 		include_once("config.php");
-		$MaNguoiDung = $_POST["MaNguoiDung"];
-		$truyvan = "SELECT * FROM nguoidung WHERE MaNguoiDung = '".$MaNguoiDung."'";
+		if(isset($_POST["MaNguoiDung"])){
+			$MaNguoiDung = $_POST["MaNguoiDung"];
+			$truyvan = "SELECT * FROM nguoidung WHERE MaNguoiDung = '".$MaNguoiDung."'";
+		}
+		if(isset($_POST["EmailND"])){
+			$EmailND = $_POST["EmailND"];
+			$truyvan = "SELECT * FROM nguoidung WHERE EmailND like '".$EmailND."'";
+		}
 		$ketqua = mysqli_query($conn, $truyvan);
 		$chuoijson = array();
 		if($ketqua){
@@ -156,6 +165,20 @@
 		// $CauTraLoi = $_GET["CauTraLoi"];
 
 		$truyvan = "UPDATE nguoidung SET TenNguoiDung = '".$TenNguoiDung."', DiaChiND = '".$DiaChiND."', SoDienThoaiND = '".$SoDienThoaiND."', EmailND = '".$EmailND."', GioiTinh = '".$GioiTinh."', MatKhau = '".$MatKhau."', CauHoi = '".$CauHoi."', CauTraLoi = '".$CauTraLoi."' WHERE MaNguoiDung = '".$MaNguoiDung."'";
+		if(mysqli_query($conn,$truyvan)){
+			echo "{\"ketqua\":\"true\"}";
+		}
+		else echo "{\"ketqua\":\"false\"}";
+	}
+	function DoiMatKhauNguoiDung(){
+    	include_once("config.php");
+    	$MaNguoiDung = $_POST["MaNguoiDung"];
+		$MatKhau = $_POST["MatKhau"];
+
+		// $MaNguoiDung = $_GET["MaNguoiDung"];
+		// $MatKhau = $_GET["MatKhau"];
+
+		$truyvan = "UPDATE nguoidung SET MatKhau = '".$MatKhau."' WHERE MaNguoiDung = '".$MaNguoiDung."'";
 		if(mysqli_query($conn,$truyvan)){
 			echo "{\"ketqua\":\"true\"}";
 		}
