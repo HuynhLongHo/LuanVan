@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/bgToolbar"/>
+    <TextView
+        android:id="@+id/txtDoiMatKhau"
+        style="@style/TieuDeRecycler"
+        android:text="Đổi mật khẩu"/>
+    <TextView
+        android:id="@+id/txtGoiYLayMatKhau"
+        style="@style/TieuDeRecycler"
+        android:text="Gợi ý lấy lại mật khẩu"/>
+
+</LinearLayout>
