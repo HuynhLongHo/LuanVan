@@ -6,6 +6,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.ProgressBar;
 
 import java.util.List;
@@ -26,6 +28,11 @@ public class DanhSachDanhGiaActivity extends AppCompatActivity implements ViewDa
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        //ẩn statusbar
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
         setContentView(R.layout.layout_danhsachdanhgia);
         recyclerDanhSachDanhGia = findViewById(R.id.recyclerDanhSachDanhGia);
         matraicay = getIntent().getIntExtra("matraicay",0);

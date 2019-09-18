@@ -53,12 +53,14 @@
                 android:id="@+id/itDonHangCuaToi"
                 android:title="Đơn hàng của tôi"
                 android:icon="@mipmap/ic_content_paste_black_24dp"
+                android:visible="false"
                 />
 
             <item
                 android:id="@+id/itCaiDat"
                 android:title="Cài đặt"
                 android:icon="@mipmap/ic_settings_black_24dp"
+                android:visible="false"
                 />
 
             <item

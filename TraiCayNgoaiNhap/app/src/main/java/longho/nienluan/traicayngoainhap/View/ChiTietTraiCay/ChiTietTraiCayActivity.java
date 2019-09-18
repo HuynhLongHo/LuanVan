@@ -399,8 +399,17 @@ public class ChiTietTraiCayActivity extends AppCompatActivity implements ViewChi
 
                 presenterLogicChiTietTraiCay.ThemGioHang(traiCayGioHang,this);
 
-                Intent iThanhToan = new Intent(ChiTietTraiCayActivity.this, DatHangActivity.class);
-                startActivity(iThanhToan);
+                String MaNguoiDung = modelDangNhap.LayMaNguoiDung(this);
+                if(MaNguoiDung!=""){
+                    Intent iDatHang = new Intent(ChiTietTraiCayActivity.this, DatHangActivity.class);
+                    iDatHang.putExtra("MaNguoiDung",MaNguoiDung);
+                    startActivity(iDatHang);
+                }
+                else{
+                    Toast.makeText(this, "Cần đăng nhập trước khi mua", Toast.LENGTH_SHORT).show();
+                    Intent iDangNhap = new Intent(ChiTietTraiCayActivity.this,DangNhapActivity.class);
+                    startActivity(iDangNhap);
+                }
                 break;
         }
     }

@@ -83,7 +83,7 @@
         <item name="android:textColor">@color/colorBlack</item>
         <item name="android:textSize">20sp</item>
         <item name="android:layout_marginTop">10dp</item>
-
+        <item name="android:layout_marginLeft">10dp</item>
     </style>
     <style name="TenDoiTuong">
         <item name="android:layout_width">match_parent</item>
@@ -92,7 +92,6 @@
         <item name="android:textSize">17sp</item>
         <item name="android:textAlignment">center</item>
         <item name="android:background">@color/bgLogo</item>
-
     </style>
     <style name="ThoiGianKhuyenMai">
         <item name="android:layout_width">match_parent</item>
@@ -101,14 +100,12 @@
         <item name="android:textSize">13sp</item>
         <item name="android:textAlignment">center</item>
         <item name="android:background">@color/colorWhite</item>
-
     </style>
     <style name="DinhDangFragment">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">match_parent</item>
         <item name="android:orientation">vertical</item>
         <item name="android:background">@color/colorSliderInActive</item>
-
     </style>
 
     <style name="DinhDangNhapText">
@@ -116,9 +113,14 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textSize">15sp</item>
         <item name="android:textColor">@color/colorBlack</item>
-
     </style>
-
+    <style name="TextDonDatHang">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/colorBlack</item>
+        <item name="android:textSize">13sp</item>
+        <item name="android:textAlignment">center</item>
+    </style>
 
 
 

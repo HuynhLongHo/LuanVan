@@ -61,7 +61,7 @@ public class AdapterDonDatHangSanPham extends RecyclerView.Adapter<AdapterDonDat
 
         holder.txtTenTraicay.setText(String.valueOf(traicay.getTenTraiCay()));
         holder.txtSoLuong.setText("Số lượng: " + String.valueOf(chiTietDDH.getSoLuongDat()));
-        holder.txtGiaBan.setText(sotien);
+        holder.txtGiaBan.setText("Giá: " + sotien);
         Picasso.with(context).load(traicay.getHinhTraiCay()).resize(120,120).into(holder.imTraiCay);
     }
 

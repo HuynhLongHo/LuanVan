@@ -27,8 +27,8 @@ public class DangNhapActivity extends AppCompatActivity {
 
         tabLayout = findViewById(R.id.tabDangNhap);
         viewPager = findViewById(R.id.viewPagerDangNhap);
-        Toolbar toolbar = findViewById(R.id.toolBarDangNhap);
-        setSupportActionBar(toolbar);
+//        Toolbar toolbar = findViewById(R.id.toolBarDangNhap);
+//        setSupportActionBar(toolbar);
 
         ViewPagerAdapterDangNhap viewPagerAdapterDangNhap = new ViewPagerAdapterDangNhap(getSupportFragmentManager());
         viewPager.setAdapter(viewPagerAdapterDangNhap);

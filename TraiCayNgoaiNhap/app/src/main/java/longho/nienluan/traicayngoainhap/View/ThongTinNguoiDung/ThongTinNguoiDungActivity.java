@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
@@ -32,6 +33,7 @@ public class ThongTinNguoiDungActivity extends AppCompatActivity implements View
     int MaNguoiDung;
     TextInputLayout input_edHoTen, input_edEmail, input_edDiaChi, input_edSoDienThoai, input_edMatKhau, input_edCauHoi, input_edCauTraLoi;
     PresenterLogicThongTinNguoiDung presenterLogicThongTinNguoiDung;
+    Toolbar toolbar;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,6 +67,9 @@ public class ThongTinNguoiDungActivity extends AppCompatActivity implements View
         btnCapNhat = findViewById(R.id.btnCapNhat);
         btnLuu = findViewById(R.id.btnLuu);
         btnKhongLuu = findViewById(R.id.btnKhongLuu);
+
+        toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
         modelDangNhap = new ModelDangNhap();
         MaNguoiDung = Integer.parseInt(modelDangNhap.LayMaNguoiDung(this));

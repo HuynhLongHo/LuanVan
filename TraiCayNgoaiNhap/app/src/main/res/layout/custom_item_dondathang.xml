@@ -11,32 +11,28 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="5dp"
-        >
+        android:background="@color/colorSliderInActive">
         <TextView
             android:id="@+id/txtMaDDH"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            style="@style/TextDonDatHang" />
         <TextView
             android:id="@+id/txtTongTien"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            style="@style/TextDonDatHang" />
         <TextView
             android:id="@+id/txtNgayDat"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            style="@style/TextDonDatHang"/>
         <TextView
             android:id="@+id/txtNgayGiao"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            style="@style/TextDonDatHang" />
         <TextView
             android:id="@+id/txtTrangThaiGiaoHang"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            style="@style/TextDonDatHang" />
         <android.support.v7.widget.RecyclerView
             android:id="@+id/rcvDanhSachTraiCayHD"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            android:background="@color/bgLogo"/>
 
     </LinearLayout>
 

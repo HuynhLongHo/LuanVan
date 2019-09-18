@@ -36,6 +36,7 @@ import java.util.List;
 import longho.nienluan.traicayngoainhap.Adapter.ExpandAdapter;
 import longho.nienluan.traicayngoainhap.Adapter.ViewPaperAdapter;
 import longho.nienluan.traicayngoainhap.Presenter.ChiTietTraiCay.PresenterLogicChiTietTraiCay;
+import longho.nienluan.traicayngoainhap.View.CaiDat.CaiDatActivity;
 import longho.nienluan.traicayngoainhap.View.DonDatHang.DonDatHangActivity;
 import longho.nienluan.traicayngoainhap.View.GioHang.GioHangActivity;
 import longho.nienluan.traicayngoainhap.View.GuiEmail.EmailActivity;
@@ -51,17 +52,6 @@ public class TrangChuActivity extends AppCompatActivity implements ViewXuLyMenu,
     public static final String SERVER_NAME = "http://10.2.56.155:80/NienLuan_LongHo/traicay.php";//B21_P4
     public static final String SERVER = "http://10.2.56.155:80/NienLuan_LongHo/Image/TraiCay/";//B21_P4
 
-//    public static final String SERVER_NAME = "http://10.13.144.144:80/NienLuan_LongHo/traicay.php";//B21_P4
-//    public static final String SERVER = "http://10.13.144.144:80/NienLuan_LongHo/Image/TraiCay";//B21_P4
-
-//    public static final String SERVER_NAME = "http://192.168.1.66:80/NienLuan_LongHo/traicay.php";//Cafe
-//    public static final String SERVER = "http://192.168.1.66:80/NienLuan_LongHo/Image/TraiCay";//Cafe
-
-
-//    public static final String SERVER_NAME = "http://192.168.43.93:80/NienLuan_LongHo/traicay.php";
-//    public static final String SERVER = "http://192.168.43.93:80/NienLuan_LongHo/Image/TraiCay";
-
-//    public static final String SERVER_NAME = "http://10.10.35.87:80/NienLuan_LongHo/traicay.php";
 
     Toolbar toolbar;
     TabLayout tab;
@@ -73,7 +63,7 @@ public class TrangChuActivity extends AppCompatActivity implements ViewXuLyMenu,
     String tennguoidung ="";
     AccessToken accessToken;
     Menu menu;
-    MenuItem itemDangNhap;
+    MenuItem itemDangNhap, itDonHangCuaToi, itCaiDat;
     CollapsingToolbarLayout collapsingToolbarLayout;
     AppBarLayout appBarLayout;
     ModelDangNhap modelDangNhap;
@@ -137,6 +127,8 @@ public class TrangChuActivity extends AppCompatActivity implements ViewXuLyMenu,
         });
 
         itemDangNhap = menu.findItem(R.id.itDangNhap);
+        itCaiDat = menu.findItem(R.id.itCaiDat);
+        itDonHangCuaToi = menu.findItem(R.id.itDonHangCuaToi);
         accessToken = logicXuLyMenu.LayTokenNguoiDungFB();
         if(accessToken != null){
             GraphRequest graphRequest = GraphRequest.newMeRequest(accessToken, new GraphRequest.GraphJSONObjectCallback() {
@@ -164,6 +156,9 @@ public class TrangChuActivity extends AppCompatActivity implements ViewXuLyMenu,
         String TenNguoiDung = modelDangNhap.LayCachedDangNhap(this);
         if(!TenNguoiDung.equals("")){
             itemDangNhap.setTitle(TenNguoiDung);
+            itCaiDat.setVisible(true);
+            itDonHangCuaToi.setVisible(true);
+
         }
 
         if(accessToken!=null||!TenNguoiDung.equals("")){
@@ -218,7 +213,9 @@ public class TrangChuActivity extends AppCompatActivity implements ViewXuLyMenu,
                     startActivity(iDonHang);
                 }
                 break;
-
+            case R.id.itCaiDat:
+                Intent iCaiDat = new Intent(this,CaiDatActivity.class);
+                startActivity(iCaiDat);
         }
 
         return true;

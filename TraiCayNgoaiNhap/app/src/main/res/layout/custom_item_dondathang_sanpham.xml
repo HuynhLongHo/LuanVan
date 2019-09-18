@@ -13,8 +13,7 @@
 
         <TextView
             android:id="@+id/txtTenTraiCay"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            style="@style/TextDonDatHang"/>
         <ImageView
             android:id="@+id/imTraiCay"
             android:layout_width="wrap_content"
@@ -24,12 +23,10 @@
             android:src="@drawable/backgroundplashscreen" />
         <TextView
             android:id="@+id/txtSoLuong"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            style="@style/TextDonDatHang"/>
         <TextView
             android:id="@+id/txtGiaBan"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            style="@style/TextDonDatHang"/>
     </LinearLayout>
 
 </android.support.v7.widget.CardView>
