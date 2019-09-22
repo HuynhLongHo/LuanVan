@@ -24,6 +24,8 @@ import com.facebook.login.LoginResult;
 
 import java.util.Arrays;
 
+import longho.nienluan.traicayngoainhap.EmailVerification.GenerateRandomNumber;
+import longho.nienluan.traicayngoainhap.EmailVerification.SendMail;
 import longho.nienluan.traicayngoainhap.Model.DangNhap_DangKy.ModelDangNhap;
 import longho.nienluan.traicayngoainhap.Model.ObjectClass.nguoidung;
 import longho.nienluan.traicayngoainhap.Presenter.DangNhap.PresenterLogicDangNhap;
@@ -114,22 +116,27 @@ public class FragmentDangNhap extends Fragment implements ViewDangNhap,View.OnCl
                         presenterLogicDangNhap.LayThongTinNguoiDungBangEmail(email);
 
                         if(email.equals(strEmail)){
+                            GenerateRandomNumber generateRandomNumber = new GenerateRandomNumber();
+                            final int OTP = generateRandomNumber.RandomNumber();
+
+                            SendMail sendMail = new SendMail(getActivity(),strEmail,"Xác nhận", "Mã xác nhận của bạn là: " + OTP);
+                            sendMail.execute();
                             //Builder thứ 2
                             AlertDialog.Builder ad = new AlertDialog.Builder(getContext());
-                            ad.setTitle("Trả lời câu hỏi");
-                            ad.setMessage("Câu hỏi: " + strCauHoi);
-                            final EditText CauTraLoi = new EditText(getContext());
-                            ad.setView(CauTraLoi);
+                            ad.setTitle("Nhâp mã OTP");
+                            ad.setMessage("Vui lòng nhập mã vừa gửi đến email bạn!");
+                            final EditText edtOTP = new EditText(getContext());
+                            ad.setView(edtOTP);
                             ad.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dlg, int which) {
-                                    String cautraloi = CauTraLoi.getText().toString();
-                                    if(strCauTraLoi.equals(cautraloi)){
+                                    int otp = Integer.parseInt(edtOTP.getText().toString());
+                                    if(OTP == otp){
                                         Intent intent = new Intent(getActivity(),QuenMatKhauActivity.class);
                                         intent.putExtra("MaNguoiDung",strMaNguoiDung);
                                         intent.putExtra("MatKhau",strMatKhau);
                                         startActivity(intent);
                                     }else{
-                                        Toast.makeText(getActivity(), "Câu trả lời chưa chính xác", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(getActivity(), "Mã OTP sai!", Toast.LENGTH_SHORT).show();
                                     }
                                 }
                             });
