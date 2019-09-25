@@ -11,9 +11,8 @@
         android:padding="0dp">
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/bgToolbar"/>
+            style="@style/Toolbar"
+            app:titleTextAppearance="@style/ToolbarTitleText"/>
 
         <LinearLayout
             android:layout_width="match_parent"
