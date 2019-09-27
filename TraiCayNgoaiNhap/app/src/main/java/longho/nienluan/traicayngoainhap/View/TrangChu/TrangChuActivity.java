@@ -46,6 +46,7 @@ import longho.nienluan.traicayngoainhap.Presenter.TrangChu.XuLyMenu.PresenterLog
 import longho.nienluan.traicayngoainhap.R;
 import longho.nienluan.traicayngoainhap.View.DangNhap_DangKy.DangNhapActivity;
 import longho.nienluan.traicayngoainhap.View.ThongTinNguoiDung.ThongTinNguoiDungActivity;
+import longho.nienluan.traicayngoainhap.View.TimKiem.TimKiemActivity;
 
 public class TrangChuActivity extends AppCompatActivity implements ViewXuLyMenu,AppBarLayout.OnOffsetChangedListener {
 
@@ -63,7 +64,7 @@ public class TrangChuActivity extends AppCompatActivity implements ViewXuLyMenu,
     String tennguoidung ="";
     AccessToken accessToken;
     Menu menu;
-    MenuItem itemDangNhap, itDonHangCuaToi, itCaiDat;
+    MenuItem itemDangNhap, itDonHangCuaToi, itCaiDat, itSearch;
     CollapsingToolbarLayout collapsingToolbarLayout;
     AppBarLayout appBarLayout;
     ModelDangNhap modelDangNhap;
@@ -129,6 +130,7 @@ public class TrangChuActivity extends AppCompatActivity implements ViewXuLyMenu,
         itemDangNhap = menu.findItem(R.id.itDangNhap);
         itCaiDat = menu.findItem(R.id.itCaiDat);
         itDonHangCuaToi = menu.findItem(R.id.itDonHangCuaToi);
+        itSearch = menu.findItem(R.id.itSearch);
         accessToken = logicXuLyMenu.LayTokenNguoiDungFB();
         if(accessToken != null){
             GraphRequest graphRequest = GraphRequest.newMeRequest(accessToken, new GraphRequest.GraphJSONObjectCallback() {
@@ -216,6 +218,11 @@ public class TrangChuActivity extends AppCompatActivity implements ViewXuLyMenu,
             case R.id.itCaiDat:
                 Intent iCaiDat = new Intent(this,CaiDatActivity.class);
                 startActivity(iCaiDat);
+                break;
+            case R.id.itSearch:
+                Intent iTimKiem = new Intent(this, TimKiemActivity.class);
+                startActivity(iTimKiem);
+                break;
         }
 
         return true;

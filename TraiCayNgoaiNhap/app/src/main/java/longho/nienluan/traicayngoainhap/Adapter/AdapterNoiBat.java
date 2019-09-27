@@ -69,7 +69,7 @@ public class AdapterNoiBat extends RecyclerView.Adapter<AdapterNoiBat.ViewHolder
             holder.txtTenTraiCay.setText(traicay.getTenTraiCay());
         }
         DecimalFormat formatter = new DecimalFormat("###,###");//định dạng tiền tệ
-        String giaban = formatter.format(traicay.getGiaBan()) + " VNĐ";
+        String giaban = formatter.format(traicay.getGiaBan()) + "đ";
         holder.txtGiaBan.setText(String.valueOf(giaban));
         holder.txtLuotMua.setText("Lượt mua: " + String.valueOf(traicay.getLuotMua()));
         Picasso.with(context).load(traicay.getHinhTraiCay()).resize(120,120).into(holder.imgHinhTraiCay, new Callback() {

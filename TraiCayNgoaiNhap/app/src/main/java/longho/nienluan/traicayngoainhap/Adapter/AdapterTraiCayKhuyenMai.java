@@ -1,6 +1,7 @@
 package longho.nienluan.traicayngoainhap.Adapter;
 
 import android.content.Context;
+import android.graphics.Paint;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -60,10 +61,16 @@ public class AdapterTraiCayKhuyenMai extends RecyclerView.Adapter<AdapterTraiCay
         traicay traicay = traicayList.get(position);
         holder.txtTenTraiCay.setText(traicay.getTenTraiCay());
         DecimalFormat formatter = new DecimalFormat("###,###");//định dạng tiền tệ
-        String giaban = "Giá: " + formatter.format(traicay.getGiaBan()) + " VNĐ";
-        String giakm = "Giá KM: " + formatter.format(traicay.getGiaKM()) + " VNĐ";
-        holder.txtGiaBan.setText(String.valueOf(giaban));
-        holder.txtGiaKM.setText(String.valueOf(giakm));
+        String giaban = formatter.format(traicay.getGiaBan()) + "đ";
+        String giakm = formatter.format(traicay.getGiaKM()) + "đ";
+        if(traicay.getGiaKM()==0){
+            holder.txtGiaBan.setText(String.valueOf(giaban));
+        }else{
+            holder.txtGiaBan.setText(String.valueOf(giaban));
+            holder.txtGiaBan.setPaintFlags(holder.txtGiaBan.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+            holder.txtGiaKM.setVisibility(View.VISIBLE);
+            holder.txtGiaKM.setText(String.valueOf(giakm));
+        }
         holder.txtLuotMua.setText("Lượt mua: " + String.valueOf(traicay.getLuotMua()));
         Picasso.with(context).load(traicay.getHinhTraiCay()).resize(250,175).into(holder.imgHinhTraiCay, new Callback() {
             @Override

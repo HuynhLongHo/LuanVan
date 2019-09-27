@@ -99,6 +99,10 @@
             android:name=".View.DoiMatKhau.QuenMatKhauActivity"
             android:label="Quên mật khẩu"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".View.TimKiem.TimKiemActivity"
+            android:label="Tìm kiếm"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>
