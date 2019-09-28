@@ -31,62 +31,54 @@
                         android:id="@+id/toolbar"
                         android:layout_width="match_parent"
                         android:layout_height="?attr/actionBarSize"
-                        app:theme="@style/menuitemcolor"
                         app:logo="@mipmap/logo2"
                         app:layout_scrollFlags="scroll|enterAlways"
                         app:layout_collapseMode="pin">
 
                     </android.support.v7.widget.Toolbar>
-                    <LinearLayout
-                        android:id="@+id/lnSearch"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:layout_marginTop="50dp"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginRight="10dp"
-                        android:background="@drawable/bgsearch"
-                        app:layout_scrollFlags="scroll|enterAlways|enterAlwaysCollapsed|snap"
-                        app:layout_collapseMode="parallax">
-                        <Button
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:textAlignment="textStart"
-                            android:drawableLeft="@drawable/ic_search_black_24dp"
-                            android:text="Tìm kiếm trái cây"
-                            android:paddingLeft="10dp"
-                            android:textAllCaps="false"
-                            android:layout_gravity="start"
-                            android:textColor="@color/colorGray"
-                            android:layout_weight="1"
-                            android:background="@drawable/selectorbgsearch"/>
-                        <View
-                            android:layout_width="1dp"
-                            android:layout_height="match_parent"
-                            android:layout_marginTop="10dp"
-                            android:layout_marginBottom="10dp"
-                            android:background="@color/bgToolbar"/>
-                        <ImageButton
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:layout_gravity="center"
-                            android:layout_margin="10dp"
-                            android:src="@drawable/ic_photo_camera_black_24dp"
-                            android:background="@drawable/selectorbgsearch"/>
-                    </LinearLayout>
+                    <!--<LinearLayout-->
+                        <!--android:id="@+id/lnSearch"-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:orientation="horizontal"-->
+                        <!--android:layout_marginTop="50dp"-->
+                        <!--android:layout_marginLeft="10dp"-->
+                        <!--android:layout_marginRight="10dp"-->
+                        <!--android:background="@drawable/bgsearch"-->
+                        <!--app:layout_scrollFlags="scroll|enterAlways|enterAlwaysCollapsed|snap"-->
+                        <!--app:layout_collapseMode="parallax">-->
+                        <!--<Button-->
+                            <!--android:layout_width="match_parent"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:textAlignment="textStart"-->
+                            <!--android:drawableLeft="@drawable/ic_search_black_24dp"-->
+                            <!--android:text="Tìm kiếm trái cây"-->
+                            <!--android:paddingLeft="10dp"-->
+                            <!--android:textAllCaps="false"-->
+                            <!--android:layout_gravity="start"-->
+                            <!--android:textColor="@color/colorGray"-->
+                            <!--android:layout_weight="1"-->
+                            <!--android:background="@drawable/selectorbgsearch"/>-->
+                        <!--<View-->
+                            <!--android:layout_width="1dp"-->
+                            <!--android:layout_height="match_parent"-->
+                            <!--android:layout_marginTop="10dp"-->
+                            <!--android:layout_marginBottom="10dp"-->
+                            <!--android:background="@color/bgToolbar"/>-->
+                        <!--<ImageButton-->
+                            <!--android:layout_width="wrap_content"-->
+                            <!--android:layout_height="match_parent"-->
+                            <!--android:layout_gravity="center"-->
+                            <!--android:layout_margin="10dp"-->
+                            <!--android:src="@drawable/ic_photo_camera_black_24dp"-->
+                            <!--android:background="@drawable/selectorbgsearch"/>-->
+                    <!--</LinearLayout>-->
 
 
 
                 </android.support.design.widget.CollapsingToolbarLayout>
 
-                <android.support.design.widget.TabLayout
-                    android:id="@+id/tabs"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:tabMode="scrollable"
-                    app:tabTextColor="@color/colorWhite"
-                    app:tabTextAppearance="@style/capfalse"
-                    />
+
 
             </android.support.design.widget.AppBarLayout>
             <FrameLayout
@@ -102,9 +94,19 @@
                 </android.support.v4.view.ViewPager>
             </FrameLayout>
 
-        </android.support.design.widget.CoordinatorLayout>
-    </FrameLayout>
 
+        </android.support.design.widget.CoordinatorLayout>
+        <android.support.design.widget.TabLayout
+            android:id="@+id/tabs"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:tabMode="scrollable"
+            android:background="@color/colorGreen"
+            android:layout_gravity="bottom"
+            app:tabTextColor="@color/colorWhite"
+            app:tabTextAppearance="@style/capfalse"
+            />
+    </FrameLayout>
 
     <ExpandableListView
         android:id="@+id/epmenu"

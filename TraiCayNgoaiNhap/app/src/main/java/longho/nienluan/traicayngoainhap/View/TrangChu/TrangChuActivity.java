@@ -12,6 +12,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.text.Html;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -157,7 +158,9 @@ public class TrangChuActivity extends AppCompatActivity implements ViewXuLyMenu,
 
         String TenNguoiDung = modelDangNhap.LayCachedDangNhap(this);
         if(!TenNguoiDung.equals("")){
-            itemDangNhap.setTitle(TenNguoiDung);
+            itemDangNhap.setTitle(Html.fromHtml("<font color='#ff3824'>" + TenNguoiDung + "</font>"));
+            itemDangNhap.setIcon(R.drawable.dangnhap);
+
             itCaiDat.setVisible(true);
             itDonHangCuaToi.setVisible(true);
 
@@ -238,24 +241,24 @@ public class TrangChuActivity extends AppCompatActivity implements ViewXuLyMenu,
 
     @Override
     public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
-        if(collapsingToolbarLayout.getHeight() + verticalOffset <=  1.5 * ViewCompat.getMinimumHeight(collapsingToolbarLayout)){
-            LinearLayout linearLayout = appBarLayout.findViewById(R.id.lnSearch);
-            linearLayout.animate().alpha(0).setDuration(200);
-
-            MenuItem itSearch = menu.findItem(R.id.itSearch);
-            itSearch.setVisible(true);
-
-        }else{
-            LinearLayout linearLayout = appBarLayout.findViewById(R.id.lnSearch);
-            linearLayout.animate().alpha(1).setDuration(200);
-            try{
-                MenuItem itSearch = menu.findItem(R.id.itSearch);
-                itSearch.setVisible(false);
-            }catch (Exception e){
-
-            }
-
-        }
+//        if(collapsingToolbarLayout.getHeight() + verticalOffset <=  1.5 * ViewCompat.getMinimumHeight(collapsingToolbarLayout)){
+//            LinearLayout linearLayout = appBarLayout.findViewById(R.id.lnSearch);
+//            linearLayout.animate().alpha(0).setDuration(200);
+//
+//            MenuItem itSearch = menu.findItem(R.id.itSearch);
+//            itSearch.setVisible(true);
+//
+//        }else{
+//            LinearLayout linearLayout = appBarLayout.findViewById(R.id.lnSearch);
+//            linearLayout.animate().alpha(1).setDuration(200);
+//            try{
+//                MenuItem itSearch = menu.findItem(R.id.itSearch);
+//                itSearch.setVisible(false);
+//            }catch (Exception e){
+//
+//            }
+//
+//        }
     }
     @Override
     protected void onResume() {

@@ -15,10 +15,24 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recyclerTimKiem"
+
+
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
-    </android.support.v7.widget.RecyclerView>
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recyclerTimKiem"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+        <TextView
+            android:id="@+id/txtKhongTimThay"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Không tìm thấy"
+            android:gravity="center"
+            android:textColor="@color/colorBlack"
+            android:background="@color/colorWhite"
+            android:textSize="40sp"
+            android:visibility="gone"/>
+    </FrameLayout>
 </LinearLayout>

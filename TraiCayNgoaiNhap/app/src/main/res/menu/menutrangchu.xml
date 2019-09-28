@@ -7,7 +7,7 @@
         android:title="Search"
         android:icon="@mipmap/ic_search_white_24dp"
         app:showAsAction="always"
-        android:visible="false"
+        android:visible="true"
         />
 
     <item

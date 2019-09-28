@@ -10,6 +10,10 @@ import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.List;
@@ -24,13 +28,20 @@ public class TimKiemActivity extends AppCompatActivity implements ViewTimKiem, S
     Toolbar toolbar;
     RecyclerView recyclerView;
     PresenterLogicTimKiem presenterLogicTimKiem;
+    TextView txtKhongTimThay;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        //ẩn statusbar
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
         setContentView(R.layout.layout_timkiem);
 
         toolbar = findViewById(R.id.toolbar);
         recyclerView = findViewById(R.id.recyclerTimKiem);
+        txtKhongTimThay = findViewById(R.id.txtKhongTimThay);
 
         setSupportActionBar(toolbar);
 
@@ -50,6 +61,7 @@ public class TimKiemActivity extends AppCompatActivity implements ViewTimKiem, S
 
     @Override
     public void TimKiemThanhCong(List<traicay> traicayList) {
+        txtKhongTimThay.setVisibility(View.GONE);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         AdapterTraiCayKhuyenMai adapterTraiCayKhuyenMai = new AdapterTraiCayKhuyenMai(this,R.layout.custom_item_traicay_khuyenmai,traicayList);
 
@@ -60,7 +72,7 @@ public class TimKiemActivity extends AppCompatActivity implements ViewTimKiem, S
 
     @Override
     public void TimKiemThatBai() {
-        Toast.makeText(this, "Không tìm thấy sản phẩm này", Toast.LENGTH_SHORT).show();
+        txtKhongTimThay.setVisibility(View.VISIBLE);
     }
 
     @Override
