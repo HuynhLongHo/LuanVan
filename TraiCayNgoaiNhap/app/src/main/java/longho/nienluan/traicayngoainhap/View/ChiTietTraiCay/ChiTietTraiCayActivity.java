@@ -2,6 +2,7 @@ package longho.nienluan.traicayngoainhap.View.ChiTietTraiCay;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.Paint;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
@@ -66,7 +67,7 @@ public class ChiTietTraiCayActivity extends AppCompatActivity implements ViewChi
     List<Fragment> fragmentList;
     TextView txtDots[],txtDanhGiaTB;
     LinearLayout layoutDots;
-    TextView txtTenTraiCay, txtGiaBan, txtTenNCC, txtDiaChiNCC,txtThongTin,txtVietDanhGia, txtXemTatCaNhanXet, txtGioHang;
+    TextView txtTenTraiCay, txtGiaBan, txtTenNCC, txtDiaChiNCC,txtThongTin,txtVietDanhGia, txtXemTatCaNhanXet, txtGioHang, txtGiaKM;
     Toolbar toolbar;
     ImageView imXemThemThongTin, imThemGioHang;
     boolean blXemThemThongTin = false;
@@ -108,6 +109,7 @@ public class ChiTietTraiCayActivity extends AppCompatActivity implements ViewChi
         btnMuaNgay = findViewById(R.id.btnMuaNgay);
         rbDanhGia = findViewById(R.id.rbDanhGia);
         txtDanhGiaTB = findViewById(R.id.txtDanhGiaTB);
+        txtGiaKM = findViewById(R.id.txtGiaKM);
 
         toolbar.setTitle("Chi tiết cản phẩm");
         setSupportActionBar(toolbar);
@@ -234,8 +236,15 @@ public class ChiTietTraiCayActivity extends AppCompatActivity implements ViewChi
         tentraicay = traicay.getTenTraiCay();
         txtTenTraiCay.setText(traicay.getTenTraiCay());
         DecimalFormat formatter = new DecimalFormat("###,###");//định dạng tiền tệ
-        String giaban = "Giá: " + formatter.format(traicay.getGiaBan()) + " VNĐ";
+        String giaban =formatter.format(traicay.getGiaBan()) + "đ";
+        String giakm =formatter.format(traicay.getGiaKM()) + "đ";
         txtGiaBan.setText(giaban);
+        if(traicay.getGiaKM()>0){
+            txtGiaBan.setPaintFlags(txtGiaBan.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+            txtGiaKM.setVisibility(View.VISIBLE);
+            txtGiaKM.setText(giakm);
+
+        }
         txtTenNCC.setText(traicay.getTenNCC());
         txtDiaChiNCC.setText(traicay.getDiaChiNCC());
         final String thongtin = "Miêu tả: " + traicay.getMieuTaTC() + "\nThành phần dinh dưỡng: " + traicay.getThanhPhanDinhDuong() + "\nMôi trường trồng: " + traicay.getMoiTruongTrong();

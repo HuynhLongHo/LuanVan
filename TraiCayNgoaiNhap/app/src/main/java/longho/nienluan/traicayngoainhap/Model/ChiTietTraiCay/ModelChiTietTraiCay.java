@@ -51,6 +51,7 @@ public class ModelChiTietTraiCay {
                 traicay.setMaQG(object.getInt("MaQG"));
                 traicay.setTenTraiCay(object.getString("TenTraiCay"));
                 traicay.setGiaBan(object.getInt("GiaBan"));
+                traicay.setGiaKM(object.getInt("GiaKM"));
                 traicay.setHinhTraiCay(object.getString("HinhTraiCay"));
                 traicay.setHinhChiTiet(object.getString("HinhChiTiet"));
                 traicay.setMieuTaTC(object.getString("MieuTaTC"));
