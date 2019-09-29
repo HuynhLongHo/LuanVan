@@ -24,6 +24,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -63,7 +64,7 @@ public class ChiTietTraiCayActivity extends AppCompatActivity implements ViewChi
     ViewPager viewPager;
     PresenterLogicChiTietTraiCay presenterLogicChiTietTraiCay;
     List<Fragment> fragmentList;
-    TextView txtDots[];
+    TextView txtDots[],txtDanhGiaTB;
     LinearLayout layoutDots;
     TextView txtTenTraiCay, txtGiaBan, txtTenNCC, txtDiaChiNCC,txtThongTin,txtVietDanhGia, txtXemTatCaNhanXet, txtGioHang;
     Toolbar toolbar;
@@ -80,6 +81,8 @@ public class ChiTietTraiCayActivity extends AppCompatActivity implements ViewChi
     ModelDangNhap modelDangNhap;
     Menu menu;
     ViewXuLyMenu viewXuLyMenu;
+    float sosaotb = 0;
+    RatingBar rbDanhGia;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -103,6 +106,8 @@ public class ChiTietTraiCayActivity extends AppCompatActivity implements ViewChi
         txtXemTatCaNhanXet = findViewById(R.id.txtXemTatCaNhanXet);
         imThemGioHang = findViewById(R.id.imThemGioHang);
         btnMuaNgay = findViewById(R.id.btnMuaNgay);
+        rbDanhGia = findViewById(R.id.rbDanhGia);
+        txtDanhGiaTB = findViewById(R.id.txtDanhGiaTB);
 
         toolbar.setTitle("Chi tiết cản phẩm");
         setSupportActionBar(toolbar);
@@ -118,7 +123,8 @@ public class ChiTietTraiCayActivity extends AppCompatActivity implements ViewChi
         btnMuaNgay.setOnClickListener(this);
         modelDangNhap = new ModelDangNhap();
         logicXuLyMenu = new PresenterLogicXuLyMenu(viewXuLyMenu);
-
+        rbDanhGia.setRating(sosaotb);
+        txtDanhGiaTB.setText(new DecimalFormat("#.#").format(sosaotb));
     }
 
     @Override
@@ -279,6 +285,13 @@ public class ChiTietTraiCayActivity extends AppCompatActivity implements ViewChi
 
     @Override
     public void HienThiDanhGia(List<DanhGia> danhGiaList) {
+        int sodanhgia = danhGiaList.size();
+        int tongsosao = 0;
+        for(int i = 0; i < sodanhgia; i++){
+            tongsosao += danhGiaList.get(i).getSoSaoDG();
+        }
+        sosaotb = (float)tongsosao/sodanhgia;
+
         AdapterDanhGia adapterDanhGia = new AdapterDanhGia(this,danhGiaList,3);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerDanhGiaChiTiet.setLayoutManager(layoutManager);
