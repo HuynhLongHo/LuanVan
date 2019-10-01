@@ -9,6 +9,7 @@ public class DataSanPham extends SQLiteOpenHelper {
     public static String TB_GIOHANG_MASP = "MASP";
     public static String TB_GIOHANG_TENSP = "TENSP";
     public static String TB_GIOHANG_GIATIEN = "GIATIEN";
+    public static String TB_GIOHANG_GIAKM = "GIAKM";
     public static String TB_GIOHANG_HINHANH = "HINHANH";
     public static String TB_GIOHANG_SOLUONG = "SOLUONG";
     public static String TB_GIOHANG_SOLUONGTONKHO = "SOLUONGTONKHO";
@@ -26,7 +27,7 @@ public class DataSanPham extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         String tbGioHang = "CREATE TABLE " + TB_GIOHANG + " (" + TB_GIOHANG_MASP + " INTEGER PRIMARY KEY , "
-                + TB_GIOHANG_TENSP + " TEXT, " + TB_GIOHANG_GIATIEN + " REAL, " +TB_GIOHANG_HINHANH + "  BLOB, "
+                + TB_GIOHANG_TENSP + " TEXT, " + TB_GIOHANG_GIATIEN + " REAL, " + TB_GIOHANG_GIAKM + " REAL, " +TB_GIOHANG_HINHANH + "  BLOB, "
                 + TB_GIOHANG_SOLUONG + " INTEGER, " + TB_GIOHANG_SOLUONGTONKHO + " INTEGER );";
 
         String tbYeuThich = "CREATE TABLE " + TB_YEUTHICH + " (" + TB_YEUTHICH_MASP + " INTEGER PRIMARY KEY , "

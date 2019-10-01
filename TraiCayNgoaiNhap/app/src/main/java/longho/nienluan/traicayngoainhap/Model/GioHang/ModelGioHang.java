@@ -47,6 +47,7 @@ public class ModelGioHang {
         contentValues.put(DataSanPham.TB_GIOHANG_MASP,traicay.getMaTraiCay());
         contentValues.put(DataSanPham.TB_GIOHANG_TENSP,traicay.getTenTraiCay());
         contentValues.put(DataSanPham.TB_GIOHANG_GIATIEN,traicay.getGiaBan());
+        contentValues.put(DataSanPham.TB_GIOHANG_GIAKM,traicay.getGiaKM());
         contentValues.put(DataSanPham.TB_GIOHANG_HINHANH,traicay.getHinhGioHang());
         contentValues.put(DataSanPham.TB_GIOHANG_SOLUONG,traicay.getSoLuong());
         contentValues.put(DataSanPham.TB_GIOHANG_SOLUONGTONKHO,traicay.getSoLuongTon());
@@ -71,6 +72,7 @@ public class ModelGioHang {
             int masp = cursor.getInt(cursor.getColumnIndex(DataSanPham.TB_GIOHANG_MASP));
             String tensp = cursor.getString(cursor.getColumnIndex(DataSanPham.TB_GIOHANG_TENSP));
             int giatien = cursor.getInt(cursor.getColumnIndex(DataSanPham.TB_GIOHANG_GIATIEN));
+            int giakm = cursor.getInt(cursor.getColumnIndex(DataSanPham.TB_GIOHANG_GIAKM));
             byte[] hinhanh = cursor.getBlob(cursor.getColumnIndex(DataSanPham.TB_GIOHANG_HINHANH));
             int soluong = cursor.getInt(cursor.getColumnIndex(DataSanPham.TB_GIOHANG_SOLUONG));
             int soluongtonkho = cursor.getInt(cursor.getColumnIndex(DataSanPham.TB_GIOHANG_SOLUONGTONKHO));
@@ -80,6 +82,7 @@ public class ModelGioHang {
             traicay.setMaTraiCay(masp);
             traicay.setTenTraiCay(tensp);
             traicay.setGiaBan(giatien);
+            traicay.setGiaKM(giakm);
             traicay.setHinhGioHang(hinhanh);
             traicay.setSoLuong(soluong);
             traicay.setSoLuongTon(soluongtonkho);
