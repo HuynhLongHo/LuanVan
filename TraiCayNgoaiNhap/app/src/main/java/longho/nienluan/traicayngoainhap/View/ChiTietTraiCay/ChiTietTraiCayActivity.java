@@ -71,7 +71,7 @@ public class ChiTietTraiCayActivity extends AppCompatActivity implements ViewChi
     Toolbar toolbar;
     ImageView imXemThemThongTin, imThemGioHang;
     boolean blXemThemThongTin = false;
-    int matraicay;
+    int matraicay, sodanhgia;
     String tentraicay,tennguoidung;
     RecyclerView recyclerDanhGiaChiTiet;
     traicay traiCayGioHang;
@@ -126,7 +126,12 @@ public class ChiTietTraiCayActivity extends AppCompatActivity implements ViewChi
         modelDangNhap = new ModelDangNhap();
         logicXuLyMenu = new PresenterLogicXuLyMenu(viewXuLyMenu);
         rbDanhGia.setRating(sosaotb);
-        txtDanhGiaTB.setText(new DecimalFormat("#.#").format(sosaotb));
+        if(sosaotb!=0){
+            txtDanhGiaTB.setText(new DecimalFormat("#.#").format(sosaotb));
+        }else{
+            txtDanhGiaTB.setText("Chưa có đánh giá");
+        }
+        txtXemTatCaNhanXet.setText("Xem tất cả đánh giá (" + sodanhgia + ")");
     }
 
     @Override
@@ -294,14 +299,14 @@ public class ChiTietTraiCayActivity extends AppCompatActivity implements ViewChi
 
     @Override
     public void HienThiDanhGia(List<DanhGia> danhGiaList) {
-        int sodanhgia = danhGiaList.size();
+        sodanhgia = danhGiaList.size();
         int tongsosao = 0;
         for(int i = 0; i < sodanhgia; i++){
             tongsosao += danhGiaList.get(i).getSoSaoDG();
         }
         sosaotb = (float)tongsosao/sodanhgia;
 
-        AdapterDanhGia adapterDanhGia = new AdapterDanhGia(this,danhGiaList,3);
+        AdapterDanhGia adapterDanhGia = new AdapterDanhGia(this,danhGiaList,2);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerDanhGiaChiTiet.setLayoutManager(layoutManager);
         recyclerDanhGiaChiTiet.setAdapter(adapterDanhGia);
