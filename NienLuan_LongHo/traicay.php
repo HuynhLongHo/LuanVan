@@ -325,9 +325,16 @@
 		$chuoijson = array();
 		if($ketqua){
 			while($dong = mysqli_fetch_array($ketqua)){
-		 		// echo $dong["TenLTC"]."<br>";
-		 		// in ra mảng theo cấu trúc bảng
-		 		array_push($chuoijson, array('MaTraiCay' => $dong["MaTraiCay"],'TenTraiCay' => $dong["TenTraiCay"],'GiaBan' => $dong["GiaBan"],'LuotMua' => $dong["LuotMua"],'HinhTraiCay' => "http://".$_SERVER['SERVER_NAME']."/NienLuan_LongHo"."/Image"."/TraiCay/".$dong["HinhTraiCay"] ));//in theo nhu cầu
+		 		$truyvankhuyenmai = "SELECT * FROM khuyenmai km, chitietkhuyenmai ctkm WHERE (Date(Now()) between km.NgayBatDau and km.NgayKetThuc) AND km.MaKM = ctkm.MaKM AND  ctkm.MaTraiCay='".$dong["MaTraiCay"]."'";
+				$ketquakhuyenmai = mysqli_query($conn,$truyvankhuyenmai);
+
+				$GiaKM = 0;
+				if($ketquakhuyenmai){
+					while ($dongkhuyenmai = mysqli_fetch_array($ketquakhuyenmai)) {
+						$GiaKM = $dongkhuyenmai["GiaKM"];
+					}
+				}
+		 		array_push($chuoijson, array('MaTraiCay' => $dong["MaTraiCay"],'TenTraiCay' => $dong["TenTraiCay"],'GiaBan' => $dong["GiaBan"],'GiaKM' => $GiaKM,'LuotMua' => $dong["LuotMua"],'HinhTraiCay' => "http://".$_SERVER['SERVER_NAME']."/NienLuan_LongHo"."/Image"."/TraiCay/".$dong["HinhTraiCay"] ));//in theo nhu cầu
 		 		// $chuoijson[]=$dong;//in ra toàn bộ bảng nhưng không đúng định dạng
 		 	}
 		 	echo "{";
@@ -346,9 +353,16 @@
 		$chuoijson = array();
 		if($ketqua){
 			while($dong = mysqli_fetch_array($ketqua)){
-		 		// echo $dong["TenLTC"]."<br>";
-		 		// in ra mảng theo cấu trúc bảng
-		 		array_push($chuoijson, array('MaTraiCay' => $dong["MaTraiCay"],'TenTraiCay' => $dong["TenTraiCay"],'GiaBan' => $dong["GiaBan"],'LuotMua' => $dong["LuotMua"],'HinhTraiCay' => "http://".$_SERVER['SERVER_NAME']."/NienLuan_LongHo"."/Image"."/TraiCay/".$dong["HinhTraiCay"] ));//in theo nhu cầu
+		 		$truyvankhuyenmai = "SELECT * FROM khuyenmai km, chitietkhuyenmai ctkm WHERE (Date(Now()) between km.NgayBatDau and km.NgayKetThuc) AND km.MaKM = ctkm.MaKM AND  ctkm.MaTraiCay='".$dong["MaTraiCay"]."'";
+				$ketquakhuyenmai = mysqli_query($conn,$truyvankhuyenmai);
+
+				$GiaKM = 0;
+				if($ketquakhuyenmai){
+					while ($dongkhuyenmai = mysqli_fetch_array($ketquakhuyenmai)) {
+						$GiaKM = $dongkhuyenmai["GiaKM"];
+					}
+				}
+		 		array_push($chuoijson, array('MaTraiCay' => $dong["MaTraiCay"],'TenTraiCay' => $dong["TenTraiCay"],'GiaBan' => $dong["GiaBan"],'GiaKM' => $GiaKM,'LuotMua' => $dong["LuotMua"],'HinhTraiCay' => "http://".$_SERVER['SERVER_NAME']."/NienLuan_LongHo"."/Image"."/TraiCay/".$dong["HinhTraiCay"] ));//in theo nhu cầu
 		 		// $chuoijson[]=$dong;//in ra toàn bộ bảng nhưng không đúng định dạng
 		 	}
 		 	echo "{";
@@ -367,9 +381,16 @@
 		$chuoijson = array();
 		if($ketqua){
 			while($dong = mysqli_fetch_array($ketqua)){
-		 		// echo $dong["TenLTC"]."<br>";
-		 		// in ra mảng theo cấu trúc bảng
-		 		array_push($chuoijson, array('MaTraiCay' => $dong["MaTraiCay"],'TenTraiCay' => $dong["TenTraiCay"],'GiaBan' => $dong["GiaBan"],'LuotMua' => $dong["LuotMua"],'HinhTraiCay' => "http://".$_SERVER['SERVER_NAME']."/NienLuan_LongHo"."/Image"."/TraiCay/".$dong["HinhTraiCay"] ));//in theo nhu cầu
+		 		$truyvankhuyenmai = "SELECT * FROM khuyenmai km, chitietkhuyenmai ctkm WHERE (Date(Now()) between km.NgayBatDau and km.NgayKetThuc) AND km.MaKM = ctkm.MaKM AND  ctkm.MaTraiCay='".$dong["MaTraiCay"]."'";
+				$ketquakhuyenmai = mysqli_query($conn,$truyvankhuyenmai);
+
+				$GiaKM = 0;
+				if($ketquakhuyenmai){
+					while ($dongkhuyenmai = mysqli_fetch_array($ketquakhuyenmai)) {
+						$GiaKM = $dongkhuyenmai["GiaKM"];
+					}
+				}
+		 		array_push($chuoijson, array('MaTraiCay' => $dong["MaTraiCay"],'TenTraiCay' => $dong["TenTraiCay"],'GiaBan' => $dong["GiaBan"],'GiaKM' => $GiaKM,'LuotMua' => $dong["LuotMua"],'HinhTraiCay' => "http://".$_SERVER['SERVER_NAME']."/NienLuan_LongHo"."/Image"."/TraiCay/".$dong["HinhTraiCay"] ));//in theo nhu cầu
 		 		// $chuoijson[]=$dong;//in ra toàn bộ bảng nhưng không đúng định dạng
 		 	}
 		 	echo "{";

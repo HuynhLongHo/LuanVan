@@ -46,6 +46,7 @@ public class ModelTraiCay {
                 traicay.setTenTraiCay(object.getString("TenTraiCay"));
                 traicay.setHinhTraiCay(object.getString("HinhTraiCay"));
                 traicay.setGiaBan(object.getInt("GiaBan"));
+                traicay.setGiaKM(object.getInt("GiaKM"));
                 traicay.setLuotMua(object.getInt("LuotMua"));
                 traicayList.add(traicay);
             }
@@ -93,6 +94,7 @@ public class ModelTraiCay {
                 traicay.setTenTraiCay(object.getString("TenTraiCay"));
                 traicay.setHinhTraiCay(object.getString("HinhTraiCay"));
                 traicay.setGiaBan(object.getInt("GiaBan"));
+                traicay.setGiaKM(object.getInt("GiaKM"));
                 traicay.setLuotMua(object.getInt("LuotMua"));
                 traicayList.add(traicay);
             }
@@ -140,6 +142,7 @@ public class ModelTraiCay {
                 traicay.setTenTraiCay(object.getString("TenTraiCay"));
                 traicay.setHinhTraiCay(object.getString("HinhTraiCay"));
                 traicay.setGiaBan(object.getInt("GiaBan"));
+                traicay.setGiaKM(object.getInt("GiaKM"));
                 traicay.setLuotMua(object.getInt("LuotMua"));
                 traicayList.add(traicay);
             }

@@ -57,6 +57,16 @@
                     android:layout_gravity="right|bottom"
                     android:textSize="15sp"
                     android:textColor="@color/colorBlack"/>
+                <TextView
+                    android:id="@+id/txtGiaKM"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="2dp"
+                    android:gravity="right"
+                    android:layout_gravity="right|bottom"
+                    android:textSize="15sp"
+                    android:textColor="@color/colorBlack"
+                    android:visibility="invisible"/>
             </LinearLayout>
 
         </LinearLayout>
