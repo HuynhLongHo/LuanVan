@@ -1,11 +1,13 @@
 package longho.nienluan.traicayngoainhap.View.DangNhap_DangKy.Fragment;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.util.Patterns;
 import android.view.LayoutInflater;
@@ -25,6 +27,8 @@ import com.facebook.login.LoginResult;
 
 import java.util.Arrays;
 
+import longho.nienluan.traicayngoainhap.EmailVerification.GenerateRandomNumber;
+import longho.nienluan.traicayngoainhap.EmailVerification.SendMail;
 import longho.nienluan.traicayngoainhap.Model.ObjectClass.nguoidung;
 import longho.nienluan.traicayngoainhap.Presenter.DangKy.PresenterLogicDangKy;
 import longho.nienluan.traicayngoainhap.R;
@@ -144,7 +148,7 @@ public class FragmentDangKy extends Fragment implements ViewDangKy, View.OnClick
 
         if(kiemtrathongtin) {
             int gt;
-            nguoidung nguoiDung = new nguoidung();
+            final nguoidung nguoiDung = new nguoidung();
             nguoiDung.setTenNguoiDung(hoten);
             nguoiDung.setEmailND(email);
             nguoiDung.setSoDienThoaiND(sodienthoai);
@@ -159,7 +163,28 @@ public class FragmentDangKy extends Fragment implements ViewDangKy, View.OnClick
             nguoiDung.setGioiTinh(gt);
             nguoiDung.setMaQuyen(0);
 
-            presenterLogicDangKy.ThucHienDangKy(nguoiDung);
+            GenerateRandomNumber generateRandomNumber = new GenerateRandomNumber();
+            final int OTP = generateRandomNumber.RandomNumber();
+
+            SendMail sendMail = new SendMail(getActivity(),email,"Xác nhận", "Mã xác nhận của bạn là: " + OTP);
+            sendMail.execute();
+            //Builder thứ 2
+            AlertDialog.Builder ad = new AlertDialog.Builder(getContext());
+            ad.setTitle("Nhâp mã OTP");
+            ad.setMessage("Vui lòng nhập mã vừa gửi đến email bạn!");
+            final EditText edtOTP = new EditText(getContext());
+            ad.setView(edtOTP);
+            ad.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dlg, int which) {
+                    int otp = Integer.parseInt(edtOTP.getText().toString());
+                    if(OTP == otp){
+                        presenterLogicDangKy.ThucHienDangKy(nguoiDung);
+                    }else{
+                        Toast.makeText(getActivity(), "Mã OTP sai!", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
+            ad.show();
         }else{
             Log.d("kiemtra","Dang ky that bai ");
         }
