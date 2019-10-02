@@ -32,6 +32,7 @@ public class ModelDatHang {
         for (int i=0; i<chiTietDDHList.size();i++){
             chuoijson += "{";
             chuoijson += "\"MaTraiCay\" : " + chiTietDDHList.get(i).getMaTraiCay() + ",";
+            chuoijson += "\"GiaBanHD\" : " + chiTietDDHList.get(i).getGiaBanHD() + ",";
             chuoijson += "\"SoLuongDat\" : " + chiTietDDHList.get(i).getSoLuongDat();
 
             if(i==chiTietDDHList.size() -1 ){

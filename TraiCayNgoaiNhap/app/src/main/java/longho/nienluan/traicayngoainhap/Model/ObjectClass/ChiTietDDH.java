@@ -2,8 +2,16 @@ package longho.nienluan.traicayngoainhap.Model.ObjectClass;
 
 public class ChiTietDDH {
 
-    int MaTraiCay, MaDDH, SoLuongDat;
+    int MaTraiCay, MaDDH, SoLuongDat, GiaBanHD;
     traicay traicay;
+
+    public int getGiaBanHD() {
+        return GiaBanHD;
+    }
+
+    public void setGiaBanHD(int giaBanHD) {
+        GiaBanHD = giaBanHD;
+    }
 
     public longho.nienluan.traicayngoainhap.Model.ObjectClass.traicay getTraicay() {
         return traicay;

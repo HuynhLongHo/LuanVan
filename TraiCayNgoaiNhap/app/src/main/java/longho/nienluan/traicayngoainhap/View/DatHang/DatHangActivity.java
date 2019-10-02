@@ -35,7 +35,7 @@ public class DatHangActivity extends AppCompatActivity implements View.OnClickLi
     TextView txtNhanTienKhiGiaoHang, txtChuyenKhoan;
     Button btnThanhToan;
     CheckBox cbThoaThuan;
-    PresenterLogicDatHang presenterLogicThanhToan;
+    PresenterLogicDatHang presenterLogicDatHang;
     List<ChiTietDDH> chiTietDDHList = new ArrayList<>();
     int MaNguoiDung;
 
@@ -62,9 +62,9 @@ public class DatHangActivity extends AppCompatActivity implements View.OnClickLi
         txtNhanTienKhiGiaoHang = findViewById(R.id.txtNhanTienKhiGiaoHang);
         txtChuyenKhoan = findViewById(R.id.txtChuyenKhoan);
 //
-        presenterLogicThanhToan = new PresenterLogicDatHang(this,this);
-        presenterLogicThanhToan.LayDanhSachSanPhamTrongGioHang();
-        presenterLogicThanhToan.LayThongTinNguoiDung(MaNguoiDung);
+        presenterLogicDatHang = new PresenterLogicDatHang(this,this);
+        presenterLogicDatHang.LayDanhSachSanPhamTrongGioHang();
+        presenterLogicDatHang.LayThongTinNguoiDung(MaNguoiDung);
 
         setSupportActionBar(toolbar);
 
@@ -91,7 +91,7 @@ public class DatHangActivity extends AppCompatActivity implements View.OnClickLi
                     donDatHang.setDiaChiDatHang(diachi);
                     donDatHang.setChuyenKhoan(chonHinhThuc);
                     donDatHang.setChiTietDDHList(chiTietDDHList);
-                    presenterLogicThanhToan.ThemDDH(donDatHang);
+                    presenterLogicDatHang.ThemDDH(donDatHang);
 
                 } else {
                     Toast.makeText(this, "Bạn chưa nhập đầy đủ thông tin !", Toast.LENGTH_SHORT).show();
@@ -128,6 +128,12 @@ public class DatHangActivity extends AppCompatActivity implements View.OnClickLi
         for (int i = 0; i < traicayList.size(); i++) {
             ChiTietDDH chiTietDDH = new ChiTietDDH();
             chiTietDDH.setMaTraiCay(traicayList.get(i).getMaTraiCay());
+            if(traicayList.get(i).getGiaKM() != 0){
+                chiTietDDH.setGiaBanHD(traicayList.get(i).getGiaKM());
+            }else{
+                chiTietDDH.setGiaBanHD(traicayList.get(i).getGiaBan());
+            }
+
             chiTietDDH.setSoLuongDat(traicayList.get(i).getSoLuong());
 
             chiTietDDHList.add(chiTietDDH);
