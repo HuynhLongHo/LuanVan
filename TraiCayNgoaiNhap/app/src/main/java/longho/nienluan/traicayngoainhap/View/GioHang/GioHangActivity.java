@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.List;
@@ -29,6 +30,7 @@ public class GioHangActivity extends AppCompatActivity implements ViewGioHang, V
     Toolbar toolbar;
     Button btnMuaNgay;
     ModelDangNhap modelDangNhap;
+    TextView txtGioHangRong;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -43,6 +45,7 @@ public class GioHangActivity extends AppCompatActivity implements ViewGioHang, V
         recyclerView = (RecyclerView) findViewById(R.id.recyclerGioHang);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         btnMuaNgay = (Button) findViewById(R.id.btnMuaNgay);
+        txtGioHangRong = findViewById(R.id.txtGioHangRong);
 
         setSupportActionBar(toolbar);
 
@@ -55,10 +58,17 @@ public class GioHangActivity extends AppCompatActivity implements ViewGioHang, V
 
     @Override
     public void HienThiDanhSachSanPhamTrongGioHang(List<traicay> traicayList) {
+        btnMuaNgay.setVisibility(View.VISIBLE);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         AdapterGioHang adapterGioHang = new AdapterGioHang(this,traicayList);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapterGioHang);
+    }
+
+    @Override
+    public void GioHangRong() {
+        btnMuaNgay.setVisibility(View.GONE);
+        txtGioHangRong.setVisibility(View.VISIBLE);
     }
 
 

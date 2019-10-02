@@ -23,6 +23,8 @@ public class PresenterLogicGioHang implements IPresenterGioHang {
         List<traicay> traicayList = modelGioHang.LayDanhSachSanPhamTrongGioHang();
         if(traicayList.size() > 0){
             viewGioHang.HienThiDanhSachSanPhamTrongGioHang(traicayList);
+        }else{
+            viewGioHang.GioHangRong();
         }
     }
 }

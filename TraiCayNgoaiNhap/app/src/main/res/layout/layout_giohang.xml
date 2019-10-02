@@ -21,10 +21,18 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        >
+        />
 
-
-    </android.support.v7.widget.RecyclerView>
+    <TextView
+        android:id="@+id/txtGioHangRong"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="Giỏ hàng rỗng"
+        android:gravity="center"
+        android:textColor="@color/colorBlack"
+        android:background="@color/colorWhite"
+        android:textSize="40sp"
+        android:visibility="gone"/>
 
     <Button
         android:id="@+id/btnMuaNgay"
@@ -34,6 +42,6 @@
         android:layout_gravity="bottom"
         android:padding="20dp"
         android:background="@color/bgLogo"
-        />
+        android:visibility="gone"/>
 
 </android.support.design.widget.CoordinatorLayout>
