@@ -66,10 +66,10 @@ public class AdapterDonDatHang extends RecyclerView.Adapter<AdapterDonDatHang.Vi
         int tongHoaDon = 0;
         int sosp = chiTietDDHList.size();
         for (int i = 0; i<sosp; i++){
-            tongHoaDon += chiTietDDHList.get(i).getTraicay().getGiaBan()*chiTietDDHList.get(i).getSoLuongDat();
+            tongHoaDon += chiTietDDHList.get(i).getGiaBanHD()*chiTietDDHList.get(i).getSoLuongDat();
         }
         DecimalFormat formatter = new DecimalFormat("###,###");//định dạng tiền tệ
-        String sotien = formatter.format(tongHoaDon) + " VNĐ";
+        String sotien = formatter.format(tongHoaDon) + "đ";
 
         holder.txtTongTien.setText("Tổng Tiền: " + sotien);
         holder.txtMaDDH.setText("Mã đơn hàng: " + String.valueOf(donDatHang.getMaDDH()));

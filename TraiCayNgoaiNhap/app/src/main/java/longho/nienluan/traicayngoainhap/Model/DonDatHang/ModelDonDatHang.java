@@ -68,6 +68,7 @@ public class ModelDonDatHang {
                     chiTietDDH.setMaDDH(objectChiTietDDH.getInt("MaDDH"));
                     chiTietDDH.setMaTraiCay(objectChiTietDDH.getInt("MaTraiCay"));
                     chiTietDDH.setSoLuongDat(objectChiTietDDH.getInt("SoLuongDat"));
+                    chiTietDDH.setGiaBanHD(objectChiTietDDH.getInt("GiaBanHD"));
 
                     traicay traicay = new traicay();
                     traicay.setMaTraiCay(objectChiTietDDH.getInt("MaTraiCay"));

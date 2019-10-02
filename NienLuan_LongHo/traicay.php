@@ -70,6 +70,9 @@
 		case 'LayDanhSachDonDatHangTheoMaND':
 			$ham();
 			break;
+		case 'TimKiemSanPhamTheoTenSP':
+			$ham();
+			break;
 	}
 
 
@@ -457,7 +460,18 @@
 			while($dong = mysqli_fetch_array($ketqua)){
 		 		// echo $dong["TenLTC"]."<br>";
 		 		// in ra mảng theo cấu trúc bảng
-		 		array_push($chuoijson, array('MaTraiCay' => $dong["MaTraiCay"],'MaLTC' => $dong["MaLTC"],'MaNCC' => $dong["MaNCC"],'MaQG' => $dong["MaQG"],'TenTraiCay' => $dong["TenTraiCay"],'GiaBan' => $dong["GiaBan"],'HinhTraiCay' => "http://".$_SERVER['SERVER_NAME']."/NienLuan_LongHo"."/Image"."/TraiCay/".$dong["HinhTraiCay"],'HinhChiTiet' => $dong["HinhChiTiet"],'MieuTaTC' => $dong["MieuTaTC"],'LuotMua' => $dong["LuotMua"],'ThanhPhanDinhDuong' => $dong["ThanhPhanDinhDuong"],'MoiTruongTrong' => $dong["MoiTruongTrong"],'SoLuongTon' => $dong["SoLuongTon"],'TenNCC' => $dong["TenNCC"],'DiaChiNCC' => $dong["DiaChiNCC"] ));//in theo nhu cầu
+
+				$truyvankhuyenmai = "SELECT * FROM khuyenmai km, chitietkhuyenmai ctkm WHERE (Date(Now()) between km.NgayBatDau and km.NgayKetThuc) AND km.MaKM = ctkm.MaKM AND  ctkm.MaTraiCay='".$dong["MaTraiCay"]."'";
+				$ketquakhuyenmai = mysqli_query($conn,$truyvankhuyenmai);
+
+				$GiaKM = 0;
+				if($ketquakhuyenmai){
+					while ($dongkhuyenmai = mysqli_fetch_array($ketquakhuyenmai)) {
+						$GiaKM = $dongkhuyenmai["GiaKM"];
+					}
+				}
+
+		 		array_push($chuoijson, array('MaTraiCay' => $dong["MaTraiCay"],'MaLTC' => $dong["MaLTC"],'MaNCC' => $dong["MaNCC"],'MaQG' => $dong["MaQG"],'TenTraiCay' => $dong["TenTraiCay"],'GiaBan' => $dong["GiaBan"],'HinhTraiCay' => "http://".$_SERVER['SERVER_NAME']."/NienLuan_LongHo"."/Image"."/TraiCay/".$dong["HinhTraiCay"],'HinhChiTiet' => $dong["HinhChiTiet"],'MieuTaTC' => $dong["MieuTaTC"],'LuotMua' => $dong["LuotMua"],'ThanhPhanDinhDuong' => $dong["ThanhPhanDinhDuong"],'MoiTruongTrong' => $dong["MoiTruongTrong"],'SoLuongTon' => $dong["SoLuongTon"],'TenNCC' => $dong["TenNCC"],'DiaChiNCC' => $dong["DiaChiNCC"],'GiaKM' => $GiaKM ));//in theo nhu cầu
 		 		// $chuoijson[]=$dong;//in ra toàn bộ bảng nhưng không đúng định dạng
 		 	}
 		 	echo "{";
@@ -553,8 +567,9 @@
 
 				$masp = $jsonObect->MaTraiCay;
 				$soluong = $jsonObect->SoLuongDat;
+				$GiaBanHD = $jsonObect->GiaBanHD;
 
-				$truyvan = "INSERT INTO chitietddh (MaDDH,MaTraiCay,SoLuongDat) VALUES ('".$mahd."', '".$masp."', '".$soluong."')";
+				$truyvan = "INSERT INTO chitietddh (MaDDH,MaTraiCay,SoLuongDat,GiaBanHD) VALUES ('".$mahd."', '".$masp."', '".$soluong."', '".$GiaBanHD."')";
 				$ketqua1 = mysqli_query($conn,$truyvan);
 
 
@@ -579,7 +594,7 @@
 		// 	$manguoidung = $_GET["manguoidung"];
 		// }
 
-		$truyvan = "SELECT * FROM dondathang where MaNguoiDung = ".$manguoidung;
+		$truyvan = "SELECT * FROM dondathang where MaNguoiDung = ".$manguoidung." ORDER BY MaDDH DESC";
 		$ketqua = mysqli_query($conn,$truyvan);
 
 		echo "{";
@@ -607,6 +622,41 @@
 
 		echo json_encode($chuoijson,JSON_UNESCAPED_UNICODE);
 
+		echo "}";
+	}
+	function TimKiemSanPhamTheoTenSP(){
+		include_once("config.php");
+		$chuoijson = array();
+
+		if(isset($_POST["TenTraiCay"])){
+			$TenTraiCay = $_POST["TenTraiCay"];
+		}
+
+		$ngayhientai = date("Y/m/d");
+		$truyvan = " SELECT *  FROM traicay WHERE TenTraiCay like '%".$TenTraiCay."%'";
+		$ketqua = mysqli_query($conn,$truyvan);
+
+
+		echo "{";
+		echo "\"DanhSachTraiCay\":";
+
+		if($ketqua){
+			while ($dong = mysqli_fetch_array($ketqua)) {
+				$truyvankhuyenmai = "SELECT * FROM khuyenmai km, chitietkhuyenmai ctkm WHERE (Date(Now()) between km.NgayBatDau and km.NgayKetThuc) AND km.MaKM = ctkm.MaKM AND  ctkm.MaTraiCay='".$dong["MaTraiCay"]."'";
+				$ketquakhuyenmai = mysqli_query($conn,$truyvankhuyenmai);
+
+				$GiaKM = 0;
+				if($ketquakhuyenmai){
+					while ($dongkhuyenmai = mysqli_fetch_array($ketquakhuyenmai)) {
+						$GiaKM = $dongkhuyenmai["GiaKM"];
+					}
+				}
+
+				array_push($chuoijson, array("MaTraiCay"=>$dong["MaTraiCay"], "TenTraiCay"=>$dong["TenTraiCay"], "LuotMua"=>$dong["LuotMua"], "GiaBan"=>$dong["GiaBan"],'HinhTraiCay' => "http://".$_SERVER['SERVER_NAME']."/NienLuan_LongHo"."/Image"."/TraiCay/".$dong["HinhTraiCay"], "GiaKM"=>$GiaKM));
+			}
+		}
+
+		echo json_encode($chuoijson,JSON_UNESCAPED_UNICODE);
 		echo "}";
 	}
 ?>

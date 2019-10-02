@@ -57,7 +57,7 @@ public class AdapterDonDatHangSanPham extends RecyclerView.Adapter<AdapterDonDat
         ChiTietDDH chiTietDDH = chiTietDDHList.get(position);
         traicay traicay = chiTietDDH.getTraicay();
         DecimalFormat formatter = new DecimalFormat("###,###");//định dạng tiền tệ
-        String sotien = formatter.format(traicay.getGiaBan()) + " VNĐ";
+        String sotien = formatter.format(chiTietDDH.getGiaBanHD()) + "đ";
 
         holder.txtTenTraicay.setText(String.valueOf(traicay.getTenTraiCay()));
         holder.txtSoLuong.setText("Số lượng: " + String.valueOf(chiTietDDH.getSoLuongDat()));
