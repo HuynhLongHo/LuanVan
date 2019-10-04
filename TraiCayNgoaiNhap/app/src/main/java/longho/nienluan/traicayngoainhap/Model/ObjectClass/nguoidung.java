@@ -3,7 +3,15 @@ package longho.nienluan.traicayngoainhap.Model.ObjectClass;
 public class nguoidung {
 
     int MaNguoiDung, GioiTinh, MaQuyen;
-    String TenNguoiDung, DiaChiND, SoDienThoaiND, EmailND, MatKhau, CauHoi, CauTraLoi;
+    String TenNguoiDung, DiaChiND, SoDienThoaiND, EmailND, MatKhau, CauHoi, CauTraLoi, TenQuyen;
+
+    public String getTenQuyen() {
+        return TenQuyen;
+    }
+
+    public void setTenQuyen(String tenQuyen) {
+        TenQuyen = tenQuyen;
+    }
 
     public int getMaQuyen() {
         return MaQuyen;

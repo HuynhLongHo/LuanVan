@@ -103,6 +103,10 @@
             android:name=".View.TimKiem.TimKiemActivity"
             android:label="Tìm kiếm"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".View.Admin.AdminActivity"
+            android:label="Admin quản lý"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

@@ -37,6 +37,7 @@ import java.util.List;
 import longho.nienluan.traicayngoainhap.Adapter.ExpandAdapter;
 import longho.nienluan.traicayngoainhap.Adapter.ViewPaperAdapter;
 import longho.nienluan.traicayngoainhap.Presenter.ChiTietTraiCay.PresenterLogicChiTietTraiCay;
+import longho.nienluan.traicayngoainhap.View.Admin.AdminActivity;
 import longho.nienluan.traicayngoainhap.View.CaiDat.CaiDatActivity;
 import longho.nienluan.traicayngoainhap.View.DonDatHang.DonDatHangActivity;
 import longho.nienluan.traicayngoainhap.View.GioHang.GioHangActivity;
@@ -65,7 +66,7 @@ public class TrangChuActivity extends AppCompatActivity implements ViewXuLyMenu,
     String tennguoidung ="";
     AccessToken accessToken;
     Menu menu;
-    MenuItem itemDangNhap, itDonHangCuaToi, itCaiDat, itSearch;
+    MenuItem itemDangNhap, itDonHangCuaToi, itCaiDat, itSearch, itAdmin;
     CollapsingToolbarLayout collapsingToolbarLayout;
     AppBarLayout appBarLayout;
     ModelDangNhap modelDangNhap;
@@ -132,6 +133,7 @@ public class TrangChuActivity extends AppCompatActivity implements ViewXuLyMenu,
         itCaiDat = menu.findItem(R.id.itCaiDat);
         itDonHangCuaToi = menu.findItem(R.id.itDonHangCuaToi);
         itSearch = menu.findItem(R.id.itSearch);
+        itAdmin = menu.findItem(R.id.itAdmin);
         accessToken = logicXuLyMenu.LayTokenNguoiDungFB();
         if(accessToken != null){
             GraphRequest graphRequest = GraphRequest.newMeRequest(accessToken, new GraphRequest.GraphJSONObjectCallback() {
@@ -154,6 +156,11 @@ public class TrangChuActivity extends AppCompatActivity implements ViewXuLyMenu,
             graphRequest.setParameters(parameter);
             graphRequest.executeAsync();
 
+        }
+
+        String tenquyen = modelDangNhap.LayTenQuyenTruyCap(this);
+        if(tenquyen.equals("Admin")){
+            itAdmin.setVisible(true);
         }
 
         String TenNguoiDung = modelDangNhap.LayCachedDangNhap(this);
@@ -221,6 +228,10 @@ public class TrangChuActivity extends AppCompatActivity implements ViewXuLyMenu,
             case R.id.itCaiDat:
                 Intent iCaiDat = new Intent(this,CaiDatActivity.class);
                 startActivity(iCaiDat);
+                break;
+            case R.id.itAdmin:
+                Intent iAdmin = new Intent(this,AdminActivity.class);
+                startActivity(iAdmin);
                 break;
             case R.id.itSearch:
                 Intent iTimKiem = new Intent(this, TimKiemActivity.class);

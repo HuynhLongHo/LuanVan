@@ -58,6 +58,19 @@ public class ModelDangNhap {
 
         editor.commit();
     }
+    public String LayTenQuyenTruyCap(Context context){
+        SharedPreferences cachedDangNhap = context.getSharedPreferences("dangnhap",Context.MODE_PRIVATE);
+        String TenQuyen = cachedDangNhap.getString("TenQuyen","");
+
+        return TenQuyen;
+    }
+    public void CapNhatCachedTenQuyen(Context context, String TenQuyen){
+        SharedPreferences cachedDangNhap = context.getSharedPreferences("dangnhap",Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = cachedDangNhap.edit();
+        editor.putString("TenQuyen",TenQuyen);
+
+        editor.commit();
+    }
     public boolean KiemTraDangNhap(Context context, String EmailND, String MatKhau){
         boolean kiemtra = false;
         String duongdan = TrangChuActivity.SERVER_NAME;
@@ -87,8 +100,10 @@ public class ModelDangNhap {
                 kiemtra = true;
                 String tennv = jsonObject.getString("TenNguoiDung");
                 String maND = jsonObject.getString("MaNguoiDung");
+                String tenquyen = jsonObject.getString("TenQuyen");
 
                 CapNhatCachedDangNhap(context,tennv,maND);
+                CapNhatCachedTenQuyen(context,tenquyen);
 
             }else{
                 kiemtra = false;
