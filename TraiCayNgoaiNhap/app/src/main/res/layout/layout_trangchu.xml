@@ -18,7 +18,7 @@
                 android:id="@+id/appbar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/bgToolbar"
+                android:background="@drawable/gradient"
                 android:fitsSystemWindows="true">
                 <android.support.design.widget.CollapsingToolbarLayout
                     android:id="@+id/collapsing_toolbar"
@@ -101,7 +101,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:tabMode="scrollable"
-            android:background="@color/colorGreen"
+            android:background="@drawable/gradient"
             android:layout_gravity="bottom"
             app:tabTextColor="@color/colorWhite"
             app:tabTextAppearance="@style/capfalse"

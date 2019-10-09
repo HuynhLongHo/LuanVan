@@ -32,14 +32,15 @@ public class AdapterKhuyenMai extends RecyclerView.Adapter<AdapterKhuyenMai.Recy
     }
     public class RecyclerViewHolder extends RecyclerView.ViewHolder{
         TextView txtTenKhuyenMai;
-        TextView txtThoiGianKM;
+        TextView txtBatDauKM, txtKetThucKM;
         ImageView imgHinhKM;
         ProgressBar pgbKhuyenMai;
         LinearLayout lnKhuyenMai;
         public RecyclerViewHolder(View itemView) {
             super(itemView);
             txtTenKhuyenMai = itemView.findViewById(R.id.txtTenKhuyenMai);
-            txtThoiGianKM = itemView.findViewById(R.id.txtThoiGianKM);
+            txtBatDauKM = itemView.findViewById(R.id.txtBatDauKM);
+            txtKetThucKM = itemView.findViewById(R.id.txtKetThucKM);
             imgHinhKM = itemView.findViewById(R.id.imgHinhKM);
             pgbKhuyenMai = itemView.findViewById(R.id.pgbKhuyenMai);
             lnKhuyenMai = itemView.findViewById(R.id.lnKhuyenMai);
@@ -58,8 +59,9 @@ public class AdapterKhuyenMai extends RecyclerView.Adapter<AdapterKhuyenMai.Recy
     public void onBindViewHolder(@NonNull final RecyclerViewHolder holder, int position) {
         final KhuyenMai khuyenMai = khuyenMaiList.get(position);
         holder.txtTenKhuyenMai.setText(khuyenMai.getTenKM());
-        holder.txtThoiGianKM.setText("Từ " + khuyenMai.getNgayBatDau() + " đến " + khuyenMai.getNgayKetThuc());
-        Picasso.with(context).load(khuyenMai.getHinhKM()).resize(350,250).into(holder.imgHinhKM, new Callback() {
+        holder.txtBatDauKM.setText("Từ " + khuyenMai.getNgayBatDau());
+        holder.txtKetThucKM.setText("đến " + khuyenMai.getNgayKetThuc());
+        Picasso.with(context).load(khuyenMai.getHinhKM()).resize(250,150).into(holder.imgHinhKM, new Callback() {
             @Override
             public void onSuccess() {
                 holder.pgbKhuyenMai.setVisibility(View.GONE);

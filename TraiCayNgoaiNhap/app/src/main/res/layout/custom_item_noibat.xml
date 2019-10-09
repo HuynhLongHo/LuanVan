@@ -40,32 +40,14 @@
 
                 <TextView
                     android:id="@+id/txtLuotMua"
-                    android:layout_width="80dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="2dp"
-                    android:gravity="left"
-                    android:layout_gravity="left|bottom"
-                    android:textSize="12sp"
-                    android:textColor="@color/tranparentBlack"/>
+                    style="@style/TextLuotMua"/>
 
                 <TextView
                     android:id="@+id/txtGiaTraiCay"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="2dp"
-                    android:gravity="right"
-                    android:layout_gravity="right|bottom"
-                    android:textSize="15sp"
-                    android:textColor="@color/colorBlack"/>
+                    style="@style/TextGiaBan"/>
                 <TextView
                     android:id="@+id/txtGiaKM"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="2dp"
-                    android:gravity="right"
-                    android:layout_gravity="right|bottom"
-                    android:textSize="15sp"
-                    android:textColor="@color/colorBlack"
+                    style="@style/TextGiaKM"
                     android:visibility="invisible"/>
             </LinearLayout>
 

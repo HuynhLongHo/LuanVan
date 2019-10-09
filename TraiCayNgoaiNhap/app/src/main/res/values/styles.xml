@@ -54,7 +54,7 @@
     <style name="Toolbar">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">28dp</item>
-        <item name="android:background">@color/bgToolbar</item>
+        <item name="android:background">@drawable/gradient3</item>
     </style>
     <style name="TextManHinhChao"
         parent="@android:style/TextAppearance.Small">
@@ -88,14 +88,6 @@
     <style name="DoiMauNgoiSaoRatingBar" parent="AppTheme">
         <item name="colorControlNormal">@color/bgLogo</item>
     </style>
-    <style name="TieuDeRecycler">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:textColor">@color/colorBlack</item>
-        <item name="android:textSize">20sp</item>
-        <item name="android:layout_marginTop">10dp</item>
-        <item name="android:layout_marginLeft">10dp</item>
-    </style>
     <style name="TextClick">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
@@ -104,27 +96,64 @@
         <item name="android:layout_marginTop">10dp</item>
         <item name="android:layout_marginLeft">10dp</item>
     </style>
-    <style name="TenDoiTuong">
-        <item name="android:layout_width">match_parent</item>
+    <style name="TieuDeRecycler">
+        <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textColor">@color/colorBlack</item>
-        <item name="android:textSize">17sp</item>
-        <item name="android:textAlignment">center</item>
-        <item name="android:background">@color/bgLogo</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:background">@drawable/tieude</item>
+        <item name="android:layout_marginTop">10dp</item>
+        <item name="android:layout_marginLeft">10dp</item>
+        <item name="android:paddingLeft">10dp</item>
+        <item name="android:paddingRight">10dp</item>
     </style>
-    <style name="ThoiGianKhuyenMai">
+    <style name="TenDoiTuong">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textColor">@color/colorBlack</item>
         <item name="android:textSize">13sp</item>
         <item name="android:textAlignment">center</item>
+        <item name="android:background">@drawable/gradient3</item>
+    </style>
+    <style name="TextGiaBan">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginRight">2dp</item>
+        <item name="android:gravity">right</item>
+        <item name="android:layout_gravity">right</item>
+        <item name="android:textSize">11sp</item>
+        <item name="android:textColor">@color/colorBlack</item>
+    </style>
+    <style name="TextGiaKM">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginRight">2dp</item>
+        <item name="android:gravity">right</item>
+        <item name="android:layout_gravity">right</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/colorRed</item>
+    </style>
+    <style name="TextLuotMua">
+        <item name="android:layout_width">80dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginLeft">2dp</item>
+        <item name="android:textSize">10sp</item>
+        <item name="android:textColor">@color/colorBlack</item>
+    </style>
+    <style name="ThoiGianKhuyenMai">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/colorRed</item>
+        <item name="android:textSize">12sp</item>
         <item name="android:background">@color/colorWhite</item>
+        <item name="android:layout_marginLeft">10dp</item>
+        <item name="android:layout_marginRight">10dp</item>
     </style>
     <style name="DinhDangFragment">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">match_parent</item>
         <item name="android:orientation">vertical</item>
-        <item name="android:background">@color/colorSliderInActive</item>
+        <item name="android:background">@drawable/gradient2</item>
     </style>
 
     <style name="DinhDangNhapText">

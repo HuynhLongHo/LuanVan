@@ -31,9 +31,13 @@
                 style="@style/TenDoiTuong"
                 />
             <TextView
-                android:id="@+id/txtThoiGianKM"
+                android:id="@+id/txtBatDauKM"
                 style="@style/ThoiGianKhuyenMai"
-                />
+                android:gravity="left"/>
+            <TextView
+                android:id="@+id/txtKetThucKM"
+                style="@style/ThoiGianKhuyenMai"
+                android:gravity="right"/>
         </LinearLayout>
     </FrameLayout>
 
