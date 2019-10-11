@@ -107,6 +107,10 @@
             android:name=".View.Admin.AdminActivity"
             android:label="Admin quản lý"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".View.Admin.DuyetDonHang.DuyetDonHangActivity"
+            android:label="Duyệt đơn hàng"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

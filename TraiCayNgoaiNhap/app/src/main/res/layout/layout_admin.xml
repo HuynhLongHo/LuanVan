@@ -15,8 +15,9 @@
 
     </android.support.design.widget.AppBarLayout>
     <TextView
+        android:id="@+id/txtDuyetDonHang"
         style="@style/TextClick"
-        android:text="Quản lý hóa đơn"/>
+        android:text="Duyệt đơn hàng"/>
     <TextView
         style="@style/TextClick"
         android:text="Quản lý nhân viên"/>

@@ -73,6 +73,12 @@
 		case 'TimKiemSanPhamTheoTenSP':
 			$ham();
 			break;
+		case 'AdminLayDanhSachDonDatHangChuaDuyet':
+			$ham();
+			break;
+		case 'AdminDuyetDonHang':
+			$ham();
+			break;
 	}
 
 
@@ -82,7 +88,7 @@
 		$EmailND = $_POST["EmailND"];
 		$MatKhau = $_POST["MatKhau"];
 
-		$truyvan = "SELECT * FROM nguoidung WHERE EmailND = '".$EmailND."' AND MatKhau = '".$MatKhau."' ";
+		$truyvan = "SELECT * FROM nguoidung nd, quyentruycap qtc WHERE nd.MaQuyen = qtc.MaQuyen AND nd.EmailND = '".$EmailND."' AND nd.MatKhau = '".$MatKhau."' ";
 		$ketqua = (mysqli_query($conn,$truyvan));
 		$demdong = mysqli_num_rows($ketqua);
 		if($demdong>=1){
@@ -90,8 +96,9 @@
 			while ($dong = mysqli_fetch_array($ketqua)) {
 				$TenNguoiDung = $dong["TenNguoiDung"];
 				$MaNguoiDung = $dong["MaNguoiDung"];
+				$TenQuyen = $dong["TenQuyen"];
 			}
-			echo "{\"ketqua\":\"true\",\"TenNguoiDung\":\"".$TenNguoiDung."\",\"MaNguoiDung\":\"".$MaNguoiDung."\"}";
+			echo "{\"ketqua\":\"true\",\"TenNguoiDung\":\"".$TenNguoiDung."\",\"MaNguoiDung\":\"".$MaNguoiDung."\",\"TenQuyen\":\"".$TenQuyen."\"}";
 		}
 		else {
 			echo "{\"ketqua\":\"false\"}";
@@ -572,7 +579,7 @@
 		$ngaygiao = date_create($ngayhientai);
 		$ngaygiao = date_modify($ngaygiao,"+3 days");
 		$ngaygiao = date_format($ngaygiao,"Y/m/d") ;
-		$trangthai = "chờ kiểm duyệt";
+		$trangthai = "Chờ kiểm duyệt";
 
 		$truyvan = "INSERT INTO dondathang (MaNguoiDung,NgayDat,NgayGiao,TrangThaiGiao,TenNguoiDatHang,SoDienThoaiDatHang,DiaChiDatHang,ChuyenKhoan) VALUES ('".$manguoidung."', '".$ngayhientai."', '".$ngaygiao."', '".$trangthai."', '".$tennguoinhan."', '".$sodt."', '".$diachi."', '".$chuyenkhoan."')";
 		$ketqua = mysqli_query($conn,$truyvan);
@@ -679,5 +686,50 @@
 
 		echo json_encode($chuoijson,JSON_UNESCAPED_UNICODE);
 		echo "}";
+	}
+	function AdminLayDanhSachDonDatHangChuaDuyet(){
+		include_once("config.php");
+		$chuoijson = array();
+
+		$truyvan = "SELECT * FROM dondathang where TrangThaiGiao = 'Chờ kiểm duyệt'";
+		$ketqua = mysqli_query($conn,$truyvan);
+
+		echo "{";
+		echo "\"DanhSachDonDatHang\":";
+
+		if($ketqua){
+			while ($dong = mysqli_fetch_array($ketqua)) {
+
+				$truyvanchitietddh = "SELECT * FROM chitietddh ctddh, traicay tc WHERE ctddh.MaDDH = '".$dong["MaDDH"]."' AND ctddh.MaTraiCay = tc.MaTraiCay";
+
+				$ketquadondathang = mysqli_query($conn,$truyvanchitietddh);
+
+				$chuoijsondanhsachsanpham = array();
+
+				if($ketquadondathang){
+					while ( $dongsanpham = mysqli_fetch_array($ketquadondathang) ) {
+						$chuoijsondanhsachsanpham[] = $dongsanpham;
+					}
+				}
+
+				array_push($chuoijson, array("MaDDH"=>$dong["MaDDH"],"MaNguoiDung"=>$dong["MaNguoiDung"],"TenNguoiDatHang"=>$dong["TenNguoiDatHang"],"SoDienThoaiDatHang"=>$dong["SoDienThoaiDatHang"],"DiaChiDatHang"=>$dong["DiaChiDatHang"],"NgayDat"=>$dong["NgayDat"],"NgayGiao"=>$dong["NgayGiao"],"TrangThaiGiao"=>$dong["TrangThaiGiao"],"MoTa"=>$dong["MoTa"],"DanhSachTraiCay"=>$chuoijsondanhsachsanpham));
+
+			}
+		}
+
+		echo json_encode($chuoijson,JSON_UNESCAPED_UNICODE);
+
+		echo "}";
+	}
+	function AdminDuyetDonHang(){
+    	include_once("config.php");
+    	$MaDDH = $_POST["MaDDH"];
+    	$TrangThaiGiao = $_POST["TrangThaiGiao"];
+
+		$truyvan = "UPDATE dondathang SET TrangThaiGiao = '".$TrangThaiGiao."' WHERE MaDDH = '".$MaDDH."'";
+		if(mysqli_query($conn,$truyvan)){
+			echo "{\"ketqua\":\"true\"}";
+		}
+		else echo "{\"ketqua\":\"false\"}";
 	}
 ?>
