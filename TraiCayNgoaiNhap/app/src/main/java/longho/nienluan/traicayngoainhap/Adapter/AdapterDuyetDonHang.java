@@ -4,6 +4,7 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.SparseBooleanArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,11 +27,13 @@ public class AdapterDuyetDonHang extends RecyclerView.Adapter<AdapterDuyetDonHan
     List<DonDatHang> donDatHangList;
     Context context;
     PresenterLogicDuyetDonHang presenterLogicDuyetDonHang;
+    private SparseBooleanArray itemStateArray;
 
     public AdapterDuyetDonHang(Context context, List<DonDatHang> donDatHangList){
         this.donDatHangList = donDatHangList;
         this.context = context;
         presenterLogicDuyetDonHang = new PresenterLogicDuyetDonHang();
+        itemStateArray = new SparseBooleanArray();
     }
 
 
@@ -50,6 +53,14 @@ public class AdapterDuyetDonHang extends RecyclerView.Adapter<AdapterDuyetDonHan
             rcvDanhSachTraiCayHD = itemView.findViewById(R.id.rcvDanhSachTraiCayHD);
             lnDuyetDonHang = itemView.findViewById(R.id.lnDuyetDonHang);
         }
+        void bind(int position) {
+            // use the sparse boolean array to check
+            if (!itemStateArray.get(position, false)) {
+                chkDuyetDonHang.setChecked(false);}
+            else {
+                chkDuyetDonHang.setChecked(true);
+            }
+        }
     }
     @NonNull
     @Override
@@ -63,9 +74,11 @@ public class AdapterDuyetDonHang extends RecyclerView.Adapter<AdapterDuyetDonHan
     }
 
     @Override
-    public void onBindViewHolder(@NonNull final ViewHolderDuyetDonHang holder, int position) {
+    public void onBindViewHolder(@NonNull final ViewHolderDuyetDonHang holder, final int position) {
 
         final DonDatHang donDatHang = donDatHangList.get(position);
+
+        holder.bind(position);
 
         List<ChiTietDDH> chiTietDDHList = new ArrayList<>();
         chiTietDDHList = donDatHang.getChiTietDDHList();
@@ -91,16 +104,37 @@ public class AdapterDuyetDonHang extends RecyclerView.Adapter<AdapterDuyetDonHan
         holder.chkDuyetDonHang.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if(isChecked){
+                if(!itemStateArray.get(position,false)){
+                    holder.chkDuyetDonHang.setChecked(true);
+                    itemStateArray.put(position,true);
                     donDatHang.setTrangThaiGiao("Đã duyệt");
                     presenterLogicDuyetDonHang.DuyetDonHang(donDatHang);
-                }else{
+                }
+                else{
+                    holder.chkDuyetDonHang.setChecked(false);
+                    itemStateArray.put(position,false);
                     donDatHang.setTrangThaiGiao("Chờ kiểm duyệt");
                     presenterLogicDuyetDonHang.DuyetDonHang(donDatHang);
                 }
             }
         });
-
+        holder.lnDuyetDonHang.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(!itemStateArray.get(position,false)){
+                    holder.chkDuyetDonHang.setChecked(true);
+                    itemStateArray.put(position,true);
+                    donDatHang.setTrangThaiGiao("Đã duyệt");
+                    presenterLogicDuyetDonHang.DuyetDonHang(donDatHang);
+                }
+                else{
+                    holder.chkDuyetDonHang.setChecked(false);
+                    itemStateArray.put(position,false);
+                    donDatHang.setTrangThaiGiao("Chờ kiểm duyệt");
+                    presenterLogicDuyetDonHang.DuyetDonHang(donDatHang);
+                }
+            }
+        });
     }
 
     @Override
