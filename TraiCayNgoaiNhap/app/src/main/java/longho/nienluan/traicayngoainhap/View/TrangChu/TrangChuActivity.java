@@ -52,11 +52,11 @@ import longho.nienluan.traicayngoainhap.View.TimKiem.TimKiemActivity;
 
 public class TrangChuActivity extends AppCompatActivity implements ViewXuLyMenu,AppBarLayout.OnOffsetChangedListener {
 
-    public static final String SERVER_NAME = "http://10.2.56.155:80/NienLuan_LongHo/traicay.php";//B21_P4
-    public static final String SERVER = "http://10.2.56.155:80/NienLuan_LongHo/Image/TraiCay/";//B21_P4
+//    public static final String SERVER_NAME = "http://10.2.56.155:80/NienLuan_LongHo/traicay.php";//B21_P4
+//    public static final String SERVER = "http://10.2.56.155:80/NienLuan_LongHo/Image/TraiCay/";//B21_P4
     
-//    public static final String SERVER_NAME = "https://longho-traicay.000webhostapp.com/NienLuan_LongHo/traicay.php";
-//    public static final String SERVER = "https://longho-traicay.000webhostapp.com/NienLuan_LongHo/Image/TraiCay/";
+    public static final String SERVER_NAME = "https://longho-traicay.000webhostapp.com/NienLuan_LongHo/traicay.php";
+    public static final String SERVER = "https://longho-traicay.000webhostapp.com/NienLuan_LongHo/Image/TraiCay/";
 
 
     Toolbar toolbar;
@@ -209,6 +209,7 @@ public class TrangChuActivity extends AppCompatActivity implements ViewXuLyMenu,
                 }
                 if(!modelDangNhap.LayCachedDangNhap(this).equals("")) {
                     modelDangNhap.CapNhatCachedDangNhap(this, "","");
+                    modelDangNhap.CapNhatCachedTenQuyen(this,"");
                     this.menu.clear();
                     this.onCreateOptionsMenu(this.menu);
                 }
