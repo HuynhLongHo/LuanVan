@@ -14,7 +14,7 @@ import longho.nienluan.traicayngoainhap.Model.ObjectClass.traicay;
 import longho.nienluan.traicayngoainhap.View.TrangChu.TrangChuActivity;
 
 public class ModelHienThiTraiCayKhuyenMai {
-    public List<traicay> LayDanhSachTraiCayKhuyenMai(int MaKM){
+    public List<traicay> LayDanhSachTraiCayKhuyenMaiTheoMa(int MaKM){
         List<traicay> traicayList = new ArrayList<>();
 
         List<HashMap<String,String>> attrs = new ArrayList<>();
@@ -23,7 +23,7 @@ public class ModelHienThiTraiCayKhuyenMai {
         String duongdan = TrangChuActivity.SERVER_NAME;
 
         HashMap<String,String> hsHam = new HashMap<>();
-        hsHam.put("ham","LayDanhSachTraiCayKhuyenMai");
+        hsHam.put("ham","LayDanhSachTraiCayKhuyenMaiTheoMa");
         HashMap<String,String> hsMaKM = new HashMap<>();
         hsMaKM.put("makm", String.valueOf(MaKM));
 

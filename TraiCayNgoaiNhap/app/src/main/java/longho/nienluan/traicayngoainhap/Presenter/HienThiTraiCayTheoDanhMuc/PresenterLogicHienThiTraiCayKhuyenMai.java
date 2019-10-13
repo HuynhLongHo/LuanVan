@@ -16,7 +16,7 @@ public class PresenterLogicHienThiTraiCayKhuyenMai implements IPresenterHienThiT
     }
     @Override
     public void LayDanhSachTraiCayKhuyenMai(int MaKM) {
-        List<traicay> traicayList = modelHienThiTraiCayKhuyenMai.LayDanhSachTraiCayKhuyenMai(MaKM);
+        List<traicay> traicayList = modelHienThiTraiCayKhuyenMai.LayDanhSachTraiCayKhuyenMaiTheoMa(MaKM);
         if(traicayList.size()>0){
             viewHienThiTraiCayKhuyenMai.HienThiDanhSachTraiCayKhuyenMai(traicayList);
         }

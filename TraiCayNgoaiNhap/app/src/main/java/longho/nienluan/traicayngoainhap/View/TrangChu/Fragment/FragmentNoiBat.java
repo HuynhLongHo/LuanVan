@@ -21,24 +21,37 @@ import longho.nienluan.traicayngoainhap.R;
 import longho.nienluan.traicayngoainhap.View.TrangChu.ViewNoiBat;
 
 public class FragmentNoiBat extends Fragment implements ViewNoiBat {
-    RecyclerView rcvTopLuotMua,rcvTraiCayGiaRe,rcvTraiCayNgauNhien;
-    AdapterNoiBat adapterTopLuotMua,adapterTraiCayGiaRe,adapterTraiCayNgauNhien;
-    List<traicay> topLuotMuas,traicaygiares,traiCayNgauNhiens;
+    RecyclerView rcvTopLuotMua,rcvTraiCayGiaRe,rcvTraiCayNgauNhien,rcvTraiCayKhuyenMai;
+    AdapterNoiBat adapterTopLuotMua,adapterTraiCayGiaRe,adapterTraiCayNgauNhien,adapterKhuyenMai;
+    List<traicay> topLuotMuas,traicaygiares,traiCayNgauNhiens, traiCayKMs;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.layout_fragment_noibat, container, false);
+        rcvTraiCayKhuyenMai = view.findViewById(R.id.rcvTraiCayKhuyenMai);
         rcvTopLuotMua = view.findViewById(R.id.rcvTopLuotMua);
         rcvTraiCayGiaRe = view.findViewById(R.id.rcvTraiCayGiaRe);
         rcvTraiCayNgauNhien = view.findViewById(R.id.rcvTraiCayNgauNhien);
         topLuotMuas = new ArrayList<>();
         traicaygiares = new ArrayList<>();
         traiCayNgauNhiens = new ArrayList<>();
+        traiCayKMs = new ArrayList<>();
         PresenterLogicNoiBat presenterLogicNoiBat = new PresenterLogicNoiBat(this);
+        presenterLogicNoiBat.LayDanhSachTraiCayKhuyenMai();
         presenterLogicNoiBat.LayDanhSachTopTraiCayTheoLuotMua();
         presenterLogicNoiBat.LayDanhSachTraiCayGiaRe();
         presenterLogicNoiBat.LayDanhSachTraiCayNgauNhien();
         return view;
+    }
+
+    @Override
+    public void HienThiDanhSachTraiCayKhuyenMai(List<traicay> traicayList) {
+        traiCayKMs = traicayList;
+        adapterKhuyenMai = new AdapterNoiBat(getContext(),R.layout.custom_item_noibat, traiCayKMs);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity(),LinearLayoutManager.HORIZONTAL,false);
+        rcvTraiCayKhuyenMai.setLayoutManager(layoutManager);
+        rcvTraiCayKhuyenMai.setAdapter(adapterKhuyenMai);
+        adapterKhuyenMai.notifyDataSetChanged();
     }
 
     @Override

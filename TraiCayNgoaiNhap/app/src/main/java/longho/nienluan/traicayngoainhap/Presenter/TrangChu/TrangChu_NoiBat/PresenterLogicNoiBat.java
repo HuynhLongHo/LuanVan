@@ -15,6 +15,15 @@ public class PresenterLogicNoiBat implements IPresenterNoiBat {
         this.viewNoiBat = viewNoiBat;
         modelTraiCay = new ModelTraiCay();
     }
+
+    @Override
+    public void LayDanhSachTraiCayKhuyenMai() {
+        List<traicay> traicayList = modelTraiCay.LayDanhSachTraiCayKhuyenMai();
+        if(traicayList.size()>0){
+            viewNoiBat.HienThiDanhSachTraiCayKhuyenMai(traicayList);
+        }
+    }
+
     @Override
     public void LayDanhSachTopTraiCayTheoLuotMua() {
         List<traicay> traicayList = modelTraiCay.LayDanhSachTopTraiCayTheoLuotMua();

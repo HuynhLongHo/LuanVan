@@ -37,6 +37,9 @@
 		case 'LayDanhSachTop10KhuyenMai':
 			$ham();
 			break;
+		case 'LayDanhSachTraiCayKhuyenMai':
+			$ham();
+			break;
 		case 'LayDanhSachTopTraiCayTheoLuotMua':
 			$ham();
 			break;
@@ -52,7 +55,7 @@
 		case 'LayDanhSachTraiCayTheoQuocGia':
 			$ham();
 			break;
-		case 'LayDanhSachTraiCayKhuyenMai':
+		case 'LayDanhSachTraiCayKhuyenMaiTheoMa':
 			$ham();
 			break;
 		case 'LayChiTietTraiCayTheoMa':
@@ -323,7 +326,23 @@
 		 	echo "}";
 	 	}
 	}
-
+	function LayDanhSachTraiCayKhuyenMai()
+	{
+		include_once("config.php");
+		$truyvan = "SELECT * FROM khuyenmai km, chitietkhuyenmai ctkm, traicay tc WHERE (Date(Now()) between km.NgayBatDau and km.NgayKetThuc) AND (km.MaKM = ctkm.MaKM AND ctkm.MaTraiCay = tc.MaTraiCay)";
+		$ketqua = mysqli_query($conn, $truyvan);
+		$chuoijson = array();
+		if($ketqua){
+			while($dong = mysqli_fetch_array($ketqua)){
+		 		array_push($chuoijson, array('MaTraiCay' => $dong["MaTraiCay"],'TenTraiCay' => $dong["TenTraiCay"],'GiaBan' => $dong["GiaBan"],'GiaKM' => $dong["GiaKM"],'LuotMua' => $dong["LuotMua"],'HinhTraiCay' => "http://".$_SERVER['SERVER_NAME']."/NienLuan_LongHo"."/Image"."/TraiCay/".$dong["HinhTraiCay"] ));
+		 	}
+		 	echo "{";
+		 	echo "\"traicay\":";
+		 	echo json_encode($chuoijson,JSON_UNESCAPED_UNICODE);
+		 	echo "";
+		 	echo "}";
+	 	}
+	}
 	function LayDanhSachTopTraiCayTheoLuotMua()
 	{
 		include_once("config.php");
@@ -453,7 +472,7 @@
 		 	echo "}";
 	 	}
 	}
-	function LayDanhSachTraiCayKhuyenMai()
+	function LayDanhSachTraiCayKhuyenMaiTheoMa()
 	{
 		//cách test http://localhost/NienLuan_LongHo/traicay.php?ham=LayDanhSachTraiCayTheoMaLoai&maLTC=1
 		include_once("config.php");

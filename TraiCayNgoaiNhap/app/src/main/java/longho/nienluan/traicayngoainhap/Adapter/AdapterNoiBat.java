@@ -64,12 +64,7 @@ public class AdapterNoiBat extends RecyclerView.Adapter<AdapterNoiBat.ViewHolder
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
         final traicay traicay = traicayList.get(position);
-        if(traicay.getTenTraiCay().length()>10){
-            holder.txtTenTraiCay.setText(traicay.getTenTraiCay().substring(0,11)+"...");
-        }
-        else {
-            holder.txtTenTraiCay.setText(traicay.getTenTraiCay());
-        }
+        holder.txtTenTraiCay.setText(traicay.getTenTraiCay());
         DecimalFormat formatter = new DecimalFormat("###,###");//định dạng tiền tệ
         String giaban = formatter.format(traicay.getGiaBan()) + "đ";
         String giakm = formatter.format(traicay.getGiaKM()) + "đ";
