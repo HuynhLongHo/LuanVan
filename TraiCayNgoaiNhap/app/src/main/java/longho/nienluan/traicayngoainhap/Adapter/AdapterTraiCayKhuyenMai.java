@@ -1,6 +1,7 @@
 package longho.nienluan.traicayngoainhap.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Paint;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -8,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -19,6 +21,7 @@ import java.util.List;
 
 import longho.nienluan.traicayngoainhap.Model.ObjectClass.traicay;
 import longho.nienluan.traicayngoainhap.R;
+import longho.nienluan.traicayngoainhap.View.ChiTietTraiCay.ChiTietTraiCayActivity;
 
 public class AdapterTraiCayKhuyenMai extends RecyclerView.Adapter<AdapterTraiCayKhuyenMai.ViewHolder>  {
 
@@ -36,6 +39,7 @@ public class AdapterTraiCayKhuyenMai extends RecyclerView.Adapter<AdapterTraiCay
         TextView txtTenTraiCay,txtGiaBan,txtLuotMua,txtGiaKM;
         ImageView imgHinhTraiCay;
         ProgressBar progressBar;
+        LinearLayout lnTraiCay;
         public ViewHolder(View itemView) {
             super(itemView);
             txtTenTraiCay = itemView.findViewById(R.id.txTenTraiCay);
@@ -44,6 +48,7 @@ public class AdapterTraiCayKhuyenMai extends RecyclerView.Adapter<AdapterTraiCay
             txtLuotMua = itemView.findViewById(R.id.txtLuotMua);
             txtGiaKM = itemView.findViewById(R.id.txtGiaKhuyenMai);
             progressBar = itemView.findViewById(R.id.pgbTraiCay);
+            lnTraiCay = itemView.findViewById(R.id.lnTraiCay);
         }
     }
 
@@ -80,6 +85,15 @@ public class AdapterTraiCayKhuyenMai extends RecyclerView.Adapter<AdapterTraiCay
             @Override
             public void onError() {
 
+            }
+        });
+        holder.lnTraiCay.setTag(traicay.getMaTraiCay());
+        holder.lnTraiCay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent iChiTietTraiCay = new Intent(context,ChiTietTraiCayActivity.class);
+                iChiTietTraiCay.putExtra("matraicay", (int) v.getTag());
+                context.startActivity(iChiTietTraiCay);
             }
         });
     }
