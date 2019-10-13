@@ -12,7 +12,6 @@ import longho.nienluan.traicayngoainhap.View.TrangChu.Fragment.FragmentChươngT
 import longho.nienluan.traicayngoainhap.View.TrangChu.Fragment.FragmentLoaiTraiCay;
 import longho.nienluan.traicayngoainhap.View.TrangChu.Fragment.FragmentNoiBat;
 import longho.nienluan.traicayngoainhap.View.TrangChu.Fragment.FragmentQuocGia;
-import longho.nienluan.traicayngoainhap.View.TrangChu.Fragment.FragmentTrongNuoc;
 
 public class ViewPaperAdapter extends FragmentPagerAdapter {
 
@@ -24,13 +23,11 @@ public class ViewPaperAdapter extends FragmentPagerAdapter {
         listFragment.add(new FragmentChươngTrinhKhuyenMai());
         listFragment.add(new FragmentLoaiTraiCay());
         listFragment.add(new FragmentQuocGia());
-        listFragment.add(new FragmentTrongNuoc());
 
         listTitle.add("Nổi bật");
         listTitle.add("Khuyến mãi");
         listTitle.add("Loại trái cây");
         listTitle.add("Quốc gia");
-        listTitle.add("Trong Nước");
     }
     @Override
     public Fragment getItem(int i) {
