@@ -47,7 +47,6 @@
             android:name=".View.DangNhap_DangKy.DangNhapActivity"
             android:label="Đăng nhập/Đăng ký"
             android:screenOrientation="portrait" />
-        <activity android:name=".View.GuiEmail.EmailActivity"/>
         <activity
             android:name=".View.HienThiTraiCayTheoDanhMuc.HienThiTraiCayTheoLoaiActivity"
             android:screenOrientation="portrait" />

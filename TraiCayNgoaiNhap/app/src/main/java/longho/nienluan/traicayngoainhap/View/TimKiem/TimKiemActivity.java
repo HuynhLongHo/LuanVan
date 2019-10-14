@@ -83,6 +83,7 @@ public class TimKiemActivity extends AppCompatActivity implements ViewTimKiem, S
 
     @Override
     public boolean onQueryTextChange(String newText) {
+        presenterLogicTimKiem.TimKiemSanPhamTheoTenSP(newText);
         return false;
     }
 }

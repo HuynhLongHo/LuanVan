@@ -5,7 +5,7 @@
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/bgToolbar</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/bgLogo</item>
+        <item name="colorAccent">@color/colorDarkGreen</item>
     </style>
 
     <style name="capfalse" parent="TextAppearance.Design.Tab">
@@ -19,7 +19,7 @@
     </declare-styleable>
     
     <style name="menuitemcolor" parent="AppTheme">
-        <item name="android:textColorPrimary">@color/bgToolbar</item>
+        <item name="android:textColorPrimary">@color/colorBlack</item>
         <item name="drawerArrowStyle">@style/changecolordrawertoogle</item>
     </style>
     
@@ -61,7 +61,9 @@
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_gravity">center</item>
-        <item name="android:textColor">#0601ff</item>
+        <item name="android:textColor">@color/colorRed</item>
+        <item name="android:textStyle">italic</item>
+        <item name="android:textSize">15sp</item>
     </style>
 
     <style name="ImageManHinhChao"
@@ -69,7 +71,7 @@
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_gravity">center</item>
-        <item name="android:paddingTop">50dp</item>
+        <item name="android:paddingTop">60dp</item>
     </style>
     <style name="ButtonStyle"
         parent="@android:style/TextAppearance.Small">
@@ -99,7 +101,7 @@
     <style name="TieuDeRecycler">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:textColor">@color/colorBlack</item>
+        <item name="android:textColor">@color/colorWhite</item>
         <item name="android:textSize">16sp</item>
         <item name="android:background">@drawable/tieude</item>
         <item name="android:layout_marginTop">10dp</item>
@@ -112,6 +114,7 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textColor">@color/colorBlack</item>
         <item name="android:textSize">13sp</item>
+        <item name="android:textStyle">italic</item>
         <item name="android:textAlignment">center</item>
         <item name="android:background">@drawable/gradient3</item>
     </style>
@@ -120,7 +123,15 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textColor">@color/colorBlack</item>
         <item name="android:textSize">13sp</item>
+        <item name="android:textStyle">bold</item>
         <item name="android:background">@drawable/gradient3</item>
+    </style>
+    <style name="txtTenTraiCayBig">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/colorDarkGreen</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:textStyle">bold</item>
     </style>
     <style name="TextGiaBan">
         <item name="android:layout_width">wrap_content</item>
@@ -131,6 +142,14 @@
         <item name="android:textSize">11sp</item>
         <item name="android:textColor">@color/colorBlack</item>
     </style>
+    <style name="TextGiaBanBig">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginRight">10dp</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/colorBlack</item>
+        <item name="android:textStyle">bold</item>
+    </style>
     <style name="TextGiaKM">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
@@ -140,11 +159,26 @@
         <item name="android:textSize">12sp</item>
         <item name="android:textColor">@color/colorRed</item>
     </style>
+    <style name="TextGiaKMBig">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@color/colorRed</item>
+    </style>
     <style name="TextLuotMua">
         <item name="android:layout_width">80dp</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_marginLeft">2dp</item>
         <item name="android:textSize">10sp</item>
+        <item name="android:textStyle">italic</item>
+        <item name="android:textColor">@color/colorBlack</item>
+    </style>
+    <style name="TextLuotMuaBig">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textStyle">italic</item>
         <item name="android:textColor">@color/colorBlack</item>
     </style>
     <style name="ThoiGianKhuyenMai">
@@ -174,7 +208,7 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textColor">@color/colorBlack</item>
         <item name="android:textSize">13sp</item>
-        <item name="android:textAlignment">center</item>
+        <!--<item name="android:textAlignment">center</item>-->
     </style>
 
 

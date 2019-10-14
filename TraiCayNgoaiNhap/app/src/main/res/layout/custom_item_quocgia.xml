@@ -20,18 +20,18 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:background="@color/colorSliderInActive">
-            <TextView
-                android:id="@+id/txtTenQuocGia"
-                style="@style/TenDoiTuong"
-                />
             <ImageView
                 android:id="@+id/imgQuocKiQG"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:scaleType="centerInside"
-                android:layout_marginTop="2dp"
+                android:layout_marginBottom="2dp"
                 android:src="@drawable/backgroundplashscreen"
+                />
+            <TextView
+                android:id="@+id/txtTenQuocGia"
+                style="@style/TenDoiTuong"
                 />
         </LinearLayout>
     </FrameLayout>

@@ -2,8 +2,7 @@
 <android.support.v4.widget.NestedScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    style="@style/DinhDangFragment">
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
@@ -98,6 +97,7 @@
             <EditText
                 android:id="@+id/edSoDienThoaiDK"
                 style="@style/DinhDangNhapText"
+                android:inputType="number"
                 android:hint="Số điện thoại"/>
         </android.support.design.widget.TextInputLayout>
         <android.support.design.widget.TextInputLayout
@@ -163,7 +163,7 @@
             android:layout_height="wrap_content"
             android:text="Đăng Ký"
             android:padding="10dp"
-            android:background="@color/bgLogo"/>
+            android:background="@drawable/button"/>
 
         <TextView
             android:layout_width="match_parent"

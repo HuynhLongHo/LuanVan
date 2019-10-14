@@ -56,7 +56,6 @@ import longho.nienluan.traicayngoainhap.View.DanhGia.ThemDanhGiaActivity;
 import longho.nienluan.traicayngoainhap.View.DonDatHang.DonDatHangActivity;
 import longho.nienluan.traicayngoainhap.View.GioHang.GioHangActivity;
 import longho.nienluan.traicayngoainhap.View.DatHang.DatHangActivity;
-import longho.nienluan.traicayngoainhap.View.GuiEmail.EmailActivity;
 import longho.nienluan.traicayngoainhap.View.TrangChu.TrangChuActivity;
 import longho.nienluan.traicayngoainhap.View.TrangChu.ViewXuLyMenu;
 
@@ -215,8 +214,6 @@ public class ChiTietTraiCayActivity extends AppCompatActivity implements ViewChi
                 }
                 break;
             case R.id.itEmailPhanHoi:
-                Intent intent = new Intent(this, EmailActivity.class);
-                startActivity(intent);
                 break;
             case R.id.itDonHangCuaToi:
                 if(modelDangNhap.LayMaNguoiDung(this)==""){

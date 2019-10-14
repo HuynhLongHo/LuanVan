@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="10dp"
-        >
+        android:background="@drawable/gradient2">
         <FrameLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
@@ -41,35 +41,22 @@
 
             <TextView
                 android:id="@+id/txTenTraiCay"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Tên sản phẩm"
-                android:layout_marginBottom="5dp"
+                style="@style/txtTenTraiCayBig"
                 />
-
+            <TextView
+                android:id="@+id/txtLuotMua"
+                style="@style/TextLuotMuaBig"
+                />
             <TextView
                 android:id="@+id/txtGiaTraiCay"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Tên sản phẩm"
-                android:textColor="@color/colorRed"
+                style="@style/TextGiaBanBig"
                 />
             <TextView
                 android:id="@+id/txtGiaKhuyenMai"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Tên sản phẩm"
-                android:visibility="gone"
-                android:textColor="@color/colorRed"
+                style="@style/TextGiaKMBig"
                 />
 
-            <TextView
-                android:id="@+id/txtLuotMua"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Tên sản phẩm"
-                android:textColor="@color/colorRed"
-                />
+
 
 
         </LinearLayout>

@@ -5,34 +5,64 @@
     android:layout_height="wrap_content"
     android:layout_width="match_parent"
     android:layout_marginTop="5dp">
-
     <LinearLayout
-        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="5dp"
-        android:background="@color/colorSliderInActive">
-        <TextView
-            android:id="@+id/txtMaDDH"
-            style="@style/TextDonDatHang" />
-        <TextView
-            android:id="@+id/txtTongTien"
-            style="@style/TextDonDatHang" />
-        <TextView
-            android:id="@+id/txtNgayDat"
-            style="@style/TextDonDatHang"/>
-        <TextView
-            android:id="@+id/txtNgayGiao"
-            style="@style/TextDonDatHang" />
-        <TextView
-            android:id="@+id/txtTrangThaiGiaoHang"
-            style="@style/TextDonDatHang" />
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/rcvDanhSachTraiCayHD"
+        android:orientation="vertical"
+        android:background="@drawable/gradient2">
+        <LinearLayout
+            android:id="@+id/lnDonDatHang"
+            android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior"
-            android:background="@color/bgLogo"/>
+            android:padding="5dp">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_weight="1">
+                <TextView
+                    android:id="@+id/txtMaDDH"
+                    style="@style/TextDonDatHang" />
+                <TextView
+                    android:id="@+id/txtTrangThaiGiaoHang"
+                    style="@style/TextDonDatHang" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_weight="1">
+                <TextView
+                    android:id="@+id/txtNgayDat"
+                    style="@style/TextDonDatHang"/>
+                <TextView
+                    android:id="@+id/txtNgayGiao"
+                    style="@style/TextDonDatHang" />
+                <TextView
+                    android:id="@+id/txtTongTien"
+                    style="@style/TextDonDatHang" />
+            </LinearLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginBottom="15dp"
+            android:background="@color/colorGray">
+            <TextView
+                style="@style/TenDoiTuong"
+                android:text="Danh Sách Sản Phẩm"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"/>
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rcvDanhSachTraiCayHD"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+        </LinearLayout>
 
     </LinearLayout>
 

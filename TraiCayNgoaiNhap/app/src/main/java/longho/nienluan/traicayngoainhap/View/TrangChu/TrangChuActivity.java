@@ -1,6 +1,7 @@
 package longho.nienluan.traicayngoainhap.View.TrangChu;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.TabLayout;
@@ -41,7 +42,6 @@ import longho.nienluan.traicayngoainhap.View.Admin.AdminActivity;
 import longho.nienluan.traicayngoainhap.View.CaiDat.CaiDatActivity;
 import longho.nienluan.traicayngoainhap.View.DonDatHang.DonDatHangActivity;
 import longho.nienluan.traicayngoainhap.View.GioHang.GioHangActivity;
-import longho.nienluan.traicayngoainhap.View.GuiEmail.EmailActivity;
 import longho.nienluan.traicayngoainhap.Model.DangNhap_DangKy.ModelDangNhap;
 import longho.nienluan.traicayngoainhap.Model.ObjectClass.LoaiTraiCay;
 import longho.nienluan.traicayngoainhap.Presenter.TrangChu.XuLyMenu.PresenterLogicXuLyMenu;
@@ -215,8 +215,24 @@ public class TrangChuActivity extends AppCompatActivity implements ViewXuLyMenu,
                 }
                 break;
             case R.id.itEmailPhanHoi:
-                    Intent intent = new Intent(this, EmailActivity.class);
-                    startActivity(intent);
+                String[] TO = {"longho4697@gmail.com"};
+                String[] CC = {""};
+                Intent emailIntent = new Intent(Intent.ACTION_SEND);
+
+                emailIntent.setData(Uri.parse("mailto:"));
+                emailIntent.setType("text/plain");
+                emailIntent.putExtra(Intent.EXTRA_EMAIL, TO);
+                emailIntent.putExtra(Intent.EXTRA_CC, CC);
+                emailIntent.putExtra(Intent.EXTRA_SUBJECT, "");
+                emailIntent.putExtra(Intent.EXTRA_TEXT, "");
+
+                try {
+                    startActivity(Intent.createChooser(emailIntent, "Chọn ứng dụng:"));
+                    finish();
+                }
+                catch (android.content.ActivityNotFoundException ex) {
+                    Toast.makeText(TrangChuActivity.this, "There is no email client installed.", Toast.LENGTH_SHORT).show();
+                }
                 break;
             case R.id.itDonHangCuaToi:
                 if(modelDangNhap.LayMaNguoiDung(this)==""){

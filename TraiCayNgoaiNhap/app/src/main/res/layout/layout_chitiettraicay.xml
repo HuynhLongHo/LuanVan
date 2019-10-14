@@ -4,72 +4,42 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
-
-    >
-
+    android:fitsSystemWindows="true">
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fitsSystemWindows="true"
-        android:background="@color/colorWhite"
-        >
-
+        android:background="@color/colorWhite">
         <android.support.design.widget.CollapsingToolbarLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_scrollFlags="scroll|exitUntilCollapsed"
-            app:title=" "
-            >
-
+            app:title=" ">
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:layout_marginTop="?attr/actionBarSize"
                 android:padding="10dp"
-                app:layout_collapseMode="parallax"
-                >
-
+                app:layout_collapseMode="parallax">
                 <TextView
                     android:id="@+id/txtTenTraiCay"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Flash plus"
-                    android:textStyle="bold"
-                    android:textSize="18sp"
-                    />
-
+                    style="@style/txtTenTraiCayBig"/>
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
-
                     <TextView
                         android:id="@+id/txtGiaBan"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="1000000 VND"
-                        android:textStyle="bold"
-                        android:textSize="18sp"
-                        android:textColor="@color/colorRed"/>
+                        style="@style/TextGiaBanBig"/>
                     <TextView
                         android:id="@+id/txtGiaKM"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="1000000 VND"
-                        android:textStyle="bold"
-                        android:textSize="14sp"
-                        android:textColor="@color/colorGray"
-                        android:layout_marginLeft="10dp"
+                        style="@style/TextGiaKMBig"
                         android:visibility="gone"/>
                 </LinearLayout>
-
-
                 <FrameLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
-
                     <RatingBar
                         android:id="@+id/rbDanhGia"
                         android:layout_width="wrap_content"
@@ -79,7 +49,6 @@
                         android:theme="@style/DoiMauNgoiSaoRatingBar"
                         android:transformPivotX="0dp"
                         android:transformPivotY="0dp" />
-
                     <TextView
                         android:id="@+id/txtDanhGiaTB"
                         android:layout_width="wrap_content"
@@ -89,53 +58,12 @@
                         android:gravity="left|bottom"
                         android:text="5.0" />
                 </FrameLayout>
-
-
                 <android.support.v4.view.ViewPager
                     android:id="@+id/viewpagerSlider"
                     android:layout_width="match_parent"
-                    android:layout_height="300dp"
+                    android:layout_height="250dp"
                     android:src="@drawable/backgroundplashscreen"
                     />
-
-
-
-            </LinearLayout>
-
-            <android.support.v7.widget.Toolbar
-                android:id="@+id/toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                app:layout_collapseMode="pin"
-                android:background="@drawable/gradient"
-                />
-
-        </android.support.design.widget.CollapsingToolbarLayout>
-
-    </android.support.design.widget.AppBarLayout>
-
-
-    <android.support.v4.widget.NestedScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="?attr/actionBarSize"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        >
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/colorGray"
-            android:orientation="vertical"
-            >
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:background="@color/colorWhite"
-                >
-
                 <FrameLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
@@ -175,25 +103,56 @@
                     </LinearLayout>
 
                 </FrameLayout>
-
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@color/colorGray"
-                    android:layout_marginTop="10dp"
-                    />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Các sản phẩm của Flash"
-                    android:textAlignment="center"
-                    android:textColor="@color/colorFacebook"
-                    android:padding="10dp"
-                    />
-
             </LinearLayout>
+
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:layout_collapseMode="pin"
+                android:background="@drawable/gradient"
+                />
+
+        </android.support.design.widget.CollapsingToolbarLayout>
+
+    </android.support.design.widget.AppBarLayout>
+
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/colorWhite"
+            android:orientation="vertical">
+            <!--<LinearLayout-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:orientation="vertical"-->
+                <!--android:background="@color/colorWhite"-->
+                <!--&gt;-->
+
+
+
+                <!--<View-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="1dp"-->
+                    <!--android:background="@color/colorGray"-->
+                    <!--android:layout_marginTop="10dp"-->
+                    <!--/>-->
+
+                <!--<TextView-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:text="Các sản phẩm của"-->
+                    <!--android:textAlignment="center"-->
+                    <!--android:textColor="@color/colorFacebook"-->
+                    <!--android:padding="10dp"-->
+                    <!--/>-->
+
+            <!--</LinearLayout>-->
 
             <!--Phần dóng gói-->
             <LinearLayout
@@ -202,20 +161,19 @@
                 android:orientation="vertical"
                 android:padding="10dp"
                 android:layout_marginTop="10dp"
-                android:background="@color/colorWhite"
+                android:background="@drawable/gradient2"
                 >
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Được cung cấp bởi"
+                    android:text="Được cung cấp bởi:"
                     />
 
                 <TextView
                     android:id="@+id/txtTenNCC"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Lazada"
                     android:textSize="18sp"
                     android:textStyle="bold"
                     android:textColor="@color/colorFacebook"
@@ -231,7 +189,6 @@
                     android:id="@+id/txtDiaChiNCC"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Lazada"
                     android:textSize="18sp"
                     android:textStyle="bold"
                     android:textColor="@color/colorFacebook"
@@ -250,38 +207,38 @@
 
                     <!--/>-->
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginTop="10dp"
-                    >
+                <!--<LinearLayout-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:orientation="horizontal"-->
+                    <!--android:layout_marginTop="10dp"-->
+                    <!--&gt;-->
 
-                    <Button
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="Bảo vệ người mua hàng 100%"
-                        android:drawableLeft="@drawable/icon_shield"
-                        android:textStyle="bold"
-                        android:textSize="14sp"
-                        android:textColor="@color/bgToolbar"
-                        android:background="@color/colorWhite"
-                        />
+                    <!--<Button-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_weight="1"-->
+                        <!--android:text="Bảo vệ người mua hàng 100%"-->
+                        <!--android:drawableLeft="@drawable/icon_shield"-->
+                        <!--android:textStyle="bold"-->
+                        <!--android:textSize="14sp"-->
+                        <!--android:textColor="@color/bgToolbar"-->
+                        <!--android:background="@color/colorWhite"-->
+                        <!--/>-->
 
-                    <Button
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:drawableLeft="@drawable/status_shield"
-                        android:text="Đảm bảo sự hài lòng"
-                        android:textStyle="bold"
-                        android:textSize="14sp"
-                        android:textColor="@color/colorGreen"
-                        android:background="@color/colorWhite"
-                        />
+                    <!--<Button-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_weight="1"-->
+                        <!--android:drawableLeft="@drawable/status_shield"-->
+                        <!--android:text="Đảm bảo sự hài lòng"-->
+                        <!--android:textStyle="bold"-->
+                        <!--android:textSize="14sp"-->
+                        <!--android:textColor="@color/colorGreen"-->
+                        <!--android:background="@color/colorWhite"-->
+                        <!--/>-->
 
-                </LinearLayout>
+                <!--</LinearLayout>-->
 
             </LinearLayout>
 
@@ -290,7 +247,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:background="@color/colorWhite"
+                android:background="@drawable/gradient2"
                 android:padding="10dp"
                 android:layout_marginTop="10dp"
                 >
@@ -324,7 +281,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:background="@color/colorWhite"
+                android:background="@drawable/gradient2"
                 android:padding="10dp"
                 android:layout_marginTop="10dp"
                 >
@@ -336,8 +293,9 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:textColor="@color/colorBlack"
                         android:text="Đánh giá và nhận xét"
-                        />
+                        android:textStyle="bold"/>
 
                     <TextView
                         android:id="@+id/txtVietDanhGia"
@@ -358,11 +316,11 @@
 
                 </android.support.v7.widget.RecyclerView>
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@color/colorGray"
-                    />
+                <!--<View-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="1dp"-->
+                    <!--android:background="@color/colorGray"-->
+                    <!--/>-->
 
                 <TextView
                     android:id="@+id/txtXemTatCaNhanXet"
@@ -376,7 +334,7 @@
 
             </LinearLayout>
 
-            <!--Phần bạn sẽ thích-->
+            Phần bạn sẽ thích
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -419,7 +377,7 @@
             android:text="Mua Ngay"
             android:layout_weight="1"
             android:padding="10dp"
-            android:background="@color/bgLogo"
+            android:background="@drawable/button"
             />
 
         <ImageButton
@@ -429,7 +387,7 @@
             android:src="@drawable/ic_add_shopping_cart_white_24dp"
             android:layout_weight="3"
             android:padding="10dp"
-            android:background="@color/colorFacebook"
+            android:background="@drawable/button"
             />
 
     </LinearLayout>

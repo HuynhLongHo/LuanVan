@@ -107,8 +107,9 @@ public class FragmentDangNhap extends Fragment implements ViewDangNhap,View.OnCl
             case R.id.txtQuenMatKhau:
                 AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
                 builder.setTitle("Quên mật khẩu");
-                builder.setMessage("Vui lòng nhập email đăng ký");
+                builder.setMessage("Nhập email cần lấy lại mật khẩu:");
                 final EditText Email = new EditText(getContext());
+                Email.setPadding(30,0,30,20);
                 builder.setView(Email);
                 builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dlg, int which) {

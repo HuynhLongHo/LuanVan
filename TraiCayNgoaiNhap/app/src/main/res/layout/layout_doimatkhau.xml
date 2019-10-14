@@ -52,8 +52,11 @@
         android:id="@+id/btnXacNhan"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:padding="10dp"
         android:text="Xác nhận"
-        android:textColor="@color/colorGoogle"
-        android:layout_margin="10dp"/>
+        android:background="@drawable/button"
+        android:layout_margin="20dp"
+        android:layout_gravity="bottom"
+        />
 
 </LinearLayout>
