@@ -7,6 +7,15 @@ public class DonDatHang {
     int MaDDH, MaNguoiDung;
     String TenNguoiDatHang, SoDienThoaiDatHang, DiaChiDatHang, NgayDat, NgayGiao, TrangThaiGiao, MoTa;
     List<ChiTietDDH> ChiTietDDHList;
+    int SoLuongDonHang;//Số lượng dựa vào trạng thái
+
+    public int getSoLuongDonHang() {
+        return SoLuongDonHang;
+    }
+
+    public void setSoLuongDonHang(int soLuongDonHang) {
+        SoLuongDonHang = soLuongDonHang;
+    }
 
     public int getChuyenKhoan() {
         return ChuyenKhoan;

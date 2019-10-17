@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    android:layout_margin="5dp">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@drawable/gradient2">
+        <TextView
+            android:id="@+id/txtNam"
+            style="@style/TextDonDatHang"
+            android:textStyle="bold"/>
+        <TextView
+            android:id="@+id/txtTongSoLuongDonDatHang"
+            style="@style/TextDonDatHang"/>
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rcvTrangThaiGiao"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_margin="10dp"
+            android:background="@color/colorGray">
+            <TextView
+                style="@style/TenDoiTuong"
+                android:text="Danh sách trái cây"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"/>
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rcvTraiCay"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="@color/colorGray">
+            <TextView
+                style="@style/TenDoiTuong"
+                android:text="Danh sách khách hàng"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"/>
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rcvNguoiDung"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+</android.support.v7.widget.CardView>

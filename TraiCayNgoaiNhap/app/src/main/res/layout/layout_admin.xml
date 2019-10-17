@@ -19,19 +19,8 @@
         style="@style/TextClick"
         android:text="Duyệt đơn hàng"/>
     <TextView
+        android:id="@+id/txtThongKeTheoNam"
         style="@style/TextClick"
-        android:text="Quản lý nhân viên"/>
-    <TextView
-        style="@style/TextClick"
-        android:text="Quản lý nhập hàng"/>
-    <TextView
-        style="@style/TextClick"
-        android:text="Quản lý đánh giá"/>
-    <TextView
-        style="@style/TextClick"
-        android:text="Quản lý khuyến mãi"/>
-    <TextView
-        style="@style/TextClick"
-        android:text="Quản lý trái cây"/>
+        android:text="Thống kê theo năm"/>
 
 </LinearLayout>

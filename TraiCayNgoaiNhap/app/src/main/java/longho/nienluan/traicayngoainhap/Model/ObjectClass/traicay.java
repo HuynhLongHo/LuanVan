@@ -11,6 +11,25 @@ public class traicay {
     String HinhChiTiet;
     String TenNCC, DiaChiNCC;
     byte[] HinhGioHang;
+    int SoLuongBan;
+    int SoTienBan;//thống kê số tiền bán được
+
+
+    public int getSoLuongBan() {
+        return SoLuongBan;
+    }
+
+    public void setSoLuongBan(int soLuongBan) {
+        SoLuongBan = soLuongBan;
+    }
+
+    public int getSoTienBan() {
+        return SoTienBan;
+    }
+
+    public void setSoTienBan(int soTienBan) {
+        SoTienBan = soTienBan;
+    }
 
     public int getSoLuong() {
         return SoLuong;

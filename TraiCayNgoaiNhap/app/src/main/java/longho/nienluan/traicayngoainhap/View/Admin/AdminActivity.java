@@ -12,11 +12,12 @@ import android.widget.TextView;
 
 import longho.nienluan.traicayngoainhap.R;
 import longho.nienluan.traicayngoainhap.View.Admin.DuyetDonHang.DuyetDonHangActivity;
+import longho.nienluan.traicayngoainhap.View.Admin.ThongKe.ThongKeActivity;
 
 public class AdminActivity extends AppCompatActivity implements View.OnClickListener {
 
     Toolbar toolbar;
-    TextView txtDuyetDonHang;
+    TextView txtDuyetDonHang,txtThongKeTheoNam;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,8 +31,10 @@ public class AdminActivity extends AppCompatActivity implements View.OnClickList
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         txtDuyetDonHang = findViewById(R.id.txtDuyetDonHang);
+        txtThongKeTheoNam = findViewById(R.id.txtThongKeTheoNam);
 
         txtDuyetDonHang.setOnClickListener(this);
+        txtThongKeTheoNam.setOnClickListener(this);
     }
 
     @Override
@@ -41,6 +44,11 @@ public class AdminActivity extends AppCompatActivity implements View.OnClickList
             case R.id.txtDuyetDonHang:
                 Intent iDuyetDonHang = new Intent(this,DuyetDonHangActivity.class);
                 startActivity(iDuyetDonHang);
+                break;
+            case R.id.txtThongKeTheoNam:
+                Intent iThongKeTheoNam = new Intent(this,ThongKeActivity.class);
+                startActivity(iThongKeTheoNam);
+                break;
         }
 
     }

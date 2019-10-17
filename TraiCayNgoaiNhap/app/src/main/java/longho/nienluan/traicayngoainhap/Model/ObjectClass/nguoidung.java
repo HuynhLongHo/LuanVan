@@ -4,6 +4,22 @@ public class nguoidung {
 
     int MaNguoiDung, GioiTinh, MaQuyen;
     String TenNguoiDung, DiaChiND, SoDienThoaiND, EmailND, MatKhau, CauHoi, CauTraLoi, TenQuyen;
+    int SoLanMua,TongTienMua;//thống kê
+    public int getSoLanMua() {
+        return SoLanMua;
+    }
+
+    public void setSoLanMua(int soLanMua) {
+        SoLanMua = soLanMua;
+    }
+
+    public int getTongTienMua() {
+        return TongTienMua;
+    }
+
+    public void setTongTienMua(int tongTienMua) {
+        TongTienMua = tongTienMua;
+    }
 
     public String getTenQuyen() {
         return TenQuyen;

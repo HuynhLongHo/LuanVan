@@ -82,6 +82,9 @@
 		case 'AdminDuyetDonHang':
 			$ham();
 			break;
+		case 'LayDanhSachDonDatHangTheoNam':
+			$ham();
+			break;
 	}
 
 
@@ -750,5 +753,53 @@
 			echo "{\"ketqua\":\"true\"}";
 		}
 		else echo "{\"ketqua\":\"false\"}";
+	}
+	function LayDanhSachDonDatHangTheoNam(){
+		include_once("config.php");
+		$chuoijson = array();
+
+		$truyvan = "SELECT YEAR(NgayGiao) AS Nam, COUNT(MaDDH) SoLuongDDH FROM dondathang GROUP BY YEAR(NgayGiao)";
+		$ketqua = mysqli_query($conn,$truyvan);
+
+		echo "{";
+		echo "\"DanhSachThongKeTheoNam\":";
+
+		if($ketqua){
+			while ($dong = mysqli_fetch_array($ketqua)) {
+
+				$truyvantrangthaigiao = "SELECT TrangThaiGiao, COUNT(MaDDH) SoLuongDonHang FROM dondathang WHERE YEAR(NgayGiao) =' ".$dong["Nam"]." '  GROUP BY TrangThaiGiao";
+				$ketquatrangthaigiao = mysqli_query($conn,$truyvantrangthaigiao);
+				$chuoijsontrangthai = array();
+				if($ketquatrangthaigiao){
+					while ( $dongtrangthai = mysqli_fetch_array($ketquatrangthaigiao) ) {
+						array_push($chuoijsontrangthai,array("TrangThaiGiao"=>$dongtrangthai["TrangThaiGiao"],"SoLuongDonHang"=>$dongtrangthai["SoLuongDonHang"]));
+					}
+				}
+
+				$truyvantraicay = "SELECT tc.MaTraiCay, tc.TenTraiCay, SUM(ct.SoLuongDat) SoLuongBan, SUM(ct.SoLuongDat*ct.GiaBanHD) SoTienBan,tc.HinhTraiCay FROM dondathang d, chitietddh ct, traicay tc WHERE YEAR(NgayGiao) = ' ".$dong["Nam"]." '  AND d.MaDDH = ct.MaDDH AND ct.MaTraiCay = tc.MaTraiCay GROUP BY tc.MaTraiCay";
+				$ketquatraicay = mysqli_query($conn,$truyvantraicay);
+				$chuoijsontraicay = array();
+				if($ketquatraicay){
+					while ( $dongtraicay = mysqli_fetch_array($ketquatraicay) ) {
+						array_push($chuoijsontraicay,array("MaTraiCay"=>$dongtraicay["MaTraiCay"],"TenTraiCay"=>$dongtraicay["TenTraiCay"],"SoLuongBan"=>$dongtraicay["SoLuongBan"],"SoTienBan"=>$dongtraicay["SoTienBan"],"HinhTraiCay"=>$dongtraicay["HinhTraiCay"]));
+					}
+				}
+
+				$truyvannguoidung = "SELECT nd.MaNguoiDung, nd.TenNguoiDung, COUNT(nd.MaNguoiDung) SoLanMua, SUM(ct.SoLuongDat*ct.GiaBanHD) TongTienMua FROM dondathang d, chitietddh ct, nguoidung nd WHERE YEAR(NgayGiao) = ' ".$dong["Nam"]." ' AND d.MaDDH = ct.MaDDH AND d.MaNguoiDung = nd.MaNguoiDung GROUP BY nd.MaNguoiDung";
+				$ketquanguoidung = mysqli_query($conn,$truyvannguoidung);
+				$chuoijsonnguoidung = array();
+				if($ketquanguoidung){
+					while ( $dongnguoidung = mysqli_fetch_array($ketquanguoidung) ) {
+						array_push($chuoijsonnguoidung,array("MaNguoiDung"=>$dongnguoidung["MaNguoiDung"],"TenNguoiDung"=>$dongnguoidung["TenNguoiDung"],"SoLanMua"=>$dongnguoidung["SoLanMua"],"TongTienMua"=>$dongnguoidung["TongTienMua"]));
+					}
+				}
+				array_push($chuoijson, array("Nam"=>$dong["Nam"],"SoLuongDDH"=>$dong["SoLuongDDH"],"ChiTietTrangThai"=>$chuoijsontrangthai,"ThongKeTraiCay"=>$chuoijsontraicay,"ThongKeNguoiDung"=>$chuoijsonnguoidung));
+
+			}
+		}
+
+		echo json_encode($chuoijson,JSON_UNESCAPED_UNICODE);
+
+		echo "}";
 	}
 ?>
