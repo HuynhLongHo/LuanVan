@@ -10,8 +10,10 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
             <TextView
+                android:id="@+id/txtTieuDeKhuyenMai"
                 style="@style/TieuDeRecycler"
                 android:text="Khuyến mãi"
+                android:visibility="gone"
                 />
 
             <android.support.v7.widget.RecyclerView
