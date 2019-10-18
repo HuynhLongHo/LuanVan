@@ -7,30 +7,38 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewParent;
+import android.widget.Button;
 import android.widget.TextView;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
+import longho.nienluan.traicayngoainhap.Model.Admin.ModelDuyetDonHang;
 import longho.nienluan.traicayngoainhap.Model.ObjectClass.ChiTietDDH;
 import longho.nienluan.traicayngoainhap.Model.ObjectClass.DonDatHang;
+import longho.nienluan.traicayngoainhap.Presenter.Admin.PresenterLogicDuyetDonHang;
 import longho.nienluan.traicayngoainhap.R;
+import longho.nienluan.traicayngoainhap.View.DonDatHang.ViewDonDatHang;
 
 public class AdapterDonDatHang extends RecyclerView.Adapter<AdapterDonDatHang.ViewHolderDonDatHang> {
 
     List<DonDatHang> donDatHangList;
     Context context;
+    PresenterLogicDuyetDonHang presenterLogicDuyetDonHang;
 
     public AdapterDonDatHang(Context context, List<DonDatHang> donDatHangList){
         this.donDatHangList = donDatHangList;
         this.context = context;
+        presenterLogicDuyetDonHang = new PresenterLogicDuyetDonHang();
     }
 
     public class ViewHolderDonDatHang extends RecyclerView.ViewHolder {
 
         TextView txtMaDDH, txtNgayDat, txtNgayGiao, txtTrangThaiGiaoHang, txtTongTien;
         RecyclerView rcvDanhSachTraiCayHD;
+        Button btnHuyDonDatHang;
 
         public ViewHolderDonDatHang(View itemView) {
             super(itemView);
@@ -41,7 +49,7 @@ public class AdapterDonDatHang extends RecyclerView.Adapter<AdapterDonDatHang.Vi
             txtTongTien = itemView.findViewById(R.id.txtTongTien);
             txtTrangThaiGiaoHang = itemView.findViewById(R.id.txtTrangThaiGiaoHang);
             rcvDanhSachTraiCayHD = itemView.findViewById(R.id.rcvDanhSachTraiCayHD);
-
+            btnHuyDonDatHang = itemView.findViewById(R.id.btnHuyDonDatHang);
         }
     }
 
@@ -57,9 +65,9 @@ public class AdapterDonDatHang extends RecyclerView.Adapter<AdapterDonDatHang.Vi
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolderDonDatHang holder, int position) {
+    public void onBindViewHolder(@NonNull final ViewHolderDonDatHang holder, int position) {
 
-        DonDatHang donDatHang = donDatHangList.get(position);
+        final DonDatHang donDatHang = donDatHangList.get(position);
 
         List<ChiTietDDH> chiTietDDHList = new ArrayList<>();
         chiTietDDHList = donDatHang.getChiTietDDHList();
@@ -81,6 +89,20 @@ public class AdapterDonDatHang extends RecyclerView.Adapter<AdapterDonDatHang.Vi
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL,false);
         holder.rcvDanhSachTraiCayHD.setLayoutManager(layoutManager);
         holder.rcvDanhSachTraiCayHD.setAdapter(adapterDonDatHangSanPham);
+        if(donDatHang.getTrangThaiGiao().equals("Chờ kiểm duyệt")){
+            holder.btnHuyDonDatHang.setVisibility(View.VISIBLE);
+        } else{
+            holder.btnHuyDonDatHang.setVisibility(View.GONE);
+        }
+        holder.btnHuyDonDatHang.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                donDatHang.setTrangThaiGiao("Đã hủy");
+                presenterLogicDuyetDonHang.DuyetDonHang(donDatHang);
+                holder.btnHuyDonDatHang.setText("Đã hủy");
+                holder.btnHuyDonDatHang.setEnabled(false);
+            }
+        });
     }
 
     @Override

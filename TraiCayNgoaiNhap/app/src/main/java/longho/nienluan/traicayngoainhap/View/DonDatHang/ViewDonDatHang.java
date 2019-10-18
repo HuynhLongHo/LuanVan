@@ -6,4 +6,5 @@ import longho.nienluan.traicayngoainhap.Model.ObjectClass.DonDatHang;
 
 public interface ViewDonDatHang {
     void HienThiDanhSachDonDatHang(List<DonDatHang> donDatHangList);
+    void HuyDonDatHang();
 }

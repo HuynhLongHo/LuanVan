@@ -50,7 +50,7 @@
             android:orientation="vertical"
             android:layout_marginLeft="15dp"
             android:layout_marginRight="15dp"
-            android:layout_marginBottom="15dp"
+            android:layout_marginBottom="7dp"
             android:background="@color/colorGray">
             <TextView
                 style="@style/TenDoiTuong"
@@ -63,6 +63,17 @@
                 android:layout_height="match_parent"
                 app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
         </LinearLayout>
+
+        <Button
+            android:id="@+id/btnHuyDonDatHang"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:text="Hủy đơn đặt hàng"
+            android:background="@drawable/button"
+            android:layout_marginRight="20dp"
+            android:layout_gravity="right"
+            android:visibility="gone"/>
 
     </LinearLayout>
 
