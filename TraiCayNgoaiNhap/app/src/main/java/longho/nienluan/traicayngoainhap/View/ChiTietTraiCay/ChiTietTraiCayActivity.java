@@ -110,7 +110,7 @@ public class ChiTietTraiCayActivity extends AppCompatActivity implements ViewChi
         txtDanhGiaTB = findViewById(R.id.txtDanhGiaTB);
         txtGiaKM = findViewById(R.id.txtGiaKM);
 
-        toolbar.setTitle("Chi tiết cản phẩm");
+        toolbar.setTitle("Chi tiết sản phẩm");
         setSupportActionBar(toolbar);
 
         matraicay = getIntent().getIntExtra("matraicay", 0);

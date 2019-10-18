@@ -4,6 +4,24 @@ public class DanhGia {
 
     String MaDG,TenThietBi,TieuDe, NgayDG, NoiDungDG;
     int MaTraiCay,SoSaoDG;
+    int MaNguoiDung;
+    String TenNguoiDung;
+
+    public String getTenNguoiDung() {
+        return TenNguoiDung;
+    }
+
+    public void setTenNguoiDung(String tenNguoiDung) {
+        TenNguoiDung = tenNguoiDung;
+    }
+
+    public int getMaNguoiDung() {
+        return MaNguoiDung;
+    }
+
+    public void setMaNguoiDung(int maNguoiDung) {
+        MaNguoiDung = maNguoiDung;
+    }
 
     public String getMaDG() {
         return MaDG;

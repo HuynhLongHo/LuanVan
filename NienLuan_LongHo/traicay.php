@@ -535,11 +535,11 @@
 	function ThemDanhGia(){
 		include_once("config.php");
 
-		if(isset($_POST["madg"]) || isset($_POST["masp"]) || isset($_POST["tenthietbi"]) || isset($_POST["tieude"]) || isset($_POST["noidung"]) || isset($_POST["sosao"]) ){
+		if(isset($_POST["madg"]) || isset($_POST["masp"]) || isset($_POST["tenthietbi"]) || isset($_POST["manguoidung"]) || isset($_POST["noidung"]) || isset($_POST["sosao"]) ){
 			$madg = $_POST["madg"];
 			$masp = $_POST["masp"];
 			$tenthietbi = $_POST["tenthietbi"];
-			$tieude = $_POST["tieude"];
+			$manguoidung = $_POST["manguoidung"];
 			$noidung = $_POST["noidung"];
 			$sosao = $_POST["sosao"];
 		}
@@ -547,7 +547,7 @@
 		$ngaydang = date("Y/m/d");
 		// $ngaydang = Date(Now());
 
-		$truyvan = "INSERT INTO danhgia (MaDG,MaTraiCay,TenThietBi,TieuDe,NoiDungDG,SoSaoDG,NgayDG) VALUES ('".$madg."', '".$masp."', '".$tenthietbi."', '".$tieude."', '".$noidung."', '".$sosao."', '".$ngaydang."' )";
+		$truyvan = "INSERT INTO danhgia (MaDG,MaTraiCay,TenThietBi,MaNguoiDung,NoiDungDG,SoSaoDG,NgayDG) VALUES ('".$madg."', '".$masp."', '".$tenthietbi."', '".$manguoidung."', '".$noidung."', '".$sosao."', '".$ngaydang."' )";
 		$ketqua = mysqli_query($conn,$truyvan);
 
 		if($ketqua){
@@ -567,7 +567,7 @@
 			$limit = $_POST["limit"];
 		}
 
-		$truyvan = "SELECT * FROM danhgia WHERE MaTraiCay = ".$masp." ORDER BY NgayDG LIMIT ".$limit." ,10";
+		$truyvan = "SELECT * FROM danhgia dg, nguoidung nd WHERE dg.MaTraiCay = ".$masp." AND dg.MaNguoiDung = nd.MaNguoiDung ORDER BY dg.NgayDG LIMIT ".$limit." ,10";
 		$ketqua = mysqli_query($conn,$truyvan);
 
 		echo "{";

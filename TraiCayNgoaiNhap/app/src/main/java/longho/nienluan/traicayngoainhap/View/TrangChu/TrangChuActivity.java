@@ -99,8 +99,8 @@ public class TrangChuActivity extends AppCompatActivity implements ViewXuLyMenu,
 
         drawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.open, R.string.close);
         drawerLayout.addDrawerListener(drawerToggle);
-        getSupportActionBar().setHomeButtonEnabled(true);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(false);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(false);
         drawerToggle.syncState();
 
         ViewPaperAdapter adapter = new ViewPaperAdapter(getSupportFragmentManager());
@@ -108,7 +108,7 @@ public class TrangChuActivity extends AppCompatActivity implements ViewXuLyMenu,
         tab.setupWithViewPager(viewPager);
 
         logicXuLyMenu = new PresenterLogicXuLyMenu(this);
-        logicXuLyMenu.LayDanhSachMenu();
+//        logicXuLyMenu.LayDanhSachMenu();
         appBarLayout.addOnOffsetChangedListener(this);
         modelDangNhap = new ModelDangNhap();
     }

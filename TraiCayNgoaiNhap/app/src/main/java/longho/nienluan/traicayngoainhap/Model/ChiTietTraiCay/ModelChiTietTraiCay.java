@@ -116,7 +116,8 @@ public class ModelChiTietTraiCay {
                 danhGia.setMaTraiCay(object.getInt("MaTraiCay"));
                 danhGia.setMaDG(object.getString("MaDG"));
                 danhGia.setNgayDG(object.getString("NgayDG"));
-                danhGia.setTieuDe(object.getString("TieuDe"));
+                danhGia.setMaNguoiDung(object.getInt("MaNguoiDung"));
+                danhGia.setTenNguoiDung(object.getString("TenNguoiDung"));
 
                 danhGias.add(danhGia);
 

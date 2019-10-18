@@ -55,9 +55,9 @@ public class AdapterDanhGia extends RecyclerView.Adapter<AdapterDanhGia.ViewHold
     public void onBindViewHolder(@NonNull ViewHolderDanhGia holder, int position) {
         DanhGia danhGia = danhGiaList.get(position);
 
-        holder.txtTieuDeDanhGia.setText(danhGia.getTieuDe());
+        holder.txtTieuDeDanhGia.setText(String.valueOf(danhGia.getTenNguoiDung()));
         holder.txtNoiDungDanhGia.setText(danhGia.getNoiDungDG());
-        holder.txtDuocDanhGiaBoi.setText("Được đánh giả bởi " + danhGia.getTenThietBi() + " ngày " + danhGia.getNgayDG());
+        holder.txtDuocDanhGiaBoi.setText("Được đánh giả từ thiết bị  " + danhGia.getTenThietBi() + " ngày " + danhGia.getNgayDG());
         holder.rbDanhGia.setRating(danhGia.getSoSaoDG());
     }
 

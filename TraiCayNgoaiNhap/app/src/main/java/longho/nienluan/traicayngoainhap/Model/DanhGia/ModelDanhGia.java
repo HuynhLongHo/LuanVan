@@ -58,7 +58,8 @@ public class ModelDanhGia {
                 danhGia.setMaTraiCay(object.getInt("MaTraiCay"));
                 danhGia.setMaDG(object.getString("MaDG"));
                 danhGia.setNgayDG(object.getString("NgayDG"));
-                danhGia.setTieuDe(object.getString("TieuDe"));
+                danhGia.setMaNguoiDung(object.getInt("MaNguoiDung"));
+                danhGia.setTenNguoiDung(object.getString("TenNguoiDung"));
 
                 danhGias.add(danhGia);
 
@@ -89,8 +90,8 @@ public class ModelDanhGia {
         HashMap<String,String> hsMaSP = new HashMap<>();
         hsMaSP.put("masp",String.valueOf(danhGia.getMaTraiCay()));
 
-        HashMap<String,String> hsTieuDe = new HashMap<>();
-        hsTieuDe.put("tieude",danhGia.getTieuDe());
+        HashMap<String,String> hsMaNguoiDung = new HashMap<>();
+        hsMaNguoiDung.put("manguoidung", String.valueOf(danhGia.getMaNguoiDung()));
 
         HashMap<String,String> hsNoiDung = new HashMap<>();
         hsNoiDung.put("noidung",danhGia.getNoiDungDG());
@@ -104,7 +105,7 @@ public class ModelDanhGia {
         attrs.add(hsHam);
         attrs.add(hsMADG);
         attrs.add(hsMaSP);
-        attrs.add(hsTieuDe);
+        attrs.add(hsMaNguoiDung);
         attrs.add(hsNoiDung);
         attrs.add(hsSoSao);
         attrs.add(hsTenThietBi);
