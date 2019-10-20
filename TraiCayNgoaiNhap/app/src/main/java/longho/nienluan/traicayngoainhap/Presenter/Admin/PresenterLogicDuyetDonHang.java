@@ -34,7 +34,12 @@ public class PresenterLogicDuyetDonHang implements IPresenterDuyetDonHang{
 
     @Override
     public void DuyetDonHang(DonDatHang donDatHang) {
-        boolean duyetdonhang = modelDuyetDonHang.AdminDuyetDonHang(donDatHang);
+        modelDuyetDonHang.AdminDuyetDonHang(donDatHang);
+    }
+
+    @Override
+    public void GiaoDonHang(DonDatHang donDatHang) {
+        modelDuyetDonHang.AdminGiaoDonHang(donDatHang);
     }
 
     @Override
@@ -42,6 +47,14 @@ public class PresenterLogicDuyetDonHang implements IPresenterDuyetDonHang{
         boolean huydonhang = modelDuyetDonHang.AdminDuyetDonHang(donDatHang);
         if(huydonhang){
             viewDonDatHang.HuyDonDatHang();
+        }
+    }
+
+    @Override
+    public void LayDanhSachDonHangChuaGiao() {
+        List<DonDatHang> donDatHangList = modelDuyetDonHang.AdminLayDanhSachDonDatHangChuaGiao();
+        if(donDatHangList.size()>0){
+            viewDuyetDonHang.HienThiDonHangChuaGiao(donDatHangList);
         }
     }
 }

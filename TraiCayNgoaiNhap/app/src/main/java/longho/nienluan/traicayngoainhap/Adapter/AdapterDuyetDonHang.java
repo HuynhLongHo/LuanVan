@@ -31,6 +31,7 @@ public class AdapterDuyetDonHang extends RecyclerView.Adapter<AdapterDuyetDonHan
     private SparseBooleanArray itemStateArray;
     ModelDangNhap modelDangNhap;
     int manguoiduyet;
+    String tenquyen;
 
     public AdapterDuyetDonHang(Context context, List<DonDatHang> donDatHangList){
         this.donDatHangList = donDatHangList;
@@ -39,6 +40,7 @@ public class AdapterDuyetDonHang extends RecyclerView.Adapter<AdapterDuyetDonHan
         itemStateArray = new SparseBooleanArray();
         modelDangNhap = new ModelDangNhap();
         manguoiduyet = Integer.parseInt(modelDangNhap.LayMaNguoiDung(context));
+        tenquyen = modelDangNhap.LayTenQuyenTruyCap(context);
     }
 
 
@@ -101,10 +103,19 @@ public class AdapterDuyetDonHang extends RecyclerView.Adapter<AdapterDuyetDonHan
         holder.txtNgayGiao.setText("Dự kiến ngày giao: " + donDatHang.getNgayGiao());
         holder.txtTrangThaiGiaoHang.setText("Trạng thái: " + donDatHang.getTrangThaiGiao());
 
-        AdapterDuyetDonHangSanPham adapterDuyetDonHangSanPham =new AdapterDuyetDonHangSanPham(context,donDatHang.getChiTietDDHList());
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL,false);
-        holder.rcvDanhSachTraiCayHD.setLayoutManager(layoutManager);
-        holder.rcvDanhSachTraiCayHD.setAdapter(adapterDuyetDonHangSanPham);
+        if(tenquyen.equals("Admin")){
+            AdapterDuyetDonHangSanPham adapterDuyetDonHangSanPham =new AdapterDuyetDonHangSanPham(context,donDatHang.getChiTietDDHList());
+            RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL,false);
+            holder.rcvDanhSachTraiCayHD.setLayoutManager(layoutManager);
+            holder.rcvDanhSachTraiCayHD.setAdapter(adapterDuyetDonHangSanPham);
+        }
+        if(tenquyen.equals("Shipper")){
+            AdapterDonDatHangSanPham adapterDonDatHangSanPham =new AdapterDonDatHangSanPham(context,donDatHang.getChiTietDDHList());
+            RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL,false);
+            holder.rcvDanhSachTraiCayHD.setLayoutManager(layoutManager);
+            holder.rcvDanhSachTraiCayHD.setAdapter(adapterDonDatHangSanPham);
+        }
+
 
         holder.chkDuyetDonHang.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -112,16 +123,30 @@ public class AdapterDuyetDonHang extends RecyclerView.Adapter<AdapterDuyetDonHan
                 if(!itemStateArray.get(position,false)){
                     holder.chkDuyetDonHang.setChecked(true);
                     itemStateArray.put(position,true);
-                    donDatHang.setTrangThaiGiao("Đã duyệt");
-                    donDatHang.setMaNguoiDuyet(manguoiduyet);
-                    presenterLogicDuyetDonHang.DuyetDonHang(donDatHang);
+                    if(tenquyen.equals("Admin")){
+                        donDatHang.setTrangThaiGiao("Đã duyệt");
+                        donDatHang.setMaNguoiDuyet(manguoiduyet);
+                        presenterLogicDuyetDonHang.DuyetDonHang(donDatHang);
+                    }
+                    if(tenquyen.equals("Shipper")){
+                        donDatHang.setTrangThaiGiao("Đã giao");
+                        donDatHang.setMaNguoiGiao(manguoiduyet);
+                        presenterLogicDuyetDonHang.GiaoDonHang(donDatHang);
+                    }
                 }
                 else{
                     holder.chkDuyetDonHang.setChecked(false);
                     itemStateArray.put(position,false);
-                    donDatHang.setTrangThaiGiao("Chờ kiểm duyệt");
-                    donDatHang.setMaNguoiDuyet(-1);
-                    presenterLogicDuyetDonHang.DuyetDonHang(donDatHang);
+                    if(tenquyen.equals("Admin")){
+                        donDatHang.setTrangThaiGiao("Chờ kiểm duyệt");
+                        donDatHang.setMaNguoiDuyet(-1);
+                        presenterLogicDuyetDonHang.DuyetDonHang(donDatHang);
+                    }
+                    if(tenquyen.equals("Shipper")){
+                        donDatHang.setTrangThaiGiao("Đã duyệt");
+                        donDatHang.setMaNguoiGiao(-1);
+                        presenterLogicDuyetDonHang.GiaoDonHang(donDatHang);
+                    }
                 }
             }
         });
@@ -131,16 +156,30 @@ public class AdapterDuyetDonHang extends RecyclerView.Adapter<AdapterDuyetDonHan
                 if(!itemStateArray.get(position,false)){
                     holder.chkDuyetDonHang.setChecked(true);
                     itemStateArray.put(position,true);
-                    donDatHang.setTrangThaiGiao("Đã duyệt");
-                    donDatHang.setMaNguoiDuyet(manguoiduyet);
-                    presenterLogicDuyetDonHang.DuyetDonHang(donDatHang);
+                    if(tenquyen.equals("Admin")){
+                        donDatHang.setTrangThaiGiao("Đã duyệt");
+                        donDatHang.setMaNguoiDuyet(manguoiduyet);
+                        presenterLogicDuyetDonHang.DuyetDonHang(donDatHang);
+                    }
+                    if(tenquyen.equals("Shipper")){
+                        donDatHang.setTrangThaiGiao("Đã giao");
+                        donDatHang.setMaNguoiGiao(manguoiduyet);
+                        presenterLogicDuyetDonHang.GiaoDonHang(donDatHang);
+                    }
                 }
                 else{
                     holder.chkDuyetDonHang.setChecked(false);
                     itemStateArray.put(position,false);
-                    donDatHang.setTrangThaiGiao("Chờ kiểm duyệt");
-                    donDatHang.setMaNguoiDuyet(-1);
-                    presenterLogicDuyetDonHang.DuyetDonHang(donDatHang);
+                    if(tenquyen.equals("Admin")){
+                        donDatHang.setTrangThaiGiao("Chờ kiểm duyệt");
+                        donDatHang.setMaNguoiDuyet(-1);
+                        presenterLogicDuyetDonHang.DuyetDonHang(donDatHang);
+                    }
+                    if(tenquyen.equals("Shipper")){
+                        donDatHang.setTrangThaiGiao("Đã duyệt");
+                        donDatHang.setMaNguoiGiao(-1);
+                        presenterLogicDuyetDonHang.GiaoDonHang(donDatHang);
+                    }
                 }
             }
         });

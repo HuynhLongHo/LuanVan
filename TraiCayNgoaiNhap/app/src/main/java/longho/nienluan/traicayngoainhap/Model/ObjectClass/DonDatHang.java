@@ -9,6 +9,15 @@ public class DonDatHang {
     List<ChiTietDDH> ChiTietDDHList;
     int SoLuongDonHang;//Số lượng dựa vào trạng thái đơn đặt hàng
     int MaNguoiDuyet;
+    int MaNguoiGiao;
+
+    public int getMaNguoiGiao() {
+        return MaNguoiGiao;
+    }
+
+    public void setMaNguoiGiao(int maNguoiGiao) {
+        MaNguoiGiao = maNguoiGiao;
+    }
 
     public int getMaNguoiDuyet() {
         return MaNguoiDuyet;

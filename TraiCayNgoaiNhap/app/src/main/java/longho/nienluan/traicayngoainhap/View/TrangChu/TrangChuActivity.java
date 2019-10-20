@@ -47,6 +47,7 @@ import longho.nienluan.traicayngoainhap.Model.ObjectClass.LoaiTraiCay;
 import longho.nienluan.traicayngoainhap.Presenter.TrangChu.XuLyMenu.PresenterLogicXuLyMenu;
 import longho.nienluan.traicayngoainhap.R;
 import longho.nienluan.traicayngoainhap.View.DangNhap_DangKy.DangNhapActivity;
+import longho.nienluan.traicayngoainhap.View.Shipper.ShipperActivity;
 import longho.nienluan.traicayngoainhap.View.ThongTinNguoiDung.ThongTinNguoiDungActivity;
 import longho.nienluan.traicayngoainhap.View.TimKiem.TimKiemActivity;
 
@@ -69,7 +70,7 @@ public class TrangChuActivity extends AppCompatActivity implements ViewXuLyMenu,
     String tennguoidung ="";
     AccessToken accessToken;
     Menu menu;
-    MenuItem itemDangNhap, itDonHangCuaToi, itCaiDat, itSearch, itAdmin;
+    MenuItem itemDangNhap, itDonHangCuaToi, itCaiDat, itSearch, itAdmin, itShipper;
     CollapsingToolbarLayout collapsingToolbarLayout;
     AppBarLayout appBarLayout;
     ModelDangNhap modelDangNhap;
@@ -137,6 +138,7 @@ public class TrangChuActivity extends AppCompatActivity implements ViewXuLyMenu,
         itDonHangCuaToi = menu.findItem(R.id.itDonHangCuaToi);
         itSearch = menu.findItem(R.id.itSearch);
         itAdmin = menu.findItem(R.id.itAdmin);
+        itShipper = menu.findItem(R.id.itShipper);
         accessToken = logicXuLyMenu.LayTokenNguoiDungFB();
         if(accessToken != null){
             GraphRequest graphRequest = GraphRequest.newMeRequest(accessToken, new GraphRequest.GraphJSONObjectCallback() {
@@ -164,6 +166,9 @@ public class TrangChuActivity extends AppCompatActivity implements ViewXuLyMenu,
         String tenquyen = modelDangNhap.LayTenQuyenTruyCap(this);
         if(tenquyen.equals("Admin")){
             itAdmin.setVisible(true);
+        }
+        if(tenquyen.equals("Shipper")){
+            itShipper.setVisible(true);
         }
 
         String TenNguoiDung = modelDangNhap.LayCachedDangNhap(this);
@@ -252,6 +257,10 @@ public class TrangChuActivity extends AppCompatActivity implements ViewXuLyMenu,
             case R.id.itAdmin:
                 Intent iAdmin = new Intent(this,AdminActivity.class);
                 startActivity(iAdmin);
+                break;
+            case R.id.itShipper:
+                Intent iShipper = new Intent(this,ShipperActivity.class);
+                startActivity(iShipper);
                 break;
             case R.id.itSearch:
                 Intent iTimKiem = new Intent(this, TimKiemActivity.class);

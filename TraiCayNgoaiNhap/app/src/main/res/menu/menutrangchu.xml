@@ -83,6 +83,13 @@
                 />
 
             <item
+                android:id="@+id/itShipper"
+                android:title="Shipper"
+                android:icon="@mipmap/ic_sentiment_satisfied_black_24dp"
+                android:visible="false"
+                />
+
+            <item
                 android:id="@+id/itDangXuat"
                 android:title="Đăng xuất"
                 android:icon="@mipmap/ic_logout"

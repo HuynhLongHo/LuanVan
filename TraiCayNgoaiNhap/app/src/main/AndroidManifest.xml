@@ -107,6 +107,10 @@
             android:label="Admin quản lý"
             android:screenOrientation="portrait" />
         <activity
+            android:name=".View.Shipper.ShipperActivity"
+            android:label="Shipper"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".View.Admin.DuyetDonHang.DuyetDonHangActivity"
             android:label="Duyệt đơn hàng"
             android:screenOrientation="portrait" />

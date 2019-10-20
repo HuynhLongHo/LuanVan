@@ -76,10 +76,13 @@
 		case 'TimKiemSanPhamTheoTenSP':
 			$ham();
 			break;
-		case 'AdminLayDanhSachDonDatHangChuaDuyet':
+		case 'AdminLayDanhSachDonDatHang':
 			$ham();
 			break;
 		case 'AdminDuyetDonHang':
+			$ham();
+			break;
+		case 'AdminGiaoDonHang':
 			$ham();
 			break;
 		case 'LayDanhSachDonDatHangTheoNam':
@@ -709,11 +712,17 @@
 		echo json_encode($chuoijson,JSON_UNESCAPED_UNICODE);
 		echo "}";
 	}
-	function AdminLayDanhSachDonDatHangChuaDuyet(){
+	function AdminLayDanhSachDonDatHang(){
 		include_once("config.php");
 		$chuoijson = array();
 
-		$truyvan = "SELECT * FROM dondathang where TrangThaiGiao = 'Chờ kiểm duyệt'";
+		if(isset($_POST["ChuaDuyet"])){
+			$truyvan = "SELECT * FROM dondathang where TrangThaiGiao = 'Chờ kiểm duyệt'";
+		}
+		if(isset($_POST["ChuaGiao"])){
+			$truyvan = "SELECT * FROM dondathang where TrangThaiGiao = 'Đã duyệt'";
+		}
+
 		$ketqua = mysqli_query($conn,$truyvan);
 
 		echo "{";
@@ -755,6 +764,20 @@
 		}
 		else echo "{\"ketqua\":\"false\"}";
 	}
+
+	function AdminGiaoDonHang(){
+    	include_once("config.php");
+    	$MaDDH = $_POST["MaDDH"];
+    	$MaNguoiGiao = $_POST["MaNguoiGiao"];
+    	$TrangThaiGiao = $_POST["TrangThaiGiao"];
+
+		$truyvan = "UPDATE dondathang SET TrangThaiGiao = '".$TrangThaiGiao."', MaNguoiGiao = '".$MaNguoiGiao."' WHERE MaDDH = '".$MaDDH."'";
+		if(mysqli_query($conn,$truyvan)){
+			echo "{\"ketqua\":\"true\"}";
+		}
+		else echo "{\"ketqua\":\"false\"}";
+	}
+
 	function LayDanhSachDonDatHangTheoNam(){
 		include_once("config.php");
 		$chuoijson = array();
