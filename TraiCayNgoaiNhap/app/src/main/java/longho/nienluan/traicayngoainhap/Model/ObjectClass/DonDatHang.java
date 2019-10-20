@@ -7,7 +7,16 @@ public class DonDatHang {
     int MaDDH, MaNguoiDung;
     String TenNguoiDatHang, SoDienThoaiDatHang, DiaChiDatHang, NgayDat, NgayGiao, TrangThaiGiao, MoTa;
     List<ChiTietDDH> ChiTietDDHList;
-    int SoLuongDonHang;//Số lượng dựa vào trạng thái
+    int SoLuongDonHang;//Số lượng dựa vào trạng thái đơn đặt hàng
+    int MaNguoiDuyet;
+
+    public int getMaNguoiDuyet() {
+        return MaNguoiDuyet;
+    }
+
+    public void setMaNguoiDuyet(int maNguoiDuyet) {
+        MaNguoiDuyet = maNguoiDuyet;
+    }
 
     public int getSoLuongDonHang() {
         return SoLuongDonHang;

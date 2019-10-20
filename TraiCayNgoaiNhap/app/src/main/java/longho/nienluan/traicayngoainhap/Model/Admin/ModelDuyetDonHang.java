@@ -106,10 +106,13 @@ public class ModelDuyetDonHang {
         hmMaDDH.put("MaDDH", String.valueOf(donDatHang.getMaDDH()));
         HashMap<String, String> hmTrangThaiGiao = new HashMap<>();
         hmTrangThaiGiao.put("TrangThaiGiao",donDatHang.getTrangThaiGiao());
+        HashMap<String, String> hmMaNguoiDuyet = new HashMap<>();
+        hmMaNguoiDuyet.put("MaNguoiDuyet", String.valueOf(donDatHang.getMaNguoiDuyet()));
 
         atts.add(hmHam);
         atts.add(hmMaDDH);
         atts.add(hmTrangThaiGiao);
+        atts.add(hmMaNguoiDuyet);
 
         DownloadJSON downloadJSON = new DownloadJSON(duongdan,atts);
         downloadJSON.execute();

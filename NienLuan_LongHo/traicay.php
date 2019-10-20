@@ -746,9 +746,10 @@
 	function AdminDuyetDonHang(){
     	include_once("config.php");
     	$MaDDH = $_POST["MaDDH"];
+    	$MaNguoiDuyet = $_POST["MaNguoiDuyet"];
     	$TrangThaiGiao = $_POST["TrangThaiGiao"];
 
-		$truyvan = "UPDATE dondathang SET TrangThaiGiao = '".$TrangThaiGiao."' WHERE MaDDH = '".$MaDDH."'";
+		$truyvan = "UPDATE dondathang SET TrangThaiGiao = '".$TrangThaiGiao."', MaNguoiDuyet = '".$MaNguoiDuyet."' WHERE MaDDH = '".$MaDDH."'";
 		if(mysqli_query($conn,$truyvan)){
 			echo "{\"ketqua\":\"true\"}";
 		}

@@ -17,6 +17,7 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
+import longho.nienluan.traicayngoainhap.Model.DangNhap_DangKy.ModelDangNhap;
 import longho.nienluan.traicayngoainhap.Model.ObjectClass.ChiTietDDH;
 import longho.nienluan.traicayngoainhap.Model.ObjectClass.DonDatHang;
 import longho.nienluan.traicayngoainhap.Presenter.Admin.PresenterLogicDuyetDonHang;
@@ -28,12 +29,16 @@ public class AdapterDuyetDonHang extends RecyclerView.Adapter<AdapterDuyetDonHan
     Context context;
     PresenterLogicDuyetDonHang presenterLogicDuyetDonHang;
     private SparseBooleanArray itemStateArray;
+    ModelDangNhap modelDangNhap;
+    int manguoiduyet;
 
     public AdapterDuyetDonHang(Context context, List<DonDatHang> donDatHangList){
         this.donDatHangList = donDatHangList;
         this.context = context;
         presenterLogicDuyetDonHang = new PresenterLogicDuyetDonHang();
         itemStateArray = new SparseBooleanArray();
+        modelDangNhap = new ModelDangNhap();
+        manguoiduyet = Integer.parseInt(modelDangNhap.LayMaNguoiDung(context));
     }
 
 
@@ -108,12 +113,14 @@ public class AdapterDuyetDonHang extends RecyclerView.Adapter<AdapterDuyetDonHan
                     holder.chkDuyetDonHang.setChecked(true);
                     itemStateArray.put(position,true);
                     donDatHang.setTrangThaiGiao("Đã duyệt");
+                    donDatHang.setMaNguoiDuyet(manguoiduyet);
                     presenterLogicDuyetDonHang.DuyetDonHang(donDatHang);
                 }
                 else{
                     holder.chkDuyetDonHang.setChecked(false);
                     itemStateArray.put(position,false);
                     donDatHang.setTrangThaiGiao("Chờ kiểm duyệt");
+                    donDatHang.setMaNguoiDuyet(-1);
                     presenterLogicDuyetDonHang.DuyetDonHang(donDatHang);
                 }
             }
@@ -125,12 +132,14 @@ public class AdapterDuyetDonHang extends RecyclerView.Adapter<AdapterDuyetDonHan
                     holder.chkDuyetDonHang.setChecked(true);
                     itemStateArray.put(position,true);
                     donDatHang.setTrangThaiGiao("Đã duyệt");
+                    donDatHang.setMaNguoiDuyet(manguoiduyet);
                     presenterLogicDuyetDonHang.DuyetDonHang(donDatHang);
                 }
                 else{
                     holder.chkDuyetDonHang.setChecked(false);
                     itemStateArray.put(position,false);
                     donDatHang.setTrangThaiGiao("Chờ kiểm duyệt");
+                    donDatHang.setMaNguoiDuyet(-1);
                     presenterLogicDuyetDonHang.DuyetDonHang(donDatHang);
                 }
             }
