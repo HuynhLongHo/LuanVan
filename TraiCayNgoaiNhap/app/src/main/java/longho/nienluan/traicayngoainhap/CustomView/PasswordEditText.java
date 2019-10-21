@@ -19,7 +19,7 @@ import java.util.regex.Pattern;
 
 import longho.nienluan.traicayngoainhap.R;
 
-public class PasswordEditText extends EditText {
+public class PasswordEditText extends android.support.design.widget.TextInputEditText {
 
    Drawable eye, eyeStrike;
     Boolean visible = false;
@@ -45,11 +45,11 @@ public class PasswordEditText extends EditText {
         khoitao(attrs);
     }
 
-    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-    public PasswordEditText(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
-        super(context, attrs, defStyleAttr, defStyleRes);
-        khoitao(attrs);
-    }
+//    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
+//    public PasswordEditText(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+//        super(context, attrs, defStyleAttr, defStyleRes);
+//        khoitao(attrs);
+//    }
 
     private void khoitao(AttributeSet attrs){
 
@@ -59,8 +59,8 @@ public class PasswordEditText extends EditText {
             this.useStrike = array.getBoolean(R.styleable.PasswordEditText_useStrike,false);
             //this.useValidate = array.getBoolean(R.styleable.PasswordEditText_useValidate,false);
         }
-        eye = ContextCompat.getDrawable(getContext(), R.drawable.ic_visibility_black_24dp).mutate();
-        eyeStrike = ContextCompat.getDrawable(getContext(), R.drawable.ic_visibility_off_black_24dp).mutate();
+        eye = ContextCompat.getDrawable(getContext(), R.mipmap.ic_visibility_black_24dp).mutate();
+        eyeStrike = ContextCompat.getDrawable(getContext(), R.mipmap.ic_visibility_off_black_24dp).mutate();
 
         if(this.useValidate){
             setOnFocusChangeListener(new OnFocusChangeListener() {

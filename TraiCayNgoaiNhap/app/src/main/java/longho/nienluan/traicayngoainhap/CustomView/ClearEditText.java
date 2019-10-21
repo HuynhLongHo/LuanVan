@@ -12,7 +12,7 @@ import android.widget.EditText;
 
 import longho.nienluan.traicayngoainhap.R;
 
-public class ClearEditText extends EditText {
+public class ClearEditText extends android.support.design.widget.TextInputEditText {
     Drawable crossx,nonecrossx,drawable;
     Boolean visible = false;
 
@@ -31,11 +31,11 @@ public class ClearEditText extends EditText {
         khoitao();
     }
 
-    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-    public ClearEditText(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
-        super(context, attrs, defStyleAttr, defStyleRes);
-        khoitao();
-    }
+//    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
+//    public ClearEditText(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+//        super(context, attrs, defStyleAttr, defStyleRes);
+//        khoitao();
+//    }
 
     private void khoitao(){
         crossx = ContextCompat.getDrawable(getContext(), R.drawable.ic_clear_black_24dp).mutate();

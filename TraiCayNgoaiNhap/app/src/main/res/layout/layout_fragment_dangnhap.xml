@@ -7,13 +7,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp">
-        <longho.nienluan.traicayngoainhap.CustomView.ClearEditText
+        <android.support.design.widget.TextInputEditText
             android:id="@+id/edt_emaildangnhap"
-            android:hint="Email đăng nhập"
             style="@style/DinhDangNhapText"
-            android:layout_margin="10dp"
-            />
-
+            android:hint="Họ tên đầy đủ"/>
     </android.support.design.widget.TextInputLayout>
 
     <android.support.design.widget.TextInputLayout
