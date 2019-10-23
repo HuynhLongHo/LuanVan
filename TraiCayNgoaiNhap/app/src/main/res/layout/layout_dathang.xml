@@ -66,6 +66,7 @@
             android:id="@+id/edSoDT"
             style="@style/DinhDangNhapText"
             android:hint="Số điện thoại "
+            android:inputType="phone"
             />
 
         <TextView

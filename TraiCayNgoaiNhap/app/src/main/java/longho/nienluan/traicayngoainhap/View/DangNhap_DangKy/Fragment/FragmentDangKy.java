@@ -29,6 +29,7 @@ import java.util.Arrays;
 
 import longho.nienluan.traicayngoainhap.EmailVerification.GenerateRandomNumber;
 import longho.nienluan.traicayngoainhap.EmailVerification.SendMail;
+import longho.nienluan.traicayngoainhap.Model.DangNhap_DangKy.ModelDangNhap;
 import longho.nienluan.traicayngoainhap.Model.ObjectClass.nguoidung;
 import longho.nienluan.traicayngoainhap.Presenter.DangKy.PresenterLogicDangKy;
 import longho.nienluan.traicayngoainhap.R;
@@ -43,6 +44,8 @@ public class FragmentDangKy extends Fragment implements ViewDangKy, View.OnClick
     TextInputLayout layout_TenNguoiDung, layout_Email, layout_SoDienThoai, layout_DiaChi, layout_MatKhau, layout_NhapLaiMatKhau, layout_CauHoi, layout_CauTraLoi;
     Boolean kiemtrathongtin = false;
     CallbackManager callbackManager;
+    ModelDangNhap modelDangNhap;
+    String emaildk,matkhaudk;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -56,8 +59,8 @@ public class FragmentDangKy extends Fragment implements ViewDangKy, View.OnClick
         edtDiaChi = view.findViewById(R.id.edDiaChiDK);
         edtMatKhau = view.findViewById(R.id.edMatKhauDK);
         edtNhapLaiMatKhau = view.findViewById(R.id.edNhapLaiMatKhauDK);
-        edtCauHoi = view.findViewById(R.id.edCauHoi);
-        edtCauTraLoi = view.findViewById(R.id.edCauTraLoi);
+//        edtCauHoi = view.findViewById(R.id.edCauHoi);
+//        edtCauTraLoi = view.findViewById(R.id.edCauTraLoi);
         rdgGioiTinh = view.findViewById(R.id.rdg_GioiTinh);
         layout_TenNguoiDung = view.findViewById(R.id.input_edHoTenDK);
         layout_Email = view.findViewById(R.id.input_edEmailDK);
@@ -100,8 +103,8 @@ public class FragmentDangKy extends Fragment implements ViewDangKy, View.OnClick
         edtDiaChi.setOnFocusChangeListener(this);
         edtMatKhau.setOnFocusChangeListener(this);
         edtNhapLaiMatKhau.setOnFocusChangeListener(this);
-        edtCauHoi.setOnFocusChangeListener(this);
-        edtCauTraLoi.setOnFocusChangeListener(this);
+//        edtCauHoi.setOnFocusChangeListener(this);
+//        edtCauTraLoi.setOnFocusChangeListener(this);
 
         return view;
     }
@@ -109,6 +112,12 @@ public class FragmentDangKy extends Fragment implements ViewDangKy, View.OnClick
     @Override
     public void DangKyThanhCong() {
         Toast.makeText(getActivity(), "Đăng ký thành công", Toast.LENGTH_SHORT).show();
+        modelDangNhap = new ModelDangNhap();
+        boolean kiemtra = modelDangNhap.KiemTraDangNhap(getActivity(),emaildk,matkhaudk);
+        if(kiemtra){
+            Intent iTrangChu = new Intent(getActivity(), TrangChuActivity.class);
+            startActivity(iTrangChu);
+        }
     }
 
     @Override
@@ -135,13 +144,13 @@ public class FragmentDangKy extends Fragment implements ViewDangKy, View.OnClick
 
     private void btnDangKy(){
         String hoten = edtTenNguoiDung.getText().toString();
-        String email = edtEmail.getText().toString();
+        emaildk = edtEmail.getText().toString();
         String sodienthoai = edtSoDienThoai.getText().toString();
         String diachi = edtDiaChi.getText().toString();
-        String matkhau = edtMatKhau.getText().toString();
+        matkhaudk = edtMatKhau.getText().toString();
         String nhaplaimatkhau = edtNhapLaiMatKhau.getText().toString();
-        String cauhoi = edtCauHoi.getText().toString();
-        String cautraloi = edtCauTraLoi.getText().toString();
+//        String cauhoi = edtCauHoi.getText().toString();
+//        String cautraloi = edtCauTraLoi.getText().toString();
         int id = rdgGioiTinh.getCheckedRadioButtonId();
         RadioButton rad = getView().findViewById(id);
         String gioitinh = rad.getText().toString();
@@ -150,12 +159,12 @@ public class FragmentDangKy extends Fragment implements ViewDangKy, View.OnClick
             int gt;
             final nguoidung nguoiDung = new nguoidung();
             nguoiDung.setTenNguoiDung(hoten);
-            nguoiDung.setEmailND(email);
+            nguoiDung.setEmailND(emaildk);
             nguoiDung.setSoDienThoaiND(sodienthoai);
             nguoiDung.setDiaChiND(diachi);
-            nguoiDung.setMatKhau(matkhau);
-            nguoiDung.setCauHoi(cauhoi);
-            nguoiDung.setCauTraLoi(cautraloi);
+            nguoiDung.setMatKhau(matkhaudk);
+//            nguoiDung.setCauHoi(cauhoi);
+//            nguoiDung.setCauTraLoi(cautraloi);
             if(gioitinh.equals("Nam"))
                 gt=1;
             else
@@ -163,28 +172,31 @@ public class FragmentDangKy extends Fragment implements ViewDangKy, View.OnClick
             nguoiDung.setGioiTinh(gt);
             nguoiDung.setMaQuyen(0);
 
-            GenerateRandomNumber generateRandomNumber = new GenerateRandomNumber();
-            final int OTP = generateRandomNumber.RandomNumber();
+            presenterLogicDangKy.ThucHienDangKy(nguoiDung);
 
-            SendMail sendMail = new SendMail(getActivity(),email,"Xác nhận", "Mã xác nhận của bạn là: " + OTP);
-            sendMail.execute();
-            //Builder thứ 2
-            AlertDialog.Builder ad = new AlertDialog.Builder(getContext());
-            ad.setTitle("Nhâp mã OTP");
-            ad.setMessage("Vui lòng nhập mã vừa gửi đến email bạn!");
-            final EditText edtOTP = new EditText(getContext());
-            ad.setView(edtOTP);
-            ad.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-                public void onClick(DialogInterface dlg, int which) {
-                    int otp = Integer.parseInt(edtOTP.getText().toString());
-                    if(OTP == otp){
-                        presenterLogicDangKy.ThucHienDangKy(nguoiDung);
-                    }else{
-                        Toast.makeText(getActivity(), "Mã OTP sai!", Toast.LENGTH_SHORT).show();
-                    }
-                }
-            });
-            ad.show();
+
+//            GenerateRandomNumber generateRandomNumber = new GenerateRandomNumber();
+//            final int OTP = generateRandomNumber.RandomNumber();
+//
+//            SendMail sendMail = new SendMail(getActivity(),email,"Xác nhận", "Mã xác nhận của bạn là: " + OTP);
+//            sendMail.execute();
+//            //Builder thứ 2
+//            AlertDialog.Builder ad = new AlertDialog.Builder(getContext());
+//            ad.setTitle("Nhâp mã OTP");
+//            ad.setMessage("Vui lòng nhập mã vừa gửi đến email bạn!");
+//            final EditText edtOTP = new EditText(getContext());
+//            ad.setView(edtOTP);
+//            ad.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+//                public void onClick(DialogInterface dlg, int which) {
+//                    int otp = Integer.parseInt(edtOTP.getText().toString());
+//                    if(OTP == otp){
+//                        presenterLogicDangKy.ThucHienDangKy(nguoiDung);
+//                    }else{
+//                        Toast.makeText(getActivity(), "Mã OTP sai!", Toast.LENGTH_SHORT).show();
+//                    }
+//                }
+//            });
+//            ad.show();
         }else{
             Log.d("kiemtra","Dang ky that bai ");
         }
@@ -285,30 +297,30 @@ public class FragmentDangKy extends Fragment implements ViewDangKy, View.OnClick
                 }
                 ;break;
 
-            case R.id.edCauHoi:
-                if(!b){
-                    String chuoi = ((EditText)view).getText().toString();
-                    if(chuoi.trim().equals("") || chuoi.equals(null)){
-                        layout_CauHoi.setError("Bạn chưa nhập mục này !");
-                        kiemtrathongtin = false;
-                    }else{
-                        layout_CauHoi.setError(null);
-                        kiemtrathongtin = true;
-                    }
-                }
-                break;
-            case R.id.edCauTraLoi:
-                if(!b){
-                    String chuoi = ((EditText)view).getText().toString();
-                    if(chuoi.trim().equals("") || chuoi.equals(null)){
-                        layout_CauTraLoi.setError("Bạn chưa nhập mục này !");
-                        kiemtrathongtin = false;
-                    }else{
-                        layout_CauTraLoi.setError(null);
-                        kiemtrathongtin = true;
-                    }
-                }
-                break;
+//            case R.id.edCauHoi:
+//                if(!b){
+//                    String chuoi = ((EditText)view).getText().toString();
+//                    if(chuoi.trim().equals("") || chuoi.equals(null)){
+//                        layout_CauHoi.setError("Bạn chưa nhập mục này !");
+//                        kiemtrathongtin = false;
+//                    }else{
+//                        layout_CauHoi.setError(null);
+//                        kiemtrathongtin = true;
+//                    }
+//                }
+//                break;
+//            case R.id.edCauTraLoi:
+//                if(!b){
+//                    String chuoi = ((EditText)view).getText().toString();
+//                    if(chuoi.trim().equals("") || chuoi.equals(null)){
+//                        layout_CauTraLoi.setError("Bạn chưa nhập mục này !");
+//                        kiemtrathongtin = false;
+//                    }else{
+//                        layout_CauTraLoi.setError(null);
+//                        kiemtrathongtin = true;
+//                    }
+//                }
+//                break;
         }
     }
     @Override

@@ -40,8 +40,8 @@ public class ThemDanhGiaActivity extends AppCompatActivity implements ViewDanhGi
         setContentView(R.layout.layout_themdanhgia);
 
         input_edNoiDung = findViewById(R.id.input_edNoiDungDanhGia);
-        input_edTieuDe =findViewById(R.id.input_edTieuDeDanhGia);
-        edTieuDe = findViewById(R.id.edTieuDe);
+//        input_edTieuDe =findViewById(R.id.input_edTieuDeDanhGia);
+//        edTieuDe = findViewById(R.id.edTieuDe);
         edNoiDung = findViewById(R.id.edNoiDung);
         rbDanhGia = findViewById(R.id.rbDanhGia);
         btnDongYDanhGia = findViewById(R.id.btnDongYDanhGia);
@@ -83,16 +83,16 @@ public class ThemDanhGiaActivity extends AppCompatActivity implements ViewDanhGi
     public void onClick(View v) {
         String madg = System.getString(this.getContentResolver(),Settings.Secure.ANDROID_ID);
         String tenthietbi = Build.MODEL;
-        String tieude = edTieuDe.getText().toString();
+//        String tieude = edTieuDe.getText().toString();
         String noidung = edNoiDung.getText().toString();
 
-        if(tieude.trim().length() > 0){
-            input_edTieuDe.setErrorEnabled(false);
-            input_edTieuDe.setError("");
-        }else{
-            input_edTieuDe.setErrorEnabled(true);
-            input_edTieuDe.setError("Bạn chưa nhập tiêu đề !");
-        }
+//        if(tieude.trim().length() > 0){
+//            input_edTieuDe.setErrorEnabled(false);
+//            input_edTieuDe.setError("");
+//        }else{
+//            input_edTieuDe.setErrorEnabled(true);
+//            input_edTieuDe.setError("Bạn chưa nhập tiêu đề !");
+//        }
 
         if(noidung.trim().length() > 0){
             input_edNoiDung.setError("");
@@ -102,7 +102,7 @@ public class ThemDanhGiaActivity extends AppCompatActivity implements ViewDanhGi
             input_edNoiDung.setError("Bạn chưa nhập nội dung");
         }
 
-        if(!input_edNoiDung.isErrorEnabled() && !input_edTieuDe.isErrorEnabled()){
+        if(!input_edNoiDung.isErrorEnabled()){
             DanhGia danhGia = new DanhGia();
             danhGia.setMaTraiCay(matraicay);
             danhGia.setMaDG(madg);

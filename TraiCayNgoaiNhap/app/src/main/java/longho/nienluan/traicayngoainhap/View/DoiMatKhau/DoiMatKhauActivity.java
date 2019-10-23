@@ -1,5 +1,6 @@
 package longho.nienluan.traicayngoainhap.View.DoiMatKhau;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TextInputLayout;
@@ -16,6 +17,7 @@ import longho.nienluan.traicayngoainhap.Model.DangNhap_DangKy.ModelDangNhap;
 import longho.nienluan.traicayngoainhap.Model.ObjectClass.nguoidung;
 import longho.nienluan.traicayngoainhap.Presenter.DoiMatKhau.PresenterLogicDoiMatKhau;
 import longho.nienluan.traicayngoainhap.R;
+import longho.nienluan.traicayngoainhap.View.TrangChu.TrangChuActivity;
 
 public class DoiMatKhauActivity extends AppCompatActivity implements ViewDoiMatKhau, View.OnClickListener {
 
@@ -72,6 +74,8 @@ public class DoiMatKhauActivity extends AppCompatActivity implements ViewDoiMatK
     @Override
     public void DoiMatKhauThanhCong() {
         Toast.makeText(this, "Đổi mật khẩu thành công", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(this,TrangChuActivity.class);
+        startActivity(intent);
     }
 
     @Override

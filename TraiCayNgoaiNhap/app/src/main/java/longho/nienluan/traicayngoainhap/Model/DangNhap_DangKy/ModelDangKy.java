@@ -36,10 +36,10 @@ public class ModelDangKy {
         hmGioiTinh.put("GioiTinh",String.valueOf(nguoiDung.getGioiTinh()));
         HashMap<String, String> hmMatKhau = new HashMap<>();
         hmMatKhau.put("MatKhau",nguoiDung.getMatKhau());
-        HashMap<String, String> hmCauHoi = new HashMap<>();
-        hmCauHoi.put("CauHoi",nguoiDung.getCauHoi());
-        HashMap<String, String> hmCauTraLoi = new HashMap<>();
-        hmCauTraLoi.put("CauTraLoi",nguoiDung.getCauTraLoi());
+//        HashMap<String, String> hmCauHoi = new HashMap<>();
+//        hmCauHoi.put("CauHoi",nguoiDung.getCauHoi());
+//        HashMap<String, String> hmCauTraLoi = new HashMap<>();
+//        hmCauTraLoi.put("CauTraLoi",nguoiDung.getCauTraLoi());
         HashMap<String, String> hmMaQuyen = new HashMap<>();
         hmMaQuyen.put("MaQuyen","0");
 
@@ -50,8 +50,8 @@ public class ModelDangKy {
         atts.add(hmEmailND);
         atts.add(hmGioiTinh);
         atts.add(hmMatKhau);
-        atts.add(hmCauHoi);
-        atts.add(hmCauTraLoi);
+//        atts.add(hmCauHoi);
+//        atts.add(hmCauTraLoi);
         atts.add(hmMaQuyen);
 
         DownloadJSON downloadJSON = new DownloadJSON(duongdan,atts);

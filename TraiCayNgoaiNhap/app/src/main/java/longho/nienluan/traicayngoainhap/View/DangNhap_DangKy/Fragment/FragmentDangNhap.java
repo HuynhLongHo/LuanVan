@@ -31,6 +31,7 @@ import longho.nienluan.traicayngoainhap.Model.ObjectClass.nguoidung;
 import longho.nienluan.traicayngoainhap.Presenter.DangNhap.PresenterLogicDangNhap;
 import longho.nienluan.traicayngoainhap.R;
 import longho.nienluan.traicayngoainhap.View.DoiMatKhau.QuenMatKhauActivity;
+import longho.nienluan.traicayngoainhap.View.ThongTinNguoiDung.MaOTPActivity;
 import longho.nienluan.traicayngoainhap.View.TrangChu.TrangChuActivity;
 
 public class FragmentDangNhap extends Fragment implements ViewDangNhap,View.OnClickListener {
@@ -123,27 +124,31 @@ public class FragmentDangNhap extends Fragment implements ViewDangNhap,View.OnCl
                             SendMail sendMail = new SendMail(getActivity(),strEmail,"Xác nhận", "Mã xác nhận của bạn là: " + OTP);
                             sendMail.execute();
                             //Builder thứ 2
-                            AlertDialog.Builder ad = new AlertDialog.Builder(getContext());
-                            ad.setTitle("Nhâp mã OTP");
-                            ad.setMessage("Vui lòng nhập mã vừa gửi đến email bạn!");
-                            final EditText edtOTP = new EditText(getContext());
-                            ad.setView(edtOTP);
-                            ad.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dlg, int which) {
-                                    int otp = Integer.parseInt(edtOTP.getText().toString());
-                                    if(OTP == otp){
-                                        Intent intent = new Intent(getActivity(),QuenMatKhauActivity.class);
-                                        intent.putExtra("MaNguoiDung",strMaNguoiDung);
-                                        intent.putExtra("MatKhau",strMatKhau);
-                                        startActivity(intent);
-                                    }else{
-                                        Toast.makeText(getActivity(), "Mã OTP sai!", Toast.LENGTH_SHORT).show();
-                                    }
-                                }
-                            });
-
-
-                            ad.show();
+//                            AlertDialog.Builder ad = new AlertDialog.Builder(getContext());
+//                            ad.setTitle("Nhâp mã OTP");
+//                            ad.setMessage("Vui lòng nhập mã vừa gửi đến email bạn!");
+//                            final EditText edtOTP = new EditText(getContext());
+//                            ad.setView(edtOTP);
+//                            ad.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+//                                public void onClick(DialogInterface dlg, int which) {
+//                                    int otp = Integer.parseInt(edtOTP.getText().toString());
+//                                    if(OTP == otp){
+//                                        Intent intent = new Intent(getActivity(),QuenMatKhauActivity.class);
+//                                        intent.putExtra("MaNguoiDung",strMaNguoiDung);
+//                                        intent.putExtra("MatKhau",strMatKhau);
+//                                        startActivity(intent);
+//                                    }else{
+//                                        Toast.makeText(getActivity(), "Mã OTP sai!", Toast.LENGTH_SHORT).show();
+//                                    }
+//                                }
+//                            });
+//
+//
+//                            ad.show();
+                            Intent intent = new Intent(getActivity(),MaOTPActivity.class);
+                            intent.putExtra("otp",OTP);
+                            intent.putExtra("email",email);
+                            startActivity(intent);
                         }else{
                             Toast.makeText(getActivity(), "Email bạn vừa nhập chưa được đăng kí!", Toast.LENGTH_SHORT).show();
                         }

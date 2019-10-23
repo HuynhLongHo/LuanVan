@@ -23,22 +23,22 @@
         android:theme="@style/DoiMauNgoiSaoRatingBar"
         />
 
-    <android.support.design.widget.TextInputLayout
-        android:id="@+id/input_edTieuDeDanhGia"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        >
+    <!--<android.support.design.widget.TextInputLayout-->
+        <!--android:id="@+id/input_edTieuDeDanhGia"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--&gt;-->
 
-        <EditText
-            android:id="@+id/edTieuDe"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:maxLength="50"
-            android:lines="1"
-            android:hint="Tiêu đề đánh giá"
-            />
+        <!--<EditText-->
+            <!--android:id="@+id/edTieuDe"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:maxLength="50"-->
+            <!--android:lines="1"-->
+            <!--android:hint="Tiêu đề đánh giá"-->
+            <!--/>-->
 
-    </android.support.design.widget.TextInputLayout>
+    <!--</android.support.design.widget.TextInputLayout>-->
 
     <android.support.design.widget.TextInputLayout
         android:id="@+id/input_edNoiDungDanhGia"

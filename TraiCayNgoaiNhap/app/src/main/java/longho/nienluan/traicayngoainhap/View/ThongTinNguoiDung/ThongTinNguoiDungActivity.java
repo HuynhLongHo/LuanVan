@@ -29,9 +29,9 @@ public class ThongTinNguoiDungActivity extends AppCompatActivity implements View
     RadioGroup rdg_GioiTinh;
     RadioButton rdoNam, rdoNu;
     ModelDangNhap modelDangNhap;
-    EditText edHoTen, edEmail, edDiaChi, edSoDienThoai, edMatKhau, edCauHoi, edCauTraLoi;
+    EditText edHoTen, edEmail, edDiaChi, edSoDienThoai, edMatKhau;
     int MaNguoiDung;
-    TextInputLayout input_edHoTen, input_edEmail, input_edDiaChi, input_edSoDienThoai, input_edMatKhau, input_edCauHoi, input_edCauTraLoi;
+    TextInputLayout input_edHoTen, input_edEmail, input_edDiaChi, input_edSoDienThoai, input_edMatKhau;
     PresenterLogicThongTinNguoiDung presenterLogicThongTinNguoiDung;
     Toolbar toolbar;
     @Override
@@ -49,16 +49,16 @@ public class ThongTinNguoiDungActivity extends AppCompatActivity implements View
         edDiaChi = findViewById(R.id.edDiaChi);
         edSoDienThoai = findViewById(R.id.edSoDienThoai);
         edMatKhau = findViewById(R.id.edMatKhau);
-        edCauHoi = findViewById(R.id.edCauHoi);
-        edCauTraLoi = findViewById(R.id.edCauTraLoi);
+//        edCauHoi = findViewById(R.id.edCauHoi);
+//        edCauTraLoi = findViewById(R.id.edCauTraLoi);
 
         input_edHoTen = findViewById(R.id.input_edHoTen);
         input_edEmail = findViewById(R.id.input_edEmail);
         input_edDiaChi = findViewById(R.id.input_edDiaChi);
         input_edSoDienThoai = findViewById(R.id.input_edSoDienThoai);
         input_edMatKhau = findViewById(R.id.input_edMatKhau);
-        input_edCauHoi = findViewById(R.id.input_edCauHoi);
-        input_edCauTraLoi = findViewById(R.id.input_edCauTraLoi);
+//        input_edCauHoi = findViewById(R.id.input_edCauHoi);
+//        input_edCauTraLoi = findViewById(R.id.input_edCauTraLoi);
 
         rdg_GioiTinh = findViewById(R.id.rdg_GioiTinh);
         rdoNam = findViewById(R.id.rdoNam);
@@ -90,8 +90,8 @@ public class ThongTinNguoiDungActivity extends AppCompatActivity implements View
         edDiaChi.setText(nguoidung.getDiaChiND());
         edSoDienThoai.setText(nguoidung.getSoDienThoaiND());
         edMatKhau.setText(nguoidung.getMatKhau());
-        edCauHoi.setText(nguoidung.getCauHoi());
-        edCauTraLoi.setText(nguoidung.getCauTraLoi());
+//        edCauHoi.setText(nguoidung.getCauHoi());
+//        edCauTraLoi.setText(nguoidung.getCauTraLoi());
         if(nguoidung.getGioiTinh()==1){
             rdoNam.setChecked(true);
         }
@@ -112,12 +112,12 @@ public class ThongTinNguoiDungActivity extends AppCompatActivity implements View
 
     public void SetEnable(boolean trangthai){
         input_edHoTen.setEnabled(trangthai);
-        input_edEmail.setEnabled(trangthai);
+//        input_edEmail.setEnabled(trangthai);
         input_edDiaChi.setEnabled(trangthai);
         input_edSoDienThoai.setEnabled(trangthai);
         input_edMatKhau.setEnabled(trangthai);
-        input_edCauHoi.setEnabled(trangthai);
-        input_edCauTraLoi.setEnabled(trangthai);
+//        input_edCauHoi.setEnabled(trangthai);
+//        input_edCauTraLoi.setEnabled(trangthai);
         rdg_GioiTinh.setEnabled(trangthai);
         rdoNam.setEnabled(trangthai);
         rdoNu.setEnabled(trangthai);
@@ -170,20 +170,20 @@ public class ThongTinNguoiDungActivity extends AppCompatActivity implements View
         }else{
             input_edMatKhau.setError(null);
         }
-        if(cauhoi.trim().length()==0){
-            input_edCauHoi.setError("Chưa nhập họ tên");
-            edHoTen.requestFocus();
-            kiemtra &= false;
-        }else{
-            input_edCauHoi.setError(null);
-        }
-        if(cautraloi.trim().length()==0){
-            input_edCauTraLoi.setError("Chưa nhập họ tên");
-            edHoTen.requestFocus();
-            kiemtra &= false;
-        }else{
-            input_edCauTraLoi.setError(null);
-        }
+//        if(cauhoi.trim().length()==0){
+//            input_edCauHoi.setError("Chưa nhập họ tên");
+//            edHoTen.requestFocus();
+//            kiemtra &= false;
+//        }else{
+//            input_edCauHoi.setError(null);
+//        }
+//        if(cautraloi.trim().length()==0){
+//            input_edCauTraLoi.setError("Chưa nhập họ tên");
+//            edHoTen.requestFocus();
+//            kiemtra &= false;
+//        }else{
+//            input_edCauTraLoi.setError(null);
+//        }
         return kiemtra;
     }
 
@@ -203,8 +203,8 @@ public class ThongTinNguoiDungActivity extends AppCompatActivity implements View
                 sodienthoai = edSoDienThoai.getText().toString();
                 diachi = edDiaChi.getText().toString();
                 matkhau = edMatKhau.getText().toString();
-                cauhoi = edCauHoi.getText().toString();
-                cautraloi = edCauTraLoi.getText().toString();
+//                cauhoi = edCauHoi.getText().toString();
+//                cautraloi = edCauTraLoi.getText().toString();
                 int idGT = rdg_GioiTinh.getCheckedRadioButtonId();
                 RadioButton rad = findViewById(idGT);
                 String gioitinh = rad.getText().toString().trim();

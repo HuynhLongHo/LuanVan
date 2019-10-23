@@ -50,8 +50,8 @@ public class ModelThongTinNguoiDung {
                 nguoidung.setEmailND(object.getString("EmailND"));
                 nguoidung.setGioiTinh(object.getInt("GioiTinh"));
                 nguoidung.setMatKhau(object.getString("MatKhau"));
-                nguoidung.setCauHoi(object.getString("CauHoi"));
-                nguoidung.setCauTraLoi(object.getString("CauTraLoi"));
+//                nguoidung.setCauHoi(object.getString("CauHoi"));
+//                nguoidung.setCauTraLoi(object.getString("CauTraLoi"));
             }
 
         } catch (InterruptedException e) {
@@ -86,10 +86,10 @@ public class ModelThongTinNguoiDung {
         hmGioiTinh.put("GioiTinh",String.valueOf(nguoiDung.getGioiTinh()));
         HashMap<String, String> hmMatKhau = new HashMap<>();
         hmMatKhau.put("MatKhau",nguoiDung.getMatKhau());
-        HashMap<String, String> hmCauHoi = new HashMap<>();
-        hmCauHoi.put("CauHoi",nguoiDung.getCauHoi());
-        HashMap<String, String> hmCauTraLoi = new HashMap<>();
-        hmCauTraLoi.put("CauTraLoi",nguoiDung.getCauTraLoi());
+//        HashMap<String, String> hmCauHoi = new HashMap<>();
+//        hmCauHoi.put("CauHoi",nguoiDung.getCauHoi());
+//        HashMap<String, String> hmCauTraLoi = new HashMap<>();
+//        hmCauTraLoi.put("CauTraLoi",nguoiDung.getCauTraLoi());
 
         atts.add(hmHam);
         atts.add(hmMaNguoiDung);
@@ -99,8 +99,8 @@ public class ModelThongTinNguoiDung {
         atts.add(hmEmailND);
         atts.add(hmGioiTinh);
         atts.add(hmMatKhau);
-        atts.add(hmCauHoi);
-        atts.add(hmCauTraLoi);
+//        atts.add(hmCauHoi);
+//        atts.add(hmCauTraLoi);
 
         DownloadJSON downloadJSON = new DownloadJSON(duongdan,atts);
         downloadJSON.execute();

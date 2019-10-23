@@ -62,6 +62,7 @@
             android:hint="Địa chỉ email">
             <EditText
                 android:id="@+id/edEmail"
+                android:enabled="false"
                 style="@style/DinhDangNhapText"/>
         </android.support.design.widget.TextInputLayout>
 
@@ -135,31 +136,31 @@
                 app:useValidate="true"/>
         </android.support.design.widget.TextInputLayout>
 
-        <android.support.design.widget.TextInputLayout
-            android:id="@+id/input_edCauHoi"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:hint="Câu hỏi"
-            android:visibility="gone">
+        <!--<android.support.design.widget.TextInputLayout-->
+            <!--android:id="@+id/input_edCauHoi"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_margin="10dp"-->
+            <!--android:hint="Câu hỏi"-->
+            <!--android:visibility="gone">-->
 
-            <EditText
-                android:id="@+id/edCauHoi"
-                style="@style/DinhDangNhapText"/>
-        </android.support.design.widget.TextInputLayout>
+            <!--<EditText-->
+                <!--android:id="@+id/edCauHoi"-->
+                <!--style="@style/DinhDangNhapText"/>-->
+        <!--</android.support.design.widget.TextInputLayout>-->
 
-        <android.support.design.widget.TextInputLayout
-            android:id="@+id/input_edCauTraLoi"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:hint="Câu trả lời"
-            android:visibility="gone">
+        <!--<android.support.design.widget.TextInputLayout-->
+            <!--android:id="@+id/input_edCauTraLoi"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_margin="10dp"-->
+            <!--android:hint="Câu trả lời"-->
+            <!--android:visibility="gone">-->
 
-            <EditText
-                android:id="@+id/edCauTraLoi"
-                style="@style/DinhDangNhapText"/>
-        </android.support.design.widget.TextInputLayout>
+            <!--<EditText-->
+                <!--android:id="@+id/edCauTraLoi"-->
+                <!--style="@style/DinhDangNhapText"/>-->
+        <!--</android.support.design.widget.TextInputLayout>-->
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -170,7 +171,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Không lưu"
-                android:background="@color/bgLogo"
+                android:background="@drawable/button"
                 android:visibility="gone"
                 android:layout_weight="1"
                 android:layout_margin="10dp"/>
@@ -180,7 +181,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Lưu"
-                android:background="@color/bgLogo"
+                android:background="@drawable/button"
                 android:visibility="gone"
                 android:layout_weight="1"
                 android:layout_margin="10dp"/>

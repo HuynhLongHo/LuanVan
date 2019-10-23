@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            style="@style/Toolbar"
+            app:titleTextAppearance="@style/ToolbarTitleText"/>
+
+    </android.support.design.widget.AppBarLayout>
+    <TextView
+        style="@style/TextClick"
+        android:text="Nhập mã OTP: "/>
+    <EditText
+        android:id="@+id/txtOTP"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginBottom="60dp"
+        android:layout_marginRight="60dp"
+        android:layout_marginLeft="60dp"/>
+    <Button
+        android:id="@+id/btnXacNhan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center|bottom"
+        android:text="Xác nhận"
+        android:background="@drawable/button"/>
+
+
+</LinearLayout>
