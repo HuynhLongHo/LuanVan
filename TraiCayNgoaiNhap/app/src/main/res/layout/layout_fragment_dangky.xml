@@ -3,198 +3,212 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     style="@style/DinhDangFragment">
-    <LinearLayout
-        android:orientation="vertical"
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="0dp">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Cần điền tất cả các mục"
-            android:textStyle="bold"
-            android:layout_marginTop="10dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp" />
-
-        <android.support.design.widget.TextInputLayout
-            android:id="@+id/input_edHoTenDK"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp">
-
-            <android.support.design.widget.TextInputEditText
-                android:id="@+id/edHoTenDK"
-                style="@style/DinhDangNhapText"
-                android:hint="Họ tên đầy đủ"/>
-
-        </android.support.design.widget.TextInputLayout>
-
-        <android.support.design.widget.TextInputLayout
-            android:id="@+id/input_edEmailDK"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp">
-            <android.support.design.widget.TextInputEditText
-                android:id="@+id/edEmailDK"
-                style="@style/DinhDangNhapText"
-                android:hint="Địa chỉ email"/>
-        </android.support.design.widget.TextInputLayout>
-
-        <android.support.design.widget.TextInputLayout
-            android:id="@+id/input_edDiaChiDK"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp">
-
-            <android.support.design.widget.TextInputEditText
-                android:id="@+id/edDiaChiDK"
-                style="@style/DinhDangNhapText"
-                android:hint="Địa chỉ"/>
-
-        </android.support.design.widget.TextInputLayout>
-
+        android:layout_height="wrap_content">
         <LinearLayout
+            android:id="@+id/lnDangKy"
+            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:layout_height="match_parent"
+            android:padding="0dp">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Giới tính:"
-                android:layout_margin="10dp"/>
-            <RadioGroup
-                android:id="@+id/rdg_GioiTinh"
+                android:text="Cần điền tất cả các mục"
+                android:textStyle="bold"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp" />
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/input_edHoTenDK"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center">
-                <RadioButton
-                    android:id="@+id/rdoNam"
+                android:layout_margin="10dp">
+
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/edHoTenDK"
+                    style="@style/DinhDangNhapText"
+                    android:hint="Họ tên đầy đủ"/>
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/input_edEmailDK"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp">
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/edEmailDK"
+                    style="@style/DinhDangNhapText"
+                    android:hint="Địa chỉ email"/>
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/input_edDiaChiDK"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp">
+
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/edDiaChiDK"
+                    style="@style/DinhDangNhapText"
+                    android:hint="Địa chỉ"/>
+
+            </android.support.design.widget.TextInputLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Nam"
-                    android:checked="true"/>
-                <RadioButton
-                    android:id="@+id/rdoNu"
-                    android:layout_width="wrap_content"
+                    android:text="Giới tính:"
+                    android:layout_margin="10dp"/>
+                <RadioGroup
+                    android:id="@+id/rdg_GioiTinh"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Nữ"
-                    android:layout_marginLeft="60dp"/>
-            </RadioGroup>
+                    android:orientation="horizontal"
+                    android:gravity="center">
+                    <RadioButton
+                        android:id="@+id/rdoNam"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Nam"
+                        android:checked="true"/>
+                    <RadioButton
+                        android:id="@+id/rdoNu"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Nữ"
+                        android:layout_marginLeft="60dp"/>
+                </RadioGroup>
+            </LinearLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/input_edSoDienThoaiDK"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp">
+
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/edSoDienThoaiDK"
+                    style="@style/DinhDangNhapText"
+                    android:inputType="number"
+                    android:hint="Số điện thoại"/>
+            </android.support.design.widget.TextInputLayout>
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/input_edMatKhauDK"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp">
+                <longho.nienluan.traicayngoainhap.CustomView.PasswordEditText
+                    android:id="@+id/edMatKhauDK"
+                    android:hint="Mật khẩu"
+                    style="@style/DinhDangNhapText"
+                    app:useStrike="true"
+                    app:useValidate="true"/>
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/input_edNhapLaiMatKhauDK"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp">
+                <longho.nienluan.traicayngoainhap.CustomView.PasswordEditText
+                    android:id="@+id/edNhapLaiMatKhauDK"
+                    android:hint="Nhập lại mật khẩu"
+                    style="@style/DinhDangNhapText"
+                    app:useStrike="true" />
+
+            </android.support.design.widget.TextInputLayout>
+
+            <Button
+                android:id="@+id/btnDangKy"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Đăng Ký"
+                android:padding="10dp"
+                android:background="@drawable/button"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Hoặc đăng đăng ký bằng"
+                android:gravity="center"
+                android:layout_marginTop="10dp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <Button
+                    android:id="@+id/btnDangNhapFacebookDK"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@drawable/facebookiconsmall"
+                    android:layout_weight="1"
+                    android:text="Facebook"
+                    android:background="@drawable/vienfacebook"
+                    android:textColor="@color/colorFacebook"
+                    android:layout_margin="10dp"/>
+                <Button
+                    android:id="@+id/btnDangNhapGoogleDK"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@drawable/googleplussmall"
+                    android:layout_weight="1"
+                    android:text="Google"
+                    android:textColor="@color/colorGoogle"
+                    android:background="@drawable/viengoogle"
+                    android:layout_margin="10dp"/>
+
+            </LinearLayout>
         </LinearLayout>
-
-        <android.support.design.widget.TextInputLayout
-            android:id="@+id/input_edSoDienThoaiDK"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp">
-
-            <android.support.design.widget.TextInputEditText
-                android:id="@+id/edSoDienThoaiDK"
-                style="@style/DinhDangNhapText"
-                android:inputType="number"
-                android:hint="Số điện thoại"/>
-        </android.support.design.widget.TextInputLayout>
-        <android.support.design.widget.TextInputLayout
-            android:id="@+id/input_edMatKhauDK"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp">
-            <longho.nienluan.traicayngoainhap.CustomView.PasswordEditText
-                android:id="@+id/edMatKhauDK"
-                android:hint="Mật khẩu"
-                style="@style/DinhDangNhapText"
-                app:useStrike="true"
-                app:useValidate="true"/>
-        </android.support.design.widget.TextInputLayout>
-
-        <android.support.design.widget.TextInputLayout
-            android:id="@+id/input_edNhapLaiMatKhauDK"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp">
-            <longho.nienluan.traicayngoainhap.CustomView.PasswordEditText
-                android:id="@+id/edNhapLaiMatKhauDK"
-                android:hint="Nhập lại mật khẩu"
-                style="@style/DinhDangNhapText"
-                app:useStrike="true" />
-
-        </android.support.design.widget.TextInputLayout>
-
-        <!--<android.support.design.widget.TextInputLayout-->
-            <!--android:id="@+id/input_edCauHoi"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_marginLeft="10dp"-->
-            <!--android:layout_marginRight="10dp">-->
-
-            <!--<android.support.design.widget.TextInputEditText-->
-                <!--android:id="@+id/edCauHoi"-->
-                <!--style="@style/DinhDangNhapText"-->
-                <!--android:hint="Câu hỏi"/>-->
-        <!--</android.support.design.widget.TextInputLayout>-->
-
-        <!--<android.support.design.widget.TextInputLayout-->
-            <!--android:id="@+id/input_edCauTraLoi"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_marginLeft="10dp"-->
-            <!--android:layout_marginRight="10dp">-->
-
-            <!--<android.support.design.widget.TextInputEditText-->
-                <!--android:id="@+id/edCauTraLoi"-->
-                <!--style="@style/DinhDangNhapText"-->
-                <!--android:hint="Câu trả lời"/>-->
-        <!--</android.support.design.widget.TextInputLayout>-->
-
-
-        <Button
-            android:id="@+id/btnDangKy"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Đăng Ký"
-            android:padding="10dp"
-            android:background="@drawable/button"/>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Hoặc đăng đăng ký bằng"
-            android:gravity="center"
-            android:layout_marginTop="10dp"/>
-
         <LinearLayout
+            android:id="@+id/lnOTP"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-            <Button
-                android:id="@+id/btnDangNhapFacebookDK"
+            android:layout_height="match_parent"
+            android:visibility="gone"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/txtThongBao"
+                style="@style/TextClick"
+                android:text="Nhập mã OTP: "/>
+            <EditText
+                android:id="@+id/txtOTP"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:drawableLeft="@drawable/facebookiconsmall"
-                android:layout_weight="1"
-                android:text="Facebook"
-                android:background="@drawable/vienfacebook"
-                android:textColor="@color/colorFacebook"
-                android:layout_margin="10dp"/>
+                android:gravity="center"
+                android:layout_marginBottom="60dp"
+                android:layout_marginRight="60dp"
+                android:layout_marginLeft="60dp"/>
             <Button
-                android:id="@+id/btnDangNhapGoogleDK"
-                android:layout_width="match_parent"
+                android:id="@+id/btnXacNhan"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:drawableLeft="@drawable/googleplussmall"
-                android:layout_weight="1"
-                android:text="Google"
-                android:textColor="@color/colorGoogle"
-                android:background="@drawable/viengoogle"
-                android:layout_margin="10dp"/>
+                android:layout_gravity="center|bottom"
+                android:text="Xác nhận"
+                android:background="@drawable/button"/>
+
+            <TextView
+                android:id="@+id/txtQuayLai"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:textColor="@color/colorDarkGreen"
+                android:text="Quay lại "/>
 
         </LinearLayout>
-    </LinearLayout>
+    </FrameLayout>
+
 </android.support.v4.widget.NestedScrollView>
