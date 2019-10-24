@@ -36,13 +36,14 @@ public class AdapterDonDatHang extends RecyclerView.Adapter<AdapterDonDatHang.Vi
 
     public class ViewHolderDonDatHang extends RecyclerView.ViewHolder {
 
-        TextView txtMaDDH, txtNgayDat, txtNgayGiao, txtTrangThaiGiaoHang, txtTongTien;
+        TextView txtMoTa,txtMaDDH, txtNgayDat, txtNgayGiao, txtTrangThaiGiaoHang, txtTongTien;
         RecyclerView rcvDanhSachTraiCayHD;
         Button btnHuyDonDatHang;
 
         public ViewHolderDonDatHang(View itemView) {
             super(itemView);
 
+            txtMoTa = itemView.findViewById(R.id.txtMoTa);
             txtMaDDH = itemView.findViewById(R.id.txtMaDDH);
             txtNgayDat = itemView.findViewById(R.id.txtNgayDat);
             txtNgayGiao = itemView.findViewById(R.id.txtNgayGiao);
@@ -83,6 +84,7 @@ public class AdapterDonDatHang extends RecyclerView.Adapter<AdapterDonDatHang.Vi
         holder.txtMaDDH.setText("Mã đơn hàng: " + String.valueOf(donDatHang.getMaDDH()));
         holder.txtNgayDat.setText("Ngày đặt: " + donDatHang.getNgayDat());
         holder.txtNgayGiao.setText("Dự kiến ngày giao: " + donDatHang.getNgayGiao());
+        holder.txtMoTa.setText("Mô tả: " + donDatHang.getMoTa());
         holder.txtTrangThaiGiaoHang.setText("Trạng thái: " + donDatHang.getTrangThaiGiao());
 
         AdapterDonDatHangSanPham adapterDonDatHangSanPham =new AdapterDonDatHangSanPham(context,donDatHang.getChiTietDDHList());

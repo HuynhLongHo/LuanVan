@@ -27,6 +27,9 @@
                 <TextView
                     android:id="@+id/txtTrangThaiGiaoHang"
                     style="@style/TextDonDatHang" />
+                <TextView
+                    android:id="@+id/txtMoTa"
+                    style="@style/TextDonDatHang" />
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"

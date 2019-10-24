@@ -30,7 +30,7 @@ import longho.nienluan.traicayngoainhap.View.TrangChu.TrangChuActivity;
 
 public class DatHangActivity extends AppCompatActivity implements View.OnClickListener,ViewDatHang {
     Toolbar toolbar;
-    EditText edTenNguoiNhan, edDiaChi, edSoDT;
+    EditText edTenNguoiNhan, edDiaChi, edSoDT, edMoTa;
     ImageButton imNhanTienKhiGiaoHang, imChuyenKhoan;
     TextView txtNhanTienKhiGiaoHang, txtChuyenKhoan;
     Button btnThanhToan;
@@ -56,6 +56,7 @@ public class DatHangActivity extends AppCompatActivity implements View.OnClickLi
         edTenNguoiNhan = findViewById(R.id.edTenNguoiNhan);
         edDiaChi = findViewById(R.id.edDiaChi);
         edSoDT = findViewById(R.id.edSoDT);
+        edMoTa = findViewById(R.id.edMoTa);
         imNhanTienKhiGiaoHang = findViewById(R.id.imNhanTienKhiGiaoHang);
         imChuyenKhoan = findViewById(R.id.imChuyenKhoan);
         btnThanhToan = findViewById(R.id.btnDatHang);
@@ -82,13 +83,14 @@ public class DatHangActivity extends AppCompatActivity implements View.OnClickLi
                 String tennguoinhan = edTenNguoiNhan.getText().toString();
                 String sodt = edSoDT.getText().toString();
                 String diachi = edDiaChi.getText().toString();
-
+                String mota = edMoTa.getText().toString();
                 if (tennguoinhan.trim().length() > 0 && sodt.trim().length() > 0 && diachi.trim().length() > 0) {
                     DonDatHang donDatHang = new DonDatHang();
                     donDatHang.setMaNguoiDung(MaNguoiDung);
                     donDatHang.setTenNguoiDatHang(tennguoinhan);
                     donDatHang.setSoDienThoaiDatHang(sodt);
                     donDatHang.setDiaChiDatHang(diachi);
+                    donDatHang.setMoTa(mota);
                     donDatHang.setChuyenKhoan(chonHinhThuc);
                     donDatHang.setChiTietDDHList(chiTietDDHList);
                     presenterLogicDatHang.ThemDDH(donDatHang);

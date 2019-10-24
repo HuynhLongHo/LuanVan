@@ -123,10 +123,10 @@
 		$EmailND = $_POST["EmailND"];
 		$GioiTinh = $_POST["GioiTinh"];
 		$MatKhau = $_POST["MatKhau"];
-		$CauHoi = $_POST["CauHoi"];
-		$CauTraLoi = $_POST["CauTraLoi"];
+		// $CauHoi = $_POST["CauHoi"];
+		// $CauTraLoi = $_POST["CauTraLoi"];
 		$MaQuyen = $_POST["MaQuyen"];
-		$truyvan = "INSERT INTO nguoidung (TenNguoiDung, DiaChiND, SoDienThoaiND, EmailND, GioiTinh,MatKhau,CauHoi,CauTraLoi, MaQuyen) VALUES ('".$TenNguoiDung."', '".$DiaChiND."', '".$SoDienThoaiND."', '".$EmailND."', '".$GioiTinh."', '".$MatKhau."', '".$CauHoi."', '".$CauTraLoi."', '".$MaQuyen."')";
+		$truyvan = "INSERT INTO nguoidung (TenNguoiDung, DiaChiND, SoDienThoaiND, EmailND, GioiTinh,MatKhau, MaQuyen) VALUES ('".$TenNguoiDung."', '".$DiaChiND."', '".$SoDienThoaiND."', '".$EmailND."', '".$GioiTinh."', '".$MatKhau."', '".$MaQuyen."')";
 		if(mysqli_query($conn,$truyvan)){
 			echo "{\"ketqua\":\"true\"}";
 		}
@@ -170,8 +170,8 @@
 		$EmailND = $_POST["EmailND"];
 		$GioiTinh = $_POST["GioiTinh"];
 		$MatKhau = $_POST["MatKhau"];
-		$CauHoi = $_POST["CauHoi"];
-		$CauTraLoi = $_POST["CauTraLoi"];
+		// $CauHoi = $_POST["CauHoi"];
+		// $CauTraLoi = $_POST["CauTraLoi"];
 
 		// $MaNguoiDung = $_GET["MaNguoiDung"];
 		// $TenNguoiDung = $_GET["TenNguoiDung"];
@@ -183,7 +183,7 @@
 		// $CauHoi = $_GET["CauHoi"];
 		// $CauTraLoi = $_GET["CauTraLoi"];
 
-		$truyvan = "UPDATE nguoidung SET TenNguoiDung = '".$TenNguoiDung."', DiaChiND = '".$DiaChiND."', SoDienThoaiND = '".$SoDienThoaiND."', EmailND = '".$EmailND."', GioiTinh = '".$GioiTinh."', MatKhau = '".$MatKhau."', CauHoi = '".$CauHoi."', CauTraLoi = '".$CauTraLoi."' WHERE MaNguoiDung = '".$MaNguoiDung."'";
+		$truyvan = "UPDATE nguoidung SET TenNguoiDung = '".$TenNguoiDung."', DiaChiND = '".$DiaChiND."', SoDienThoaiND = '".$SoDienThoaiND."', EmailND = '".$EmailND."', GioiTinh = '".$GioiTinh."', MatKhau = '".$MatKhau."' WHERE MaNguoiDung = '".$MaNguoiDung."'";
 		if(mysqli_query($conn,$truyvan)){
 			echo "{\"ketqua\":\"true\"}";
 		}
@@ -570,7 +570,7 @@
 			$limit = $_POST["limit"];
 		}
 
-		$truyvan = "SELECT * FROM danhgia dg, nguoidung nd WHERE dg.MaTraiCay = ".$masp." AND dg.MaNguoiDung = nd.MaNguoiDung ORDER BY dg.NgayDG LIMIT ".$limit." ,10";
+		$truyvan = "SELECT * FROM danhgia dg, nguoidung nd WHERE dg.MaTraiCay = ".$masp." AND dg.MaNguoiDung = nd.MaNguoiDung ORDER BY dg.NgayDG DESC LIMIT ".$limit." ,10";
 		$ketqua = mysqli_query($conn,$truyvan);
 
 		echo "{";
@@ -591,12 +591,13 @@
 	function ThemDonDatHang(){
 		include_once("config.php");
 
-		if(isset($_POST["danhsachsanpham"]) || isset($_POST["manguoidung"]) || isset($_POST["tennguoinhan"]) || isset($_POST["sodt"]) || isset($_POST["diachi"]) || isset($_POST["chuyenkhoan"]) ){
+		if(isset($_POST["danhsachsanpham"]) || isset($_POST["manguoidung"]) || isset($_POST["tennguoinhan"]) || isset($_POST["sodt"]) || isset($_POST["diachi"]) || isset($_POST["mota"]) || isset($_POST["chuyenkhoan"]) ){
 			$danhsachsanpham = $_POST["danhsachsanpham"];
 			$manguoidung = $_POST["manguoidung"];
 			$tennguoinhan = $_POST["tennguoinhan"];
 			$sodt = $_POST["sodt"];
 			$diachi = $_POST["diachi"];
+			$mota = $_POST["mota"];
 			$chuyenkhoan = $_POST["chuyenkhoan"];
 		}
 
@@ -606,7 +607,7 @@
 		$ngaygiao = date_format($ngaygiao,"Y/m/d") ;
 		$trangthai = "Chờ kiểm duyệt";
 
-		$truyvan = "INSERT INTO dondathang (MaNguoiDung,NgayDat,NgayGiao,TrangThaiGiao,TenNguoiDatHang,SoDienThoaiDatHang,DiaChiDatHang,ChuyenKhoan) VALUES ('".$manguoidung."', '".$ngayhientai."', '".$ngaygiao."', '".$trangthai."', '".$tennguoinhan."', '".$sodt."', '".$diachi."', '".$chuyenkhoan."')";
+		$truyvan = "INSERT INTO dondathang (MaNguoiDung,NgayDat,NgayGiao,TrangThaiGiao,TenNguoiDatHang,SoDienThoaiDatHang,DiaChiDatHang,MoTa,ChuyenKhoan) VALUES ('".$manguoidung."', '".$ngayhientai."', '".$ngaygiao."', '".$trangthai."', '".$tennguoinhan."', '".$sodt."', '".$diachi."', '".$mota."', '".$chuyenkhoan."')";
 		$ketqua = mysqli_query($conn,$truyvan);
 
 		if($ketqua){
