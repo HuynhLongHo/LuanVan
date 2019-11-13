@@ -25,11 +25,12 @@ public class AdapterThongKeTheoNam extends RecyclerView.Adapter<AdapterThongKeTh
         this.context = context;
     }
     public class ViewHolderThongKeTheoNam extends RecyclerView.ViewHolder{
-        TextView txtNam, txtTongSoLuongDonDatHang;
+        TextView txtNam, txtTongSoLuongDonDatHang,txtTongDoanhThuNam;
         RecyclerView rcvTrangThaiGiao, rcvTraiCay, rcvNguoiDung;
         public ViewHolderThongKeTheoNam(View itemView) {
             super(itemView);
             txtNam = itemView.findViewById(R.id.txtNam);
+            txtTongDoanhThuNam = itemView.findViewById(R.id.txtTongDoanhThuNam);
             txtTongSoLuongDonDatHang = itemView.findViewById(R.id.txtTongSoLuongDonDatHang);
             rcvTrangThaiGiao = itemView.findViewById(R.id.rcvTrangThaiGiao);
             rcvTraiCay = itemView.findViewById(R.id.rcvTraiCay);
@@ -53,6 +54,7 @@ public class AdapterThongKeTheoNam extends RecyclerView.Adapter<AdapterThongKeTh
         int giaothanhcong = 0, dahuy = 0, doanhthu = 0;
         ThongKe thongKe = thongKeList.get(position);
         holder.txtNam.setText("Năm: " + String.valueOf(thongKe.getNam()));
+        holder.txtTongDoanhThuNam.setText("Tổng doanh thu: " + String.valueOf(thongKe.getTongDoanhThuNam()));
         holder.txtTongSoLuongDonDatHang.setText(String.valueOf(thongKe.getSoLuongDDH() + " đơn đặt hàng bao gồm: "));
 
         AdapterThongKeTheoNamTrangThaiGiao adapterThongKeTheoNamTrangThaiGiao = new AdapterThongKeTheoNamTrangThaiGiao(context,thongKe.getDonDatHangList());

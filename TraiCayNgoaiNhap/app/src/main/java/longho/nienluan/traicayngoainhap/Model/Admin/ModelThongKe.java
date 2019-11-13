@@ -48,6 +48,8 @@ public class ModelThongKe {
                 ThongKe thongKe = new ThongKe();
                 thongKe.setNam(object.getInt("Nam"));
                 thongKe.setSoLuongDDH(object.getInt("SoLuongDDH"));
+                thongKe.setTongDoanhThuNam(object.getInt("TongDoanhThuNam"));
+
                 
                 List<DonDatHang> donDatHangList = new ArrayList<>();
                 JSONArray arrayChiTietTrangThai = object.getJSONArray("ChiTietTrangThai");

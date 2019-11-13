@@ -181,6 +181,7 @@ public class ChiTietTraiCayActivity extends AppCompatActivity implements ViewChi
         String TenNguoiDung = modelDangNhap.LayCachedDangNhap(this);
         if(!TenNguoiDung.equals("")){
             itemDangNhap.setTitle(TenNguoiDung);
+            txtVietDanhGia.setVisibility(View.VISIBLE);
         }
 
         if(accessToken!=null||!TenNguoiDung.equals("")){

@@ -8,6 +8,15 @@ public class ThongKe {
     List<DonDatHang> donDatHangList;
     List<traicay> traicayList;
     List<nguoidung> nguoidungList;
+    int TongDoanhThuNam;
+
+    public int getTongDoanhThuNam() {
+        return TongDoanhThuNam;
+    }
+
+    public void setTongDoanhThuNam(int tongDoanhThuNam) {
+        TongDoanhThuNam = tongDoanhThuNam;
+    }
 
     public int getNam() {
         return Nam;

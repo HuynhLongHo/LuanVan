@@ -55,7 +55,7 @@ public class AdapterThongKeTheoNamTraiCay extends RecyclerView.Adapter<AdapterTh
         holder.txtMaTraiCay.setText("Mã trái cây: " + traicay.getMaTraiCay());
         holder.txtTenTraiCay.setText(traicay.getTenTraiCay());
         holder.txtSoLuongBan.setText("Số lượng bán: " + traicay.getSoLuongBan());
-        holder.txtTongTienBan.setText("Tổng tiền bán: " + traicay.getSoTienBan());
+        holder.txtTongTienBan.setText("Tổng tiền: " + traicay.getSoTienBan());
         Picasso.with(context).load(traicay.getHinhTraiCay()).resize(170,120).into(holder.imTraiCay);
 
     }

@@ -304,7 +304,7 @@
                         android:text="Viết đánh giá"
                         android:gravity="right"
                         android:textColor="@color/colorFacebook"
-                        />
+                        android:visibility="gone"/>
 
                 </LinearLayout>
 
