@@ -90,6 +90,9 @@ public class ModelDanhGia {
         HashMap<String,String> hsMaSP = new HashMap<>();
         hsMaSP.put("masp",String.valueOf(danhGia.getMaTraiCay()));
 
+        HashMap<String,String> hsMaDDH = new HashMap<>();
+        hsMaDDH.put("maddh",String.valueOf(danhGia.getMaDDH()));
+
         HashMap<String,String> hsMaNguoiDung = new HashMap<>();
         hsMaNguoiDung.put("manguoidung", String.valueOf(danhGia.getMaNguoiDung()));
 
@@ -105,6 +108,7 @@ public class ModelDanhGia {
         attrs.add(hsHam);
         attrs.add(hsMADG);
         attrs.add(hsMaSP);
+        attrs.add(hsMaDDH);
         attrs.add(hsMaNguoiDung);
         attrs.add(hsNoiDung);
         attrs.add(hsSoSao);

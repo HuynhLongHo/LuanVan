@@ -6,6 +6,15 @@ public class DanhGia {
     int MaTraiCay,SoSaoDG;
     int MaNguoiDung;
     String TenNguoiDung;
+    int MaDDH;
+
+    public int getMaDDH() {
+        return MaDDH;
+    }
+
+    public void setMaDDH(int maDDH) {
+        MaDDH = maDDH;
+    }
 
     public String getTenNguoiDung() {
         return TenNguoiDung;

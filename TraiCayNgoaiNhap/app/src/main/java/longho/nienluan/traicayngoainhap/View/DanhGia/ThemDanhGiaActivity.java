@@ -28,7 +28,7 @@ public class ThemDanhGiaActivity extends AppCompatActivity implements ViewDanhGi
     RatingBar rbDanhGia;
     int matraicay = 0;
     int sosao = 0;
-    String manguoidung;
+    String manguoidung,maddh;
     String tentraicay;
     Button btnDongYDanhGia;
     PresenterLogicDanhGia presenterLogicDanhGia;
@@ -48,6 +48,7 @@ public class ThemDanhGiaActivity extends AppCompatActivity implements ViewDanhGi
 
         matraicay = getIntent().getIntExtra("matraicay",0);
         tentraicay = getIntent().getStringExtra("tentraicay");
+        maddh = getIntent().getStringExtra("maddh");
         presenterLogicDanhGia = new PresenterLogicDanhGia(this);
         modelDangNhap = new ModelDangNhap();
         manguoidung = modelDangNhap.LayMaNguoiDung(this);
@@ -106,6 +107,7 @@ public class ThemDanhGiaActivity extends AppCompatActivity implements ViewDanhGi
             DanhGia danhGia = new DanhGia();
             danhGia.setMaTraiCay(matraicay);
             danhGia.setMaDG(madg);
+            danhGia.setMaDDH(Integer.parseInt(maddh));
             danhGia.setMaNguoiDung(Integer.parseInt(manguoidung));
             danhGia.setNoiDungDG(noidung);
             danhGia.setSoSaoDG(sosao);

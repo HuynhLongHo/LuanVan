@@ -87,7 +87,7 @@ public class AdapterDonDatHang extends RecyclerView.Adapter<AdapterDonDatHang.Vi
         holder.txtMoTa.setText("Mô tả: " + donDatHang.getMoTa());
         holder.txtTrangThaiGiaoHang.setText("Trạng thái: " + donDatHang.getTrangThaiGiao());
 
-        AdapterDonDatHangSanPham adapterDonDatHangSanPham =new AdapterDonDatHangSanPham(context,donDatHang.getChiTietDDHList());
+        AdapterDonDatHangSanPham adapterDonDatHangSanPham =new AdapterDonDatHangSanPham(context,String.valueOf(donDatHang.getMaDDH()),donDatHang.getChiTietDDHList());
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL,false);
         holder.rcvDanhSachTraiCayHD.setLayoutManager(layoutManager);
         holder.rcvDanhSachTraiCayHD.setAdapter(adapterDonDatHangSanPham);

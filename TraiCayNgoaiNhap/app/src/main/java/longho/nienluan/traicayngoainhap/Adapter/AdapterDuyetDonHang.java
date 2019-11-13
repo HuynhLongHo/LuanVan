@@ -110,7 +110,7 @@ public class AdapterDuyetDonHang extends RecyclerView.Adapter<AdapterDuyetDonHan
             holder.rcvDanhSachTraiCayHD.setAdapter(adapterDuyetDonHangSanPham);
         }
         if(tenquyen.equals("Shipper")){
-            AdapterDonDatHangSanPham adapterDonDatHangSanPham =new AdapterDonDatHangSanPham(context,donDatHang.getChiTietDDHList());
+            AdapterDuyetDonHangSanPham adapterDonDatHangSanPham =new AdapterDuyetDonHangSanPham(context,donDatHang.getChiTietDDHList());
             RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL,false);
             holder.rcvDanhSachTraiCayHD.setLayoutManager(layoutManager);
             holder.rcvDanhSachTraiCayHD.setAdapter(adapterDonDatHangSanPham);
