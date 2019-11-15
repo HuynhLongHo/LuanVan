@@ -5,14 +5,21 @@ import java.util.List;
 import longho.nienluan.traicayngoainhap.Model.ObjectClass.traicay;
 import longho.nienluan.traicayngoainhap.Model.TrangChu_NoiBat.ModelTraiCay;
 import longho.nienluan.traicayngoainhap.View.TrangChu.ViewNoiBat;
+import longho.nienluan.traicayngoainhap.View.TrangChu.ViewXuLyMenu;
 
 public class PresenterLogicNoiBat implements IPresenterNoiBat {
 
     ViewNoiBat viewNoiBat;
+    ViewXuLyMenu viewXuLyMenu;
     ModelTraiCay modelTraiCay;
 
     public PresenterLogicNoiBat(ViewNoiBat viewNoiBat){
         this.viewNoiBat = viewNoiBat;
+        modelTraiCay = new ModelTraiCay();
+    }
+
+    public PresenterLogicNoiBat(ViewXuLyMenu viewXuLyMenu){
+        this.viewXuLyMenu = viewXuLyMenu;
         modelTraiCay = new ModelTraiCay();
     }
 
@@ -45,6 +52,14 @@ public class PresenterLogicNoiBat implements IPresenterNoiBat {
         List<traicay> traicayList = modelTraiCay.LayDanhSachTraiCayNgauNhien();
         if(traicayList.size()>0){
             viewNoiBat.HienThiDanhSachTraiCayNgauNhien(traicayList);
+        }
+    }
+
+    @Override
+    public void LayDanhSachImage() {
+        List<traicay> traicayList = modelTraiCay.LayDanhSachTraiCayNgauNhien();
+        if(traicayList.size()>0){
+            viewXuLyMenu.DanhSachImage(traicayList);
         }
     }
 }

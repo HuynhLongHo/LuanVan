@@ -9,7 +9,7 @@
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@mipmap/ic_shopping_cart_white_24dp"
+        android:src="@mipmap/baseline_local_grocery_store_black_18dp"
         android:layout_marginTop="5dp"
         />
 

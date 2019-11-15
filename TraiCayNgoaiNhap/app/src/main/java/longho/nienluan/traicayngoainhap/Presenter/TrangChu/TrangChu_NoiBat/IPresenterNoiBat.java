@@ -5,4 +5,5 @@ public interface IPresenterNoiBat {
     void LayDanhSachTopTraiCayTheoLuotMua();
     void LayDanhSachTraiCayGiaRe();
     void LayDanhSachTraiCayNgauNhien();
+    void LayDanhSachImage();
 }
