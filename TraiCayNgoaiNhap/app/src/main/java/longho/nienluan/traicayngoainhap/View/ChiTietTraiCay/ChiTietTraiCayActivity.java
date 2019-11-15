@@ -66,7 +66,7 @@ public class ChiTietTraiCayActivity extends AppCompatActivity implements ViewChi
     List<Fragment> fragmentList;
     TextView txtDots[],txtDanhGiaTB;
     LinearLayout layoutDots;
-    TextView txtTenTraiCay, txtGiaBan, txtTenNCC, txtDiaChiNCC,txtThongTin,txtVietDanhGia, txtXemTatCaNhanXet, txtGioHang, txtGiaKM;
+    TextView txtTenTraiCay, txtGiaBan, txtTenNCC, txtDiaChiNCC,txtThongTin, txtXemTatCaNhanXet, txtGioHang, txtGiaKM;
     Toolbar toolbar;
     ImageView imXemThemThongTin, imThemGioHang;
     boolean blXemThemThongTin = false;
@@ -101,7 +101,7 @@ public class ChiTietTraiCayActivity extends AppCompatActivity implements ViewChi
         txtThongTin = findViewById(R.id.txtThongTinChiTiet);
         imXemThemThongTin = findViewById(R.id.imXemThemChiTiet);
         toolbar = findViewById(R.id.toolbar);
-        txtVietDanhGia = findViewById(R.id.txtVietDanhGia);
+//        txtVietDanhGia = findViewById(R.id.txtVietDanhGia);
         recyclerDanhGiaChiTiet = findViewById(R.id.recyclerDanhGiaChiTiet);
         txtXemTatCaNhanXet = findViewById(R.id.txtXemTatCaNhanXet);
         imThemGioHang = findViewById(R.id.imThemGioHang);
@@ -118,7 +118,7 @@ public class ChiTietTraiCayActivity extends AppCompatActivity implements ViewChi
         presenterLogicChiTietTraiCay = new PresenterLogicChiTietTraiCay(this);
         presenterLogicChiTietTraiCay.LayChiTietTraiCay(matraicay);
         presenterLogicChiTietTraiCay.LayDanhSachDanhGiaTheoMa(matraicay,0);
-        txtVietDanhGia.setOnClickListener(this);
+//        txtVietDanhGia.setOnClickListener(this);
         txtXemTatCaNhanXet.setOnClickListener(this);
         imThemGioHang.setOnClickListener(this);
         btnMuaNgay.setOnClickListener(this);
@@ -179,10 +179,10 @@ public class ChiTietTraiCayActivity extends AppCompatActivity implements ViewChi
         }
 
         String TenNguoiDung = modelDangNhap.LayCachedDangNhap(this);
-        if(!TenNguoiDung.equals("")){
-            itemDangNhap.setTitle(TenNguoiDung);
-            txtVietDanhGia.setVisibility(View.VISIBLE);
-        }
+//        if(!TenNguoiDung.equals("")){
+//            itemDangNhap.setTitle(TenNguoiDung);
+//            txtVietDanhGia.setVisibility(View.VISIBLE);
+//        }
 
         if(accessToken!=null||!TenNguoiDung.equals("")){
             MenuItem menuITDangXuat = menu.findItem(R.id.itDangXuat);
@@ -382,12 +382,12 @@ public class ChiTietTraiCayActivity extends AppCompatActivity implements ViewChi
     public void onClick(View v) {
         int id = v.getId();
         switch (id) {
-            case R.id.txtVietDanhGia:
-                Intent iThemDanhGia = new Intent(this, ThemDanhGiaActivity.class);
-                iThemDanhGia.putExtra("matraicay", matraicay);
-                iThemDanhGia.putExtra("tentraicay", tentraicay);
-                startActivity(iThemDanhGia);
-                break;
+//            case R.id.txtVietDanhGia:
+//                Intent iThemDanhGia = new Intent(this, ThemDanhGiaActivity.class);
+//                iThemDanhGia.putExtra("matraicay", matraicay);
+//                iThemDanhGia.putExtra("tentraicay", tentraicay);
+//                startActivity(iThemDanhGia);
+//                break;
             case R.id.txtXemTatCaNhanXet:
                 Intent iXemTatCaNhanXet = new Intent(this, DanhSachDanhGiaActivity.class);
                 iXemTatCaNhanXet.putExtra("matraicay", matraicay);

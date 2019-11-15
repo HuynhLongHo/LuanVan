@@ -36,7 +36,7 @@ public class AdapterDonDatHang extends RecyclerView.Adapter<AdapterDonDatHang.Vi
 
     public class ViewHolderDonDatHang extends RecyclerView.ViewHolder {
 
-        TextView txtMoTa,txtMaDDH, txtNgayDat, txtNgayGiao, txtTrangThaiGiaoHang, txtTongTien;
+        TextView txtMoTa,txtMaDDH, txtNgayDat, txtNgayGiao, txtTrangThaiGiaoHang, txtTongTien, txtHuongDanDanhGia;
         RecyclerView rcvDanhSachTraiCayHD;
         Button btnHuyDonDatHang;
 
@@ -49,6 +49,7 @@ public class AdapterDonDatHang extends RecyclerView.Adapter<AdapterDonDatHang.Vi
             txtNgayGiao = itemView.findViewById(R.id.txtNgayGiao);
             txtTongTien = itemView.findViewById(R.id.txtTongTien);
             txtTrangThaiGiaoHang = itemView.findViewById(R.id.txtTrangThaiGiaoHang);
+            txtHuongDanDanhGia = itemView.findViewById(R.id.txtHuongDanDanhGia);
             rcvDanhSachTraiCayHD = itemView.findViewById(R.id.rcvDanhSachTraiCayHD);
             btnHuyDonDatHang = itemView.findViewById(R.id.btnHuyDonDatHang);
         }
@@ -87,7 +88,7 @@ public class AdapterDonDatHang extends RecyclerView.Adapter<AdapterDonDatHang.Vi
         holder.txtMoTa.setText("Mô tả: " + donDatHang.getMoTa());
         holder.txtTrangThaiGiaoHang.setText("Trạng thái: " + donDatHang.getTrangThaiGiao());
 
-        AdapterDonDatHangSanPham adapterDonDatHangSanPham =new AdapterDonDatHangSanPham(context,String.valueOf(donDatHang.getMaDDH()),donDatHang.getChiTietDDHList());
+        AdapterDonDatHangSanPham adapterDonDatHangSanPham =new AdapterDonDatHangSanPham(context,donDatHang,donDatHang.getChiTietDDHList());
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL,false);
         holder.rcvDanhSachTraiCayHD.setLayoutManager(layoutManager);
         holder.rcvDanhSachTraiCayHD.setAdapter(adapterDonDatHangSanPham);
@@ -95,6 +96,11 @@ public class AdapterDonDatHang extends RecyclerView.Adapter<AdapterDonDatHang.Vi
             holder.btnHuyDonDatHang.setVisibility(View.VISIBLE);
         } else{
             holder.btnHuyDonDatHang.setVisibility(View.GONE);
+        }
+        if(donDatHang.getTrangThaiGiao().equals("Đã giao")){
+            holder.txtHuongDanDanhGia.setVisibility(View.VISIBLE);
+        } else{
+            holder.txtHuongDanDanhGia.setVisibility(View.GONE);
         }
         holder.btnHuyDonDatHang.setOnClickListener(new View.OnClickListener() {
             @Override

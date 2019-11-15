@@ -17,6 +17,7 @@ import java.text.DecimalFormat;
 import java.util.List;
 
 import longho.nienluan.traicayngoainhap.Model.ObjectClass.ChiTietDDH;
+import longho.nienluan.traicayngoainhap.Model.ObjectClass.DonDatHang;
 import longho.nienluan.traicayngoainhap.Model.ObjectClass.traicay;
 import longho.nienluan.traicayngoainhap.R;
 import longho.nienluan.traicayngoainhap.View.DanhGia.ThemDanhGiaActivity;
@@ -26,12 +27,12 @@ public class AdapterDonDatHangSanPham extends RecyclerView.Adapter<AdapterDonDat
 
     List<ChiTietDDH> chiTietDDHList;
     Context context;
-    String MaDDH;
+    DonDatHang donDatHang;
 
-    public AdapterDonDatHangSanPham(Context context,String MaDDH, List<ChiTietDDH> chiTietDDHList){
+    public AdapterDonDatHangSanPham(Context context, DonDatHang donDatHang, List<ChiTietDDH> chiTietDDHList){
         this.chiTietDDHList = chiTietDDHList;
         this.context = context;
-        this.MaDDH = MaDDH;
+        this.donDatHang = donDatHang;
     }
 
     public class ViewHolderDonDatHangSanPham extends RecyclerView.ViewHolder {
@@ -70,17 +71,20 @@ public class AdapterDonDatHangSanPham extends RecyclerView.Adapter<AdapterDonDat
         holder.txtSoLuong.setText("Số lượng: " + String.valueOf(chiTietDDH.getSoLuongDat()));
         holder.txtGiaBan.setText("Giá: " + sotien);
         Picasso.with(context).load(traicay.getHinhTraiCay()).resize(120,120).into(holder.imTraiCay);
-        holder.lnTraiCay.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View v) {
-                Intent iThemDanhGia = new Intent(context, ThemDanhGiaActivity.class);
-                iThemDanhGia.putExtra("matraicay", traicay.getMaTraiCay());
-                iThemDanhGia.putExtra("tentraicay", traicay.getTenTraiCay());
-                iThemDanhGia.putExtra("maddh", MaDDH);
-                context.startActivity(iThemDanhGia);
-                return false;
-            }
-        });
+        if(donDatHang.getTrangThaiGiao().equals("Đã giao")){
+            holder.lnTraiCay.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View v) {
+                    Intent iThemDanhGia = new Intent(context, ThemDanhGiaActivity.class);
+                    iThemDanhGia.putExtra("matraicay", traicay.getMaTraiCay());
+                    iThemDanhGia.putExtra("tentraicay", traicay.getTenTraiCay());
+                    iThemDanhGia.putExtra("maddh", donDatHang.getMaDDH());
+                    context.startActivity(iThemDanhGia);
+                    return false;
+                }
+            });
+        }
+
     }
 
     @Override

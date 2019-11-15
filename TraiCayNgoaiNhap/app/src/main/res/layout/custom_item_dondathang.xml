@@ -77,6 +77,14 @@
             android:layout_marginRight="20dp"
             android:layout_gravity="right"
             android:visibility="gone"/>
+        <TextView
+            android:id="@+id/txtHuongDanDanhGia"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:layout_marginRight="10dp"
+            android:text="Chọn và giữ sản phẩm để đánh giá"
+            android:visibility="gone"/>
 
     </LinearLayout>
 

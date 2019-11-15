@@ -297,14 +297,14 @@
                         android:text="Đánh giá và nhận xét"
                         android:textStyle="bold"/>
 
-                    <TextView
-                        android:id="@+id/txtVietDanhGia"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Viết đánh giá"
-                        android:gravity="right"
-                        android:textColor="@color/colorFacebook"
-                        android:visibility="gone"/>
+                    <!--<TextView-->
+                        <!--android:id="@+id/txtVietDanhGia"-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:text="Viết đánh giá"-->
+                        <!--android:gravity="right"-->
+                        <!--android:textColor="@color/colorFacebook"-->
+                        <!--android:visibility="gone"/>-->
 
                 </LinearLayout>
 
