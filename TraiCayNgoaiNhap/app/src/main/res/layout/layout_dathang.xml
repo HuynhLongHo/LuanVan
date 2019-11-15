@@ -153,6 +153,33 @@
                     />
 
             </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_weight="1"
+                android:gravity="center"
+                >
+
+                <ImageButton
+                    android:id="@+id/imMoMo"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:src="@drawable/momo"
+                    android:scaleType="centerInside"
+                    android:background="@drawable/momo"
+                    />
+
+                <TextView
+                    android:id="@+id/txtMoMo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Ví Momo"
+                    android:textColor="#b0006d"
+                    android:textSize="12sp"
+                    />
+
+            </LinearLayout>
 
 
 

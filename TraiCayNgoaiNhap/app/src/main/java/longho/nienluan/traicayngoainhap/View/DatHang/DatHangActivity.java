@@ -26,19 +26,22 @@ import longho.nienluan.traicayngoainhap.Model.ObjectClass.nguoidung;
 import longho.nienluan.traicayngoainhap.Model.ObjectClass.traicay;
 import longho.nienluan.traicayngoainhap.Presenter.DatHang.PresenterLogicDatHang;
 import longho.nienluan.traicayngoainhap.R;
+import longho.nienluan.traicayngoainhap.View.MoMo.MoMoConstants;
+import longho.nienluan.traicayngoainhap.View.MoMo.PaymentActivity;
 import longho.nienluan.traicayngoainhap.View.TrangChu.TrangChuActivity;
 
 public class DatHangActivity extends AppCompatActivity implements View.OnClickListener,ViewDatHang {
     Toolbar toolbar;
     EditText edTenNguoiNhan, edDiaChi, edSoDT, edMoTa;
-    ImageButton imNhanTienKhiGiaoHang, imChuyenKhoan;
+    ImageButton imNhanTienKhiGiaoHang, imChuyenKhoan, imMoMo;
     TextView txtNhanTienKhiGiaoHang, txtChuyenKhoan;
     Button btnThanhToan;
     CheckBox cbThoaThuan;
     PresenterLogicDatHang presenterLogicDatHang;
     List<ChiTietDDH> chiTietDDHList = new ArrayList<>();
     int MaNguoiDung;
-
+    int environment = 1;
+    int tongtien = 0;
     int chonHinhThuc = 0;
 
     @Override
@@ -59,6 +62,7 @@ public class DatHangActivity extends AppCompatActivity implements View.OnClickLi
         edMoTa = findViewById(R.id.edMoTa);
         imNhanTienKhiGiaoHang = findViewById(R.id.imNhanTienKhiGiaoHang);
         imChuyenKhoan = findViewById(R.id.imChuyenKhoan);
+        imMoMo = findViewById(R.id.imMoMo);
         btnThanhToan = findViewById(R.id.btnDatHang);
         txtNhanTienKhiGiaoHang = findViewById(R.id.txtNhanTienKhiGiaoHang);
         txtChuyenKhoan = findViewById(R.id.txtChuyenKhoan);
@@ -72,6 +76,8 @@ public class DatHangActivity extends AppCompatActivity implements View.OnClickLi
         btnThanhToan.setOnClickListener(this);
         imNhanTienKhiGiaoHang.setOnClickListener(this);
         imChuyenKhoan.setOnClickListener(this);
+        imMoMo.setOnClickListener(this);
+        Toast.makeText(this, ""+tongtien, Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -110,6 +116,14 @@ public class DatHangActivity extends AppCompatActivity implements View.OnClickLi
                 ChonHinhThucGiaoHang(txtChuyenKhoan,txtNhanTienKhiGiaoHang);
                 chonHinhThuc = 1;
                 break;
+            case R.id.imMoMo:
+                Bundle data = new Bundle();
+                Intent intent = new Intent(DatHangActivity.this, PaymentActivity.class);
+                data.putInt(MoMoConstants.KEY_ENVIRONMENT, environment);
+                intent.putExtras(data);
+                intent.putExtra("sotien",tongtien);
+                startActivity(intent);
+                break;
         }
     }
 
@@ -135,10 +149,10 @@ public class DatHangActivity extends AppCompatActivity implements View.OnClickLi
             }else{
                 chiTietDDH.setGiaBanHD(traicayList.get(i).getGiaBan());
             }
-
             chiTietDDH.setSoLuongDat(traicayList.get(i).getSoLuong());
-
             chiTietDDHList.add(chiTietDDH);
+
+            tongtien += chiTietDDH.getGiaBanHD()*chiTietDDH.getSoLuongDat();
         }
     }
 

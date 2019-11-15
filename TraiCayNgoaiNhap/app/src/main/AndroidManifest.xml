@@ -123,6 +123,10 @@
             android:name=".View.ThongTinNguoiDung.MaOTPActivity"
             android:label="Xác nhận mã OTP"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".View.MoMo.PaymentActivity"
+            android:label="Payment"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>
