@@ -25,6 +25,11 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.daimajia.slider.library.Animations.DescriptionAnimation;
+import com.daimajia.slider.library.SliderLayout;
+import com.daimajia.slider.library.SliderTypes.BaseSliderView;
+import com.daimajia.slider.library.SliderTypes.TextSliderView;
+import com.daimajia.slider.library.Tricks.ViewPagerEx;
 import com.facebook.AccessToken;
 import com.facebook.GraphRequest;
 import com.facebook.GraphResponse;
@@ -33,11 +38,15 @@ import com.facebook.login.LoginManager;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import longho.nienluan.traicayngoainhap.Adapter.ExpandAdapter;
 import longho.nienluan.traicayngoainhap.Adapter.ViewPaperAdapter;
+import longho.nienluan.traicayngoainhap.Model.ObjectClass.traicay;
 import longho.nienluan.traicayngoainhap.Presenter.ChiTietTraiCay.PresenterLogicChiTietTraiCay;
+import longho.nienluan.traicayngoainhap.Presenter.TrangChu.TrangChu_NoiBat.PresenterLogicNoiBat;
 import longho.nienluan.traicayngoainhap.View.Admin.AdminActivity;
 import longho.nienluan.traicayngoainhap.View.CaiDat.CaiDatActivity;
 import longho.nienluan.traicayngoainhap.View.DonDatHang.DonDatHangActivity;
@@ -51,7 +60,7 @@ import longho.nienluan.traicayngoainhap.View.Shipper.ShipperActivity;
 import longho.nienluan.traicayngoainhap.View.ThongTinNguoiDung.ThongTinNguoiDungActivity;
 import longho.nienluan.traicayngoainhap.View.TimKiem.TimKiemActivity;
 
-public class TrangChuActivity extends AppCompatActivity implements ViewXuLyMenu,AppBarLayout.OnOffsetChangedListener {
+public class TrangChuActivity extends AppCompatActivity implements ViewXuLyMenu,AppBarLayout.OnOffsetChangedListener,BaseSliderView.OnSliderClickListener, ViewPagerEx.OnPageChangeListener {
 
     public static final String SERVER_NAME = "http://10.2.56.155:80/NienLuan_LongHo/traicay.php";//B21_P4
     public static final String SERVER = "http://10.2.56.155:80/NienLuan_LongHo/Image/TraiCay/";//B21_P4
@@ -75,7 +84,11 @@ public class TrangChuActivity extends AppCompatActivity implements ViewXuLyMenu,
     AppBarLayout appBarLayout;
     ModelDangNhap modelDangNhap;
     TextView txtGioHang;
+    SliderLayout sliderLayout;
+    HashMap<String,String> Hash_file_maps ;
     PresenterLogicChiTietTraiCay presenterLogicChiTietTraiCay;
+    PresenterLogicNoiBat presenterLogicNoiBat;
+    List<traicay> traicays;
     boolean onPause = false;
 
     @Override
@@ -94,9 +107,23 @@ public class TrangChuActivity extends AppCompatActivity implements ViewXuLyMenu,
         expandableListView = findViewById(R.id.epmenu);
         appBarLayout = findViewById(R.id.appbar);
         collapsingToolbarLayout = findViewById(R.id.collapsing_toolbar);
+        Hash_file_maps = new HashMap<String, String>();
+        sliderLayout = (SliderLayout)findViewById(R.id.slider);
 
         toolbar.setTitle("");
         setSupportActionBar(toolbar);
+        traicays = new ArrayList<>();
+        presenterLogicNoiBat = new PresenterLogicNoiBat(this);
+        presenterLogicNoiBat.LayDanhSachImage();
+        for(int i = 0; i < traicays.size();i++){
+            Hash_file_maps.put(String.valueOf(traicays.get(i).getTenTraiCay()), String.valueOf(traicays.get(i).getHinhTraiCay()));
+        }
+
+//        Hash_file_maps.put("Android CupCake", "http://androidblog.esy.es/images/cupcake-1.png");
+//        Hash_file_maps.put("Android Donut", "http://androidblog.esy.es/images/donut-2.png");
+//        Hash_file_maps.put("Android Eclair", "http://androidblog.esy.es/images/eclair-3.png");
+//        Hash_file_maps.put("Android Froyo", "http://androidblog.esy.es/images/froyo-4.png");
+//        Hash_file_maps.put("Android GingerBread", "http://androidblog.esy.es/images/gingerbread-5.png");
 
         drawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.open, R.string.close);
         drawerLayout.addDrawerListener(drawerToggle);
@@ -107,6 +134,25 @@ public class TrangChuActivity extends AppCompatActivity implements ViewXuLyMenu,
         ViewPaperAdapter adapter = new ViewPaperAdapter(getSupportFragmentManager());
         viewPager.setAdapter(adapter);
         tab.setupWithViewPager(viewPager);
+
+        for(String name : Hash_file_maps.keySet()){
+
+            TextSliderView textSliderView = new TextSliderView(TrangChuActivity.this);
+            textSliderView
+                    .description(name)
+                    .image(Hash_file_maps.get(name))
+                    .setScaleType(BaseSliderView.ScaleType.Fit)
+                    .setOnSliderClickListener(this);
+            textSliderView.bundle(new Bundle());
+            textSliderView.getBundle()
+                    .putString("extra",name);
+            sliderLayout.addSlider(textSliderView);
+        }
+        sliderLayout.setPresetTransformer(SliderLayout.Transformer.Accordion);
+        sliderLayout.setPresetIndicator(SliderLayout.PresetIndicators.Center_Bottom);
+        sliderLayout.setCustomAnimation(new DescriptionAnimation());
+        sliderLayout.setDuration(3000);
+        sliderLayout.addOnPageChangeListener(this);
 
         logicXuLyMenu = new PresenterLogicXuLyMenu(this);
 //        logicXuLyMenu.LayDanhSachMenu();
@@ -280,6 +326,11 @@ public class TrangChuActivity extends AppCompatActivity implements ViewXuLyMenu,
     }
 
     @Override
+    public void DanhSachImage(List<traicay> traicayList) {
+        traicays = traicayList;
+    }
+
+    @Override
     public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
 //        if(collapsingToolbarLayout.getHeight() + verticalOffset <=  1.5 * ViewCompat.getMinimumHeight(collapsingToolbarLayout)){
 //            LinearLayout linearLayout = appBarLayout.findViewById(R.id.lnSearch);
@@ -318,5 +369,32 @@ public class TrangChuActivity extends AppCompatActivity implements ViewXuLyMenu,
         super.onPause();
 
         onPause = true;
+    }
+
+    @Override
+    protected void onStop() {
+        sliderLayout.stopAutoCycle();
+        super.onStop();
+    }
+
+    @Override
+    public void onSliderClick(BaseSliderView slider) {
+
+        Toast.makeText(this,slider.getBundle().get("extra") + "",Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+    }
+
+    @Override
+    public void onPageSelected(int position) {
+        Log.d("Slider Demo", "Page Changed: " + position);
+    }
+
+    @Override
+    public void onPageScrollStateChanged(int state) {
+
     }
 }
