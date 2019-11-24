@@ -538,9 +538,10 @@
 	function ThemDanhGia(){
 		include_once("config.php");
 
-		if(isset($_POST["madg"]) || isset($_POST["masp"]) || isset($_POST["tenthietbi"]) || isset($_POST["manguoidung"]) || isset($_POST["noidung"]) || isset($_POST["sosao"]) ){
+		if(isset($_POST["madg"]) || isset($_POST["masp"]) || isset($_POST["maddh"]) || isset($_POST["tenthietbi"]) || isset($_POST["manguoidung"]) || isset($_POST["noidung"]) || isset($_POST["sosao"]) ){
 			$madg = $_POST["madg"];
 			$masp = $_POST["masp"];
+			$maddh = $_POST["maddh"];
 			$tenthietbi = $_POST["tenthietbi"];
 			$manguoidung = $_POST["manguoidung"];
 			$noidung = $_POST["noidung"];
@@ -550,7 +551,7 @@
 		$ngaydang = date("Y/m/d");
 		// $ngaydang = Date(Now());
 
-		$truyvan = "INSERT INTO danhgia (MaDG,MaTraiCay,TenThietBi,MaNguoiDung,NoiDungDG,SoSaoDG,NgayDG) VALUES ('".$madg."', '".$masp."', '".$tenthietbi."', '".$manguoidung."', '".$noidung."', '".$sosao."', '".$ngaydang."' )";
+		$truyvan = "INSERT INTO danhgia (MaDG,MaTraiCay,MaDDH,TenThietBi,MaNguoiDung,NoiDungDG,SoSaoDG,NgayDG) VALUES ('".$madg."', '".$masp."', '".$maddh."',  '".$tenthietbi."', '".$manguoidung."', '".$noidung."', '".$sosao."', '".$ngaydang."' )";
 		$ketqua = mysqli_query($conn,$truyvan);
 
 		if($ketqua){
@@ -792,6 +793,13 @@
 		if($ketqua){
 			while ($dong = mysqli_fetch_array($ketqua)) {
 
+				$truyvanTongDoanhThu = "SELECT SUM(ct.SoLuongDat*ct.GiaBanHD) TongDoanhThuNam FROM dondathang ddh, chitietddh ct WHERE YEAR(NgayGiao) =' ".$dong["Nam"]." ' AND ddh.TrangThaiGiao = 'Đã giao' GROUP BY ddh.TrangThaiGiao";
+				$ketquatongdoanhthu = mysqli_query($conn,$truyvanTongDoanhThu);
+				$chuoijsontongdoanhthu = array();
+				if($ketquatongdoanhthu){
+					$dongtongdoanhthu = mysqli_fetch_array($ketquatongdoanhthu);
+				}
+
 				$truyvantrangthaigiao = "SELECT TrangThaiGiao, COUNT(MaDDH) SoLuongDonHang FROM dondathang WHERE YEAR(NgayGiao) =' ".$dong["Nam"]." '  GROUP BY TrangThaiGiao";
 				$ketquatrangthaigiao = mysqli_query($conn,$truyvantrangthaigiao);
 				$chuoijsontrangthai = array();
@@ -801,7 +809,7 @@
 					}
 				}
 
-				$truyvantraicay = "SELECT tc.MaTraiCay, tc.TenTraiCay, SUM(ct.SoLuongDat) SoLuongBan, SUM(ct.SoLuongDat*ct.GiaBanHD) SoTienBan,tc.HinhTraiCay FROM dondathang d, chitietddh ct, traicay tc WHERE YEAR(NgayGiao) = ' ".$dong["Nam"]." '  AND d.MaDDH = ct.MaDDH AND ct.MaTraiCay = tc.MaTraiCay GROUP BY tc.MaTraiCay";
+				$truyvantraicay = "SELECT tc.MaTraiCay, tc.TenTraiCay, SUM(ct.SoLuongDat) SoLuongBan, SUM(ct.SoLuongDat*ct.GiaBanHD) SoTienBan,tc.HinhTraiCay FROM dondathang d, chitietddh ct, traicay tc WHERE YEAR(NgayGiao) = ' ".$dong["Nam"]." '  AND d.MaDDH = ct.MaDDH AND ct.MaTraiCay = tc.MaTraiCay GROUP BY tc.MaTraiCay ORDER BY SoLuongBan DESC";
 				$ketquatraicay = mysqli_query($conn,$truyvantraicay);
 				$chuoijsontraicay = array();
 				if($ketquatraicay){
@@ -818,7 +826,7 @@
 						array_push($chuoijsonnguoidung,array("MaNguoiDung"=>$dongnguoidung["MaNguoiDung"],"TenNguoiDung"=>$dongnguoidung["TenNguoiDung"],"SoLanMua"=>$dongnguoidung["SoLanMua"],"TongTienMua"=>$dongnguoidung["TongTienMua"]));
 					}
 				}
-				array_push($chuoijson, array("Nam"=>$dong["Nam"],"SoLuongDDH"=>$dong["SoLuongDDH"],"ChiTietTrangThai"=>$chuoijsontrangthai,"ThongKeTraiCay"=>$chuoijsontraicay,"ThongKeNguoiDung"=>$chuoijsonnguoidung));
+				array_push($chuoijson, array("Nam"=>$dong["Nam"],"SoLuongDDH"=>$dong["SoLuongDDH"],"TongDoanhThuNam"=>$dongtongdoanhthu["TongDoanhThuNam"],"ChiTietTrangThai"=>$chuoijsontrangthai,"ThongKeTraiCay"=>$chuoijsontraicay,"ThongKeNguoiDung"=>$chuoijsonnguoidung));
 
 			}
 		}
