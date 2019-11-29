@@ -44,7 +44,7 @@ public class PaymentActivity extends Activity {
     int environment = 0;//developer default
     private String merchantName = "LongHoFruit";
     private String merchantCode = "MOMOFHAL20191023";
-    private String merchantNameLabel = "Giao dịch cùng";
+    private String merchantNameLabel = "Nhà cung cấp";
     private String description = "Mua trái cây";
 
     @Override
@@ -125,8 +125,8 @@ public class PaymentActivity extends Activity {
         if(requestCode == AppMoMoLib.getInstance().REQUEST_CODE_MOMO && resultCode == -1) {
             if(data != null) {
                 if(data.getIntExtra("status", -1) == 0) {
-//                    tvMessage.setText("message: " + "Get token " + data.getStringExtra("message"));
-                    tvMessage.setText("Thanh toán thành công");
+                    tvMessage.setText("message: " + "Get token " + data.getStringExtra("message"));
+//                    tvMessage.setText("Thanh toán thành công");
 
                     if(data.getStringExtra("data") != null && !data.getStringExtra("data").equals("")) {
                         // TODO:
