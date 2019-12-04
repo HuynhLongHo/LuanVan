@@ -44,7 +44,7 @@ public class DatHangActivity extends AppCompatActivity implements View.OnClickLi
     EditText edTenNguoiNhan, edDiaChi, edSoDT, edMoTa;
     ImageButton imNhanTienKhiGiaoHang, imChuyenKhoan, imMoMo;
     TextView txtNhanTienKhiGiaoHang, txtChuyenKhoan, txtTongTien, tvMessage;
-    String strMessage;
+    String strMessage="";
     Button btnThanhToan;
     CheckBox cbThoaThuan;
     PresenterLogicDatHang presenterLogicDatHang;
@@ -92,7 +92,7 @@ public class DatHangActivity extends AppCompatActivity implements View.OnClickLi
         presenterLogicDatHang.LayThongTinNguoiDung(MaNguoiDung);
 
         setSupportActionBar(toolbar);
-        txtTongTien.setText("Tổng tiền: " + tongtien);
+        txtTongTien.setText("Tổng tiền: " + tongtien + "đ");
 
         amount = String.valueOf(tongtien);
 

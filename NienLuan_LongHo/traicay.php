@@ -592,7 +592,7 @@
 	function ThemDonDatHang(){
 		include_once("config.php");
 
-		if(isset($_POST["danhsachsanpham"]) || isset($_POST["manguoidung"]) || isset($_POST["tennguoinhan"]) || isset($_POST["sodt"]) || isset($_POST["diachi"]) || isset($_POST["mota"]) || isset($_POST["chuyenkhoan"]) ){
+		if(isset($_POST["danhsachsanpham"]) || isset($_POST["manguoidung"]) || isset($_POST["tennguoinhan"]) || isset($_POST["sodt"]) || isset($_POST["diachi"]) || isset($_POST["mota"]) || isset($_POST["trangthaigiao"]) || isset($_POST["chuyenkhoan"]) ){
 			$danhsachsanpham = $_POST["danhsachsanpham"];
 			$manguoidung = $_POST["manguoidung"];
 			$tennguoinhan = $_POST["tennguoinhan"];
@@ -600,15 +600,15 @@
 			$diachi = $_POST["diachi"];
 			$mota = $_POST["mota"];
 			$chuyenkhoan = $_POST["chuyenkhoan"];
+			$trangthaigiao = $_POST["trangthaigiao"];
 		}
 
 		$ngayhientai = date("Y/m/d");
 		$ngaygiao = date_create($ngayhientai);
 		$ngaygiao = date_modify($ngaygiao,"+3 days");
 		$ngaygiao = date_format($ngaygiao,"Y/m/d") ;
-		$trangthai = "Chờ kiểm duyệt";
 
-		$truyvan = "INSERT INTO dondathang (MaNguoiDung,NgayDat,NgayGiao,TrangThaiGiao,TenNguoiDatHang,SoDienThoaiDatHang,DiaChiDatHang,MoTa,ChuyenKhoan) VALUES ('".$manguoidung."', '".$ngayhientai."', '".$ngaygiao."', '".$trangthai."', '".$tennguoinhan."', '".$sodt."', '".$diachi."', '".$mota."', '".$chuyenkhoan."')";
+		$truyvan = "INSERT INTO dondathang (MaNguoiDung,NgayDat,NgayGiao,TrangThaiGiao,TenNguoiDatHang,SoDienThoaiDatHang,DiaChiDatHang,MoTa,ChuyenKhoan) VALUES ('".$manguoidung."', '".$ngayhientai."', '".$ngaygiao."', '".$trangthaigiao."', '".$tennguoinhan."', '".$sodt."', '".$diachi."', '".$mota."', '".$chuyenkhoan."')";
 		$ketqua = mysqli_query($conn,$truyvan);
 
 		if($ketqua){
@@ -719,10 +719,10 @@
 		$chuoijson = array();
 
 		if(isset($_POST["ChuaDuyet"])){
-			$truyvan = "SELECT * FROM dondathang where TrangThaiGiao = 'Chờ kiểm duyệt'";
+			$truyvan = "SELECT * FROM dondathang where TrangThaiGiao = 'Chờ kiểm duyệt' ";
 		}
 		if(isset($_POST["ChuaGiao"])){
-			$truyvan = "SELECT * FROM dondathang where TrangThaiGiao = 'Đã duyệt'";
+			$truyvan = "SELECT * FROM dondathang where TrangThaiGiao = 'Đã duyệt' OR TrangThaiGiao = 'Đã thanh toán'";
 		}
 
 		$ketqua = mysqli_query($conn,$truyvan);
@@ -776,6 +776,8 @@
 		$truyvan = "UPDATE dondathang SET TrangThaiGiao = '".$TrangThaiGiao."', MaNguoiGiao = '".$MaNguoiGiao."' WHERE MaDDH = '".$MaDDH."'";
 		if(mysqli_query($conn,$truyvan)){
 			echo "{\"ketqua\":\"true\"}";
+			$giamtonkho = "UPDATE traicay tc, chitietddh ct SET tc.SoLuongTon = (tc.SoLuongTon-ct.SoLuongDat) WHERE ct.MaDDH = '".$MaDDH."' AND ct.MaTraiCay = tc.MaTraiCay";
+			mysqli_query($conn,$giamtonkho);
 		}
 		else echo "{\"ketqua\":\"false\"}";
 	}
