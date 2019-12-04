@@ -269,30 +269,59 @@
         <!-- partial -->
         <div class="main-panel">
           <div class="content-wrapper">
+          	<?php 
+	          	include_once("config.php");
 
-            <?php
-              include_once("config.php");
-              $truyvan = "SELECT * FROM khuyenmai";
+				$truyvan = "SELECT YEAR(NgayGiao) AS Nam, COUNT(MaDDH) SoLuongDDH FROM dondathang GROUP BY YEAR(NgayGiao)";
+				$ketqua = mysqli_query($conn,$truyvan);
 
-              $result = mysqli_query($conn, $truyvan);
 
-              if (mysqli_num_rows($result) > 0)
-              {
-                echo '<table class="table"><thead class="thead-dark"><tr> <td>Mã đơn hàng</td><td>Tên người đặt</td>
-                  <td>Điện thoại</td><td>Địa chỉ</td><td>Ngày đặt</td><td>Ngày Giao</td><td>Trạng thái giao</td><td>Mô tả</td></tr></thead>';
-                while($row = mysqli_fetch_assoc($result)) {
-                      $MaDDH = $row["MaDDH"];
-                      echo "<tr> <td>" .$row["MaDDH"]. "</td><td>" .$row["TenNguoiDatHang"]. "</td><td>" .$row["SoDienThoaiDatHang"]. "</td><td>" .$row["DiaChiDatHang"]. "</td><td>" .$row["NgayDat"]. "</td><td>" .$row["NgayGiao"]. "</td><td>" .$row["TrangThaiGiao"]. "</td><td>" .$row["MoTa"]. "</td><td><a href=chitietddh.php?MaDDH=$MaDDH>Chi tiết</a></td></tr>";
-                  }
-                echo "</table>";
+				if($ketqua){
+					while ($dong = mysqli_fetch_array($ketqua)) {
 
-              }
-              else {
-                  echo "Không có record nào";
-              }
-              mysqli_close($conn);
+						$truyvanTongDoanhThu = "SELECT SUM(ct.SoLuongDat*ct.GiaBanHD) TongDoanhThuNam FROM dondathang ddh, chitietddh ct WHERE YEAR(NgayGiao) =' ".$dong["Nam"]." ' AND ddh.TrangThaiGiao = 'Đã giao' GROUP BY ddh.TrangThaiGiao";
+						$ketquatongdoanhthu = mysqli_query($conn,$truyvanTongDoanhThu);
+						if($ketquatongdoanhthu){
+							$dongtongdoanhthu = mysqli_fetch_array($ketquatongdoanhthu);
+						}
+						echo '<H2><B>Năm: '.$dong["Nam"].'</B></H2>';
+						echo '
+						<table class="table table-bordered">
+			                <thead>
+			                  <tr>
+			                    <th>Số lượng đơn hàng</th>
+			                    <th>Tổng doanh thu</th>';
 
-            ?>
+						$truyvantrangthaigiao = "SELECT TrangThaiGiao, COUNT(MaDDH) SoLuongDonHang FROM dondathang WHERE YEAR(NgayGiao) =' ".$dong["Nam"]." '  GROUP BY TrangThaiGiao";
+						$ketquatrangthaigiao = mysqli_query($conn,$truyvantrangthaigiao);
+
+						if($ketquatrangthaigiao){
+							while ( $dongtrangthai = mysqli_fetch_array($ketquatrangthaigiao) ) {
+								echo '<th>'.$dongtrangthai["TrangThaiGiao"].'</th>';
+							}
+							echo '</tr>
+			                </thead>';
+						}
+
+						echo '<tbody>
+			                  <tr>
+			                    <td>'.$dong["SoLuongDDH"].'</td>
+			                    <td>'.$dongtongdoanhthu["TongDoanhThuNam"].'</td>';
+
+			            $ketquatrangthaigiao = mysqli_query($conn,$truyvantrangthaigiao);
+	                    if($ketquatrangthaigiao){
+		                    while ( $dongtrangthai = mysqli_fetch_array($ketquatrangthaigiao) ) {
+								echo '<td>'.$dongtrangthai["SoLuongDonHang"].'</td>';
+							}
+						}
+
+			            echo '</tr>
+			                </tbody>
+			              </table>';
+
+					}
+				}
+          	?>
           <!-- content-wrapper ends -->
           <!-- partial:partials/_footer.html -->
           <!-- partial -->

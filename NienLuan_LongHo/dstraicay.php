@@ -269,20 +269,38 @@
         <!-- partial -->
         <div class="main-panel">
           <div class="content-wrapper">
-
             <?php
               include_once("config.php");
-              $truyvan = "SELECT * FROM khuyenmai";
+              $truyvan = "SELECT * FROM traicay";
 
               $result = mysqli_query($conn, $truyvan);
 
               if (mysqli_num_rows($result) > 0)
               {
-                echo '<table class="table"><thead class="thead-dark"><tr> <td>Mã đơn hàng</td><td>Tên người đặt</td>
-                  <td>Điện thoại</td><td>Địa chỉ</td><td>Ngày đặt</td><td>Ngày Giao</td><td>Trạng thái giao</td><td>Mô tả</td></tr></thead>';
+                echo '<table class="table-bordered">
+                  <thead class="thead-dark">
+                    <tr> 
+                      <td>Mã trái cây</td>
+                      <td>Tên trái cây</td>
+                      <td>Giá bán</td>
+                      <td>Hình</td>
+                      <td>Miêu tả</td>
+                      <td>Thành phần dinh dưỡng</td>
+                      <td>Môi trường trồng</td>
+                      <td>Số lượng tồn</td>
+                    </tr>
+                  </thead>';
                 while($row = mysqli_fetch_assoc($result)) {
-                      $MaDDH = $row["MaDDH"];
-                      echo "<tr> <td>" .$row["MaDDH"]. "</td><td>" .$row["TenNguoiDatHang"]. "</td><td>" .$row["SoDienThoaiDatHang"]. "</td><td>" .$row["DiaChiDatHang"]. "</td><td>" .$row["NgayDat"]. "</td><td>" .$row["NgayGiao"]. "</td><td>" .$row["TrangThaiGiao"]. "</td><td>" .$row["MoTa"]. "</td><td><a href=chitietddh.php?MaDDH=$MaDDH>Chi tiết</a></td></tr>";
+                      echo "<tr>
+                       <td>" .$row["MaTraiCay"]. "</td>
+                       <td>" .$row["TenTraiCay"]. "</td>
+                       <td>" .$row["GiaBan"]. "</td>
+                       <td><img src=http://$_SERVER[SERVER_NAME]/NienLuan_LongHo/Image/TraiCay/$row[HinhTraiCay] alt=image width=150px height=100px></td>
+                       <td>" .$row["MieuTaTC"]. "</td>
+                       <td>" .$row["ThanhPhanDinhDuong"]. "</td>
+                       <td>" .$row["MoiTruongTrong"]. "</td>
+                       <td>" .$row["SoLuongTon"]. "</td>
+                      </tr>";
                   }
                 echo "</table>";
 

@@ -269,29 +269,84 @@
         <!-- partial -->
         <div class="main-panel">
           <div class="content-wrapper">
-
+          	<form method = POST>
+	            Loại trái cây:
+	            <select class="form-control" name = MaLTC>
+	              	<?php
+	              		include_once("config.php");
+						$truyvan = "SELECT * FROM loaitraicay";
+	          			$result = mysqli_query($conn, $truyvan);
+	          			if (mysqli_num_rows($result) > 0){
+	          				while($row = mysqli_fetch_assoc($result)) {
+	          					echo '<option value ='.$row["MaLTC"].'> '.$row["TenLTC"].' </option>';
+	          				}
+	          			}
+	              	?>
+              	</select>
+              	Nhà cung cấp: 
+                <select class="form-control" name = MaNCC>
+                  	<?php
+                  		include_once("config.php");
+						$truyvan = "SELECT * FROM nhacungcap";
+              			$result = mysqli_query($conn, $truyvan);
+              			if (mysqli_num_rows($result) > 0){
+              				while($row = mysqli_fetch_assoc($result)) {
+              					echo '<option value ='.$row["MaNCC"].'> '.$row["TenNCC"].' </option>';
+              				}
+              			}
+                  	?>
+                </select>
+                Quốc gia:
+                <select class="form-control" name = MaQG>
+                  	<?php
+                  		include_once("config.php");
+						$truyvan = "SELECT * FROM quocgia";
+              			$result = mysqli_query($conn, $truyvan);
+              			if (mysqli_num_rows($result) > 0){
+              				while($row = mysqli_fetch_assoc($result)) {
+              					echo '<option value ='.$row["MaQG"].'> '.$row["TenQG"].' </option>';
+              				}
+              			}
+                  	?>
+                </select>
+		        Nhập tên trái cây: <input class="form-control" type = text name= TenTraiCay >
+		        Giá bán: <input class="form-control" type = number name= GiaBan >
+		        Miêu tả: <input class="form-control" type = text name= MieuTaTC >
+		        Thành phần dinh dưỡng: <input class="form-control" type = text name= ThanhPhanDinhDuong >
+		        Môi trường trồng: <input class="form-control" type = text name= MoiTruongTrong >
+		        <input class="btn btn-primary" type = submit name = them_click value='Thêm' href=index.php/>
+		        <input class="btn btn-danger" type="reset">
+            </form>
             <?php
-              include_once("config.php");
-              $truyvan = "SELECT * FROM khuyenmai";
+				include_once("config.php");
+                if (isset($_POST['them_click'])){
+					if(isset($_POST["MaLTC"]) || isset($_POST["MaNCC"]) || isset($_POST["MaQG"]) || isset($_POST["TenTraiCay"]) || isset($_POST["GiaBan"]) || isset($_POST["MieuTaTC"]) || isset($_POST["ThanhPhanDinhDuong"]) || isset($_POST["MoiTruongTrong"]) ){
+						$MaLTC = $_POST["MaLTC"];
+						$MaNCC = $_POST["MaNCC"];
+						$MaQG = $_POST["MaQG"];
+						$TenTraiCay = $_POST["TenTraiCay"];
+						$GiaBan = $_POST["GiaBan"];
+						$MieuTaTC = $_POST["MieuTaTC"];
+						$ThanhPhanDinhDuong = $_POST["ThanhPhanDinhDuong"];
+						$MoiTruongTrong = $_POST["MoiTruongTrong"];
+					}
+					if(strlen($TenTraiCay)!=0){
+						if($GiaBan!=0){
+							$truyvan = "INSERT INTO traicay (MaLTC,MaNCC,MaQG,TenTraiCay,GiaBan,MieuTaTC,ThanhPhanDinhDuong,MoiTruongTrong) VALUES ('".$MaLTC."', '".$MaNCC."', '".$MaQG."',  '".$TenTraiCay."', '".$GiaBan."', '".$MieuTaTC."', '".$ThanhPhanDinhDuong."', '".$MoiTruongTrong."' )";
+							$ketqua = mysqli_query($conn,$truyvan);
 
-              $result = mysqli_query($conn, $truyvan);
-
-              if (mysqli_num_rows($result) > 0)
-              {
-                echo '<table class="table"><thead class="thead-dark"><tr> <td>Mã đơn hàng</td><td>Tên người đặt</td>
-                  <td>Điện thoại</td><td>Địa chỉ</td><td>Ngày đặt</td><td>Ngày Giao</td><td>Trạng thái giao</td><td>Mô tả</td></tr></thead>';
-                while($row = mysqli_fetch_assoc($result)) {
-                      $MaDDH = $row["MaDDH"];
-                      echo "<tr> <td>" .$row["MaDDH"]. "</td><td>" .$row["TenNguoiDatHang"]. "</td><td>" .$row["SoDienThoaiDatHang"]. "</td><td>" .$row["DiaChiDatHang"]. "</td><td>" .$row["NgayDat"]. "</td><td>" .$row["NgayGiao"]. "</td><td>" .$row["TrangThaiGiao"]. "</td><td>" .$row["MoTa"]. "</td><td><a href=chitietddh.php?MaDDH=$MaDDH>Chi tiết</a></td></tr>";
-                  }
-                echo "</table>";
-
-              }
-              else {
-                  echo "Không có record nào";
-              }
-              mysqli_close($conn);
-
+							if($ketqua){
+								echo "Thêm $TenTraiCay thành công";
+							}else{
+								echo "Thêm $TenTraiCay thất bại";
+							}
+						}else{
+							echo"Chưa nhập giá bán";
+						}
+					}else{
+						echo"Chưa nhập tên";
+					}
+				}
             ?>
           <!-- content-wrapper ends -->
           <!-- partial:partials/_footer.html -->

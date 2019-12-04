@@ -1,3 +1,10 @@
+<?php
+  session_start();
+  if(empty($_SESSION['username'])){
+    header('location:login.php');
+    exit;
+  }
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -157,8 +164,16 @@
               <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="UserDropdown">
                 <div class="dropdown-header text-center">
                   <img class="img-md rounded-circle" src="assets/images/faces/face8.jpg" alt="Profile image">
-                  <p class="mb-1 mt-3 font-weight-semibold">Allen Moreno</p>
-                  <p class="font-weight-light text-muted mb-0">allenmoreno@gmail.com</p>
+                  <p class="mb-1 mt-3 font-weight-semibold">
+                    <?php
+                      echo $_SESSION['tennguoidung'];
+                    ?>
+                  </p>
+                  <p class="font-weight-light text-muted mb-0">
+                    <?php
+                      echo $_SESSION['username'];
+                    ?>
+                  </p>
                 </div>
                 <a class="dropdown-item">My Profile <span class="badge badge-pill badge-danger">1</span><i class="dropdown-item-icon ti-dashboard"></i></a>
                 <a class="dropdown-item">Messages<i class="dropdown-item-icon ti-comment-alt"></i></a>
@@ -185,8 +200,16 @@
                   <div class="dot-indicator bg-success"></div>
                 </div>
                 <div class="text-wrapper">
-                  <p class="profile-name">Allen Moreno</p>
-                  <p class="designation">Premium user</p>
+                  <p class="profile-name">
+                    <?php
+                      echo $_SESSION['tennguoidung'];
+                    ?>
+                  </p>
+                  <p class="designation">
+                    <?php
+                      echo $_SESSION['username'];
+                    ?>
+                  </p>
                 </div>
               </a>
             </li>
@@ -206,19 +229,19 @@
               <div class="collapse" id="ui-basic">
                 <ul class="nav flex-column sub-menu">
                   <li class="nav-item">
-                    <a class="nav-link" href="pages/ui-features/buttons.html">Khách hàng</a>
+                    <a class="nav-link" href="thongkenguoidung.php">Khách hàng</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="pages/ui-features/dropdowns.html">Trái cây</a>
+                    <a class="nav-link" href="thongketraicay.php">Trái cây</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="pages/ui-features/typography.html">Đơn đặt hàng</a>
+                    <a class="nav-link" href="thongkeddh.php">Đơn đặt hàng</a>
                   </li>
                 </ul>
               </div>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="pages/forms/basic_elements.html">
+              <a class="nav-link" href="nhaphang.php">
                 <i class="menu-icon typcn typcn-shopping-bag"></i>
                 <span class="menu-title">Nhập hàng</span>
               </a>
@@ -230,7 +253,7 @@
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="Adtraicay.php">
+              <a class="nav-link" href="dstraicay.php">
                 <i class="menu-icon typcn typcn-bell"></i>
                 <span class="menu-title">Sản phẩm</span>
               </a>
@@ -240,32 +263,6 @@
                 <i class="menu-icon typcn typcn-user-outline"></i>
                 <span class="menu-title">Khuyến mãi</span>
               </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" data-toggle="collapse" href="#auth" aria-expanded="false" aria-controls="auth">
-                <i class="menu-icon typcn typcn-document-add"></i>
-                <span class="menu-title">User Pages</span>
-                <i class="menu-arrow"></i>
-              </a>
-              <div class="collapse" id="auth">
-                <ul class="nav flex-column sub-menu">
-                  <li class="nav-item">
-                    <a class="nav-link" href="pages/samples/blank-page.html"> Blank Page </a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="pages/samples/login.html"> Login </a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="pages/samples/register.html"> Register </a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="pages/samples/error-404.html"> 404 </a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="pages/samples/error-500.html"> 500 </a>
-                  </li>
-                </ul>
-              </div>
             </li>
           </ul>
         </nav>
@@ -314,7 +311,7 @@
               if (mysqli_num_rows($result) > 0)
               {
                 echo '<table class="table table-bordered"><thead class="thead-dark"><tr> <td>Mã đơn hàng</td><td>Tên người đặt</td>
-                  <td>Điện thoại</td><td>Địa chỉ</td><td>Ngày đặt</td><td>Ngày Giao</td><td>Trạng thái giao</td><td>Mô tả</td></tr></thead>';
+                  <td>Điện thoại</td><td>Địa chỉ</td><td>Ngày đặt</td><td>Ngày Giao</td><td>Mô tả</td><td>Trạng thái giao</td></tr></thead>';
                 while($row = mysqli_fetch_assoc($result)) {
                   $MaDDH = $row["MaDDH"];
                   $TrangThaiGiao = $row["TrangThaiGiao"];
@@ -326,26 +323,23 @@
                     <td>" .$row["DiaChiDatHang"]. "</td>
                     <td>" .$row["NgayDat"]. "</td>
                     <td>" .$row["NgayGiao"]. "</td>
-                    <td>" .$row["TrangThaiGiao"]. "</td>
-                    <td>" .$row["MoTa"]. "</td>
-                    <td><a href=chitietddh.php?MaDDH=$MaDDH>Chi tiết</a></td>";
+                    <td>" .$row["MoTa"]. "</td>";
                     if($TrangThaiGiao == $ChoKiemDuyet && isset($_GET["state"])){
                       echo "<td><form method = POST>
                           <input type = hidden name= MaDDH value=$MaDDH /> <br/>
                           <input type = hidden name = MaNguoiDuyet value='1'/><br/>
-                          <!-- <input type = text name = TrangThaiGiao value='Đã duyệt'/><br/> -->
                           <select name = TrangThaiGiao>
                             <option value = 'Chờ kiểm duyệt'>Chờ kiểm duyệt</option>
                             <option value = 'Đã duyệt'>Đã duyệt</option>
-                          </select>
-                          <input type = submit name = form_click value='Duyệt đơn hàng' href=index.php/>
+                          </select><br/>
+                          <input type = submit name = duyet_click value='Duyệt đơn hàng' href=index.php/>
                         </form></td>";
                     };
-                  echo "</tr>";
+                  echo "<td><a href=chitietddh.php?MaDDH=$MaDDH>Chi tiết</a></td></tr>";
                 }
                 echo "</table>";
 
-                if (isset($_POST['form_click'])){
+                if (isset($_POST['duyet_click'])){
 
                   $MaDDH = $_POST["MaDDH"];
                   $MaNguoiDuyet = $_POST["MaNguoiDuyet"];
