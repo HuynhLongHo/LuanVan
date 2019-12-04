@@ -17,9 +17,16 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.ArrayList;
-import java.util.List;
+import org.json.JSONException;
+import org.json.JSONObject;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.UUID;
+
+import butterknife.ButterKnife;
 import longho.nienluan.traicayngoainhap.Model.ObjectClass.ChiTietDDH;
 import longho.nienluan.traicayngoainhap.Model.ObjectClass.DonDatHang;
 import longho.nienluan.traicayngoainhap.Model.ObjectClass.nguoidung;
@@ -29,12 +36,15 @@ import longho.nienluan.traicayngoainhap.R;
 import longho.nienluan.traicayngoainhap.View.MoMo.MoMoConstants;
 import longho.nienluan.traicayngoainhap.View.MoMo.PaymentActivity;
 import longho.nienluan.traicayngoainhap.View.TrangChu.TrangChuActivity;
+import vn.momo.momo_partner.AppMoMoLib;
+import vn.momo.momo_partner.MoMoParameterNamePayment;
 
 public class DatHangActivity extends AppCompatActivity implements View.OnClickListener,ViewDatHang {
     Toolbar toolbar;
     EditText edTenNguoiNhan, edDiaChi, edSoDT, edMoTa;
     ImageButton imNhanTienKhiGiaoHang, imChuyenKhoan, imMoMo;
-    TextView txtNhanTienKhiGiaoHang, txtChuyenKhoan;
+    TextView txtNhanTienKhiGiaoHang, txtChuyenKhoan, txtTongTien, tvMessage;
+    String strMessage;
     Button btnThanhToan;
     CheckBox cbThoaThuan;
     PresenterLogicDatHang presenterLogicDatHang;
@@ -43,6 +53,14 @@ public class DatHangActivity extends AppCompatActivity implements View.OnClickLi
     int environment = 1;
     int tongtien = 0;
     int chonHinhThuc = 0;
+
+    private String amount = "10000";
+    private String fee = "0";
+//    int environment = 0;//developer default
+    private String merchantName = "LongHoFruit";
+    private String merchantCode = "MOMOFHAL20191023";
+    private String merchantNameLabel = "Nhà cung cấp";
+    private String description = "Mua trái cây";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -66,12 +84,25 @@ public class DatHangActivity extends AppCompatActivity implements View.OnClickLi
         btnThanhToan = findViewById(R.id.btnDatHang);
         txtNhanTienKhiGiaoHang = findViewById(R.id.txtNhanTienKhiGiaoHang);
         txtChuyenKhoan = findViewById(R.id.txtChuyenKhoan);
+        txtTongTien = findViewById(R.id.txtTongTien);
+        tvMessage = findViewById(R.id.tvMessage);
 //
         presenterLogicDatHang = new PresenterLogicDatHang(this,this);
         presenterLogicDatHang.LayDanhSachSanPhamTrongGioHang();
         presenterLogicDatHang.LayThongTinNguoiDung(MaNguoiDung);
 
         setSupportActionBar(toolbar);
+        txtTongTien.setText("Tổng tiền: " + tongtien);
+
+        amount = String.valueOf(tongtien);
+
+        if(environment == 0){
+            AppMoMoLib.getInstance().setEnvironment(AppMoMoLib.ENVIRONMENT.DEBUG);
+        }else if(environment == 1){
+            AppMoMoLib.getInstance().setEnvironment(AppMoMoLib.ENVIRONMENT.DEVELOPMENT);
+        }else if(environment == 2){
+            AppMoMoLib.getInstance().setEnvironment(AppMoMoLib.ENVIRONMENT.PRODUCTION);
+        }
 
         btnThanhToan.setOnClickListener(this);
         imNhanTienKhiGiaoHang.setOnClickListener(this);
@@ -97,7 +128,15 @@ public class DatHangActivity extends AppCompatActivity implements View.OnClickLi
                     donDatHang.setSoDienThoaiDatHang(sodt);
                     donDatHang.setDiaChiDatHang(diachi);
                     donDatHang.setMoTa(mota);
-                    donDatHang.setChuyenKhoan(chonHinhThuc);
+                    if(strMessage.equals("Successful")){
+                        donDatHang.setChuyenKhoan(1);
+                        donDatHang.setTrangThaiGiao("Đã thanh toán");
+                    }
+                    else{
+                        donDatHang.setChuyenKhoan(0);
+                        donDatHang.setTrangThaiGiao("Chờ kiểm duyệt");
+                    }
+
                     donDatHang.setChiTietDDHList(chiTietDDHList);
                     presenterLogicDatHang.ThemDDH(donDatHang);
 
@@ -117,13 +156,81 @@ public class DatHangActivity extends AppCompatActivity implements View.OnClickLi
                 chonHinhThuc = 1;
                 break;
             case R.id.imMoMo:
-                Bundle data = new Bundle();
-                Intent intent = new Intent(DatHangActivity.this, PaymentActivity.class);
-                data.putInt(MoMoConstants.KEY_ENVIRONMENT, environment);
-                intent.putExtras(data);
-                intent.putExtra("sotien",tongtien);
-                startActivity(intent);
+                chonHinhThuc = 1;
+                requestPayment();
                 break;
+        }
+    }
+
+    private void requestPayment() {
+        AppMoMoLib.getInstance().setAction(AppMoMoLib.ACTION.PAYMENT);
+        AppMoMoLib.getInstance().setActionType(AppMoMoLib.ACTION_TYPE.GET_TOKEN);
+
+
+        Map<String, Object> eventValue = new HashMap<>();
+        //client Required
+        eventValue.put(MoMoParameterNamePayment.MERCHANT_NAME, merchantName);
+        eventValue.put(MoMoParameterNamePayment.MERCHANT_CODE, merchantCode);
+        eventValue.put(MoMoParameterNamePayment.AMOUNT, amount);
+        eventValue.put(MoMoParameterNamePayment.DESCRIPTION, description);
+        //client Optional
+        eventValue.put(MoMoParameterNamePayment.FEE, fee);
+        eventValue.put(MoMoParameterNamePayment.MERCHANT_NAME_LABEL, merchantNameLabel);
+
+        eventValue.put(MoMoParameterNamePayment.REQUEST_ID,  merchantCode+"-"+ UUID.randomUUID().toString());
+        eventValue.put(MoMoParameterNamePayment.PARTNER_CODE, "MOMOFHAL20191023");
+
+        JSONObject objExtraData = new JSONObject();
+        try {
+            objExtraData.put("site_code", "008");
+            objExtraData.put("site_name", "CGV Cresent Mall");
+            objExtraData.put("screen_code", 0);
+            objExtraData.put("screen_name", "Special");
+            objExtraData.put("movie_name", "Kẻ Trộm Mặt Trăng 3");
+            objExtraData.put("movie_format", "2D");
+            objExtraData.put("ticket", "{\"ticket\":{\"01\":{\"type\":\"std\",\"price\":110000,\"qty\":3}}}");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        eventValue.put(MoMoParameterNamePayment.EXTRA_DATA, objExtraData.toString());
+        eventValue.put(MoMoParameterNamePayment.REQUEST_TYPE, "payment");
+        eventValue.put(MoMoParameterNamePayment.LANGUAGE, "vi");
+        eventValue.put(MoMoParameterNamePayment.EXTRA, "");
+        //Request momo app
+        AppMoMoLib.getInstance().requestMoMoCallBack(this, eventValue);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+//        AppMoMoLib.getInstance().trackEventResult(this,data);//request tracking result data
+        if(requestCode == AppMoMoLib.getInstance().REQUEST_CODE_MOMO && resultCode == -1) {
+            if(data != null) {
+                tvMessage.setVisibility(View.VISIBLE);
+                strMessage = data.getStringExtra("message");
+                if(data.getIntExtra("status", -1) == 0) {
+                    tvMessage.setText("message: " + "Get token " + data.getStringExtra("message"));
+//                    tvMessage.setText(R.string.success);
+
+                    if(data.getStringExtra("data") != null && !data.getStringExtra("data").equals("")) {
+                        // TODO:
+
+                    } else {
+                        tvMessage.setText("message: " + this.getString(R.string.not_receive_info));
+                    }
+                } else if(data.getIntExtra("status", -1) == 1) {
+                    String message = data.getStringExtra("message") != null?data.getStringExtra("message"):"Thất bại";
+                    tvMessage.setText("message: " + message);
+                } else if(data.getIntExtra("status", -1) == 2) {
+                    tvMessage.setText("message: " + this.getString(R.string.not_receive_info));
+                } else {
+                    tvMessage.setText("message: " + this.getString(R.string.not_receive_info));
+                }
+            } else {
+                tvMessage.setText("message: " + this.getString(R.string.not_receive_info));
+            }
+        } else {
+            tvMessage.setText("message: " + this.getString(R.string.not_receive_info_err));
         }
     }
 

@@ -30,19 +30,43 @@
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         >
 
-        <TextView
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Gửi tới : "
-            android:textColor="@color/colorFacebook"
-            android:layout_marginTop="5dp"
-            />
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Gửi tới : "
+                android:textColor="@color/colorFacebook"
+                android:layout_marginTop="5dp"
+                />
 
-        <EditText
-            android:id="@+id/edTenNguoiNhan"
-            style="@style/DinhDangNhapText"
-            android:hint="Tên người nhận "
-            />
+            <EditText
+                android:id="@+id/edTenNguoiNhan"
+                style="@style/DinhDangNhapText"
+                android:hint="Tên người nhận "
+                />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Số điện thoại: "
+                android:textColor="@color/colorFacebook"
+                android:layout_marginTop="5dp"
+                />
+            <EditText
+                android:id="@+id/edSoDT"
+                style="@style/DinhDangNhapText"
+                android:hint="Số điện thoại "
+                android:inputType="phone"
+                />
+        </LinearLayout>
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -55,19 +79,6 @@
             style="@style/DinhDangNhapText"
             android:hint="Địa chỉ giao hàng "
             />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Số điện thoại: "
-            android:textColor="@color/colorFacebook"
-            android:layout_marginTop="5dp"
-            />
-        <EditText
-            android:id="@+id/edSoDT"
-            style="@style/DinhDangNhapText"
-            android:hint="Số điện thoại "
-            android:inputType="phone"
-            />
 
         <TextView
             android:layout_width="wrap_content"
@@ -79,8 +90,26 @@
         <EditText
             android:id="@+id/edMoTa"
             style="@style/DinhDangNhapText"
-            android:hint="Địa chỉ giao hàng "
+            android:hint="Ghi chú đơn hàng"
             />
+
+
+        <TextView
+            android:id="@+id/txtTongTien"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tổng Tiền"
+            android:textColor="@color/colorFacebook"
+            android:layout_marginTop="5dp"/>
+
+        <TextView
+            android:id="@+id/tvMessage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Trạng thái thanh toán MoMo"
+            android:visibility="gone"
+            android:textColor="@color/colorFacebook"
+            android:layout_marginTop="5dp"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -90,7 +119,6 @@
             android:textColor="@color/colorFacebook"
 
             />
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -132,6 +160,7 @@
                 android:orientation="vertical"
                 android:layout_weight="1"
                 android:gravity="center"
+                android:visibility="gone"
                 >
 
                 <ImageButton

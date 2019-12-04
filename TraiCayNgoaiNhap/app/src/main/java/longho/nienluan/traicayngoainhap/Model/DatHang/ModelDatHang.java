@@ -63,6 +63,9 @@ public class ModelDatHang {
         HashMap<String,String> hsMoTa = new HashMap<>();
         hsMoTa.put("mota", donDatHang.getMoTa());
 
+        HashMap<String,String> hsTrangThai = new HashMap<>();
+        hsTrangThai.put("trangthaigiao", donDatHang.getTrangThaiGiao());
+
         HashMap<String,String> hsChuyenKhoan = new HashMap<>();
         hsChuyenKhoan.put("chuyenkhoan",String.valueOf(donDatHang.getChuyenKhoan()));
 
@@ -73,6 +76,7 @@ public class ModelDatHang {
         attrs.add(hsSoDT);
         attrs.add(hsDiaChi);
         attrs.add(hsMoTa);
+        attrs.add(hsTrangThai);
         attrs.add(hsChuyenKhoan);
 
         DownloadJSON downloadJSON = new DownloadJSON(duongdan,attrs);
