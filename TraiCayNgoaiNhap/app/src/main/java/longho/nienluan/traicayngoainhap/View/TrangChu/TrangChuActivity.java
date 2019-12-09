@@ -9,6 +9,7 @@ import android.support.v4.view.MenuItemCompat;
 import android.support.v4.view.ViewCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -60,13 +61,15 @@ import longho.nienluan.traicayngoainhap.View.Shipper.ShipperActivity;
 import longho.nienluan.traicayngoainhap.View.ThongTinNguoiDung.ThongTinNguoiDungActivity;
 import longho.nienluan.traicayngoainhap.View.TimKiem.TimKiemActivity;
 
-public class TrangChuActivity extends AppCompatActivity implements ViewXuLyMenu,AppBarLayout.OnOffsetChangedListener,BaseSliderView.OnSliderClickListener, ViewPagerEx.OnPageChangeListener {
+public class TrangChuActivity extends AppCompatActivity implements ViewXuLyMenu,AppBarLayout.OnOffsetChangedListener,BaseSliderView.OnSliderClickListener, ViewPagerEx.OnPageChangeListener, SwipeRefreshLayout.OnRefreshListener {
 
-    public static final String SERVER_NAME = "http://10.2.56.155:80/NienLuan_LongHo/traicay.php";//B21_P4
-    public static final String SERVER = "http://10.2.56.155:80/NienLuan_LongHo/Image/TraiCay/";//B21_P4
-    
-//    public static final String SERVER_NAME = "https://longho-traicay.000webhostapp.com/NienLuan_LongHo/traicay.php";
-//    public static final String SERVER = "https://longho-traicay.000webhostapp.com/NienLuan_LongHo/Image/TraiCay/";
+//    public static final String SERVER_NAME = "http://10.2.56.155:80/NienLuan_LongHo/traicay.php";//B21_P4
+//    public static final String SERVER = "http://10.2.56.155:80/NienLuan_LongHo/Image/TraiCay/";//B21_P4
+//    public static final String SERVER_NAME = "http://10.13.144.166:80/NienLuan_LongHo/traicay.php";//B21_P4
+//    public static final String SERVER = "http://10.13.144.166:80/NienLuan_LongHo/Image/TraiCay/";//B21_P4
+
+    public static final String SERVER_NAME = "https://longho-traicay.000webhostapp.com/NienLuan_LongHo/traicay.php";
+    public static final String SERVER = "https://longho-traicay.000webhostapp.com/NienLuan_LongHo/Image/TraiCay/";
 
 
     Toolbar toolbar;
@@ -90,6 +93,7 @@ public class TrangChuActivity extends AppCompatActivity implements ViewXuLyMenu,
     PresenterLogicNoiBat presenterLogicNoiBat;
     List<traicay> traicays;
     boolean onPause = false;
+    SwipeRefreshLayout srlLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -109,6 +113,7 @@ public class TrangChuActivity extends AppCompatActivity implements ViewXuLyMenu,
         collapsingToolbarLayout = findViewById(R.id.collapsing_toolbar);
         Hash_file_maps = new HashMap<String, String>();
         sliderLayout = (SliderLayout)findViewById(R.id.slider);
+        srlLayout = findViewById(R.id.srlLayout);
 
         toolbar.setTitle("");
         setSupportActionBar(toolbar);
@@ -153,6 +158,9 @@ public class TrangChuActivity extends AppCompatActivity implements ViewXuLyMenu,
         sliderLayout.setCustomAnimation(new DescriptionAnimation());
         sliderLayout.setDuration(3000);
         sliderLayout.addOnPageChangeListener(this);
+
+        srlLayout.setColorSchemeResources(R.color.colorBlack, R.color.colorGreen, R.color.colorRed);
+        srlLayout.setOnRefreshListener(this);
 
         logicXuLyMenu = new PresenterLogicXuLyMenu(this);
 //        logicXuLyMenu.LayDanhSachMenu();
@@ -332,24 +340,23 @@ public class TrangChuActivity extends AppCompatActivity implements ViewXuLyMenu,
 
     @Override
     public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
-//        if(collapsingToolbarLayout.getHeight() + verticalOffset <=  1.5 * ViewCompat.getMinimumHeight(collapsingToolbarLayout)){
+        if(collapsingToolbarLayout.getHeight() + verticalOffset <=  1.5 * ViewCompat.getMinimumHeight(collapsingToolbarLayout)){
 //            LinearLayout linearLayout = appBarLayout.findViewById(R.id.lnSearch);
-//            linearLayout.animate().alpha(0).setDuration(200);
+            sliderLayout.animate().alpha(0).setDuration(200);
 //
 //            MenuItem itSearch = menu.findItem(R.id.itSearch);
 //            itSearch.setVisible(true);
-//
-//        }else{
+
+        }else{
 //            LinearLayout linearLayout = appBarLayout.findViewById(R.id.lnSearch);
-//            linearLayout.animate().alpha(1).setDuration(200);
+            sliderLayout.animate().alpha(1).setDuration(200);
 //            try{
 //                MenuItem itSearch = menu.findItem(R.id.itSearch);
 //                itSearch.setVisible(false);
 //            }catch (Exception e){
 //
 //            }
-//
-//        }
+        }
     }
     @Override
     protected void onResume() {
@@ -396,5 +403,10 @@ public class TrangChuActivity extends AppCompatActivity implements ViewXuLyMenu,
     @Override
     public void onPageScrollStateChanged(int state) {
 
+    }
+
+    @Override
+    public void onRefresh() {
+        this.recreate();
     }
 }

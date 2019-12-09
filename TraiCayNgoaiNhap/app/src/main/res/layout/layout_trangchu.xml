@@ -6,11 +6,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorWhite">
-    <FrameLayout
-        android:id="@+id/themFragment"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <android.support.design.widget.CoordinatorLayout
+        <FrameLayout
+            android:id="@+id/themFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"><android.support.design.widget.CoordinatorLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:fitsSystemWindows="true">
@@ -20,11 +19,13 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/gradient"
                 android:fitsSystemWindows="true">
+
                 <android.support.design.widget.CollapsingToolbarLayout
                     android:id="@+id/collapsing_toolbar"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:layout_scrollFlags="scroll|exitUntilCollapsed|snap">
+
 
                     <com.daimajia.slider.library.SliderLayout
                         android:id="@+id/slider"
@@ -38,44 +39,49 @@
                         app:layout_scrollFlags="scroll|enterAlways"
                         app:layout_collapseMode="pin"/>
                 </android.support.design.widget.CollapsingToolbarLayout>
-
-
-
             </android.support.design.widget.AppBarLayout>
             <FrameLayout
                 android:id="@+id/content"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 app:layout_behavior="@string/appbar_scrolling_view_behavior">
-
-                <android.support.v4.view.ViewPager
-                    android:id="@+id/viewpager"
+                <android.support.v4.widget.SwipeRefreshLayout
+                    android:id="@+id/srlLayout"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_marginBottom="45dp">
-                </android.support.v4.view.ViewPager>
+                    <android.support.v4.view.ViewPager
+                        android:id="@+id/viewpager"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+                    </android.support.v4.view.ViewPager>
+                </android.support.v4.widget.SwipeRefreshLayout>
             </FrameLayout>
-
-
         </android.support.design.widget.CoordinatorLayout>
-        <android.support.design.widget.TabLayout
-            android:id="@+id/tabs"
+
+
+
+
+            <android.support.design.widget.TabLayout
+                android:id="@+id/tabs"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:tabMode="scrollable"
+                android:background="@drawable/gradient4"
+                android:layout_gravity="bottom"
+                app:tabTextColor="@color/colorWhite"
+                app:tabTextAppearance="@style/capfalse"
+                />
+        </FrameLayout>
+
+        <ExpandableListView
+            android:id="@+id/epmenu"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:tabMode="scrollable"
-            android:background="@drawable/gradient4"
-            android:layout_gravity="bottom"
-            app:tabTextColor="@color/colorWhite"
-            app:tabTextAppearance="@style/capfalse"
-            />
-    </FrameLayout>
+            android:layout_height="match_parent"
+            android:layout_gravity="start">
 
-    <ExpandableListView
-        android:id="@+id/epmenu"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_gravity="start">
+        </ExpandableListView>
 
-    </ExpandableListView>
+
 </android.support.v4.widget.DrawerLayout>
 
