@@ -209,8 +209,8 @@ public class DatHangActivity extends AppCompatActivity implements View.OnClickLi
                 tvMessage.setVisibility(View.VISIBLE);
                 strMessage = data.getStringExtra("message");
                 if(data.getIntExtra("status", -1) == 0) {
-                    tvMessage.setText("message: " + "Get token " + data.getStringExtra("message"));
-//                    tvMessage.setText(R.string.success);
+//                    tvMessage.setText("message: " + "Get token " + data.getStringExtra("message"));
+                    tvMessage.setText(R.string.success);
 
                     if(data.getStringExtra("data") != null && !data.getStringExtra("data").equals("")) {
                         // TODO:
